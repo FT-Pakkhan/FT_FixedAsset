@@ -1,0 +1,348 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="14.0">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{73ACD63D-4A3E-4597-80E4-C866F0D14389}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>FT_FixedAsset.Module</RootNamespace>
+    <AssemblyName>FT_FixedAsset.Module</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'EasyTest|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\EasyTest\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;EASYTEST</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'EasyTest|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\EasyTest\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;EASYTEST</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'EasyTest|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\EasyTest\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;EASYTEST</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.Data.v19.2">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.ExpressApp.ConditionalAppearance.v19.2">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.ExpressApp.FileAttachment.Web.v19.2, Version=19.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.ExpressApp.FileAttachment.Win.v19.2, Version=19.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.ExpressApp.Security.v19.2">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.ExpressApp.Security.Xpo.v19.2">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.ExpressApp.v19.2">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.ExpressApp.Validation.v19.2">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.ExpressApp.Web.v19.2, Version=19.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.ExpressApp.Win.v19.2, Version=19.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.ExpressApp.Xpo.v19.2">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.Persistent.Base.v19.2">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.Persistent.BaseImpl.v19.2">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.Printing.v19.2.Core">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.Utils.v19.2, Version=19.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Office.v19.2.Core, Version=19.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.RichEdit.v19.2.Core, Version=19.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Web.v19.2, Version=19.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Xpo.v19.2">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.XtraEditors.v19.2, Version=19.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="mscorlib">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="System">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BusinessObjects\CustomLogonParameters.cs" />
+    <Compile Include="BusinessObjects\FTS11FAM2.cs" />
+    <Compile Include="BusinessObjects\FTS11FAM3.cs" />
+    <Compile Include="BusinessObjects\FTS11JDT1.cs" />
+    <Compile Include="BusinessObjects\FTS11NNM2.cs" />
+    <Compile Include="BusinessObjects\FTS11NNM1.cs" />
+    <Compile Include="BusinessObjects\FTS11OJDT.cs" />
+    <Compile Include="BusinessObjects\FTS11SRPT.cs" />
+    <Compile Include="BusinessObjects\FTS11OIND.cs" />
+    <Compile Include="BusinessObjects\FTS11T0202D.cs" />
+    <Compile Include="BusinessObjects\FTS11T0305D.cs" />
+    <Compile Include="BusinessObjects\FTS11T0304D.cs" />
+    <Compile Include="BusinessObjects\FTS11T0303D.cs" />
+    <Compile Include="BusinessObjects\FTS11T0302D.cs" />
+    <Compile Include="BusinessObjects\FTS11T0301D.cs" />
+    <Compile Include="BusinessObjects\FTS11T0205D.cs" />
+    <Compile Include="BusinessObjects\FTS11T0204D.cs" />
+    <Compile Include="BusinessObjects\FTS11T0203D.cs" />
+    <Compile Include="BusinessObjects\FTS11T0305.cs" />
+    <Compile Include="BusinessObjects\FTS11T0304.cs" />
+    <Compile Include="BusinessObjects\FTS11T0303.cs" />
+    <Compile Include="BusinessObjects\FTS11T0302.cs" />
+    <Compile Include="BusinessObjects\FTS11T0301.cs" />
+    <Compile Include="BusinessObjects\FTS11T0205.cs" />
+    <Compile Include="BusinessObjects\FTS11T0204.cs" />
+    <Compile Include="BusinessObjects\FTS11T0203.cs" />
+    <Compile Include="BusinessObjects\FTS11T0202.cs" />
+    <Compile Include="BusinessObjects\FTS11T0201.cs" />
+    <Compile Include="BusinessObjects\FTS11TJDT.cs" />
+    <Compile Include="BusinessObjects\FTS11TJDTD.cs" />
+    <Compile Include="BusinessObjects\FTS11_vw_Component.cs" />
+    <Compile Include="BusinessObjects\FTS11_vw_FTS11JDT1A.cs" />
+    <Compile Include="BusinessObjects\FTS11_vw_OACT_OCRD.cs" />
+    <Compile Include="BusinessObjects\FTS11_vw_OCRN.cs" />
+    <Compile Include="BusinessObjects\FTS11_vw_NNM1.cs" />
+    <Compile Include="BusinessObjects\FTS11_vw_FTS11JDT1.cs" />
+    <Compile Include="BusinessObjects\ReportViewer.cs" />
+    <Compile Include="BusinessObjects\PostWidget.cs" />
+    <Compile Include="BusinessObjects\DeprnWidget.cs" />
+    <Compile Include="BusinessObjects\DropdownSelection.cs" />
+    <Compile Include="BusinessObjects\FTS11FAG1.cs" />
+    <Compile Include="BusinessObjects\FTS11OADM.cs" />
+    <Compile Include="BusinessObjects\FTS11OFAC.cs" />
+    <Compile Include="BusinessObjects\FTS11OFAG.cs" />
+    <Compile Include="BusinessObjects\FTS11OFAM.cs" />
+    <Compile Include="BusinessObjects\FTS11OLOC.cs" />
+    <Compile Include="BusinessObjects\FTS11STRN.cs" />
+    <Compile Include="BusinessObjects\FTS11_vw_OPRC.cs" />
+    <Compile Include="BusinessObjects\FTS11_vw_OACT.cs" />
+    <Compile Include="BusinessObjects\FTS11_vw_OPRJ.cs" />
+    <Compile Include="BusinessObjects\SystemUsers.cs" />
+    <Compile Include="ChangeDatabaseActiveDirectoryAuthentication.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\ButtonController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\ButtonController.Designer.cs">
+      <DependentUpon>ButtonController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\CustomizePopupWindowSize.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\CustomizePopupWindowSize.Designer.cs">
+      <DependentUpon>CustomizePopupWindowSize.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\CuztomizeJDT1PopUp.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\CuztomizeJDT1PopUp.Designer.cs">
+      <DependentUpon>CuztomizeJDT1PopUp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\DisableButtonController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\DisableButtonController.Designer.cs">
+      <DependentUpon>DisableButtonController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\FilterListViewController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\FilterListViewController.Designer.cs">
+      <DependentUpon>FilterListViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\GenController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\GenController.Designer.cs">
+      <DependentUpon>GenController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\GetHeaderValueController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\GetHeaderValueController.Designer.cs">
+      <DependentUpon>GetHeaderValueController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\NavNonPersistentController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\NavNonPersistentController.Designer.cs">
+      <DependentUpon>NavNonPersistentController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\ObjectSorting.cs" />
+    <Compile Include="Controllers\ObjectSorting.Designer.cs">
+      <DependentUpon>ObjectSorting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DatabaseUpdate\Updater.cs" />
+    <Compile Include="BusinessObjects\FTS11T0201D.cs" />
+    <Compile Include="Module.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Module.Designer.cs">
+      <DependentUpon>Module.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Controllers\ButtonController.resx">
+      <DependentUpon>ButtonController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controllers\CuztomizeJDT1PopUp.resx">
+      <DependentUpon>CuztomizeJDT1PopUp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Model.DesignedDiffs.xafml" />
+    <EmbeddedResource Include="Module.resx">
+      <DependentUpon>Module.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="BusinessObjects\ReadMe.txt" />
+    <None Include="Controllers\ReadMe.txt" />
+    <None Include="DatabaseUpdate\ReadMe.txt" />
+    <None Include="Images\ReadMe.txt" />
+    <None Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="FunctionalTests\config.xml" />
+    <None Include="FunctionalTests\sample.ets" />
+    <None Include="FunctionalTests\ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Welcome.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Fast Track Logo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FileSystemData\FileSystemData.csproj">
+      <Project>{CA5F7C78-D46D-4DAB-AF51-61E0481C4AEA}</Project>
+      <Name>FileSystemData</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="SAPbobsCOM">
+      <Guid>{FC8030BE-F5D2-4B8E-8F92-44228FE30100}</Guid>
+      <VersionMajor>10</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="SAPbouiCOM">
+      <Guid>{6048236A-956D-498D-A6F1-9C81C13AB6E8}</Guid>
+      <VersionMajor>10</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

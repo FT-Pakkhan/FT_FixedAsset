@@ -1,0 +1,23 @@
+/* Pending */
+-Data import widget
+-Multiple database (Alternative Solution copy multiple folder in inetpub and change web config)
+-Show table/field/datatype info (Optional - Alternative solution tiptool)
+
+
+/* Feature */
+-Pull record from SAP to create FA Master
+-Allow to do transaction on Component together with Main Item
+-Forecast Report
+-Image
+
+/* Bug */
+- Unable to link U_FAKey in FTS11FAM2 listview because Popup window
+
+To put after Done Main things
+-It wont generate missing depreciation
+-When to update FA Status
+-When to allow cancel for Fixed Asset Master and transaction
+-FTS11FAG1 in fixed asset master
+-0 cost item because of FOC
+
+

@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application Title="Fast Track Fixed Asset" Logo="Fast Track Logo.png" Company="Fast Track Sboi Sdn Bhd" Copyright="Copyright (C) {0:Company}&lt;br&gt;All rights reserved">
+  <NavigationItems StartupNavigationItem="FTS11OFAM_ListView">
+    <Items>
+      <Item Id="Fixed Asset">
+        <Items>
+          <Item Id="FTS11OFAM_ListView" Index="1" />
+          <Item Id="FTS11T0201_ListView" Index="2" />
+          <Item Id="FTS11T0202_ListView" Index="3" />
+          <Item Id="FTS11T0203_ListView" Index="4" />
+          <Item Id="FTS11T0204_ListView" Index="5" />
+          <Item Id="FTS11T0205_ListView" Index="6" />
+          <Item Id="FTS11T0301_ListView" Index="7" />
+          <Item Id="FTS11T0302_ListView" Index="8" />
+          <Item Id="FTS11T0303_ListView" Index="9" />
+          <Item Id="FTS11T0304_ListView" Index="10" />
+          <Item Id="FTS11T0305_ListView" Index="11" />
+        </Items>
+      </Item>
+      <Item Id="System Initialization">
+        <Items>
+          <Item Id="FTS11OADM_ListView" Index="1" />
+          <Item Id="FTS11NNM1_ListView" Index="2" />
+        </Items>
+      </Item>
+      <Item Id="Widgets">
+        <Items>
+          <Item Id="DeprnWidget_ListView" Index="1" ViewId="DeprnWidget_DetailView" />
+          <Item Id="PostWidget_ListView" Index="2" ViewId="PostWidget_DetailView" />
+          <Item Id="ReportViewer_ListView" Index="4" ViewId="ReportViewer_DetailView" />
+        </Items>
+      </Item>
+    </Items>
+  </NavigationItems>
+  <SchemaModules>
+    <SchemaModule Name="SystemModule" Version="19.2.9.0" IsNewNode="True" />
+  </SchemaModules>
+</Application>
