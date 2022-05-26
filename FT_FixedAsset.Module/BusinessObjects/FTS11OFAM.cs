@@ -66,7 +66,6 @@ namespace FT_FixedAsset.Module.BusinessObjects
             UpdateDate = DateTime.Today;
             Object = "FTS11OFAM";
             LogInst = 0;
-            string test = "";
         }
 
         #region Child Table
