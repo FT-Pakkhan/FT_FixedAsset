@@ -164,6 +164,7 @@
     <Compile Include="BusinessObjects\CustomLogonParameters.cs" />
     <Compile Include="BusinessObjects\FTS11FAM2.cs" />
     <Compile Include="BusinessObjects\FTS11FAM3.cs" />
+    <Compile Include="BusinessObjects\FTS11FAM4.cs" />
     <Compile Include="BusinessObjects\FTS11JDT1.cs" />
     <Compile Include="BusinessObjects\FTS11NNM2.cs" />
     <Compile Include="BusinessObjects\FTS11NNM1.cs" />

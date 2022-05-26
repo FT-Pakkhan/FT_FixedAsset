@@ -107,6 +107,12 @@ namespace FT_FixedAsset.Module.BusinessObjects
         {
             get { return GetCollection("FTS11FAM3"); }
         }
+
+        [Association("FTS11OFAM-FTS11FAM4", typeof(FTS11FAM4))]
+        public XPCollection FTS11FAM4
+        {
+            get { return GetCollection("FTS11FAM4"); }
+        }
         #endregion
 
         [Key(AutoGenerate = true), Browsable(false)]
