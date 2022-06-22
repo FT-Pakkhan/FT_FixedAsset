@@ -258,6 +258,7 @@ namespace FT_FixedAsset.Module.Web.Controllers
             if (View.ObjectTypeInfo.Type == typeof(DeprnWidget))
             {
                 DeprnWidget RunDeprn = (DeprnWidget)View.CurrentObject;
+                SystemUsers user = (SystemUsers)SecuritySystem.CurrentUser;
 
                 //Block if Date from more earlier than Date to
                 if (RunDeprn.DateFrm > RunDeprn.DateTo)
@@ -310,7 +311,7 @@ namespace FT_FixedAsset.Module.Web.Controllers
                     {
                         foreach (DataRow row in dt.Rows)
                         {
-                            genCon.GenerateDeprn(RunDeprn.DateFrm, RunDeprn.DateTo, int.Parse(row["FAKey"].ToString()), "admin");
+                            genCon.GenerateDeprn(RunDeprn.DateFrm, RunDeprn.DateTo, int.Parse(row["FAKey"].ToString()), user.UserName.ToString());
                         }
                         genCon.MsgBox(InformationType.Info, "Information", "Depreciation has been generated.");
                     }
