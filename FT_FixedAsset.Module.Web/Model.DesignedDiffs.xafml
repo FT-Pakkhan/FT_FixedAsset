@@ -228,9 +228,9 @@
           <LayoutGroup Id="SimpleEditors" RelativeSize="100">
             <LayoutItem Id="U_DocDate" ViewItem="U_DocDate" Index="0" RelativeSize="6.3943161634103021" IsNewNode="True" />
             <LayoutItem Id="U_NumAtCard" ViewItem="U_NumAtCard" Index="1" RelativeSize="4.6181172291296626" IsNewNode="True" />
-            <LayoutItem Id="U_Desc" ViewItem="U_Desc" Index="2" RelativeSize="4.6181172291296626" IsNewNode="True" />
-            <LayoutItem Id="U_Amount" ViewItem="U_Amount" Index="3" RelativeSize="4.6181172291296626" IsNewNode="True" />
-            <LayoutItem Id="U_Reason" ViewItem="U_Reason" Index="4" RelativeSize="79.7513321492007" IsNewNode="True" />
+            <LayoutItem Id="U_NumAtCard2" ViewItem="U_NumAtCard2" Index="2" RelativeSize="4.6181172291296626" IsNewNode="True" />
+            <LayoutItem Id="U_Desc" ViewItem="U_Desc" Index="3" RelativeSize="73.357015985790412" IsNewNode="True" />
+            <LayoutItem Id="U_Amount" ViewItem="U_Amount" Index="4" RelativeSize="4.6181172291296626" IsNewNode="True" />
             <LayoutGroup Id="FTS11FAM4" Index="5" RelativeSize="75.133214920071055" Direction="Horizontal" Removed="True">
               <LayoutGroup Id="FTS11FAM4_col2" RelativeSize="100" Caption="FTS11FAM4_col2" Index="0" Removed="True">
                 <LayoutItem Id="U_Reason" RelativeSize="100" Index="0" Removed="True" />
@@ -242,6 +242,7 @@
                 <LayoutItem Id="U_DocDate" Removed="True" />
               </LayoutGroup>
             </LayoutGroup>
+            <LayoutItem Id="U_Reason" ViewItem="U_Reason" Index="5" RelativeSize="6.3943161634103021" IsNewNode="True" />
           </LayoutGroup>
         </LayoutGroup>
       </Layout>
