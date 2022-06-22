@@ -57,6 +57,15 @@ namespace FT_FixedAsset.Module.BusinessObjects
             set { SetPropertyValue("U_NumAtCard", ref _U_NumAtCard, value); }
         }
 
+        private string _U_NumAtCard2;
+        [XafDisplayName("Reference No. 2"), ToolTip("Reference No. 2")]
+        [Index(21), VisibleInListView(true), VisibleInDetailView(true), VisibleInLookupListView(true)]
+        public string U_NumAtCard2
+        {
+            get { return _U_NumAtCard2; }
+            set { SetPropertyValue("U_NumAtCard2", ref _U_NumAtCard2, value); }
+        }
+
         private string _U_Desc;
         [XafDisplayName("Description"), ToolTip("Description")]
         [Size(254)]

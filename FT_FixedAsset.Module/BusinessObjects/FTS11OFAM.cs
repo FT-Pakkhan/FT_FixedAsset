@@ -1137,7 +1137,8 @@ namespace FT_FixedAsset.Module.BusinessObjects
         }
 
         private FTS11_vw_OPRJ _U_Project;
-        [XafDisplayName("Project"), ToolTip("Project")]
+        //[XafDisplayName("Project"), ToolTip("Project")]
+        [XafDisplayName("Plant"), ToolTip("Plant")]
         [Index(350), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(false)]
         [NoForeignKey]
         public FTS11_vw_OPRJ U_Project
@@ -1147,7 +1148,8 @@ namespace FT_FixedAsset.Module.BusinessObjects
         }
 
         private FTS11_vw_OPRC _U_ProfitCode;
-        [XafDisplayName("Cost Centre D1"), ToolTip("Cost Centre D1")]
+        //[XafDisplayName("Cost Centre D1"), ToolTip("Cost Centre D1")]
+        [XafDisplayName("Project Code"), ToolTip("Project Code")]
         [Index(360), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(false)]
         [NoForeignKey]
         [DataSourceCriteria("DimCode = '1'")]
@@ -1158,7 +1160,8 @@ namespace FT_FixedAsset.Module.BusinessObjects
         }
 
         private FTS11_vw_OPRC _U_OcrCode2;
-        [XafDisplayName("Cost Centre D2"), ToolTip("Cost Centre D2")]
+        //[XafDisplayName("Cost Centre D2"), ToolTip("Cost Centre D2")]
+        [XafDisplayName("Department"), ToolTip("Department")]
         [Index(370), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(false)]
         [NoForeignKey]
         [DataSourceCriteria("DimCode = '2'")]
@@ -1202,7 +1205,8 @@ namespace FT_FixedAsset.Module.BusinessObjects
         }
 
         private FTS11OIND _U_IndKey1;
-        [XafDisplayName("Indicator 1"), ToolTip("Indicator 1")]
+        //[XafDisplayName("Indicator 1"), ToolTip("Indicator 1")]
+        [XafDisplayName("Area Code"), ToolTip("Area Code")]
         [Index(410), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(false)]
         [DataSourceCriteria("U_IndDim = '1'")]
         public FTS11OIND U_IndKey1
@@ -1530,8 +1534,8 @@ namespace FT_FixedAsset.Module.BusinessObjects
 
         private DateTime _U_RefDate1;
         [Index(541), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(false)]
-        //[XafDisplayName("Ref. Date 1"), ToolTip("Ref. Date 1")]
-        [XafDisplayName("Invoice Date"), ToolTip("Invoice Date")]
+        [XafDisplayName("Ref. Date 1"), ToolTip("Ref. Date 1")]
+        //[XafDisplayName("Invoice Date"), ToolTip("Invoice Date")]
         [ModelDefault("DisplayFormat", "dd/MM/yyyy")]
         public DateTime U_RefDate1
         {
