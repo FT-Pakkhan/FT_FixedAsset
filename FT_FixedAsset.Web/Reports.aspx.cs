@@ -12,27 +12,35 @@ namespace FT_FixedAsset.Web
 {
     public partial class Reports : System.Web.UI.Page
     {
+        ReportDocument doc = new ReportDocument();
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (HttpContext.Current.Session["PreviewObj"].ToString() == "RV")
-                RVLoadReport();
-            else
-                PWLoadReport();
+            if (IsPostBack)
+            {
+                CrystalReportViewer1.ReportSource = Session["ReportSource"];
+            }
+        }
 
+        protected void Page_Unload(object sender, EventArgs e)
+        {
+            CrystalReportViewer1.Dispose();
+            CrystalReportViewer1 = null;
+            doc.Dispose();
+            doc.Close();
+            doc = null;
+            GC.Collect();  
         }
 
         protected void Page_PreInit(object sender, EventArgs e)
         {
-
             if (HttpContext.Current.Session["PreviewObj"].ToString() == "RV")
-                RVLoadReport();
+                RVLoadReport(doc);
             else
-                PWLoadReport();
+                PWLoadReport(doc);
         }
 
-        public void PWLoadReport()
+        public void PWLoadReport(ReportDocument doc)
         {
-            ReportDocument doc = new ReportDocument();
             Session["ReportSource"] = doc;
             doc.Load(HttpContext.Current.Session["ReportPath"].ToString());
             SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder(HttpContext.Current.Session["Connection"].ToString());
@@ -106,11 +114,11 @@ namespace FT_FixedAsset.Web
 
             CrystalReportViewer1.ID = HttpContext.Current.Session["ReportName"].ToString();
 
+            builder.Clear();
         }
 
-        public void RVLoadReport()
+        public void RVLoadReport(ReportDocument doc)
         {
-            ReportDocument doc = new ReportDocument();
             Session["ReportSource"] = doc;
             doc.Load(HttpContext.Current.Session["ReportPath"].ToString());
             SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder(HttpContext.Current.Session["Connection"].ToString());
@@ -270,6 +278,8 @@ namespace FT_FixedAsset.Web
                 CrystalReportViewer1.ReportSource = doc;
 
             CrystalReportViewer1.ID = HttpContext.Current.Session["ReportName"].ToString();
+
+            builder.Clear();
         }
     }
 }
