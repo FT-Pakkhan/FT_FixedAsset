@@ -665,6 +665,12 @@
     </DetailView>
     <ListView Id="FTS11OLOC_LookupListView" AllowDelete="False" AllowNew="False" ShowSelectionColumn="False" />
     <ListView Id="FTS11SRPT_LookupListView" AllowDelete="False" AllowNew="False" />
+    <ListView Id="FTS11STRN_LookupListView" ShowSelectionColumn="False" AllowDelete="False" AllowNew="False">
+      <Columns>
+        <ColumnInfo Id="Code" Index="0" />
+        <ColumnInfo Id="Name" Index="1" />
+      </Columns>
+    </ListView>
     <DetailView Id="FTS11T0201_DetailView">
       <Items>
         <PropertyEditor Id="U_Remark1" RowCount="3" />
