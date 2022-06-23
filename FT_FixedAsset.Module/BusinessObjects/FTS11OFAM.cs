@@ -1805,6 +1805,16 @@ namespace FT_FixedAsset.Module.BusinessObjects
         }
 
         [Browsable(false)]
+        private string _IsFieldEditable;
+        [Index(1010), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [DbType("nvarchar(1)")]
+        public string IsFieldEditable
+        {
+            get { return _IsFieldEditable; }
+            set { SetPropertyValue("IsFieldEditable", ref _IsFieldEditable, value); }
+        }
+
+        [Browsable(false)]
         public bool IsNew
         {
             get { return Session.IsNewObject(this); }
