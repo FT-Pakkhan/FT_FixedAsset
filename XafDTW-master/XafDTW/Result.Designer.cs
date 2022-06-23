@@ -38,12 +38,16 @@
             // 
             this.dgvResult.AllowUserToAddRows = false;
             this.dgvResult.AllowUserToDeleteRows = false;
+            this.dgvResult.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvResult.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvResult.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllHeaders;
-            this.dgvResult.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvResult.ColumnHeadersHeight = 29;
             this.dgvResult.Location = new System.Drawing.Point(12, 50);
             this.dgvResult.Name = "dgvResult";
             this.dgvResult.ReadOnly = true;
+            this.dgvResult.RowHeadersWidth = 51;
             this.dgvResult.RowTemplate.Height = 24;
             this.dgvResult.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvResult.Size = new System.Drawing.Size(776, 303);
