@@ -380,6 +380,36 @@ namespace FT_FixedAsset.Module.Controllers
             }
         }
 
+        public void UpdateIsFieldEditable(int FAKey)
+        {
+            try
+            {
+                string connectionString = getConnectionString();
+
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    SqlCommand cmd = new SqlCommand("", conn);
+
+                    if (conn.State == ConnectionState.Open)
+                        conn.Close();
+
+                    conn.Open();
+
+                    cmd.CommandText = "EXEC sp_FTS11_SetIsFieldEditable ";
+                    if (FAKey == 0)
+                        cmd.CommandText += "''";
+                    else
+                        cmd.CommandText += FAKey;
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                MsgBox(InformationType.Error, "Error", ex.Message);
+            }
+        }
+
         public void AutoNumbering(FTS11OADM OADM, FTS11NNM1 code,FTS11OFAM OFAM, IObjectSpace os)
         {
             string prefix = "";

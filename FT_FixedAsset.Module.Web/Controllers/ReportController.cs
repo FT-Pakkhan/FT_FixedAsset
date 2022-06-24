@@ -387,6 +387,8 @@ namespace FT_FixedAsset.Module.Web.Controllers
                 return;
             }
             #endregion
+
+            genCon.UpdateIsFieldEditable(0);
         }
 
         public void createJE(DataTable dt, PostWidget JEPreview, FTS11OADM OADM, SqlConnection conn, SqlCommand cmdsql)
