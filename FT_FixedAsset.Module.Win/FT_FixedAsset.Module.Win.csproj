@@ -222,7 +222,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FileSystemData\FileSystemData.csproj">
-      <Project>{CA5F7C78-D46D-4DAB-AF51-61E0481C4AEA}</Project>
+      <Project>{ca5f7c78-d46d-4dab-af51-61e0481c4aea}</Project>
       <Name>FileSystemData</Name>
     </ProjectReference>
     <ProjectReference Include="..\FT_FixedAsset.Module\FT_FixedAsset.Module.csproj">

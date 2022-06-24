@@ -312,12 +312,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\FileSystemData\FileSystemData.csproj">
-      <Project>{CA5F7C78-D46D-4DAB-AF51-61E0481C4AEA}</Project>
-      <Name>FileSystemData</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <COMReference Include="SAPbobsCOM">
       <Guid>{FC8030BE-F5D2-4B8E-8F92-44228FE30100}</Guid>
       <VersionMajor>10</VersionMajor>
@@ -336,6 +330,12 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FileSystemData\FileSystemData.csproj">
+      <Project>{ca5f7c78-d46d-4dab-af51-61e0481c4aea}</Project>
+      <Name>FileSystemData</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
