@@ -27,10 +27,10 @@ namespace XafDTW.Helpers
             FileStream fileStream = null;
             string filePath = "";
             if (string.IsNullOrWhiteSpace(logPath))
-                filePath = "D:\\SAP_Integration_Log\\";
+                filePath = Logs.getConfigurationAppSettingValue("LogPath");
             else
                 filePath = logPath;
-            filePath = filePath + "[" + "Integration" + "] Log_" + System.DateTime.Today.ToString("yyyyMMdd") + "." + "txt";
+            filePath = filePath + "[" + "FA_DTW" + "] Log_" + System.DateTime.Today.ToString("yyyyMMdd") + "." + "txt";
 
             FileInfo fileInfo = new FileInfo(filePath);
             DirectoryInfo dirInfo = new DirectoryInfo(fileInfo.DirectoryName);
