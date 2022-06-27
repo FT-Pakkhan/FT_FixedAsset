@@ -102,7 +102,7 @@ namespace FT_FixedAsset.Module.Controllers
                         goto CatchResult;
                     }
                 }
-
+                dt.Dispose();
                 conn.Close();
             }
             catch (Exception ex)
@@ -161,7 +161,7 @@ namespace FT_FixedAsset.Module.Controllers
                         }
                     }
                 }
-
+                dt.Dispose();
                 conn.Close();
             }
             catch (Exception ex)
@@ -217,7 +217,7 @@ namespace FT_FixedAsset.Module.Controllers
                         }
                     }
                 }
-
+                dt.Dispose();
                 conn.Close();
             }
             catch (Exception ex)
@@ -272,7 +272,7 @@ namespace FT_FixedAsset.Module.Controllers
                         }
                     }
                 }
-
+                dt.Dispose();
                 conn.Close();
             }
             catch (Exception ex)
@@ -343,7 +343,7 @@ namespace FT_FixedAsset.Module.Controllers
                         }
                     }
                 }
-
+                dt.Dispose();
                 conn.Close();
             }
             catch (Exception ex)
