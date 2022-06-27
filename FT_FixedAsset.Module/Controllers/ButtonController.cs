@@ -1557,11 +1557,14 @@ namespace FT_FixedAsset.Module.Web.Controllers
                         if (TJDT.Status.Code == "O")
                         {
                             genCon.executeNonQuery("UPDATE T0 SET T0.TransStatus = 'C' FROM FTS11JDT1 T0 WHERE T0.DocEntry = '" + TJDT.DocEntry + "'");
+
                         }
                         else if (TJDT.Status.Code == "P")
                         {
                             genCon.executeNonQuery("EXEC sp_FTS11_ReverseJDT1 '" + TJDT.DocEntry + "','" + user.UserName.ToString() + "','" + TJDT.FAKey.DocEntry + "'");
                         }
+
+                        genCon.executeNonQuery("EXEC sp_FTS11_SetIsFieldEditable '" + TJDT.FAKey.DocEntry + "'");
                     }
                     else
                     {
