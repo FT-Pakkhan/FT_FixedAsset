@@ -388,7 +388,8 @@ namespace FT_FixedAsset.Module.BusinessObjects
         }
 
         private FTS11_vw_OPRJ _U_ProjectFrm;
-        [XafDisplayName("Project From"), ToolTip("Project From")]
+        //[XafDisplayName("Project From"), ToolTip("Project From")]
+        [XafDisplayName("Plant From"), ToolTip("Plant From")]
         [Index(150), VisibleInListView(true), VisibleInDetailView(true), VisibleInLookupListView(true)]
         [NoForeignKey]
         public FTS11_vw_OPRJ U_ProjectFrm
@@ -398,7 +399,8 @@ namespace FT_FixedAsset.Module.BusinessObjects
         }
 
         private FTS11_vw_OPRJ _U_ProjectTo;
-        [XafDisplayName("Project To"), ToolTip("Project To")]
+        //[XafDisplayName("Project To"), ToolTip("Project To")]
+        [XafDisplayName("Plant To"), ToolTip("Plant To")]
         [Index(151), VisibleInListView(true), VisibleInDetailView(true), VisibleInLookupListView(true)]
         [NoForeignKey]
         public FTS11_vw_OPRJ U_ProjectTo
@@ -408,7 +410,8 @@ namespace FT_FixedAsset.Module.BusinessObjects
         }
 
         private FTS11_vw_OPRC _U_ProfitCodeFrm;
-        [XafDisplayName("C.Centre D1 From"), ToolTip("C.Centre D1 From")]
+        //[XafDisplayName("C.Centre D1 From"), ToolTip("C.Centre D1 From")]
+        [XafDisplayName("Project Code From"), ToolTip("Project Code From")]
         [Index(160), VisibleInListView(true), VisibleInDetailView(true), VisibleInLookupListView(true)]
         [NoForeignKey]
         [DataSourceCriteria("DimCode = '1'")]
@@ -419,7 +422,8 @@ namespace FT_FixedAsset.Module.BusinessObjects
         }
 
         private FTS11_vw_OPRC _U_ProfitCodeTo;
-        [XafDisplayName("C.Centre D1 To"), ToolTip("C.Centre D1 To")]
+        //[XafDisplayName("C.Centre D1 To"), ToolTip("C.Centre D1 To")]
+        [XafDisplayName("Project Code To"), ToolTip("Project Code To")]
         [Index(161), VisibleInListView(true), VisibleInDetailView(true), VisibleInLookupListView(true)]
         [NoForeignKey]
         [DataSourceCriteria("DimCode = '1'")]
@@ -430,7 +434,8 @@ namespace FT_FixedAsset.Module.BusinessObjects
         }
 
         private FTS11_vw_OPRC _U_OcrCode2Frm;
-        [XafDisplayName("C.Centre D2 From"), ToolTip("C.Centre D2 From")]
+        //[XafDisplayName("C.Centre D2 From"), ToolTip("C.Centre D2 From")]
+        [XafDisplayName("Department From"), ToolTip("Department From")]
         [Index(170), VisibleInListView(true), VisibleInDetailView(true), VisibleInLookupListView(true)]
         [NoForeignKey]
         [DataSourceCriteria("DimCode = '2'")]
@@ -441,7 +446,8 @@ namespace FT_FixedAsset.Module.BusinessObjects
         }
 
         private FTS11_vw_OPRC _U_OcrCode2To;
-        [XafDisplayName("C.Centre D2 To"), ToolTip("C.Centre D2 To")]
+        //[XafDisplayName("C.Centre D2 To"), ToolTip("C.Centre D2 To")]
+        [XafDisplayName("Department To"), ToolTip("Department To")]
         [Index(171), VisibleInListView(true), VisibleInDetailView(true), VisibleInLookupListView(true)]
         [NoForeignKey]
         [DataSourceCriteria("DimCode = '2'")]
@@ -518,7 +524,8 @@ namespace FT_FixedAsset.Module.BusinessObjects
         }
 
         private FTS11OIND _U_IndKey1Frm;
-        [XafDisplayName("Indicator 1 From"), ToolTip("Indicator 1 From")]
+        //[XafDisplayName("Indicator 1 From"), ToolTip("Indicator 1 From")]
+        [XafDisplayName("Area Code From"), ToolTip("Area Code From")]
         [Index(210), VisibleInListView(true), VisibleInDetailView(true), VisibleInLookupListView(true)]
         [DataSourceCriteria("U_IndDim = '1'")]
         public FTS11OIND U_IndKey1Frm
@@ -528,7 +535,8 @@ namespace FT_FixedAsset.Module.BusinessObjects
         }
 
         private FTS11OIND _U_IndKey1To;
-        [XafDisplayName("Indicator 1 To"), ToolTip("Indicator 1 To")]
+        //[XafDisplayName("Indicator 1 To"), ToolTip("Indicator 1 To")]
+        [XafDisplayName("Area Code To"), ToolTip("Area Code To")]
         [Index(211), VisibleInListView(true), VisibleInDetailView(true), VisibleInLookupListView(true)]
         [DataSourceCriteria("U_IndDim = '1'")]
         public FTS11OIND U_IndKey1To
