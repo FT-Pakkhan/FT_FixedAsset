@@ -423,30 +423,34 @@ namespace FT_FixedAsset.Module.Web.Controllers
                                     genCon.MsgBox(InformationType.Error, "Error", "Kindly select only asset which yet disposed.");
                                     return;
                                 }
+                            }
 
-                                FTS11T0201D T0201D = os.CreateObject<FTS11T0201D>();
-
-                                T0201D.DocEntry = T0201;
-
-                                using (SqlConnection conn = new SqlConnection(genCon.getConnectionString()))
+                            using (SqlConnection conn = new SqlConnection(genCon.getConnectionString()))
+                            {
+                                using (SqlDataAdapter da = new SqlDataAdapter("", conn))
                                 {
-                                    using (SqlDataAdapter da = new SqlDataAdapter("", conn))
-                                    {
-                                        da.SelectCommand.CommandText = "SELECT ISNULL(MAX(T0.Oid),0) + 1 AS [MaxOid] FROM FTS11T0201D T0 ";
-                                        DataTable dt = new DataTable();
-                                        da.Fill(dt);
+                                    da.SelectCommand.CommandText = "SELECT ISNULL(MAX(T0.Oid),0) + 1 AS [MaxOid] FROM FTS11T0201D T0 ";
+                                    DataTable dt = new DataTable();
+                                    da.Fill(dt);
 
-                                        if (dt.Rows.Count > 0)
+                                    if (dt.Rows.Count > 0)
+                                    {
+                                        foreach (DataRow dtrow in dt.Rows)
                                         {
-                                            foreach (DataRow dtrow in dt.Rows)
-                                            {
-                                                T0201D.Oid = int.Parse(dtrow["MaxOid"].ToString()) + row;
-                                            }
+                                            row = int.Parse(dtrow["MaxOid"].ToString());
                                         }
                                     }
                                 }
+                            }
 
+                            foreach (FTS11OFAM selectedObject in e.SelectedObjects)
+                            {
+                                FTS11T0201D T0201D = os.CreateObject<FTS11T0201D>();
+
+                                T0201D.Oid = row;
+                                T0201D.DocEntry = T0201;
                                 T0201D.U_FAKey = os.GetObjectByKey<FTS11OFAM>(selectedObject.DocEntry);
+
                                 row++;
                             }
                         }
@@ -478,29 +482,32 @@ namespace FT_FixedAsset.Module.Web.Controllers
                                 genCon.MsgBox(InformationType.Error, "Error", "Kindly select only asset which yet disposed.");
                                 return;
                             }
+                        }
 
-                            FTS11T0202D T0202D = os.CreateObject<FTS11T0202D>();
-
-                            T0202D.DocEntry = T0202;
-
-                            using (SqlConnection conn = new SqlConnection(genCon.getConnectionString()))
+                        using (SqlConnection conn = new SqlConnection(genCon.getConnectionString()))
+                        {
+                            using (SqlDataAdapter da = new SqlDataAdapter("", conn))
                             {
-                                using (SqlDataAdapter da = new SqlDataAdapter("", conn))
-                                {
-                                    da.SelectCommand.CommandText = "SELECT ISNULL(MAX(T0.Oid),0) + 1 AS [MaxOid] FROM FTS11T0202D T0 ";
-                                    DataTable dt = new DataTable();
-                                    da.Fill(dt);
+                                da.SelectCommand.CommandText = "SELECT ISNULL(MAX(T0.Oid),0) + 1 AS [MaxOid] FROM FTS11T0202D T0 ";
+                                DataTable dt = new DataTable();
+                                da.Fill(dt);
 
-                                    if (dt.Rows.Count > 0)
+                                if (dt.Rows.Count > 0)
+                                {
+                                    foreach (DataRow dtrow in dt.Rows)
                                     {
-                                        foreach (DataRow dtrow in dt.Rows)
-                                        {
-                                            T0202D.Oid = int.Parse(dtrow["MaxOid"].ToString()) + row;
-                                        }
+                                        row = int.Parse(dtrow["MaxOid"].ToString());
                                     }
                                 }
                             }
+                        }
 
+                        foreach (FTS11OFAM selectedObject in e.SelectedObjects)
+                        {
+                            FTS11T0202D T0202D = os.CreateObject<FTS11T0202D>();
+
+                            T0202D.Oid = row;
+                            T0202D.DocEntry = T0202;
                             T0202D.U_FAKey = os.GetObjectByKey<FTS11OFAM>(selectedObject.DocEntry);
                             row++;
                         }
@@ -532,29 +539,32 @@ namespace FT_FixedAsset.Module.Web.Controllers
                                 genCon.MsgBox(InformationType.Error, "Error", "Kindly select only asset which yet disposed.");
                                 return;
                             }
+                        }
 
-                            FTS11T0203D T0203D = os.CreateObject<FTS11T0203D>();
-
-                            T0203D.DocEntry = T0203;
-
-                            using (SqlConnection conn = new SqlConnection(genCon.getConnectionString()))
+                        using (SqlConnection conn = new SqlConnection(genCon.getConnectionString()))
+                        {
+                            using (SqlDataAdapter da = new SqlDataAdapter("", conn))
                             {
-                                using (SqlDataAdapter da = new SqlDataAdapter("", conn))
-                                {
-                                    da.SelectCommand.CommandText = "SELECT ISNULL(MAX(T0.Oid),0) + 1 AS [MaxOid] FROM FTS11T0203D T0 ";
-                                    DataTable dt = new DataTable();
-                                    da.Fill(dt);
+                                da.SelectCommand.CommandText = "SELECT ISNULL(MAX(T0.Oid),0) + 1 AS [MaxOid] FROM FTS11T0203D T0 ";
+                                DataTable dt = new DataTable();
+                                da.Fill(dt);
 
-                                    if (dt.Rows.Count > 0)
+                                if (dt.Rows.Count > 0)
+                                {
+                                    foreach (DataRow dtrow in dt.Rows)
                                     {
-                                        foreach (DataRow dtrow in dt.Rows)
-                                        {
-                                            T0203D.Oid = int.Parse(dtrow["MaxOid"].ToString()) + row;
-                                        }
+                                        row = int.Parse(dtrow["MaxOid"].ToString());
                                     }
                                 }
                             }
+                        }
 
+                        foreach (FTS11OFAM selectedObject in e.SelectedObjects)
+                        { 
+                            FTS11T0203D T0203D = os.CreateObject<FTS11T0203D>();
+
+                            T0203D.Oid = row;
+                            T0203D.DocEntry = T0203;
                             T0203D.U_FAKey = os.GetObjectByKey<FTS11OFAM>(selectedObject.DocEntry);
                             row++;
                         }
@@ -586,29 +596,32 @@ namespace FT_FixedAsset.Module.Web.Controllers
                                 genCon.MsgBox(InformationType.Error, "Error", "Kindly select only asset which yet disposed.");
                                 return;
                             }
+                        }
 
-                            FTS11T0204D T0204D = os.CreateObject<FTS11T0204D>();
-
-                            T0204D.DocEntry = T0204;
-
-                            using (SqlConnection conn = new SqlConnection(genCon.getConnectionString()))
+                        using (SqlConnection conn = new SqlConnection(genCon.getConnectionString()))
+                        {
+                            using (SqlDataAdapter da = new SqlDataAdapter("", conn))
                             {
-                                using (SqlDataAdapter da = new SqlDataAdapter("", conn))
-                                {
-                                    da.SelectCommand.CommandText = "SELECT ISNULL(MAX(T0.Oid),0) + 1 AS [MaxOid] FROM FTS11T0204D T0 ";
-                                    DataTable dt = new DataTable();
-                                    da.Fill(dt);
+                                da.SelectCommand.CommandText = "SELECT ISNULL(MAX(T0.Oid),0) + 1 AS [MaxOid] FROM FTS11T0204D T0 ";
+                                DataTable dt = new DataTable();
+                                da.Fill(dt);
 
-                                    if (dt.Rows.Count > 0)
+                                if (dt.Rows.Count > 0)
+                                {
+                                    foreach (DataRow dtrow in dt.Rows)
                                     {
-                                        foreach (DataRow dtrow in dt.Rows)
-                                        {
-                                            T0204D.Oid = int.Parse(dtrow["MaxOid"].ToString()) + row;
-                                        }
+                                        row = int.Parse(dtrow["MaxOid"].ToString());
                                     }
                                 }
                             }
+                        }
 
+                        foreach (FTS11OFAM selectedObject in e.SelectedObjects)
+                        { 
+                            FTS11T0204D T0204D = os.CreateObject<FTS11T0204D>();
+
+                            T0204D.Oid = row;
+                            T0204D.DocEntry = T0204;
                             T0204D.U_FAKey = os.GetObjectByKey<FTS11OFAM>(selectedObject.DocEntry);
                             row++;
                         }
@@ -640,29 +653,32 @@ namespace FT_FixedAsset.Module.Web.Controllers
                                 genCon.MsgBox(InformationType.Error, "Error", "Kindly select only asset which yet disposed.");
                                 return;
                             }
+                        }
 
-                            FTS11T0205D T0205D = os.CreateObject<FTS11T0205D>();
-
-                            T0205D.DocEntry = T0205;
-
-                            using (SqlConnection conn = new SqlConnection(genCon.getConnectionString()))
+                        using (SqlConnection conn = new SqlConnection(genCon.getConnectionString()))
+                        {
+                            using (SqlDataAdapter da = new SqlDataAdapter("", conn))
                             {
-                                using (SqlDataAdapter da = new SqlDataAdapter("", conn))
-                                {
-                                    da.SelectCommand.CommandText = "SELECT ISNULL(MAX(T0.Oid),0) + 1 AS [MaxOid] FROM FTS11T0205D T0 ";
-                                    DataTable dt = new DataTable();
-                                    da.Fill(dt);
+                                da.SelectCommand.CommandText = "SELECT ISNULL(MAX(T0.Oid),0) + 1 AS [MaxOid] FROM FTS11T0205D T0 ";
+                                DataTable dt = new DataTable();
+                                da.Fill(dt);
 
-                                    if (dt.Rows.Count > 0)
+                                if (dt.Rows.Count > 0)
+                                {
+                                    foreach (DataRow dtrow in dt.Rows)
                                     {
-                                        foreach (DataRow dtrow in dt.Rows)
-                                        {
-                                            T0205D.Oid = int.Parse(dtrow["MaxOid"].ToString()) + row;
-                                        }
+                                        row = int.Parse(dtrow["MaxOid"].ToString());
                                     }
                                 }
                             }
+                        }
 
+                        foreach (FTS11OFAM selectedObject in e.SelectedObjects)
+                        {
+                            FTS11T0205D T0205D = os.CreateObject<FTS11T0205D>();
+
+                            T0205D.Oid = row;
+                            T0205D.DocEntry = T0205;
                             T0205D.U_FAKey = os.GetObjectByKey<FTS11OFAM>(selectedObject.DocEntry);
                             row++;
                         }
@@ -694,29 +710,32 @@ namespace FT_FixedAsset.Module.Web.Controllers
                                 genCon.MsgBox(InformationType.Error, "Error", "Kindly select only asset which yet disposed.");
                                 return;
                             }
+                        }
 
-                            FTS11T0301D T0301D = os.CreateObject<FTS11T0301D>();
-
-                            T0301D.DocEntry = T0301;
-
-                            using (SqlConnection conn = new SqlConnection(genCon.getConnectionString()))
+                        using (SqlConnection conn = new SqlConnection(genCon.getConnectionString()))
+                        {
+                            using (SqlDataAdapter da = new SqlDataAdapter("", conn))
                             {
-                                using (SqlDataAdapter da = new SqlDataAdapter("", conn))
-                                {
-                                    da.SelectCommand.CommandText = "SELECT ISNULL(MAX(T0.Oid),0) + 1 AS [MaxOid] FROM FTS11T0301D T0 ";
-                                    DataTable dt = new DataTable();
-                                    da.Fill(dt);
+                                da.SelectCommand.CommandText = "SELECT ISNULL(MAX(T0.Oid),0) + 1 AS [MaxOid] FROM FTS11T0301D T0 ";
+                                DataTable dt = new DataTable();
+                                da.Fill(dt);
 
-                                    if (dt.Rows.Count > 0)
+                                if (dt.Rows.Count > 0)
+                                {
+                                    foreach (DataRow dtrow in dt.Rows)
                                     {
-                                        foreach (DataRow dtrow in dt.Rows)
-                                        {
-                                            T0301D.Oid = int.Parse(dtrow["MaxOid"].ToString()) + row;
-                                        }
+                                        row = int.Parse(dtrow["MaxOid"].ToString());
                                     }
                                 }
                             }
+                        }
 
+                        foreach (FTS11OFAM selectedObject in e.SelectedObjects)
+                        {
+                            FTS11T0301D T0301D = os.CreateObject<FTS11T0301D>();
+
+                            T0301D.Oid = row;
+                            T0301D.DocEntry = T0301;
                             T0301D.U_FAKey = os.GetObjectByKey<FTS11OFAM>(selectedObject.DocEntry);
                             row++;
                         }
@@ -748,29 +767,32 @@ namespace FT_FixedAsset.Module.Web.Controllers
                                 genCon.MsgBox(InformationType.Error, "Error", "Kindly select only asset which yet disposed.");
                                 return;
                             }
+                        }
 
-                            FTS11T0302D T0302D = os.CreateObject<FTS11T0302D>();
-
-                            T0302D.DocEntry = T0302;
-
-                            using (SqlConnection conn = new SqlConnection(genCon.getConnectionString()))
+                        using (SqlConnection conn = new SqlConnection(genCon.getConnectionString()))
+                        {
+                            using (SqlDataAdapter da = new SqlDataAdapter("", conn))
                             {
-                                using (SqlDataAdapter da = new SqlDataAdapter("", conn))
-                                {
-                                    da.SelectCommand.CommandText = "SELECT ISNULL(MAX(T0.Oid),0) + 1 AS [MaxOid] FROM FTS11T0302D T0 ";
-                                    DataTable dt = new DataTable();
-                                    da.Fill(dt);
+                                da.SelectCommand.CommandText = "SELECT ISNULL(MAX(T0.Oid),0) + 1 AS [MaxOid] FROM FTS11T0302D T0 ";
+                                DataTable dt = new DataTable();
+                                da.Fill(dt);
 
-                                    if (dt.Rows.Count > 0)
+                                if (dt.Rows.Count > 0)
+                                {
+                                    foreach (DataRow dtrow in dt.Rows)
                                     {
-                                        foreach (DataRow dtrow in dt.Rows)
-                                        {
-                                            T0302D.Oid = int.Parse(dtrow["MaxOid"].ToString()) + row;
-                                        }
+                                        row = int.Parse(dtrow["MaxOid"].ToString());
                                     }
                                 }
                             }
+                        }
 
+                        foreach (FTS11OFAM selectedObject in e.SelectedObjects)
+                        { 
+                            FTS11T0302D T0302D = os.CreateObject<FTS11T0302D>();
+
+                            T0302D.Oid = row;
+                            T0302D.DocEntry = T0302;
                             T0302D.U_FAKey = os.GetObjectByKey<FTS11OFAM>(selectedObject.DocEntry);
                             row++;
                         }
@@ -801,29 +823,32 @@ namespace FT_FixedAsset.Module.Web.Controllers
                                 genCon.MsgBox(InformationType.Error, "Error", "Kindly select only asset which yet disposed.");
                                 return;
                             }
+                        }
 
-                            FTS11T0303D T0303D = os.CreateObject<FTS11T0303D>();
-
-                            T0303D.DocEntry = T0303;
-
-                            using (SqlConnection conn = new SqlConnection(genCon.getConnectionString()))
+                        using (SqlConnection conn = new SqlConnection(genCon.getConnectionString()))
+                        {
+                            using (SqlDataAdapter da = new SqlDataAdapter("", conn))
                             {
-                                using (SqlDataAdapter da = new SqlDataAdapter("", conn))
-                                {
-                                    da.SelectCommand.CommandText = "SELECT ISNULL(MAX(T0.Oid),0) + 1 AS [MaxOid] FROM FTS11T0303D T0 ";
-                                    DataTable dt = new DataTable();
-                                    da.Fill(dt);
+                                da.SelectCommand.CommandText = "SELECT ISNULL(MAX(T0.Oid),0) + 1 AS [MaxOid] FROM FTS11T0303D T0 ";
+                                DataTable dt = new DataTable();
+                                da.Fill(dt);
 
-                                    if (dt.Rows.Count > 0)
+                                if (dt.Rows.Count > 0)
+                                {
+                                    foreach (DataRow dtrow in dt.Rows)
                                     {
-                                        foreach (DataRow dtrow in dt.Rows)
-                                        {
-                                            T0303D.Oid = int.Parse(dtrow["MaxOid"].ToString()) + row;
-                                        }
+                                        row = int.Parse(dtrow["MaxOid"].ToString());
                                     }
                                 }
                             }
+                        }
 
+                        foreach (FTS11OFAM selectedObject in e.SelectedObjects)
+                        {
+                            FTS11T0303D T0303D = os.CreateObject<FTS11T0303D>();
+
+                            T0303D.Oid = row;
+                            T0303D.DocEntry = T0303;
                             T0303D.U_FAKey = os.GetObjectByKey<FTS11OFAM>(selectedObject.DocEntry);
                             row++;
                         }
@@ -855,29 +880,32 @@ namespace FT_FixedAsset.Module.Web.Controllers
                                 genCon.MsgBox(InformationType.Error, "Error", "Kindly select only asset which yet disposed.");
                                 return;
                             }
+                        }
 
-                            FTS11T0304D T0304D = os.CreateObject<FTS11T0304D>();
-
-                            T0304D.DocEntry = T0304;
-
-                            using (SqlConnection conn = new SqlConnection(genCon.getConnectionString()))
+                        using (SqlConnection conn = new SqlConnection(genCon.getConnectionString()))
+                        {
+                            using (SqlDataAdapter da = new SqlDataAdapter("", conn))
                             {
-                                using (SqlDataAdapter da = new SqlDataAdapter("", conn))
-                                {
-                                    da.SelectCommand.CommandText = "SELECT ISNULL(MAX(T0.Oid),0) + 1 AS [MaxOid] FROM FTS11T0304D T0 ";
-                                    DataTable dt = new DataTable();
-                                    da.Fill(dt);
+                                da.SelectCommand.CommandText = "SELECT ISNULL(MAX(T0.Oid),0) + 1 AS [MaxOid] FROM FTS11T0304D T0 ";
+                                DataTable dt = new DataTable();
+                                da.Fill(dt);
 
-                                    if (dt.Rows.Count > 0)
+                                if (dt.Rows.Count > 0)
+                                {
+                                    foreach (DataRow dtrow in dt.Rows)
                                     {
-                                        foreach (DataRow dtrow in dt.Rows)
-                                        {
-                                            T0304D.Oid = int.Parse(dtrow["MaxOid"].ToString()) + row;
-                                        }
+                                        row = int.Parse(dtrow["MaxOid"].ToString());
                                     }
                                 }
                             }
+                        }
 
+                        foreach (FTS11OFAM selectedObject in e.SelectedObjects)
+                        { 
+                            FTS11T0304D T0304D = os.CreateObject<FTS11T0304D>();
+
+                            T0304D.Oid = row;
+                            T0304D.DocEntry = T0304;
                             T0304D.U_FAKey = os.GetObjectByKey<FTS11OFAM>(selectedObject.DocEntry);
                             row++;
                         }
@@ -909,29 +937,32 @@ namespace FT_FixedAsset.Module.Web.Controllers
                                 genCon.MsgBox(InformationType.Error, "Error", "Kindly select only asset which yet disposed.");
                                 return;
                             }
+                        }
 
-                            FTS11T0305D T0305D = os.CreateObject<FTS11T0305D>();
-
-                            T0305D.DocEntry = T0305;
-
-                            using (SqlConnection conn = new SqlConnection(genCon.getConnectionString()))
+                        using (SqlConnection conn = new SqlConnection(genCon.getConnectionString()))
+                        {
+                            using (SqlDataAdapter da = new SqlDataAdapter("", conn))
                             {
-                                using (SqlDataAdapter da = new SqlDataAdapter("", conn))
-                                {
-                                    da.SelectCommand.CommandText = "SELECT ISNULL(MAX(T0.Oid),0) + 1 AS [MaxOid] FROM FTS11T0305D T0 ";
-                                    DataTable dt = new DataTable();
-                                    da.Fill(dt);
+                                da.SelectCommand.CommandText = "SELECT ISNULL(MAX(T0.Oid),0) + 1 AS [MaxOid] FROM FTS11T0305D T0 ";
+                                DataTable dt = new DataTable();
+                                da.Fill(dt);
 
-                                    if (dt.Rows.Count > 0)
+                                if (dt.Rows.Count > 0)
+                                {
+                                    foreach (DataRow dtrow in dt.Rows)
                                     {
-                                        foreach (DataRow dtrow in dt.Rows)
-                                        {
-                                            T0305D.Oid = int.Parse(dtrow["MaxOid"].ToString()) + row;
-                                        }
+                                        row = int.Parse(dtrow["MaxOid"].ToString());
                                     }
                                 }
                             }
+                        }
 
+                        foreach (FTS11OFAM selectedObject in e.SelectedObjects)
+                        { 
+                            FTS11T0305D T0305D = os.CreateObject<FTS11T0305D>();
+
+                            T0305D.Oid = row;
+                            T0305D.DocEntry = T0305;
                             T0305D.U_FAKey = os.GetObjectByKey<FTS11OFAM>(selectedObject.DocEntry);
                             row++;
                         }
@@ -976,29 +1007,32 @@ namespace FT_FixedAsset.Module.Web.Controllers
                                     genCon.MsgBox(InformationType.Error, "Error", "Kindly select only asset which yet disposed.");
                                     return;
                                 }
+                            }
 
-                                FTS11T0201D T0201D = os.CreateObject<FTS11T0201D>();
-
-                                T0201D.DocEntry = T0201;
-
-                                using (SqlConnection conn = new SqlConnection(genCon.getConnectionString()))
+                            using (SqlConnection conn = new SqlConnection(genCon.getConnectionString()))
+                            {
+                                using (SqlDataAdapter da = new SqlDataAdapter("", conn))
                                 {
-                                    using (SqlDataAdapter da = new SqlDataAdapter("", conn))
-                                    {
-                                        da.SelectCommand.CommandText = "SELECT ISNULL(MAX(T0.Oid),0) + 1 AS [MaxOid] FROM FTS11T0201D T0 ";
-                                        DataTable dt = new DataTable();
-                                        da.Fill(dt);
+                                    da.SelectCommand.CommandText = "SELECT ISNULL(MAX(T0.Oid),0) + 1 AS [MaxOid] FROM FTS11T0201D T0 ";
+                                    DataTable dt = new DataTable();
+                                    da.Fill(dt);
 
-                                        if (dt.Rows.Count > 0)
+                                    if (dt.Rows.Count > 0)
+                                    {
+                                        foreach (DataRow dtrow in dt.Rows)
                                         {
-                                            foreach (DataRow dtrow in dt.Rows)
-                                            {
-                                                T0201D.Oid = int.Parse(dtrow["MaxOid"].ToString()) + row;
-                                            }
+                                            row = int.Parse(dtrow["MaxOid"].ToString());
                                         }
                                     }
                                 }
+                            }
 
+                            foreach (FTS11_vw_Component selectedObject in e.SelectedObjects)
+                            { 
+                                FTS11T0201D T0201D = os.CreateObject<FTS11T0201D>();
+
+                                T0201D.Oid = row;
+                                T0201D.DocEntry = T0201;
                                 T0201D.U_FAKey = os.GetObjectByKey<FTS11OFAM>(selectedObject.ADocEntry);
                                 row++;
                             }
@@ -1031,29 +1065,32 @@ namespace FT_FixedAsset.Module.Web.Controllers
                                     genCon.MsgBox(InformationType.Error, "Error", "Kindly select only asset which yet disposed.");
                                     return;
                                 }
+                            }
 
-                                FTS11T0202D T0202D = os.CreateObject<FTS11T0202D>();
-
-                                T0202D.DocEntry = T0202;
-
-                                using (SqlConnection conn = new SqlConnection(genCon.getConnectionString()))
+                            using (SqlConnection conn = new SqlConnection(genCon.getConnectionString()))
+                            {
+                                using (SqlDataAdapter da = new SqlDataAdapter("", conn))
                                 {
-                                    using (SqlDataAdapter da = new SqlDataAdapter("", conn))
-                                    {
-                                        da.SelectCommand.CommandText = "SELECT ISNULL(MAX(T0.Oid),0) + 1 AS [MaxOid] FROM FTS11T0202D T0 ";
-                                        DataTable dt = new DataTable();
-                                        da.Fill(dt);
+                                    da.SelectCommand.CommandText = "SELECT ISNULL(MAX(T0.Oid),0) + 1 AS [MaxOid] FROM FTS11T0202D T0 ";
+                                    DataTable dt = new DataTable();
+                                    da.Fill(dt);
 
-                                        if (dt.Rows.Count > 0)
+                                    if (dt.Rows.Count > 0)
+                                    {
+                                        foreach (DataRow dtrow in dt.Rows)
                                         {
-                                            foreach (DataRow dtrow in dt.Rows)
-                                            {
-                                                T0202D.Oid = int.Parse(dtrow["MaxOid"].ToString()) + row;
-                                            }
+                                            row = int.Parse(dtrow["MaxOid"].ToString());
                                         }
                                     }
                                 }
+                            }
 
+                            foreach (FTS11_vw_Component selectedObject in e.SelectedObjects)
+                            { 
+                                FTS11T0202D T0202D = os.CreateObject<FTS11T0202D>();
+
+                                T0202D.Oid = row;
+                                T0202D.DocEntry = T0202;
                                 T0202D.U_FAKey = os.GetObjectByKey<FTS11OFAM>(selectedObject.ADocEntry);
                                 row++;
                             }
@@ -1086,10 +1123,7 @@ namespace FT_FixedAsset.Module.Web.Controllers
                                     genCon.MsgBox(InformationType.Error, "Error", "Kindly select only asset which yet disposed.");
                                     return;
                                 }
-
-                                FTS11T0203D T0203D = os.CreateObject<FTS11T0203D>();
-
-                                T0203D.DocEntry = T0203;
+                            }
 
                                 using (SqlConnection conn = new SqlConnection(genCon.getConnectionString()))
                                 {
@@ -1103,12 +1137,18 @@ namespace FT_FixedAsset.Module.Web.Controllers
                                         {
                                             foreach (DataRow dtrow in dt.Rows)
                                             {
-                                                T0203D.Oid = int.Parse(dtrow["MaxOid"].ToString()) + row;
+                                                row = int.Parse(dtrow["MaxOid"].ToString());
                                             }
                                         }
                                     }
                                 }
 
+                            foreach (FTS11_vw_Component selectedObject in e.SelectedObjects)
+                            { 
+                                FTS11T0203D T0203D = os.CreateObject<FTS11T0203D>();
+
+                                T0203D.Oid = row;
+                                T0203D.DocEntry = T0203;
                                 T0203D.U_FAKey = os.GetObjectByKey<FTS11OFAM>(selectedObject.ADocEntry);
                                 row++;
                             }
@@ -1141,29 +1181,33 @@ namespace FT_FixedAsset.Module.Web.Controllers
                                     genCon.MsgBox(InformationType.Error, "Error", "Kindly select only asset which yet disposed.");
                                     return;
                                 }
+                            }
 
-                                FTS11T0204D T0204D = os.CreateObject<FTS11T0204D>();
-
-                                T0204D.DocEntry = T0204;
-
-                                using (SqlConnection conn = new SqlConnection(genCon.getConnectionString()))
+                            using (SqlConnection conn = new SqlConnection(genCon.getConnectionString()))
+                            {
+                                using (SqlDataAdapter da = new SqlDataAdapter("", conn))
                                 {
-                                    using (SqlDataAdapter da = new SqlDataAdapter("", conn))
-                                    {
-                                        da.SelectCommand.CommandText = "SELECT ISNULL(MAX(T0.Oid),0) + 1 AS [MaxOid] FROM FTS11T0204D T0 ";
-                                        DataTable dt = new DataTable();
-                                        da.Fill(dt);
+                                    da.SelectCommand.CommandText = "SELECT ISNULL(MAX(T0.Oid),0) + 1 AS [MaxOid] FROM FTS11T0204D T0 ";
+                                    DataTable dt = new DataTable();
+                                    da.Fill(dt);
 
-                                        if (dt.Rows.Count > 0)
+                                    if (dt.Rows.Count > 0)
+                                    {
+                                        foreach (DataRow dtrow in dt.Rows)
                                         {
-                                            foreach (DataRow dtrow in dt.Rows)
-                                            {
-                                                T0204D.Oid = int.Parse(dtrow["MaxOid"].ToString()) + row;
-                                            }
+                                            row = int.Parse(dtrow["MaxOid"].ToString());
                                         }
                                     }
                                 }
+                            }
 
+                            foreach (FTS11_vw_Component selectedObject in e.SelectedObjects)
+                            { 
+
+                                FTS11T0204D T0204D = os.CreateObject<FTS11T0204D>();
+
+                                T0204D.Oid = row;
+                                T0204D.DocEntry = T0204;
                                 T0204D.U_FAKey = os.GetObjectByKey<FTS11OFAM>(selectedObject.ADocEntry);
                                 row++;
                             }
@@ -1196,29 +1240,32 @@ namespace FT_FixedAsset.Module.Web.Controllers
                                     genCon.MsgBox(InformationType.Error, "Error", "Kindly select only asset which yet disposed.");
                                     return;
                                 }
+                            }
 
-                                FTS11T0205D T0205D = os.CreateObject<FTS11T0205D>();
-
-                                T0205D.DocEntry = T0205;
-
-                                using (SqlConnection conn = new SqlConnection(genCon.getConnectionString()))
+                            using (SqlConnection conn = new SqlConnection(genCon.getConnectionString()))
+                            {
+                                using (SqlDataAdapter da = new SqlDataAdapter("", conn))
                                 {
-                                    using (SqlDataAdapter da = new SqlDataAdapter("", conn))
-                                    {
-                                        da.SelectCommand.CommandText = "SELECT ISNULL(MAX(T0.Oid),0) + 1 AS [MaxOid] FROM FTS11T0205D T0 ";
-                                        DataTable dt = new DataTable();
-                                        da.Fill(dt);
+                                    da.SelectCommand.CommandText = "SELECT ISNULL(MAX(T0.Oid),0) + 1 AS [MaxOid] FROM FTS11T0205D T0 ";
+                                    DataTable dt = new DataTable();
+                                    da.Fill(dt);
 
-                                        if (dt.Rows.Count > 0)
+                                    if (dt.Rows.Count > 0)
+                                    {
+                                        foreach (DataRow dtrow in dt.Rows)
                                         {
-                                            foreach (DataRow dtrow in dt.Rows)
-                                            {
-                                                T0205D.Oid = int.Parse(dtrow["MaxOid"].ToString()) + row;
-                                            }
+                                            row = int.Parse(dtrow["MaxOid"].ToString());
                                         }
                                     }
                                 }
+                            }
 
+                            foreach (FTS11_vw_Component selectedObject in e.SelectedObjects)
+                            { 
+                                FTS11T0205D T0205D = os.CreateObject<FTS11T0205D>();
+
+                                T0205D.Oid = row;
+                                T0205D.DocEntry = T0205;
                                 T0205D.U_FAKey = os.GetObjectByKey<FTS11OFAM>(selectedObject.ADocEntry);
                                 row++;
                             }
@@ -1251,29 +1298,32 @@ namespace FT_FixedAsset.Module.Web.Controllers
                                     genCon.MsgBox(InformationType.Error, "Error", "Kindly select only asset which yet disposed.");
                                     return;
                                 }
+                            }
 
-                                FTS11T0301D T0301D = os.CreateObject<FTS11T0301D>();
-
-                                T0301D.DocEntry = T0301;
-
-                                using (SqlConnection conn = new SqlConnection(genCon.getConnectionString()))
+                            using (SqlConnection conn = new SqlConnection(genCon.getConnectionString()))
+                            {
+                                using (SqlDataAdapter da = new SqlDataAdapter("", conn))
                                 {
-                                    using (SqlDataAdapter da = new SqlDataAdapter("", conn))
-                                    {
-                                        da.SelectCommand.CommandText = "SELECT ISNULL(MAX(T0.Oid),0) + 1 AS [MaxOid] FROM FTS11T0301D T0 ";
-                                        DataTable dt = new DataTable();
-                                        da.Fill(dt);
+                                    da.SelectCommand.CommandText = "SELECT ISNULL(MAX(T0.Oid),0) + 1 AS [MaxOid] FROM FTS11T0301D T0 ";
+                                    DataTable dt = new DataTable();
+                                    da.Fill(dt);
 
-                                        if (dt.Rows.Count > 0)
+                                    if (dt.Rows.Count > 0)
+                                    {
+                                        foreach (DataRow dtrow in dt.Rows)
                                         {
-                                            foreach (DataRow dtrow in dt.Rows)
-                                            {
-                                                T0301D.Oid = int.Parse(dtrow["MaxOid"].ToString()) + row;
-                                            }
+                                            row = int.Parse(dtrow["MaxOid"].ToString());
                                         }
                                     }
                                 }
+                            }
 
+                            foreach (FTS11_vw_Component selectedObject in e.SelectedObjects)
+                            { 
+                                FTS11T0301D T0301D = os.CreateObject<FTS11T0301D>();
+
+                                T0301D.Oid = row;
+                                T0301D.DocEntry = T0301;
                                 T0301D.U_FAKey = os.GetObjectByKey<FTS11OFAM>(selectedObject.ADocEntry);
                                 row++;
                             }
@@ -1306,29 +1356,32 @@ namespace FT_FixedAsset.Module.Web.Controllers
                                     genCon.MsgBox(InformationType.Error, "Error", "Kindly select only asset which yet disposed.");
                                     return;
                                 }
+                            }
 
-                                FTS11T0302D T0302D = os.CreateObject<FTS11T0302D>();
-
-                                T0302D.DocEntry = T0302;
-
-                                using (SqlConnection conn = new SqlConnection(genCon.getConnectionString()))
+                            using (SqlConnection conn = new SqlConnection(genCon.getConnectionString()))
+                            {
+                                using (SqlDataAdapter da = new SqlDataAdapter("", conn))
                                 {
-                                    using (SqlDataAdapter da = new SqlDataAdapter("", conn))
-                                    {
-                                        da.SelectCommand.CommandText = "SELECT ISNULL(MAX(T0.Oid),0) + 1 AS [MaxOid] FROM FTS11T0302D T0 ";
-                                        DataTable dt = new DataTable();
-                                        da.Fill(dt);
+                                    da.SelectCommand.CommandText = "SELECT ISNULL(MAX(T0.Oid),0) + 1 AS [MaxOid] FROM FTS11T0302D T0 ";
+                                    DataTable dt = new DataTable();
+                                    da.Fill(dt);
 
-                                        if (dt.Rows.Count > 0)
+                                    if (dt.Rows.Count > 0)
+                                    {
+                                        foreach (DataRow dtrow in dt.Rows)
                                         {
-                                            foreach (DataRow dtrow in dt.Rows)
-                                            {
-                                                T0302D.Oid = int.Parse(dtrow["MaxOid"].ToString()) + row;
-                                            }
+                                            row = int.Parse(dtrow["MaxOid"].ToString());
                                         }
                                     }
                                 }
+                            }
 
+                            foreach (FTS11_vw_Component selectedObject in e.SelectedObjects)
+                            { 
+                                FTS11T0302D T0302D = os.CreateObject<FTS11T0302D>();
+
+                                T0302D.Oid = row;
+                                T0302D.DocEntry = T0302;
                                 T0302D.U_FAKey = os.GetObjectByKey<FTS11OFAM>(selectedObject.ADocEntry);
                                 row++;
                             }
@@ -1361,29 +1414,32 @@ namespace FT_FixedAsset.Module.Web.Controllers
                                     genCon.MsgBox(InformationType.Error, "Error", "Kindly select only asset which yet disposed.");
                                     return;
                                 }
+                            }
 
-                                FTS11T0303D T0303D = os.CreateObject<FTS11T0303D>();
-
-                                T0303D.DocEntry = T0303;
-
-                                using (SqlConnection conn = new SqlConnection(genCon.getConnectionString()))
+                            using (SqlConnection conn = new SqlConnection(genCon.getConnectionString()))
+                            {
+                                using (SqlDataAdapter da = new SqlDataAdapter("", conn))
                                 {
-                                    using (SqlDataAdapter da = new SqlDataAdapter("", conn))
-                                    {
-                                        da.SelectCommand.CommandText = "SELECT ISNULL(MAX(T0.Oid),0) + 1 AS [MaxOid] FROM FTS11T0303D T0 ";
-                                        DataTable dt = new DataTable();
-                                        da.Fill(dt);
+                                    da.SelectCommand.CommandText = "SELECT ISNULL(MAX(T0.Oid),0) + 1 AS [MaxOid] FROM FTS11T0303D T0 ";
+                                    DataTable dt = new DataTable();
+                                    da.Fill(dt);
 
-                                        if (dt.Rows.Count > 0)
+                                    if (dt.Rows.Count > 0)
+                                    {
+                                        foreach (DataRow dtrow in dt.Rows)
                                         {
-                                            foreach (DataRow dtrow in dt.Rows)
-                                            {
-                                                T0303D.Oid = int.Parse(dtrow["MaxOid"].ToString()) + row;
-                                            }
+                                            row = int.Parse(dtrow["MaxOid"].ToString());
                                         }
                                     }
                                 }
+                            }
 
+                            foreach (FTS11_vw_Component selectedObject in e.SelectedObjects)
+                            { 
+                                FTS11T0303D T0303D = os.CreateObject<FTS11T0303D>();
+
+                                T0303D.Oid = row;
+                                T0303D.DocEntry = T0303;
                                 T0303D.U_FAKey = os.GetObjectByKey<FTS11OFAM>(selectedObject.ADocEntry);
                                 row++;
                             }
@@ -1416,29 +1472,32 @@ namespace FT_FixedAsset.Module.Web.Controllers
                                     genCon.MsgBox(InformationType.Error, "Error", "Kindly select only asset which yet disposed.");
                                     return;
                                 }
+                            }
 
-                                FTS11T0304D T0304D = os.CreateObject<FTS11T0304D>();
-
-                                T0304D.DocEntry = T0304;
-
-                                using (SqlConnection conn = new SqlConnection(genCon.getConnectionString()))
+                            using (SqlConnection conn = new SqlConnection(genCon.getConnectionString()))
+                            {
+                                using (SqlDataAdapter da = new SqlDataAdapter("", conn))
                                 {
-                                    using (SqlDataAdapter da = new SqlDataAdapter("", conn))
-                                    {
-                                        da.SelectCommand.CommandText = "SELECT ISNULL(MAX(T0.Oid),0) + 1 AS [MaxOid] FROM FTS11T0304D T0 ";
-                                        DataTable dt = new DataTable();
-                                        da.Fill(dt);
+                                    da.SelectCommand.CommandText = "SELECT ISNULL(MAX(T0.Oid),0) + 1 AS [MaxOid] FROM FTS11T0304D T0 ";
+                                    DataTable dt = new DataTable();
+                                    da.Fill(dt);
 
-                                        if (dt.Rows.Count > 0)
+                                    if (dt.Rows.Count > 0)
+                                    {
+                                        foreach (DataRow dtrow in dt.Rows)
                                         {
-                                            foreach (DataRow dtrow in dt.Rows)
-                                            {
-                                                T0304D.Oid = int.Parse(dtrow["MaxOid"].ToString()) + row;
-                                            }
+                                            row = int.Parse(dtrow["MaxOid"].ToString());
                                         }
                                     }
                                 }
+                            }
 
+                            foreach (FTS11_vw_Component selectedObject in e.SelectedObjects)
+                            { 
+                                FTS11T0304D T0304D = os.CreateObject<FTS11T0304D>();
+
+                                T0304D.Oid = row;
+                                T0304D.DocEntry = T0304;
                                 T0304D.U_FAKey = os.GetObjectByKey<FTS11OFAM>(selectedObject.ADocEntry);
                                 row++;
                             }
@@ -1471,29 +1530,32 @@ namespace FT_FixedAsset.Module.Web.Controllers
                                     genCon.MsgBox(InformationType.Error, "Error", "Kindly select only asset which yet disposed.");
                                     return;
                                 }
+                            }
 
-                                FTS11T0305D T0305D = os.CreateObject<FTS11T0305D>();
-
-                                T0305D.DocEntry = T0305;
-
-                                using (SqlConnection conn = new SqlConnection(genCon.getConnectionString()))
+                            using (SqlConnection conn = new SqlConnection(genCon.getConnectionString()))
+                            {
+                                using (SqlDataAdapter da = new SqlDataAdapter("", conn))
                                 {
-                                    using (SqlDataAdapter da = new SqlDataAdapter("", conn))
-                                    {
-                                        da.SelectCommand.CommandText = "SELECT ISNULL(MAX(T0.Oid),0) + 1 AS [MaxOid] FROM FTS11T0305D T0 ";
-                                        DataTable dt = new DataTable();
-                                        da.Fill(dt);
+                                    da.SelectCommand.CommandText = "SELECT ISNULL(MAX(T0.Oid),0) + 1 AS [MaxOid] FROM FTS11T0305D T0 ";
+                                    DataTable dt = new DataTable();
+                                    da.Fill(dt);
 
-                                        if (dt.Rows.Count > 0)
+                                    if (dt.Rows.Count > 0)
+                                    {
+                                        foreach (DataRow dtrow in dt.Rows)
                                         {
-                                            foreach (DataRow dtrow in dt.Rows)
-                                            {
-                                                T0305D.Oid = int.Parse(dtrow["MaxOid"].ToString()) + row;
-                                            }
+                                            row = int.Parse(dtrow["MaxOid"].ToString());
                                         }
                                     }
                                 }
+                            }
 
+                            foreach (FTS11_vw_Component selectedObject in e.SelectedObjects)
+                            { 
+                                FTS11T0305D T0305D = os.CreateObject<FTS11T0305D>();
+
+                                T0305D.Oid = row;
+                                T0305D.DocEntry = T0305;
                                 T0305D.U_FAKey = os.GetObjectByKey<FTS11OFAM>(selectedObject.ADocEntry);
                                 row++;
                             }
