@@ -26,7 +26,6 @@ namespace FT_FixedAsset.Web {
 #endif
         }
         protected void Session_Start(Object sender, EventArgs e) {
-            Tracing.LogName = "XAF_FixedAsset_ErrorLog";
             Tracing.Initialize();
             WebApplication.SetInstance(Session, new FT_FixedAssetAspNetApplication());
             SecurityStrategy security = WebApplication.Instance.GetSecurityStrategy();
