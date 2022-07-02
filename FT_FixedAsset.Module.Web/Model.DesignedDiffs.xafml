@@ -85,28 +85,41 @@
         </LayoutGroup>
       </Layout>
     </DetailView>
-    <ListView Id="FTS11_vw_NNM1_LookupListView" AllowDelete="False" AllowNew="False" ShowSelectionColumn="False" />
+    <ListView Id="FTS11_vw_NNM1_LookupListView" AllowDelete="False" AllowNew="False" ShowSelectionColumn="False">
+      <Columns>
+        <ColumnInfo Id="Series" Width="56" Index="0" />
+        <ColumnInfo Id="SeriesName" Index="1" />
+      </Columns>
+    </ListView>
     <ListView Id="FTS11_vw_OACT_LookupListView" ImageName="" ShowSelectionColumn="False" AllowDelete="False" AllowNew="False">
       <Columns>
-        <ColumnInfo Id="FormatCode" LookupEditorMode="AllItemsWithSearch" />
+        <ColumnInfo Id="FormatCode" LookupEditorMode="AllItemsWithSearch" Width="102" />
+        <ColumnInfo Id="AcctName" Width="106" />
       </Columns>
     </ListView>
     <ListView Id="FTS11_vw_OACT_OCRD_LookupListView" ShowSelectionColumn="False" AllowNew="False" AllowDelete="False">
       <Columns>
-        <ColumnInfo Id="FormatCode" LookupEditorMode="AllItemsWithSearch" />
+        <ColumnInfo Id="FormatCode" LookupEditorMode="AllItemsWithSearch" Width="102" />
       </Columns>
     </ListView>
     <ListView Id="FTS11_vw_OCRN_LookupListView" AllowDelete="False" AllowNew="False" ShowSelectionColumn="False">
       <Columns>
-        <ColumnInfo Id="CurrCode" LookupEditorMode="AllItemsWithSearch" />
+        <ColumnInfo Id="CurrCode" LookupEditorMode="AllItemsWithSearch" Width="108" />
+        <ColumnInfo Id="CurrName" SortIndex="0" SortOrder="Ascending" Width="127" />
       </Columns>
     </ListView>
     <ListView Id="FTS11_vw_OPRC_LookupListView" AllowNew="False" AllowDelete="False" ShowSelectionColumn="False">
       <Columns>
-        <ColumnInfo Id="PrcCode" LookupEditorMode="AllItemsWithSearch" />
+        <ColumnInfo Id="PrcCode" LookupEditorMode="AllItemsWithSearch" Width="67" />
+        <ColumnInfo Id="PrcName" Width="71" />
       </Columns>
     </ListView>
-    <ListView Id="FTS11_vw_OPRJ_LookupListView" AllowDelete="False" AllowNew="False" ShowSelectionColumn="False" />
+    <ListView Id="FTS11_vw_OPRJ_LookupListView" AllowDelete="False" AllowNew="False" ShowSelectionColumn="False">
+      <Columns>
+        <ColumnInfo Id="PrjCode" Width="65" />
+        <ColumnInfo Id="PrjName" Width="69" />
+      </Columns>
+    </ListView>
     <DetailView Id="FTS11FAG1_DetailView">
       <Layout>
         <LayoutItem Id="U_LocationKey" ViewItem="U_LocationKey" Index="0" RelativeSize="7.0726915520628681" IsNewNode="True" />
@@ -406,6 +419,7 @@
         <PropertyEditor Id="U_AccFrmV" LookupEditorMode="AllItemsWithSearch" />
         <PropertyEditor Id="U_AccFrmW" LookupEditorMode="AllItemsWithSearch" />
         <PropertyEditor Id="U_AcqTypeKey" LookupEditorMode="AllItemsWithSearch" AllowClear="False" />
+        <PropertyEditor Id="U_Curr" LookupEditorMode="AllItemsWithSearch" />
         <PropertyEditor Id="U_DeprnBy" AllowClear="False" />
         <PropertyEditor Id="U_DeprnTyp" AllowClear="False" />
         <PropertyEditor Id="U_FAGrpKey" LookupEditorMode="AllItemsWithSearch" />
@@ -416,6 +430,13 @@
         <PropertyEditor Id="U_IndKey5" LookupEditorMode="AllItemsWithSearch" />
         <PropertyEditor Id="U_IndKey6" LookupEditorMode="AllItemsWithSearch" />
         <PropertyEditor Id="U_LocationKey" LookupEditorMode="AllItemsWithSearch" />
+        <PropertyEditor Id="U_OcrCode2" LookupEditorMode="AllItemsWithSearch" />
+        <PropertyEditor Id="U_OcrCode3" LookupEditorMode="AllItemsWithSearch" />
+        <PropertyEditor Id="U_OcrCode4" LookupEditorMode="AllItemsWithSearch" />
+        <PropertyEditor Id="U_OcrCode5" LookupEditorMode="AllItemsWithSearch" />
+        <PropertyEditor Id="U_ProfitCode" LookupEditorMode="AllItemsWithSearch" />
+        <PropertyEditor Id="U_Project" LookupEditorMode="AllItemsWithSearch" />
+        <PropertyEditor Id="U_RootKey" LookupEditorMode="AllItemsWithSearch" />
       </Items>
       <Layout>
         <LayoutGroup Id="Auto84ad5797-4d81-4f73-a662-1da348675fac" ShowCaption="False" Caption="Auto84ad5797-4d81-4f73-a662-1da348675fac(4)" Direction="Vertical" Index="0" RelativeSize="10.368893320039881" IsNewNode="True">
@@ -638,7 +659,7 @@
         <ColumnInfo Id="U_FAGrpCod" SortOrder="Ascending" GroupIndex="0" />
       </Columns>
     </ListView>
-    <ListView Id="FTS11OFAM_LookupListView" AllowDelete="False" AllowNew="False" ShowSelectionColumn="False" />
+    <ListView Id="FTS11OFAM_LookupListView" AllowNew="False" AllowDelete="False" ShowSelectionColumn="False" />
     <ListView Id="FTS11OIND_LookupListView" AllowDelete="False" AllowNew="False" ShowSelectionColumn="False" />
     <DetailView Id="FTS11OLOC_DetailView">
       <Layout>
@@ -760,7 +781,7 @@
       <Items>
         <PropertyEditor Id="U_AccFrmB" LookupEditorMode="AllItemsWithSearch" />
         <PropertyEditor Id="U_AccFrmW" LookupEditorMode="AllItemsWithSearch" />
-        <PropertyEditor Id="U_FACode" LookupEditorMode="AllItemsWithSearch" />
+        <PropertyEditor Id="U_FAKey" LookupEditorMode="AllItemsWithSearch" />
         <PropertyEditor Id="U_LocationKey" LookupEditorMode="AllItemsWithSearch" />
       </Items>
       <Layout>
