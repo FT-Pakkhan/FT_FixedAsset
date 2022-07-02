@@ -1647,6 +1647,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
         [ModelDefault("DisplayFormat", "{0:n0}")]
         [ModelDefault("EditMask", "{0:n0}")]
         [Appearance("SQuantity", Enabled = false)]
+        [DbType("numeric(19,6)")]
         public int SQuantity
         {
             get { return _SQuantity; }
@@ -1669,6 +1670,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
         [Appearance("STotalCostLC", Enabled = false)]
         [ModelDefault("DisplayFormat", "{0:n2}")]
         [ModelDefault("EditMask", "{0:n2}")]
+        [DbType("numeric(19,6)")]
         public double STotalCostLC
         {
             get { return _STotalCostLC; }
@@ -1681,6 +1683,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
         [Appearance("SDeprLC", Enabled = false)]
         [ModelDefault("DisplayFormat", "{0:n2}")]
         [ModelDefault("EditMask", "{0:n2}")]
+        [DbType("numeric(19,6)")]
         public double SDeprLC
         {
             get { return _SDeprLC; }
@@ -1693,6 +1696,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
         [Appearance("SNBVLC", Enabled = false)]
         [ModelDefault("DisplayFormat", "{0:n2}")]
         [ModelDefault("EditMask", "{0:n2}")]
+        [DbType("numeric(19,6)")]
         public double SNBVLC
         {
             get { return _SNBVLC; }
