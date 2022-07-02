@@ -1641,7 +1641,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
             set { SetPropertyValue("U_RootKey", ref _U_RootKey, value); }
         }
 
-        //private int _SQuantity;
+        private int _SQuantity;
         [Index(800), VisibleInListView(true), VisibleInDetailView(true), VisibleInLookupListView(false)]
         [XafDisplayName("C/F Quantity"), ToolTip("C/F Quantity")]
         [ModelDefault("DisplayFormat", "{0:n0}")]
@@ -1649,15 +1649,8 @@ namespace FT_FixedAsset.Module.BusinessObjects
         [Appearance("SQuantity", Enabled = false)]
         public int SQuantity
         {
-            get
-            {
-                int temp = 0;
-                foreach (FTS11_vw_FTS11JDT1A JDT1 in this.FTS11_vw_FTS11JDT1A)
-                {
-                    temp = temp + JDT1.Quantity;
-                }
-                return temp;
-            }
+            get { return _SQuantity; }
+            set { SetPropertyValue("SQuantity", ref _SQuantity, value); }
         }
 
         private string _U_LastLoc;
@@ -1670,7 +1663,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
             set { SetPropertyValue("U_LastLoc", ref _U_LastLoc, value); }
         }
 
-        //private double _STotalCostLC;
+        private double _STotalCostLC;
         [XafDisplayName("C/F Cost (LC)"), ToolTip("C/F (LC)")]
         [Index(802), VisibleInListView(true), VisibleInDetailView(true), VisibleInLookupListView(true)]
         [Appearance("STotalCostLC", Enabled = false)]
@@ -1678,18 +1671,11 @@ namespace FT_FixedAsset.Module.BusinessObjects
         [ModelDefault("EditMask", "{0:n2}")]
         public double STotalCostLC
         {
-            get
-            {
-                double temp = 0;
-                foreach (FTS11_vw_FTS11JDT1A JDT1 in this.FTS11_vw_FTS11JDT1A)
-                {
-                    temp = temp + JDT1.CostLC;
-                }
-                return temp;
-            }
+            get { return _STotalCostLC; }
+            set { SetPropertyValue("STotalCostLC", ref _STotalCostLC, value); }
         }
 
-        //private double _SDeprLC;
+        private double _SDeprLC;
         [XafDisplayName("Accu. Depreciation"), ToolTip("Accu. Depreciation")]
         [Index(803), VisibleInListView(true), VisibleInDetailView(true), VisibleInLookupListView(true)]
         [Appearance("SDeprLC", Enabled = false)]
@@ -1697,18 +1683,11 @@ namespace FT_FixedAsset.Module.BusinessObjects
         [ModelDefault("EditMask", "{0:n2}")]
         public double SDeprLC
         {
-            get
-            {
-                double temp = 0;
-                foreach (FTS11_vw_FTS11JDT1A JDT1 in this.FTS11_vw_FTS11JDT1A)
-                {
-                    temp = temp + JDT1.AccuLC;
-                }
-                return temp;
-            }
+            get { return _SDeprLC; }
+            set { SetPropertyValue("SDeprLC", ref _SDeprLC, value); }
         }
 
-        //private double _SNBVLC;
+        private double _SNBVLC;
         [XafDisplayName("NBV"), ToolTip("NBV")]
         [Index(804), VisibleInListView(true), VisibleInDetailView(true), VisibleInLookupListView(true)]
         [Appearance("SNBVLC", Enabled = false)]
@@ -1716,11 +1695,8 @@ namespace FT_FixedAsset.Module.BusinessObjects
         [ModelDefault("EditMask", "{0:n2}")]
         public double SNBVLC
         {
-            get
-            {
-                double temp = 0;
-                return temp = STotalCostLC - SDeprLC;
-            }
+            get { return _SNBVLC; }
+            set { SetPropertyValue("SNBVLC", ref _SNBVLC, value); }
         }
 
         private string _U_CreateBy;
