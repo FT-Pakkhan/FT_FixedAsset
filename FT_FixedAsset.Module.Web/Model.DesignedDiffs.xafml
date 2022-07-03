@@ -732,7 +732,13 @@
         </LayoutGroup>
       </Layout>
     </DetailView>
-    <ListView Id="FTS11T0201_FTS11T0201D_ListView" AllowEdit="True" />
+    <ListView Id="FTS11T0201_FTS11T0201D_ListView" AllowEdit="True">
+      <Columns>
+        <ColumnInfo Id="U_FAKey" LookupEditorMode="AllItemsWithSearch" />
+        <ColumnInfo Id="U_LocationKey" LookupEditorMode="AllItemsWithSearch" />
+        <ColumnInfo Id="U_AccFrmW" LookupEditorMode="AllItemsWithSearch" />
+      </Columns>
+    </ListView>
     <DetailView Id="FTS11T0201D_DetailView">
       <Items>
         <PropertyEditor Id="U_AccFrmW" LookupEditorMode="AllItemsWithSearch" />
@@ -787,7 +793,14 @@
         </LayoutGroup>
       </Layout>
     </DetailView>
-    <ListView Id="FTS11T0202_FTS11T0202D_ListView" AllowEdit="True" />
+    <ListView Id="FTS11T0202_FTS11T0202D_ListView" AllowEdit="True">
+      <Columns>
+        <ColumnInfo Id="U_FAKey" LookupEditorMode="AllItemsWithSearch" />
+        <ColumnInfo Id="U_LocationKey" LookupEditorMode="AllItemsWithSearch" />
+        <ColumnInfo Id="U_AccFrmW" LookupEditorMode="AllItemsWithSearch" />
+        <ColumnInfo Id="U_AccFrmB" LookupEditorMode="AllItemsWithSearch" />
+      </Columns>
+    </ListView>
     <DetailView Id="FTS11T0202D_DetailView">
       <Items>
         <PropertyEditor Id="U_AccFrmB" LookupEditorMode="AllItemsWithSearch" />
@@ -850,7 +863,13 @@
         </LayoutGroup>
       </Layout>
     </DetailView>
-    <ListView Id="FTS11T0203_FTS11T0203D_ListView" AllowEdit="True" />
+    <ListView Id="FTS11T0203_FTS11T0203D_ListView" AllowEdit="True">
+      <Columns>
+        <ColumnInfo Id="U_FAKey" LookupEditorMode="AllItemsWithSearch" />
+        <ColumnInfo Id="U_LocationKey" LookupEditorMode="AllItemsWithSearch" />
+        <ColumnInfo Id="U_AccFrmW" LookupEditorMode="AllItemsWithSearch" />
+      </Columns>
+    </ListView>
     <DetailView Id="FTS11T0203D_DetailView">
       <Items>
         <PropertyEditor Id="U_AccFrmW" LookupEditorMode="AllItemsWithSearch" />
@@ -905,7 +924,13 @@
         </LayoutGroup>
       </Layout>
     </DetailView>
-    <ListView Id="FTS11T0204_FTS11T0204D_ListView" AllowEdit="True" />
+    <ListView Id="FTS11T0204_FTS11T0204D_ListView" AllowEdit="True">
+      <Columns>
+        <ColumnInfo Id="U_FAKey" LookupEditorMode="AllItemsWithSearch" />
+        <ColumnInfo Id="U_LocationKey" LookupEditorMode="AllItemsWithSearch" />
+        <ColumnInfo Id="U_AccFrmW" LookupEditorMode="AllItemsWithSearch" />
+      </Columns>
+    </ListView>
     <DetailView Id="FTS11T0204D_DetailView">
       <Items>
         <PropertyEditor Id="U_AccFrmW" LookupEditorMode="AllItemsWithSearch" />
@@ -960,7 +985,13 @@
         </LayoutGroup>
       </Layout>
     </DetailView>
-    <ListView Id="FTS11T0205_FTS11T0205D_ListView" AllowEdit="True" />
+    <ListView Id="FTS11T0205_FTS11T0205D_ListView" AllowEdit="True">
+      <Columns>
+        <ColumnInfo Id="U_FAKey" LookupEditorMode="AllItemsWithSearch" />
+        <ColumnInfo Id="U_LocationKey" LookupEditorMode="AllItemsWithSearch" />
+        <ColumnInfo Id="U_AccFrmW" LookupEditorMode="AllItemsWithSearch" />
+      </Columns>
+    </ListView>
     <DetailView Id="FTS11T0205D_DetailView">
       <Items>
         <PropertyEditor Id="U_AccFrmW" LookupEditorMode="AllItemsWithSearch" />
@@ -1015,7 +1046,11 @@
         </LayoutGroup>
       </Layout>
     </DetailView>
-    <ListView Id="FTS11T0301_FTS11T0301D_ListView" AllowEdit="True" />
+    <ListView Id="FTS11T0301_FTS11T0301D_ListView" AllowEdit="True">
+      <Columns>
+        <ColumnInfo Id="U_FAKey" LookupEditorMode="AllItemsWithSearch" />
+      </Columns>
+    </ListView>
     <DetailView Id="FTS11T0301D_DetailView">
       <Items>
         <PropertyEditor Id="U_FAKey" LookupEditorMode="AllItemsWithSearch" />
@@ -1064,7 +1099,14 @@
         </LayoutGroup>
       </Layout>
     </DetailView>
-    <ListView Id="FTS11T0302_FTS11T0302D_ListView" AllowEdit="True" />
+    <ListView Id="FTS11T0302_FTS11T0302D_ListView" AllowEdit="True">
+      <Columns>
+        <ColumnInfo Id="U_FAKey" LookupEditorMode="AllItemsWithSearch" />
+        <ColumnInfo Id="U_AccFrmG" LookupEditorMode="AllItemsWithSearch" />
+        <ColumnInfo Id="U_AccFrmL" LookupEditorMode="AllItemsWithSearch" />
+        <ColumnInfo Id="U_AccFrmC" LookupEditorMode="AllItemsWithSearch" />
+      </Columns>
+    </ListView>
     <DetailView Id="FTS11T0302D_DetailView">
       <Items>
         <PropertyEditor Id="U_AccFrmC" LookupEditorMode="AllItemsWithSearch" />
@@ -1142,7 +1184,12 @@
         </LayoutGroup>
       </Layout>
     </DetailView>
-    <ListView Id="FTS11T0303_FTS11T0303D_ListView" AllowEdit="True" />
+    <ListView Id="FTS11T0303_FTS11T0303D_ListView" AllowEdit="True">
+      <Columns>
+        <ColumnInfo Id="U_FAKey" LookupEditorMode="AllItemsWithSearch" />
+        <ColumnInfo Id="U_AccFrmG" LookupEditorMode="AllItemsWithSearch" />
+      </Columns>
+    </ListView>
     <DetailView Id="FTS11T0303D_DetailView">
       <Items>
         <PropertyEditor Id="U_AccFrmG" LookupEditorMode="AllItemsWithSearch" />
@@ -1204,7 +1251,13 @@
         </LayoutGroup>
       </Layout>
     </DetailView>
-    <ListView Id="FTS11T0304_FTS11T0304D_ListView" AllowEdit="True" />
+    <ListView Id="FTS11T0304_FTS11T0304D_ListView" AllowEdit="True">
+      <Columns>
+        <ColumnInfo Id="U_FAKey" LookupEditorMode="AllItemsWithSearch" />
+        <ColumnInfo Id="U_FrLocKey" LookupEditorMode="AllItemsWithSearch" />
+        <ColumnInfo Id="U_ToLocKey" LookupEditorMode="AllItemsWithSearch" />
+      </Columns>
+    </ListView>
     <DetailView Id="FTS11T0304D_DetailView">
       <Items>
         <PropertyEditor Id="U_FAKey" LookupEditorMode="AllItemsWithSearch" />
@@ -1266,7 +1319,11 @@
         </LayoutGroup>
       </Layout>
     </DetailView>
-    <ListView Id="FTS11T0305_FTS11T0305D_ListView" AllowEdit="True" />
+    <ListView Id="FTS11T0305_FTS11T0305D_ListView" AllowEdit="True">
+      <Columns>
+        <ColumnInfo Id="U_FAKey" LookupEditorMode="AllItemsWithSearch" />
+      </Columns>
+    </ListView>
     <DetailView Id="FTS11T0305D_DetailView">
       <Items>
         <PropertyEditor Id="U_FAKey" LookupEditorMode="AllItemsWithSearch" />
