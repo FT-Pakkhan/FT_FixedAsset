@@ -659,7 +659,18 @@
         <ColumnInfo Id="U_FAGrpCod" SortOrder="Ascending" GroupIndex="0" />
       </Columns>
     </ListView>
-    <ListView Id="FTS11OFAM_LookupListView" AllowNew="False" AllowDelete="False" ShowSelectionColumn="False" />
+    <ListView Id="FTS11OFAM_LookupListView" AllowNew="False" AllowDelete="False" ShowSelectionColumn="False">
+      <Columns>
+        <ColumnInfo Id="U_AcqTypeKey" Index="-1" />
+        <ColumnInfo Id="U_FACode" Width="108" />
+        <ColumnInfo Id="U_FAName" Width="83" />
+        <ColumnInfo Id="U_FAGrpKey" Width="90" />
+        <ColumnInfo Id="U_LastLoc" Index="3" Width="77" />
+        <ColumnInfo Id="STotalCostLC" Index="4" Width="101" />
+        <ColumnInfo Id="SDeprLC" Index="5" Width="130" />
+        <ColumnInfo Id="SNBVLC" Index="6" Width="47" />
+      </Columns>
+    </ListView>
     <ListView Id="FTS11OIND_LookupListView" AllowDelete="False" AllowNew="False" ShowSelectionColumn="False" />
     <DetailView Id="FTS11OLOC_DetailView">
       <Layout>
