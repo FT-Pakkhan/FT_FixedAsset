@@ -49,6 +49,16 @@ namespace FT_FixedAsset.Module.Controllers
                 case "FTS11T0303_ListView":
                 case "FTS11T0304_ListView":
                 case "FTS11T0305_ListView":
+                case "FTS11T0201_FTS11T0201D_ListView":
+                case "FTS11T0202_FTS11T0202D_ListView":
+                case "FTS11T0203_FTS11T0203D_ListView":
+                case "FTS11T0204_FTS11T0204D_ListView":
+                case "FTS11T0205_FTS11T0205D_ListView":
+                case "FTS11T0301_FTS11T0301D_ListView":
+                case "FTS11T0302_FTS11T0302D_ListView":
+                case "FTS11T0303_FTS11T0303D_ListView":
+                case "FTS11T0304_FTS11T0304D_ListView":
+                case "FTS11T0305_FTS11T0305D_ListView":
                     ASPxGridListEditor gridListEditor = ((ListView)View).Editor as ASPxGridListEditor;
                     if (gridListEditor != null)
                     {
