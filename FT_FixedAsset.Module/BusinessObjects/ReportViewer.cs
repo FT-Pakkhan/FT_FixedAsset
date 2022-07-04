@@ -33,7 +33,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
             base.AfterConstruction();
 
             Report = Session.FindObject<FTS11SRPT>(CriteriaOperator.Parse("DocEntry = '1'"));
-            Group1 = Session.FindObject<SE_FARptGrpOpt>(CriteriaOperator.Parse("Code = 'faclsnam'"));
+            Group1 = Session.FindObject<SE_FARptGrpOpt>(CriteriaOperator.Parse("Code = 'project'"));
             Group2 = Session.FindObject<SE_FARptGrpOpt>(CriteriaOperator.Parse("Code = 'fagrpnam'"));
             DateFrm = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
             DateTo = DateFrm.AddMonths(1).AddDays(-1);
