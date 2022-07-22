@@ -64,6 +64,9 @@ namespace FT_FixedAsset.Web
                 if (param.Name.Equals("FACodTo"))
                     doc.SetParameterValue("FACodTo", HttpContext.Current.Session["FACodTo"].ToString());
 
+                if (param.Name.Equals("currency"))
+                    doc.SetParameterValue("currency", HttpContext.Current.Session["currency"].ToString());
+
                 if (param.Name.Equals("FAGrpFrm"))
                     doc.SetParameterValue("FAGrpFrm", HttpContext.Current.Session["FAGrpFrm"].ToString());
 

@@ -200,6 +200,7 @@ namespace FT_FixedAsset.Module.Web.Controllers
                 HttpContext.Current.Session["CreateDateTo"] = reportViewer.CreateDateTo.ToString("yyyy-MM-dd") == "0001-01-01" ? "1900-01-01" : reportViewer.CreateDateTo.ToString("yyyy-MM-dd");
                 HttpContext.Current.Session["FACodeFrm"] = reportViewer.FACodeFrmKey == null ? "" : reportViewer.FACodeFrmKey.U_FACode;
                 HttpContext.Current.Session["FACodeTo"] = reportViewer.FACodeToKey == null ? "" : reportViewer.FACodeToKey.U_FACode;
+                HttpContext.Current.Session["currency"] = "LC";
                 HttpContext.Current.Session["FAGrpFrm"] = reportViewer.FAGrpFrmKey == null ? "" : reportViewer.FAGrpFrmKey.U_FAGrpCod;
                 HttpContext.Current.Session["FAGrpTo"] = reportViewer.FAGrpToKey == null ? "" : reportViewer.FAGrpToKey.U_FAGrpCod;
                 HttpContext.Current.Session["FAClsFrm"] = reportViewer.FAClsFrmKey == null ? "" : reportViewer.FAClsFrmKey.Code;
