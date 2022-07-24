@@ -140,7 +140,7 @@ namespace FT_FixedAsset.Web
                     doc.SetParameterValue("Group2", HttpContext.Current.Session["Group2"].ToString());
 
                 if (param.Name.Equals("currency"))
-                    doc.SetParameterValue("currency", "");
+                    doc.SetParameterValue("currency", HttpContext.Current.Session["currency"].ToString());
 
                 if (param.Name.Equals("datefrom"))
                     doc.SetParameterValue("datefrom", DateTime.Parse(HttpContext.Current.Session["TransDateFrm"].ToString()).ToString("yyyy-MM-dd"));

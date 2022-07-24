@@ -119,6 +119,7 @@ namespace FT_FixedAsset.Module.Web.Controllers
                     HttpContext.Current.Session["DateTo"] = JEPreview.DateTo.ToString("yyyy-MM-dd") == "0001-01-01" ? "1900-01-01" : JEPreview.DateTo.ToString("yyyy-MM-dd");
                     HttpContext.Current.Session["FACodFrm"] = JEPreview.FACodeFrm == null ? "" : JEPreview.FACodeFrm.U_FACode;
                     HttpContext.Current.Session["FACodTo"] = JEPreview.FACodeTo == null ? "" : JEPreview.FACodeTo.U_FACode;
+                    HttpContext.Current.Session["currency"] = "LC";
                     HttpContext.Current.Session["FAGrpFrm"] = JEPreview.FAGrpFrm == null ? "" : JEPreview.FAGrpFrm.U_FAGrpCod;
                     HttpContext.Current.Session["FAGrpTo"] = JEPreview.FAGrpTo == null ? "" : JEPreview.FAGrpTo.U_FAGrpCod;
                     HttpContext.Current.Session["FAClsFrm"] = JEPreview.FAClsFrm == null ? "" : JEPreview.FAClsFrm.Code;
