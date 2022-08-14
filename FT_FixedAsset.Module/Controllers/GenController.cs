@@ -89,6 +89,7 @@ namespace FT_FixedAsset.Module.Controllers
                 TransactionNotification.CommandText = query;
                 #region Check Rule Validation
 
+                TransactionNotification.CommandTimeout = 0;
                 SqlDataAdapter da = new SqlDataAdapter(TransactionNotification);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
@@ -144,6 +145,7 @@ namespace FT_FixedAsset.Module.Controllers
                 TransactionNotification.CommandText = "EXEC SBO_SP_PostTransactionNotice '" + objType + "', '" + transType + "', 1, 'DocEntry' , '" + docEntry + "'";
                 #region Check Rule Validation
 
+                TransactionNotification.CommandTimeout = 0;
                 SqlDataAdapter da = new SqlDataAdapter(TransactionNotification);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
@@ -199,6 +201,7 @@ namespace FT_FixedAsset.Module.Controllers
                 TransactionNotification.CommandText = "EXEC sp_FTS11_RecordChangeLog '" + objType + "', 1, 'DocEntry', '" + docEntry + "' , 1";
                 #region Check Rule Validation
 
+                TransactionNotification.CommandTimeout = 0;
                 SqlDataAdapter da = new SqlDataAdapter(TransactionNotification);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
@@ -254,6 +257,7 @@ namespace FT_FixedAsset.Module.Controllers
                     "', '" + FAKey + "', '" + UserCode + "', ''";
                 #region Check Rule Validation
 
+                TransactionNotification.CommandTimeout = 0;
                 SqlDataAdapter da = new SqlDataAdapter(TransactionNotification);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
@@ -325,6 +329,7 @@ namespace FT_FixedAsset.Module.Controllers
                     (JEPreview.FileType == null ? "" : JEPreview.FileType.Code) + "'";
                 #region Check Rule Validation
 
+                TransactionNotification.CommandTimeout = 0;
                 SqlDataAdapter da = new SqlDataAdapter(TransactionNotification);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
@@ -371,6 +376,7 @@ namespace FT_FixedAsset.Module.Controllers
                     conn.Open();
 
                     cmd.CommandText = "EXEC sp_FTS11_RegenerateView";
+                    cmd.CommandTimeout = 0;
                     cmd.ExecuteNonQuery();
                 }
             }
@@ -401,6 +407,7 @@ namespace FT_FixedAsset.Module.Controllers
                     else
                         cmd.CommandText += FAKey;
 
+                    cmd.CommandTimeout = 0;
                     cmd.ExecuteNonQuery();
                 }
             }
@@ -850,6 +857,7 @@ namespace FT_FixedAsset.Module.Controllers
                 conn.Open();
 
                 SqlCommand cmdsql = new SqlCommand(query, conn);
+                cmdsql.CommandTimeout = 0;
                 cmdsql.ExecuteNonQuery();
                 cmdsql.Dispose();
 
