@@ -420,47 +420,68 @@ namespace FT_FixedAsset.Module.Web.Controllers
                             #region Save earlier journal
                             if (batch != "")
                             {
-                                if (fileType == "JV")
+                                if (postTo == "SBO")
                                 {
-                                    if (oJV.Add() != 0)
+                                    if (fileType == "JV")
                                     {
-                                        genCon.MsgBox(InformationType.Error, "Error", oCom.GetLastErrorDescription());
+                                        if (oJV.Add() != 0)
+                                        {
+                                            genCon.MsgBox(InformationType.Error, "Error", oCom.GetLastErrorDescription());
+                                        }
+                                        else
+                                        {
+                                            genCon.MsgBox(InformationType.Info, "Infomation", "Journal Voucher created");
+
+                                            cmdsql = new SqlCommand("EXEC [dbo].[sp_FTS11_SetOJDTPostedStatus] '" +
+                                                batch + "', '" +
+                                                transId + "', '" +
+                                                (JEPreview.PostTo == null ? "" : JEPreview.PostTo.Code) + "', '" +
+                                                (JEPreview.FileType == null ? "" : JEPreview.FileType.Code) + "', '" +
+                                                (string.IsNullOrEmpty(JEPreview.U_CreateBy) ? "" : JEPreview.U_CreateBy.ToString()) + "'", conn);
+                                            cmdsql.ExecuteNonQuery();
+                                            cmdsql.Dispose();
+
+                                        }
                                     }
                                     else
                                     {
-                                        genCon.MsgBox(InformationType.Info, "Infomation", "Journal Voucher created");
+                                        if (oJE.Add() != 0)
+                                        {
+                                            genCon.MsgBox(InformationType.Error, "Error", oCom.GetLastErrorDescription());
+                                        }
+                                        else
+                                        {
+                                            genCon.MsgBox(InformationType.Info, "Infomation", "Journal Entry created");
 
-                                        cmdsql = new SqlCommand("EXEC [dbo].[sp_FTS11_SetOJDTPostedStatus] '" +
-                                            batch + "', '" +
-                                            transId + "', '" +
-                                            (JEPreview.PostTo == null ? "" : JEPreview.PostTo.Code) + "', '" +
-                                            (JEPreview.FileType == null ? "" : JEPreview.FileType.Code) + "', '" +
-                                            (string.IsNullOrEmpty(JEPreview.U_CreateBy) ? "" : JEPreview.U_CreateBy.ToString()) + "'", conn);
-                                        cmdsql.ExecuteNonQuery();
-                                        cmdsql.Dispose();
+                                            cmdsql = new SqlCommand("EXEC [dbo].[sp_FTS11_SetOJDTPostedStatus] '" +
+                                                batch + "', '" +
+                                                transId + "', '" +
+                                                (JEPreview.PostTo == null ? "" : JEPreview.PostTo.Code) + "', '" +
+                                                (JEPreview.FileType == null ? "" : JEPreview.FileType.Code) + "', '" +
+                                                (string.IsNullOrEmpty(JEPreview.U_CreateBy) ? "" : JEPreview.U_CreateBy.ToString()) + "'", conn);
+                                            cmdsql.ExecuteNonQuery();
+                                            cmdsql.Dispose();
 
+                                        }
                                     }
                                 }
                                 else
                                 {
                                     oJE.SaveXML(Path.GetTempPath() + "FTS00JW_OJDT.xml");
-                                    if (oJE.Add() != 0)
-                                    {
-                                        genCon.MsgBox(InformationType.Error, "Error", oCom.GetLastErrorDescription());
-                                    }
-                                    else
-                                    {
-                                        genCon.MsgBox(InformationType.Info, "Infomation", "Journal Entry created");
 
-                                        cmdsql = new SqlCommand("EXEC [dbo].[sp_FTS11_SetOJDTPostedStatus] '" +
-                                            batch + "', '" +
-                                            transId + "', '" +
-                                            (JEPreview.PostTo == null ? "" : JEPreview.PostTo.Code) + "', '" +
-                                            (JEPreview.FileType == null ? "" : JEPreview.FileType.Code) + "', '" +
-                                            (string.IsNullOrEmpty(JEPreview.U_CreateBy) ? "" : JEPreview.U_CreateBy.ToString()) + "'", conn);
-                                        cmdsql.ExecuteNonQuery();
-                                        cmdsql.Dispose();
-                                    }
+                                    if (fileType == "JV")
+                                        genCon.MsgBox(InformationType.Info, "Infomation", "Journal Entry created");
+                                    else
+                                        genCon.MsgBox(InformationType.Info, "Infomation", "Journal Voucher created");
+
+                                    cmdsql = new SqlCommand("EXEC [dbo].[sp_FTS11_SetOJDTPostedStatus] '" +
+                                        batch + "', '" +
+                                        transId + "', '" +
+                                        (JEPreview.PostTo == null ? "" : JEPreview.PostTo.Code) + "', '" +
+                                        (JEPreview.FileType == null ? "" : JEPreview.FileType.Code) + "', '" +
+                                        (string.IsNullOrEmpty(JEPreview.U_CreateBy) ? "" : JEPreview.U_CreateBy.ToString()) + "'", conn);
+                                    cmdsql.ExecuteNonQuery();
+                                    cmdsql.Dispose();
                                 }
                             }
                             batch = row["Batch"].ToString();
@@ -513,46 +534,66 @@ namespace FT_FixedAsset.Module.Web.Controllers
 
                     #region Save last journal
                     Console.WriteLine("Add journal...");
-                    if (fileType == "JV")
+                    if (postTo == "SBO")
                     {
-                        if (oJV.Add() != 0)
+                        if (fileType == "JV")
                         {
-                            genCon.MsgBox(InformationType.Error, "Error", oCom.GetLastErrorDescription());
+                            if (oJV.Add() != 0)
+                            {
+                                genCon.MsgBox(InformationType.Error, "Error", oCom.GetLastErrorDescription());
+                            }
+                            else
+                            {
+                                genCon.MsgBox(InformationType.Info, "Infomation", "Journal Voucher created");
+
+                                cmdsql = new SqlCommand("EXEC [dbo].[sp_FTS11_SetOJDTPostedStatus] '" +
+                                    batch + "', '" +
+                                    transId + "', '" +
+                                    (JEPreview.PostTo == null ? "" : JEPreview.PostTo.Code) + "', '" +
+                                    (JEPreview.FileType == null ? "" : JEPreview.FileType.Code) + "', '" +
+                                    (string.IsNullOrEmpty(JEPreview.U_CreateBy) ? "" : JEPreview.U_CreateBy.ToString()) + "'", conn);
+                                cmdsql.ExecuteNonQuery();
+                                cmdsql.Dispose();
+                            }
                         }
                         else
                         {
-                            genCon.MsgBox(InformationType.Info, "Infomation", "Journal Voucher created");
+                            if (oJE.Add() != 0)
+                            {
+                                genCon.MsgBox(InformationType.Error, "Error", oCom.GetLastErrorDescription());
+                            }
+                            else
+                            {
+                                genCon.MsgBox(InformationType.Info, "Infomation", "Journal Entry created");
 
-                            cmdsql = new SqlCommand("EXEC [dbo].[sp_FTS11_SetOJDTPostedStatus] '" +
-                                batch + "', '" +
-                                transId + "', '" +
-                                (JEPreview.PostTo == null ? "" : JEPreview.PostTo.Code) + "', '" +
-                                (JEPreview.FileType == null ? "" : JEPreview.FileType.Code) + "', '" +
-                                (string.IsNullOrEmpty(JEPreview.U_CreateBy) ? "" : JEPreview.U_CreateBy.ToString()) + "'", conn);
-                            cmdsql.ExecuteNonQuery();
-                            cmdsql.Dispose();
+                                cmdsql = new SqlCommand("EXEC [dbo].[sp_FTS11_SetOJDTPostedStatus] '" +
+                                    batch + "', '" +
+                                    transId + "', '" +
+                                    (JEPreview.PostTo == null ? "" : JEPreview.PostTo.Code) + "', '" +
+                                    (JEPreview.FileType == null ? "" : JEPreview.FileType.Code) + "', '" +
+                                    (string.IsNullOrEmpty(JEPreview.U_CreateBy) ? "" : JEPreview.U_CreateBy.ToString()) + "'", conn);
+                                cmdsql.ExecuteNonQuery();
+                                cmdsql.Dispose();
+                            }
                         }
                     }
                     else
                     {
                         oJE.SaveXML(Path.GetTempPath() + "FTS00JW_OJDT.xml");
-                        if (oJE.Add() != 0)
-                        {
-                            genCon.MsgBox(InformationType.Error, "Error", oCom.GetLastErrorDescription());
-                        }
-                        else
-                        {
-                            genCon.MsgBox(InformationType.Info, "Infomation", "Journal Entry created");
 
-                            cmdsql = new SqlCommand("EXEC [dbo].[sp_FTS11_SetOJDTPostedStatus] '" +
-                                batch + "', '" +
-                                transId + "', '" +
-                                (JEPreview.PostTo == null ? "" : JEPreview.PostTo.Code) + "', '" +
-                                (JEPreview.FileType == null ? "" : JEPreview.FileType.Code) + "', '" +
-                                (string.IsNullOrEmpty(JEPreview.U_CreateBy) ? "" : JEPreview.U_CreateBy.ToString()) + "'", conn);
-                            cmdsql.ExecuteNonQuery();
-                            cmdsql.Dispose();
-                        }
+                        if (fileType == "JV")
+                            genCon.MsgBox(InformationType.Info, "Infomation", "Journal Entry created");
+                        else
+                            genCon.MsgBox(InformationType.Info, "Infomation", "Journal Voucher created");
+
+                        cmdsql = new SqlCommand("EXEC [dbo].[sp_FTS11_SetOJDTPostedStatus] '" +
+                            batch + "', '" +
+                            transId + "', '" +
+                            (JEPreview.PostTo == null ? "" : JEPreview.PostTo.Code) + "', '" +
+                            (JEPreview.FileType == null ? "" : JEPreview.FileType.Code) + "', '" +
+                            (string.IsNullOrEmpty(JEPreview.U_CreateBy) ? "" : JEPreview.U_CreateBy.ToString()) + "'", conn);
+                        cmdsql.ExecuteNonQuery();
+                        cmdsql.Dispose();
                     }
                     #endregion
                 }
