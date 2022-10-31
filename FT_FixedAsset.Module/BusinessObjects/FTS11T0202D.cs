@@ -69,6 +69,9 @@ namespace FT_FixedAsset.Module.BusinessObjects
                         SetPropertyValue("U_Quantity", ref _U_Quantity, value.SQuantity);
                         SetPropertyValue("U_LocationKey", ref _U_LocationKey, Session.FindObject<FTS11OLOC>(CriteriaOperator.Parse("Code = ?", value.U_LastLoc)));
                         SetPropertyValue("U_Location", ref _U_Location, value.U_LastLoc);
+                        SetPropertyValue("U_AccFrmW", ref _U_AccFrmW, value.U_AccFrmW);
+                        SetPropertyValue("U_AccCodW", ref _U_AccCodW, value.U_AccCodW);
+                        SetPropertyValue("U_AccNamW", ref _U_AccNamW, value.U_AccNamW);
                     }
                     else
                     {
@@ -77,6 +80,9 @@ namespace FT_FixedAsset.Module.BusinessObjects
                         SetPropertyValue("U_Quantity", ref _U_Quantity, 0);
                         SetPropertyValue("U_LocationKey", ref _U_LocationKey, null);
                         SetPropertyValue("U_Location", ref _U_Location, "");
+                        SetPropertyValue("U_AccFrmW", ref _U_AccFrmW, null);
+                        SetPropertyValue("U_AccCodW", ref _U_AccCodW, "");
+                        SetPropertyValue("U_AccNamW", ref _U_AccNamW, "");
                     }
                 }
             }
