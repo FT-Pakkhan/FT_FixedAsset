@@ -63,6 +63,8 @@ namespace FT_FixedAsset.Module.Web.Controllers
                     }
                     else
                     {
+                        OFAC.U_UpdateBy = user.UserName.ToString();
+                        OFAC.UpdateDate = DateTime.Now;
                         ObjectSpace.CommitChanges();
                         genCon.PostTransactionNotice(OFAC.Object, "U", OFAC.DocEntry);
                         genCon.RecordChangeLog(OFAC.Object, OFAC.DocEntry);
@@ -75,19 +77,21 @@ namespace FT_FixedAsset.Module.Web.Controllers
             {
                 foreach (FTS11OIND selectedObject in args.SelectedObjects)
                 {
-                    FTS11OIND OFAC = (FTS11OIND)selectedObject;
+                    FTS11OIND OIND = (FTS11OIND)selectedObject;
 
-                    if (OFAC.IsNew == true)
+                    if (OIND.IsNew == true)
                     {
                         ObjectSpace.CommitChanges();
-                        genCon.PostTransactionNotice(OFAC.Object, "A", OFAC.DocEntry);
-                        genCon.RecordChangeLog(OFAC.Object, OFAC.DocEntry);
+                        genCon.PostTransactionNotice(OIND.Object, "A", OIND.DocEntry);
+                        genCon.RecordChangeLog(OIND.Object, OIND.DocEntry);
                     }
                     else
                     {
+                        OIND.U_UpdateBy = user.UserName.ToString();
+                        OIND.UpdateDate = DateTime.Now;
                         ObjectSpace.CommitChanges();
-                        genCon.PostTransactionNotice(OFAC.Object, "U", OFAC.DocEntry);
-                        genCon.RecordChangeLog(OFAC.Object, OFAC.DocEntry);
+                        genCon.PostTransactionNotice(OIND.Object, "U", OIND.DocEntry);
+                        genCon.RecordChangeLog(OIND.Object, OIND.DocEntry);
                     }
                 }
             }
@@ -107,6 +111,8 @@ namespace FT_FixedAsset.Module.Web.Controllers
                     }
                     else
                     {
+                        OLOC.U_UpdateBy = user.UserName.ToString();
+                        OLOC.UpdateDate = DateTime.Now;
                         ObjectSpace.CommitChanges();
                         genCon.PostTransactionNotice(OLOC.Object, "U", OLOC.DocEntry);
                         genCon.RecordChangeLog(OLOC.Object, OLOC.DocEntry);
@@ -129,6 +135,8 @@ namespace FT_FixedAsset.Module.Web.Controllers
                     }
                     else
                     {
+                        OFAG.U_UpdateBy = user.UserName.ToString();
+                        OFAG.UpdateDate = DateTime.Now;
                         ObjectSpace.CommitChanges();
                         genCon.PostTransactionNotice(OFAG.Object, "U", OFAG.DocEntry);
                         genCon.RecordChangeLog(OFAG.Object, OFAG.DocEntry);
@@ -203,8 +211,9 @@ namespace FT_FixedAsset.Module.Web.Controllers
                     }
                     else
                     {
-                        ObjectSpace.CommitChanges();
                         OFAM.U_UpdateBy = user.UserName.ToString();
+                        OFAM.UpdateDate = DateTime.Now;
+                        ObjectSpace.CommitChanges();
                         genCon.PostTransactionNotice(OFAM.Object, "U", OFAM.DocEntry);
                         genCon.RecordChangeLog(OFAM.Object, OFAM.DocEntry);
                     }
@@ -272,6 +281,8 @@ namespace FT_FixedAsset.Module.Web.Controllers
                     }
                     else
                     {
+                        T0201.U_UpdateBy = user.UserName.ToString();
+                        T0201.UpdateDate = DateTime.Now;
                         ObjectSpace.CommitChanges();
                         genCon.PostTransactionNotice(T0201.Object, "U", T0201.DocEntry);
                         genCon.RecordChangeLog(T0201.Object, T0201.DocEntry);
@@ -340,6 +351,8 @@ namespace FT_FixedAsset.Module.Web.Controllers
                     }
                     else
                     {
+                        T0202.U_UpdateBy = user.UserName.ToString();
+                        T0202.UpdateDate = DateTime.Now;
                         ObjectSpace.CommitChanges();
                         genCon.PostTransactionNotice(T0202.Object, "U", T0202.DocEntry);
                         genCon.RecordChangeLog(T0202.Object, T0202.DocEntry);
@@ -409,6 +422,8 @@ namespace FT_FixedAsset.Module.Web.Controllers
                     }
                     else
                     {
+                        T0203.U_UpdateBy = user.UserName.ToString();
+                        T0203.UpdateDate = DateTime.Now;
                         ObjectSpace.CommitChanges();
                         genCon.PostTransactionNotice(T0203.Object, "U", T0203.DocEntry);
                         genCon.RecordChangeLog(T0203.Object, T0203.DocEntry);
@@ -477,6 +492,8 @@ namespace FT_FixedAsset.Module.Web.Controllers
                     }
                     else
                     {
+                        T0204.U_UpdateBy = user.UserName.ToString();
+                        T0204.UpdateDate = DateTime.Now;
                         ObjectSpace.CommitChanges();
                         genCon.PostTransactionNotice(T0204.Object, "U", T0204.DocEntry);
                         genCon.RecordChangeLog(T0204.Object, T0204.DocEntry);
@@ -545,6 +562,8 @@ namespace FT_FixedAsset.Module.Web.Controllers
                     }
                     else
                     {
+                        T0205.U_UpdateBy = user.UserName.ToString();
+                        T0205.UpdateDate = DateTime.Now;
                         ObjectSpace.CommitChanges();
                         genCon.PostTransactionNotice(T0205.Object, "U", T0205.DocEntry);
                         genCon.RecordChangeLog(T0205.Object, T0205.DocEntry);
@@ -596,6 +615,8 @@ namespace FT_FixedAsset.Module.Web.Controllers
                     }
                     else
                     {
+                        T0301.U_UpdateBy = user.UserName.ToString();
+                        T0301.UpdateDate = DateTime.Now;
                         ObjectSpace.CommitChanges();
                         genCon.PostTransactionNotice(T0301.Object, "U", T0301.DocEntry);
                         genCon.RecordChangeLog(T0301.Object, T0301.DocEntry);
@@ -647,6 +668,8 @@ namespace FT_FixedAsset.Module.Web.Controllers
                     }
                     else
                     {
+                        T0302.U_UpdateBy = user.UserName.ToString();
+                        T0302.UpdateDate = DateTime.Now;
                         ObjectSpace.CommitChanges();
                         genCon.PostTransactionNotice(T0302.Object, "U", T0302.DocEntry);
                         genCon.RecordChangeLog(T0302.Object, T0302.DocEntry);
@@ -698,6 +721,8 @@ namespace FT_FixedAsset.Module.Web.Controllers
                     }
                     else
                     {
+                        T0303.U_UpdateBy = user.UserName.ToString();
+                        T0303.UpdateDate = DateTime.Now;
                         ObjectSpace.CommitChanges();
                         genCon.PostTransactionNotice(T0303.Object, "U", T0303.DocEntry);
                         genCon.RecordChangeLog(T0303.Object, T0303.DocEntry);
@@ -749,6 +774,8 @@ namespace FT_FixedAsset.Module.Web.Controllers
                     }
                     else
                     {
+                        T0304.U_UpdateBy = user.UserName.ToString();
+                        T0304.UpdateDate = DateTime.Now;
                         ObjectSpace.CommitChanges();
                         genCon.PostTransactionNotice(T0304.Object, "U", T0304.DocEntry);
                         genCon.RecordChangeLog(T0304.Object, T0304.DocEntry);
@@ -800,6 +827,8 @@ namespace FT_FixedAsset.Module.Web.Controllers
                     }
                     else
                     {
+                        T0305.U_UpdateBy = user.UserName.ToString();
+                        T0305.UpdateDate = DateTime.Now;
                         ObjectSpace.CommitChanges();
                         genCon.PostTransactionNotice(T0305.Object, "U", T0305.DocEntry);
                         genCon.RecordChangeLog(T0305.Object, T0305.DocEntry);
