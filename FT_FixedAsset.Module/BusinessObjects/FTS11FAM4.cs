@@ -49,7 +49,8 @@ namespace FT_FixedAsset.Module.BusinessObjects
         }
 
         private string _U_NumAtCard;
-        [XafDisplayName("Reference No."), ToolTip("Reference No.")]
+        //[XafDisplayName("Reference No."), ToolTip("Reference No.")]
+        [XafDisplayName("VR No."), ToolTip("VR No.")]
         [Index(20), VisibleInListView(true), VisibleInDetailView(true), VisibleInLookupListView(true)]
         public string U_NumAtCard
         {
@@ -58,7 +59,8 @@ namespace FT_FixedAsset.Module.BusinessObjects
         }
 
         private string _U_NumAtCard2;
-        [XafDisplayName("Reference No. 2"), ToolTip("Reference No. 2")]
+        //[XafDisplayName("Reference No. 2"), ToolTip("Reference No. 2")]
+        [XafDisplayName("Invoice No."), ToolTip("Invoice No.")]
         [Index(21), VisibleInListView(true), VisibleInDetailView(true), VisibleInLookupListView(true)]
         public string U_NumAtCard2
         {

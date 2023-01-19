@@ -1544,7 +1544,8 @@ namespace FT_FixedAsset.Module.BusinessObjects
         }
 
         private string _U_RefDoc2;
-        [XafDisplayName("Ref. Doc. 2"), ToolTip("Ref Doc. 2")]
+        //[XafDisplayName("Ref. Doc. 2"), ToolTip("Ref Doc. 2")]
+        [XafDisplayName("PO No."), ToolTip("PO No.")]
         [Index(550), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(false)]
         public string U_RefDoc2
         {
@@ -1563,7 +1564,8 @@ namespace FT_FixedAsset.Module.BusinessObjects
         }
 
         private string _U_RefDoc3;
-        [XafDisplayName("Ref. Doc. 3"), ToolTip("Ref Doc. 3")]
+        //[XafDisplayName("Ref. Doc. 3"), ToolTip("Ref Doc. 3")]
+        [XafDisplayName("VR No."), ToolTip("VR No.")]
         [Index(560), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(false)]
         public string U_RefDoc3
         {

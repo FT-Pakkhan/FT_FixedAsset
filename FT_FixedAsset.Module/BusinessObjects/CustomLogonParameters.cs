@@ -1,5 +1,6 @@
 ﻿using DevExpress.ExpressApp;
 using DevExpress.ExpressApp.DC;
+using DevExpress.ExpressApp.Model;
 using DevExpress.ExpressApp.Security;
 using DevExpress.Persistent.Base;
 using System;
@@ -21,7 +22,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
         private string databaseName;
         [XafDisplayName("Company")]
         [EditorAlias("CustomLogin")]
-        //[ModelDefault("PredefinedValues", MSSqlServerChangeDatabaseHelper.Databases)]
+        [ModelDefault("PredefinedValues", MSSqlServerChangeDatabaseHelper.Databases)]
         public string DatabaseName
         {
             get { return databaseName; }
@@ -35,7 +36,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
         private string databaseName;
         [XafDisplayName("Company")]
         [EditorAlias("CustomLogin")]
-        //[ModelDefault("PredefinedValues", MSSqlServerChangeDatabaseHelper.Databases)]
+        [ModelDefault("PredefinedValues", MSSqlServerChangeDatabaseHelper.Databases)]
         public string DatabaseName
         {
             get { return databaseName; }
@@ -46,7 +47,6 @@ namespace FT_FixedAsset.Module.BusinessObjects
     public class MSSqlServerChangeDatabaseHelper
     {
         public const string Databases = "";
-     
         public static void UpdateDatabaseName(XafApplication application, string databaseName)
         {
             DataTable dt = null;
