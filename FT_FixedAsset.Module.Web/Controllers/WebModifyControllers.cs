@@ -7,6 +7,7 @@ using FT_FixedAsset.Module.BusinessObjects;
 using FT_FixedAsset.Module.Controllers;
 using System;
 using System.Data.SqlClient;
+using System.Linq;
 
 namespace FT_FixedAsset.Module.Web.Controllers
 {
@@ -233,6 +234,16 @@ namespace FT_FixedAsset.Module.Web.Controllers
                         return;
                     }
 
+                    var list = T0201.FTS11T0201D.GroupBy(x => x.U_FAKey)
+                        .Where(g => g.Count() > 1)
+                        .Select(x => x.Key).ToList();
+
+                    if (list.Count > 0)
+                    {
+                        genCon.MsgBox(InformationType.Error, "Error", "Duplicate Asset found in list.");
+                        return;
+                    }
+
                     foreach (FTS11T0201D T0201D in T0201.FTS11T0201D)
                     {
                         if (T0201D.LineStatus.Code == "O")
@@ -300,6 +311,16 @@ namespace FT_FixedAsset.Module.Web.Controllers
                     if (T0202.FTS11T0202D.Count <= 0)
                     {
                         genCon.MsgBox(InformationType.Error, "Error", "No Asset selected.");
+                        return;
+                    }
+
+                    var list = T0202.FTS11T0202D.GroupBy(x => x.U_FAKey)
+                        .Where(g => g.Count() > 1)
+                        .Select(x => x.Key).ToList();
+
+                    if (list.Count > 0)
+                    {
+                        genCon.MsgBox(InformationType.Error, "Error", "Duplicate Asset found in list.");
                         return;
                     }
 
@@ -374,6 +395,16 @@ namespace FT_FixedAsset.Module.Web.Controllers
                         return;
                     }
 
+                    var list = T0203.FTS11T0203D.GroupBy(x => x.U_FAKey)
+                        .Where(g => g.Count() > 1)
+                        .Select(x => x.Key).ToList();
+
+                    if (list.Count > 0)
+                    {
+                        genCon.MsgBox(InformationType.Error, "Error", "Duplicate Asset found in list.");
+                        return;
+                    }
+
                     foreach (FTS11T0203D T0203D in T0203.FTS11T0203D)
                     {
                         if (T0203D.LineStatus.Code == "O")
@@ -441,6 +472,16 @@ namespace FT_FixedAsset.Module.Web.Controllers
                     if (T0204.FTS11T0204D.Count <= 0)
                     {
                         genCon.MsgBox(InformationType.Error, "Error", "No Asset selected.");
+                        return;
+                    }
+
+                    var list = T0204.FTS11T0204D.GroupBy(x => x.U_FAKey)
+                        .Where(g => g.Count() > 1)
+                        .Select(x => x.Key).ToList();
+
+                    if (list.Count > 0)
+                    {
+                        genCon.MsgBox(InformationType.Error, "Error", "Duplicate Asset found in list.");
                         return;
                     }
 
@@ -514,6 +555,16 @@ namespace FT_FixedAsset.Module.Web.Controllers
                         return;
                     }
 
+                    var list = T0205.FTS11T0205D.GroupBy(x => x.U_FAKey)
+                        .Where(g => g.Count() > 1)
+                        .Select(x => x.Key).ToList();
+
+                    if (list.Count > 0)
+                    {
+                        genCon.MsgBox(InformationType.Error, "Error", "Duplicate Asset found in list.");
+                        return;
+                    }
+
                     foreach (FTS11T0205D T0205D in T0205.FTS11T0205D)
                     {
                         if (T0205D.LineStatus.Code == "O")
@@ -584,6 +635,16 @@ namespace FT_FixedAsset.Module.Web.Controllers
                         return;
                     }
 
+                    var list = T0301.FTS11T0301D.GroupBy(x => x.U_FAKey)
+                        .Where(g => g.Count() > 1)
+                        .Select(x => x.Key).ToList();
+
+                    if (list.Count > 0)
+                    {
+                        genCon.MsgBox(InformationType.Error, "Error", "Duplicate Asset found in list.");
+                        return;
+                    }
+
                     foreach (FTS11T0301D T0301D in T0301.FTS11T0301D)
                     {
                         if (T0301D.LineStatus.Code == "O")
@@ -634,6 +695,16 @@ namespace FT_FixedAsset.Module.Web.Controllers
                     if (T0302.FTS11T0302D.Count <= 0)
                     {
                         genCon.MsgBox(InformationType.Error, "Error", "No Asset selected.");
+                        return;
+                    }
+
+                    var list = T0302.FTS11T0302D.GroupBy(x => x.U_FAKey)
+                        .Where(g => g.Count() > 1)
+                        .Select(x => x.Key).ToList();
+
+                    if (list.Count > 0)
+                    {
+                        genCon.MsgBox(InformationType.Error, "Error", "Duplicate Asset found in list.");
                         return;
                     }
 
@@ -690,6 +761,16 @@ namespace FT_FixedAsset.Module.Web.Controllers
                         return;
                     }
 
+                    var list = T0303.FTS11T0303D.GroupBy(x => x.U_FAKey)
+                        .Where(g => g.Count() > 1)
+                        .Select(x => x.Key).ToList();
+
+                    if (list.Count > 0)
+                    {
+                        genCon.MsgBox(InformationType.Error, "Error", "Duplicate Asset found in list.");
+                        return;
+                    }
+
                     foreach (FTS11T0303D T0303D in T0303.FTS11T0303D)
                     {
                         if (T0303D.LineStatus.Code == "O")
@@ -743,6 +824,16 @@ namespace FT_FixedAsset.Module.Web.Controllers
                         return;
                     }
 
+                    var list = T0304.FTS11T0304D.GroupBy(x => x.U_FAKey)
+                        .Where(g => g.Count() > 1)
+                        .Select(x => x.Key).ToList();
+
+                    if (list.Count > 0)
+                    {
+                        genCon.MsgBox(InformationType.Error, "Error", "Duplicate Asset found in list.");
+                        return;
+                    }
+
                     foreach (FTS11T0304D T0304D in T0304.FTS11T0304D)
                     {
                         if (T0304D.LineStatus.Code == "O")
@@ -793,6 +884,16 @@ namespace FT_FixedAsset.Module.Web.Controllers
                     if (T0305.FTS11T0305D.Count <= 0)
                     {
                         genCon.MsgBox(InformationType.Error, "Error", "No Asset selected.");
+                        return;
+                    }
+
+                    var list = T0305.FTS11T0305D.GroupBy(x => x.U_FAKey)
+                        .Where(g => g.Count() > 1)
+                        .Select(x => x.Key).ToList();
+
+                    if (list.Count > 0)
+                    {
+                        genCon.MsgBox(InformationType.Error, "Error", "Duplicate Asset found in list.");
                         return;
                     }
 

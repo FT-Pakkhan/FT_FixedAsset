@@ -49,9 +49,9 @@ namespace FT_FixedAsset.Module.BusinessObjects
 
         #region Child Table
         [Association("FTS11T0302-FTS11T0302D", typeof(FTS11T0302D))]
-        public XPCollection FTS11T0302D
+        public XPCollection<FTS11T0302D> FTS11T0302D
         {
-            get { return GetCollection("FTS11T0302D"); }
+            get { return GetCollection<FTS11T0302D>("FTS11T0302D"); }
         }
         #endregion
 
