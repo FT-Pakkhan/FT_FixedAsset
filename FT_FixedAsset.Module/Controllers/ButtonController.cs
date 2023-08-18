@@ -1619,7 +1619,7 @@ namespace FT_FixedAsset.Module.Web.Controllers
                         if (TJDT.Status.Code == "O")
                         {
                             genCon.executeNonQuery("UPDATE T0 SET T0.TransStatus = 'C' FROM FTS11JDT1 T0 WHERE T0.DocEntry = '" + TJDT.DocEntry + "' AND " +
-                                "T0.DocEntry NOT IN (SELECT ReconKey FROM FTS11JDT1 WHERE ReconKey <> 0 AND FAKey = '" + TJDT.FAKey + "')");
+                                "T0.DocEntry NOT IN (SELECT ReconKey FROM FTS11JDT1 WHERE ReconKey <> 0 AND FAKey = '" + TJDT.FAKey.DocEntry + "')");
 
                         }
                         else if (TJDT.Status.Code == "P")
