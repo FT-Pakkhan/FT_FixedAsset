@@ -165,8 +165,8 @@
     <Compile Include="BusinessObjects\FTS11FAM2.cs" />
     <Compile Include="BusinessObjects\FTS11FAM3.cs" />
     <Compile Include="BusinessObjects\FTS11JDT1.cs" />
-    <Compile Include="BusinessObjects\FTS11NNM2.cs" />
     <Compile Include="BusinessObjects\FTS11NNM1.cs" />
+    <Compile Include="BusinessObjects\FTS11NNM2.cs" />
     <Compile Include="BusinessObjects\FTS11OJDT.cs" />
     <Compile Include="BusinessObjects\FTS11SRPT.cs" />
     <Compile Include="BusinessObjects\FTS11OIND.cs" />
