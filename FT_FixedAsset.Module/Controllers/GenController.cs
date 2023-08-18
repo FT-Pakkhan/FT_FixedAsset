@@ -417,11 +417,17 @@ namespace FT_FixedAsset.Module.Controllers
             }
         }
 
-        public void AutoNumbering(FTS11OADM OADM, FTS11NNM1 code,FTS11OFAM OFAM, IObjectSpace os)
+        public void AutoNumbering(FTS11OADM OADM, FTS11NNM1 code, FTS11OFAM OFAM, IObjectSpace os)
         {
             string prefix = "";
             string numbering = "";
             string suffix = "";
+
+            if (OADM.U_FACodeDt.Code == "AcqDate" && OFAM.U_AcqDate.ToString("yyyyMMdd") == "00010101")
+                return;
+
+            if (OADM.U_FACodeDt.Code == "EffDate" && OFAM.U_EffDate.ToString("yyyyMMdd") == "00010101")
+                return;
 
             if (code.Month == false && code.Year == false)
             {
@@ -461,7 +467,7 @@ namespace FT_FixedAsset.Module.Controllers
 
                     numbering = String.Format("{0:D" + code.Length + "}", 1);
 
-                    NNM2.Seq++;
+                    //NNM2.Seq++;
                 }
                 else
                 {
@@ -518,7 +524,7 @@ namespace FT_FixedAsset.Module.Controllers
 
                     numbering = String.Format("{0:D" + code.Length + "}", 1);
 
-                    NNM2.Seq++;
+                    //NNM2.Seq++;
                 }
                 else
                 {
@@ -581,7 +587,7 @@ namespace FT_FixedAsset.Module.Controllers
 
                     numbering = String.Format("{0:D" + code.Length + "}", 1);
 
-                    NNM2.Seq++;
+                    //NNM2.Seq++;
                 }
                 else
                 {
@@ -637,7 +643,7 @@ namespace FT_FixedAsset.Module.Controllers
 
                     numbering = String.Format("{0:D" + code.Length + "}", 1);
 
-                    NNM2.Seq++;
+                    //NNM2.Seq++;
                 }
                 else
                 {
@@ -694,7 +700,7 @@ namespace FT_FixedAsset.Module.Controllers
 
                     numbering = String.Format("{0:D" + code.Length + "}", 1);
 
-                    NNM2.Seq++;
+                    //NNM2.Seq++;
                 }
                 else
                 {
@@ -757,7 +763,7 @@ namespace FT_FixedAsset.Module.Controllers
 
                     numbering = String.Format("{0:D" + code.Length + "}", 1);
 
-                    NNM2.Seq++;
+                    //NNM2.Seq++;
                 }
                 else
                 {
