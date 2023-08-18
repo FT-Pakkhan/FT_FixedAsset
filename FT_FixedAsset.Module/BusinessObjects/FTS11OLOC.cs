@@ -46,6 +46,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
         [XafDisplayName("Code"), ToolTip("Code")]
         [Index(10), VisibleInListView(true), VisibleInDetailView(true), VisibleInLookupListView(true)]
         [RuleRequiredField(DefaultContexts.Save), RuleUniqueValue(DefaultContexts.Save)]
+        [Size(8)]
         public string Code
         {
             get { return _Code; }
