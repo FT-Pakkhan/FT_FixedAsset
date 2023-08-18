@@ -461,7 +461,7 @@ namespace FT_FixedAsset.Module.Controllers
 
                     numbering = String.Format("{0:D" + code.Length + "}", 1);
 
-                    NNM2.Seq++;
+                    //NNM2.Seq++;
                 }
                 else
                 {
@@ -518,7 +518,7 @@ namespace FT_FixedAsset.Module.Controllers
 
                     numbering = String.Format("{0:D" + code.Length + "}", 1);
 
-                    NNM2.Seq++;
+                    //NNM2.Seq++;
                 }
                 else
                 {
@@ -581,7 +581,7 @@ namespace FT_FixedAsset.Module.Controllers
 
                     numbering = String.Format("{0:D" + code.Length + "}", 1);
 
-                    NNM2.Seq++;
+                    //NNM2.Seq++;
                 }
                 else
                 {
@@ -637,7 +637,7 @@ namespace FT_FixedAsset.Module.Controllers
 
                     numbering = String.Format("{0:D" + code.Length + "}", 1);
 
-                    NNM2.Seq++;
+                    //NNM2.Seq++;
                 }
                 else
                 {
@@ -694,7 +694,7 @@ namespace FT_FixedAsset.Module.Controllers
 
                     numbering = String.Format("{0:D" + code.Length + "}", 1);
 
-                    NNM2.Seq++;
+                    //NNM2.Seq++;
                 }
                 else
                 {
@@ -757,7 +757,7 @@ namespace FT_FixedAsset.Module.Controllers
 
                     numbering = String.Format("{0:D" + code.Length + "}", 1);
 
-                    NNM2.Seq++;
+                    //NNM2.Seq++;
                 }
                 else
                 {
