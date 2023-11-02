@@ -120,6 +120,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
         private bool _U_DeprnYN;
         [Index(30), VisibleInListView(true), VisibleInDetailView(true), VisibleInLookupListView(false)]
         [XafDisplayName("Depreciation")]
+        [ImmediatePostData]
         public bool U_DeprnYN
         {
             get { return _U_DeprnYN; }
@@ -282,7 +283,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
         private FTS11_vw_OACT _U_AccFrmD;
         [XafDisplayName("Depreciation A/C Code"), ToolTip("Depreciation A/C Code")]
         [Index(121), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(false)]
-        [RuleRequiredField(DefaultContexts.Save)]
+        [RuleRequiredField(DefaultContexts.Save, TargetCriteria = "U_DeprnYN = true")]
         [NoForeignKey]
         [ImmediatePostData]
         public FTS11_vw_OACT U_AccFrmD
@@ -328,7 +329,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
         private FTS11_vw_OACT _U_AccFrmC;
         [XafDisplayName("Acc. Deprn A/C Code"), ToolTip("Acc. Deprn A/C Code")]
         [Index(131), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(false)]
-        [RuleRequiredField(DefaultContexts.Save)]
+        [RuleRequiredField(DefaultContexts.Save, TargetCriteria = "U_DeprnYN = true")]
         [NoForeignKey]
         [ImmediatePostData]
         public FTS11_vw_OACT U_AccFrmC

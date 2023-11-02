@@ -9,7 +9,6 @@ using System.ComponentModel;
 
 namespace FT_FixedAsset.Module.BusinessObjects
 {
-    [DomainComponent]
     [XafDisplayName("Numbering by Date")]
     [Appearance("DisableLink", AppearanceItemType.Action, "True", TargetItems = "Link", Visibility = ViewItemVisibility.Hide, Context = "Any")]
     [Appearance("DisableUnlink", AppearanceItemType.Action, "True", TargetItems = "Unlink", Visibility = ViewItemVisibility.Hide, Context = "Any")]

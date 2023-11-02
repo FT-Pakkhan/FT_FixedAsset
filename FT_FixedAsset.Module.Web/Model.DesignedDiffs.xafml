@@ -244,6 +244,7 @@
         </LayoutGroup>
       </Layout>
     </DetailView>
+    <ListView Id="FTS11NNM1_FTS11NNM2_ListView" AllowEdit="True" />
     <DetailView Id="FTS11OADM_DetailView">
       <Items>
         <PropertyEditor Id="U_DeprBy" AllowClear="False" />
@@ -336,8 +337,14 @@
     <ListView Id="FTS11OFAC_LookupListView" AllowDelete="False" AllowNew="False" ShowSelectionColumn="False" />
     <DetailView Id="FTS11OFAG_DetailView">
       <Items>
+        <PropertyEditor Id="U_AccFrmA" LookupEditorMode="AllItemsWithSearch" />
+        <PropertyEditor Id="U_AccFrmC" LookupEditorMode="AllItemsWithSearch" />
+        <PropertyEditor Id="U_AccFrmD" LookupEditorMode="AllItemsWithSearch" />
+        <PropertyEditor Id="U_AccFrmQ" LookupEditorMode="AllItemsWithSearch" />
+        <PropertyEditor Id="U_AccFrmW" LookupEditorMode="AllItemsWithSearch" />
         <PropertyEditor Id="U_DeprnBy" AllowClear="False" />
         <PropertyEditor Id="U_DeprnTyp" AllowClear="False" />
+        <PropertyEditor Id="U_FAClsKey" LookupEditorMode="AllItemsWithSearch" />
         <PropertyEditor Id="U_Prorate" AllowClear="False" />
       </Items>
       <Layout>

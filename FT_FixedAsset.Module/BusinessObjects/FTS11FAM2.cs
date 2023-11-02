@@ -16,7 +16,7 @@ using DevExpress.ExpressApp.Editors;
 
 namespace FT_FixedAsset.Module.BusinessObjects
 {
-    [XafDisplayName("Advanced")]
+    [XafDisplayName("FA Master Advanced")]
     [Appearance("DisableLink", AppearanceItemType.Action, "True", TargetItems = "Link", Visibility = ViewItemVisibility.Hide, Context = "Any")]
     [Appearance("DisableUnlink", AppearanceItemType.Action, "True", TargetItems = "Unlink", Visibility = ViewItemVisibility.Hide, Context = "Any")]
     public class FTS11FAM2 : XPLiteObject

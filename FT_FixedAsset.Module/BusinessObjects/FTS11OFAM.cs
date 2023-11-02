@@ -948,7 +948,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
         private FTS11_vw_OACT _U_AccFrmD;
         [XafDisplayName("Depreciation A/C Code"), ToolTip("Depreciation A/C Code")]
         [Index(311), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(false)]
-        [RuleRequiredField(DefaultContexts.Save)]
+        [RuleRequiredField(DefaultContexts.Save, TargetCriteria = "U_DeprnYN = true")]
         [Appearance("AccFrmD", Enabled = false, Criteria = "U_FAGrpSyn = true OR IsFieldEditable = 'N'")]
         [NoForeignKey]
         [ImmediatePostData]
@@ -987,7 +987,6 @@ namespace FT_FixedAsset.Module.BusinessObjects
         private string _U_AccCodC;
         [XafDisplayName("Acc. Deprn A/C"), ToolTip("Acc. Deprn A/C")]
         [Index(320), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
-        [RuleRequiredField(DefaultContexts.Save)]
         [Appearance("AccCodC", Enabled = false, Criteria = "U_FAGrpSyn = true OR IsFieldEditable = 'N'")]
         public string U_AccCodC
         {
@@ -998,7 +997,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
         private FTS11_vw_OACT _U_AccFrmC;
         [XafDisplayName("Acc. Deprn A/C Code"), ToolTip("Acc. Deprn A/C Code")]
         [Index(321), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(false)]
-        [RuleRequiredField(DefaultContexts.Save)]
+        [RuleRequiredField(DefaultContexts.Save, TargetCriteria = "U_DeprnYN = true")]
         [Appearance("AccFrmC", Enabled = false, Criteria = "U_FAGrpSyn = true OR IsFieldEditable = 'N'")]
         [NoForeignKey]
         [ImmediatePostData]

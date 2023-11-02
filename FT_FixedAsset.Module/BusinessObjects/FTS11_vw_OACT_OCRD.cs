@@ -7,7 +7,7 @@ using System.ComponentModel;
 
 namespace FT_FixedAsset.Module.BusinessObjects
 {
-    [XafDisplayName("Account")]
+    [XafDisplayName("Account/BP Master")]
     [DefaultProperty("FormatCode")]
     [Appearance("DisableNew", AppearanceItemType.Action, "True", TargetItems = "New", Visibility = ViewItemVisibility.Hide, Context = "Any")]
     [Appearance("DisableDelete", AppearanceItemType.Action, "True", TargetItems = "Delete", Visibility = ViewItemVisibility.Hide, Context = "Any")]
