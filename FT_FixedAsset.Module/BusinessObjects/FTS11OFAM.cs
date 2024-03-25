@@ -289,15 +289,15 @@ namespace FT_FixedAsset.Module.BusinessObjects
             }
         }
 
-        private int _U_Quantity;
+        private double _U_Quantity;
         [Index(80), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(false)]
         [XafDisplayName("Quantity"), ToolTip("Quantity")]
-        [ModelDefault("DisplayFormat", "{0:n0}")]
-        [ModelDefault("EditMask", "{0:n0}")]
+        [ModelDefault("DisplayFormat", "{0:n2}")]
+        [ModelDefault("EditMask", "{0:n2}")]
         [Appearance("Quantity", Enabled = false, Criteria = "IsFieldEditable = 'N'")]
         [ImmediatePostData]
         [DbType("numeric(19,6)")]
-        public int U_Quantity
+        public double U_Quantity
         {
             get { return _U_Quantity; }
             set
@@ -1640,14 +1640,14 @@ namespace FT_FixedAsset.Module.BusinessObjects
             set { SetPropertyValue("U_RootKey", ref _U_RootKey, value); }
         }
 
-        private int _SQuantity;
+        private double _SQuantity;
         [Index(800), VisibleInListView(true), VisibleInDetailView(true), VisibleInLookupListView(false)]
         [XafDisplayName("C/F Quantity"), ToolTip("C/F Quantity")]
-        [ModelDefault("DisplayFormat", "{0:n0}")]
-        [ModelDefault("EditMask", "{0:n0}")]
+        [ModelDefault("DisplayFormat", "{0:n2}")]
+        [ModelDefault("EditMask", "{0:n2}")]
         [Appearance("SQuantity", Enabled = false)]
         [DbType("numeric(19,6)")]
-        public int SQuantity
+        public double SQuantity
         {
             get { return _SQuantity; }
             set { SetPropertyValue("SQuantity", ref _SQuantity, value); }

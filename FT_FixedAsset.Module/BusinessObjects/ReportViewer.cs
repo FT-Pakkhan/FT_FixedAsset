@@ -343,23 +343,23 @@ namespace FT_FixedAsset.Module.BusinessObjects
             set { SetPropertyValue("NBV_To", ref _NBV_To, value); }
         }
 
-        private int _QtyFrom;
+        private double _QtyFrom;
         [Index(110), VisibleInListView(true), VisibleInDetailView(true), VisibleInLookupListView(true)]
         [XafDisplayName("Quantity From"), ToolTip("Quantity From")]
-        [ModelDefault("DisplayFormat", "{0:n0}")]
-        [ModelDefault("EditMask", "{0:n0}")]
-        public int QtyFrom
+        [ModelDefault("DisplayFormat", "{0:n2}")]
+        [ModelDefault("EditMask", "{0:n2}")]
+        public double QtyFrom
         {
             get { return _QtyFrom; }
             set { SetPropertyValue("QtyFrom", ref _QtyFrom, value); }
         }
 
-        private int _QtyTo;
+        private double _QtyTo;
         [Index(120), VisibleInListView(true), VisibleInDetailView(true), VisibleInLookupListView(true)]
         [XafDisplayName("Quantity To"), ToolTip("Quantity To")]
         [ModelDefault("DisplayFormat", "{0:n0}")]
         [ModelDefault("EditMask", "{0:n0}")]
-        public int QtyTo
+        public double QtyTo
         {
             get { return _QtyTo; }
             set { SetPropertyValue("QtyTo", ref _QtyTo, value); }

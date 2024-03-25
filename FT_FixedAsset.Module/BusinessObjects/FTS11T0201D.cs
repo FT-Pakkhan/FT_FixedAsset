@@ -106,13 +106,13 @@ namespace FT_FixedAsset.Module.BusinessObjects
             set { SetPropertyValue("U_FAName", ref _U_FAName, value); }
         }
 
-        private int _U_Quantity;
+        private double _U_Quantity;
         [Index(20), VisibleInListView(true), VisibleInDetailView(true), VisibleInLookupListView(false)]
         [XafDisplayName("Quantity"), ToolTip("Quantity")]
-        [ModelDefault("DisplayFormat", "{0:n0}")]
-        [ModelDefault("EditMask", "{0:n0}")]
+        [ModelDefault("DisplayFormat", "{0:n2}")]
+        [ModelDefault("EditMask", "{0:n2}")]
         [DbType("numeric(19,6)")]
-        public int U_Quantity
+        public double U_Quantity
         {
             get { return _U_Quantity; }
             set { SetPropertyValue("U_Quantity", ref _U_Quantity, value); }

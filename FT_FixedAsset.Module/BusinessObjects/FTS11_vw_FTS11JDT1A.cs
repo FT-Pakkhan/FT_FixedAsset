@@ -131,9 +131,9 @@ namespace FT_FixedAsset.Module.BusinessObjects
         //private int _Quantity;
         [Index(100), VisibleInListView(true), VisibleInDetailView(true), VisibleInLookupListView(false)]
         [XafDisplayName("Quantity"), ToolTip("Quantity")]
-        [ModelDefault("DisplayFormat", "{0:n0}")]
-        [ModelDefault("EditMask", "{0:n0}")]
-        public int Quantity { get; set; }
+        [ModelDefault("DisplayFormat", "{0:n2}")]
+        [ModelDefault("EditMask", "{0:n2}")]
+        public double Quantity { get; set; }
 
         //Private string _Location;
         [XafDisplayName("Location"), ToolTip("Location")]
