@@ -30,7 +30,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
         {
             IList<FTS11_vw_FTS11JDT1A> rtnlist = new List<FTS11_vw_FTS11JDT1A>();
 
-            foreach (FTS11_vw_FTS11JDT1 dtl in mylist.OrderBy(pp => pp.DocDate).ThenBy(pp => pp.TransType).ThenBy(pp => pp.DocEntry).ThenBy(pp => pp.TransID))
+            foreach (FTS11_vw_FTS11JDT1 dtl in mylist.OrderBy(pp => pp.DocDate).ThenBy(pp => pp.DocEntry).ThenBy(pp => pp.TransType).ThenBy(pp => pp.TransID))
             {
                 FTS11_vw_FTS11JDT1A obj = new FTS11_vw_FTS11JDT1A(Session);
                 obj.DocKey = dtl.DocKey;

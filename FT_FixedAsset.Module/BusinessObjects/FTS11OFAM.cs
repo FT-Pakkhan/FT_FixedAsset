@@ -168,6 +168,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
                         SetPropertyValue("U_DeprnTyp", ref _U_DeprnTyp, Session.FindObject<FTS11OFAG>(CriteriaOperator.Parse("DocEntry=?", U_FAGrpKey.DocEntry)).U_DeprnTyp);
                         SetPropertyValue("U_Prorate", ref _U_Prorate, Session.FindObject<FTS11OFAG>(CriteriaOperator.Parse("DocEntry=?", U_FAGrpKey.DocEntry)).U_Prorate);
                         SetPropertyValue("U_UseLife", ref _U_UseLife, Session.FindObject<FTS11OFAG>(CriteriaOperator.Parse("DocEntry=?", U_FAGrpKey.DocEntry)).U_UseLife);
+                        SetPropertyValue("U_DeprPrcnt", ref _U_DeprPrcnt, Session.FindObject<FTS11OFAG>(CriteriaOperator.Parse("DocEntry=?", U_FAGrpKey.DocEntry)).U_DeprPrcnt);
                         SetPropertyValue("U_MBaseLC", ref _U_MBaseLC, Session.FindObject<FTS11OFAG>(CriteriaOperator.Parse("DocEntry=?", U_FAGrpKey.DocEntry)).U_MBaseLC);
                         SetPropertyValue("U_MBaseSC", ref _U_MBaseSC, Session.FindObject<FTS11OFAG>(CriteriaOperator.Parse("DocEntry=?", U_FAGrpKey.DocEntry)).U_MBaseSC);
                         SetPropertyValue("U_AccCodA", ref _U_AccCodA, Session.FindObject<FTS11OFAG>(CriteriaOperator.Parse("DocEntry=?", U_FAGrpKey.DocEntry)).U_AccCodA);
@@ -220,6 +221,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
                     SetPropertyValue("U_DeprnTyp", ref _U_DeprnTyp, Session.FindObject<FTS11OFAG>(CriteriaOperator.Parse("DocEntry=?", U_FAGrpKey.DocEntry)).U_DeprnTyp);
                     SetPropertyValue("U_Prorate", ref _U_Prorate, Session.FindObject<FTS11OFAG>(CriteriaOperator.Parse("DocEntry=?", U_FAGrpKey.DocEntry)).U_Prorate);
                     SetPropertyValue("U_UseLife", ref _U_UseLife, Session.FindObject<FTS11OFAG>(CriteriaOperator.Parse("DocEntry=?", U_FAGrpKey.DocEntry)).U_UseLife);
+                    SetPropertyValue("U_DeprPrcnt", ref _U_DeprPrcnt, Session.FindObject<FTS11OFAG>(CriteriaOperator.Parse("DocEntry=?", U_FAGrpKey.DocEntry)).U_DeprPrcnt);
                     SetPropertyValue("U_MBaseLC", ref _U_MBaseLC, Session.FindObject<FTS11OFAG>(CriteriaOperator.Parse("DocEntry=?", U_FAGrpKey.DocEntry)).U_MBaseLC);
                     SetPropertyValue("U_MBaseSC", ref _U_MBaseSC, Session.FindObject<FTS11OFAG>(CriteriaOperator.Parse("DocEntry=?", U_FAGrpKey.DocEntry)).U_MBaseSC);
                     SetPropertyValue("U_AccCodA", ref _U_AccCodA, Session.FindObject<FTS11OFAG>(CriteriaOperator.Parse("DocEntry=?", U_FAGrpKey.DocEntry)).U_AccCodA);

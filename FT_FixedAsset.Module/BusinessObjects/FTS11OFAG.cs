@@ -180,26 +180,46 @@ namespace FT_FixedAsset.Module.BusinessObjects
         [Index(70), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(false)]
         [XafDisplayName("Useful Life (Months)"), ToolTip("Useful Life (Months)")]
         [Appearance("UseLife", Enabled = false, Criteria = "[U_DeprnBy].[Code] <> 'U'")]
+        [ImmediatePostData]
         [ModelDefault("DisplayFormat", "{0:n2}")]
         [ModelDefault("EditMask", "{0:n2}")]
         [DbType("numeric(19,6)")]
         public double U_UseLife
         {
             get { return _U_UseLife; }
-            set { SetPropertyValue("U_UseLife", ref _U_UseLife, value); }
+            set { 
+                SetPropertyValue("U_UseLife", ref _U_UseLife, value);
+                if (!IsLoading && U_DeprnBy.Code == "U")
+                {
+                    if (value != 0)
+                        U_DeprPrcnt = Math.Round(12 / U_UseLife * 100, 6);
+                    else
+                        U_DeprPrcnt = 0;
+                }
+            }
         }
 
         private double _U_DeprPrcnt;
         [Index(80), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(false)]
         [XafDisplayName("Percentage %"), ToolTip("Precentage %")]
         [Appearance("DeprPrcnt", Enabled = false, Criteria = "[U_DeprnBy].[Code] <> 'P'")]
+        [ImmediatePostData]
         [ModelDefault("DisplayFormat", "{0:n2}")]
         [ModelDefault("EditMask", "{0:n2}")]
         [DbType("numeric(19,6)")]
         public double U_DeprPrcnt
         {
             get { return _U_DeprPrcnt; }
-            set { SetPropertyValue("U_DeprPrcnt", ref _U_DeprPrcnt, value); }
+            set { 
+                SetPropertyValue("U_DeprPrcnt", ref _U_DeprPrcnt, value);
+                if (!IsLoading && U_DeprnBy.Code == "P")
+                {
+                    if (value != 0)
+                        U_UseLife = Math.Round(12 / U_DeprPrcnt * 100, 6);
+                    else
+                        U_UseLife = 0;
+                }
+            }
         }
 
         private double _U_MBaseLC;
