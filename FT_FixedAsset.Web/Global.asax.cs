@@ -3,7 +3,6 @@ using System.Configuration;
 using System.Web.Configuration;
 using System.Web;
 using System.Web.Routing;
-
 using DevExpress.ExpressApp;
 using DevExpress.Persistent.Base;
 using DevExpress.Persistent.BaseImpl;
@@ -11,6 +10,7 @@ using DevExpress.ExpressApp.Security;
 using DevExpress.ExpressApp.Web;
 using DevExpress.Web;
 using FT_FixedAsset.Module.BusinessObjects;
+using System.Web.Security;
 
 namespace FT_FixedAsset.Web {
     public class Global : System.Web.HttpApplication {
@@ -19,6 +19,9 @@ namespace FT_FixedAsset.Web {
         }
         protected void Application_Start(Object sender, EventArgs e) {
             RouteTable.Routes.RegisterXafRoutes();
+            var routes = new RouteCollection();
+            routes.Ignore("CrystalImageHandler.aspx/{*pathInfo}");
+            routes.Ignore("{*allaspx}", new { allaspx = @".*\.aspx(/.*)?" });
             DevExpress.ExpressApp.BaseObjectSpace.ThrowExceptionForNotRegisteredEntityType = true;
             ASPxWebControl.CallbackError += new EventHandler(Application_Error);
 #if EASYTEST
@@ -32,6 +35,7 @@ namespace FT_FixedAsset.Web {
             security.RegisterXPOAdapterProviders();
             DevExpress.ExpressApp.Web.Templates.DefaultVerticalTemplateContentNew.ClearSizeLimit();
             //WebApplication.Instance.SwitchToNewStyle();
+            WebApplication.Instance.Settings.DefaultVerticalTemplateContentPath = "MainScreenTemplate.ascx";
             WebApplication.Instance.SwitchToOldStyle();
             WebApplication.Instance.CustomizeFormattingCulture += Instance_CustomizeFormattingCulture; // Override client format
             if (ConfigurationManager.ConnectionStrings["ConnectionString"] != null) {

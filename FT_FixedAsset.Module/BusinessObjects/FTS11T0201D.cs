@@ -19,7 +19,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
     [RuleCriteria("T0201D_Quantity", DefaultContexts.Save, "U_Quantity > 0", "\"Quantity\" must more than zero.")]
 
     public class FTS11T0201D : XPLiteObject
-    { // Inherit from a different class to provide a custom primary key, concurrency and deletion behavior, etc. (https://documentation.devexpress.com/eXpressAppFramework/CustomDocument113146.aspx).
+    { 
         public FTS11T0201D(Session session)
             : base(session)
         {

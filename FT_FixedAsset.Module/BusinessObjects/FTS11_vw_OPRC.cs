@@ -18,7 +18,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
     [Appearance("DisableSave&New", AppearanceItemType.Action, "True", TargetItems = "SaveAndNew", Visibility = ViewItemVisibility.Hide, Context = "Any")]
     [Appearance("DisableValidate", AppearanceItemType.Action, "True", TargetItems = "ShowAllContexts", Visibility = ViewItemVisibility.Hide, Context = "Any")]
     public class FTS11_vw_OPRC : XPLiteObject
-    { // Inherit from a different class to provide a custom primary key, concurrency and deletion behavior, etc. (https://documentation.devexpress.com/eXpressAppFramework/CustomDocument113146.aspx).
+    { 
         public FTS11_vw_OPRC(Session session)
             : base(session)
         {
@@ -26,7 +26,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
         public override void AfterConstruction()
         {
             base.AfterConstruction();
-            // Place your initialization code here (https://documentation.devexpress.com/eXpressAppFramework/CustomDocument112834.aspx).
+            
         }
 
         private string _PrcCode;

@@ -28,7 +28,7 @@
 //    [Appearance("DisableValidate", AppearanceItemType.Action, "True", TargetItems = "ShowAllContexts", Visibility = ViewItemVisibility.Hide, Context = "Any")]
 
 //    public class FTS11JDT1 : XPLiteObject
-//    { // Inherit from a different class to provide a custom primary key, concurrency and deletion behavior, etc. (https://documentation.devexpress.com/eXpressAppFramework/CustomDocument113146.aspx).
+//    { 
 //        public FTS11JDT1(Session session)
 //            : base(session)
 //        {
@@ -36,7 +36,7 @@
 //        public override void AfterConstruction()
 //        {
 //            base.AfterConstruction();
-//            // Place your initialization code here (https://documentation.devexpress.com/eXpressAppFramework/CustomDocument112834.aspx).
+//            
 //        }
 
 //        public int DocEntry { get; set; }

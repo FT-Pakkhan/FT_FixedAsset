@@ -20,7 +20,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
     [RuleCriteria("T0202D_AmtSC", DefaultContexts.Save, "U_AmtSC >= 0", "\"Sales Amount (SC)\" must more than or equal to zero.")]
 
     public class FTS11T0202D : XPLiteObject
-    { // Inherit from a different class to provide a custom primary key, concurrency and deletion behavior, etc. (https://documentation.devexpress.com/eXpressAppFramework/CustomDocument113146.aspx).
+    { 
         public FTS11T0202D(Session session)
             : base(session)
         {

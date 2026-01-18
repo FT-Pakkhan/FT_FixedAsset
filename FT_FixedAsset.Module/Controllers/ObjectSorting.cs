@@ -84,12 +84,12 @@ namespace FT_FixedAsset.Module.Controllers
                         column.SortIndex = 0;
                         column.SortOrder = DevExpress.Data.ColumnSortOrder.Ascending;
                     }
-                    if (column.PropertyName == "TransType")
+                    if (column.PropertyName == "DocEntry")
                     {
                         column.SortIndex = 1;
                         column.SortOrder = DevExpress.Data.ColumnSortOrder.Ascending;
                     }
-                    if (column.PropertyName == "DocEntry")
+                    if (column.PropertyName == "TransType")
                     {
                         column.SortIndex = 2;
                         column.SortOrder = DevExpress.Data.ColumnSortOrder.Ascending;

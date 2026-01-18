@@ -16,7 +16,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
 {
     [XafDisplayName("Transaction Journal")]
     public class FTS11OJDT : XPLiteObject
-    { // Inherit from a different class to provide a custom primary key, concurrency and deletion behavior, etc. (https://documentation.devexpress.com/eXpressAppFramework/CustomDocument113146.aspx).
+    { 
         public FTS11OJDT(Session session)
             : base(session)
         {
@@ -24,7 +24,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
         public override void AfterConstruction()
         {
             base.AfterConstruction();
-            // Place your initialization code here (https://documentation.devexpress.com/eXpressAppFramework/CustomDocument112834.aspx).
+            
         }
 
         private int _DocEntry;

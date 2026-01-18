@@ -18,7 +18,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
 
 
     public class FTS11T0302D : XPLiteObject
-    { // Inherit from a different class to provide a custom primary key, concurrency and deletion behavior, etc. (https://documentation.devexpress.com/eXpressAppFramework/CustomDocument113146.aspx).
+    { 
         public FTS11T0302D(Session session)
             : base(session)
         {

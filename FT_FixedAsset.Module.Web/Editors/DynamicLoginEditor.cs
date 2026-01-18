@@ -39,6 +39,8 @@ namespace FT_FixedAsset.Module.Web.Editors
                     }
                     ((ASPxComboBox)control).SelectedIndex = 0;
                 }
+
+                dt.Dispose();
             }
         }
         protected override WebControl CreateEditModeControlCore()

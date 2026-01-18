@@ -1,18 +1,10 @@
-﻿using System;
-using System.Linq;
-using System.Text;
-using DevExpress.Xpo;
-using DevExpress.ExpressApp;
-using System.ComponentModel;
+﻿using DevExpress.ExpressApp.ConditionalAppearance;
 using DevExpress.ExpressApp.DC;
-using DevExpress.Data.Filtering;
-using DevExpress.Persistent.Base;
-using System.Collections.Generic;
-using DevExpress.ExpressApp.Model;
-using DevExpress.Persistent.BaseImpl;
-using DevExpress.Persistent.Validation;
-using DevExpress.ExpressApp.ConditionalAppearance;
 using DevExpress.ExpressApp.Editors;
+using DevExpress.ExpressApp.Model;
+using DevExpress.Persistent.Base;
+using DevExpress.Xpo;
+using System.ComponentModel;
 
 namespace FT_FixedAsset.Module.BusinessObjects
 {
@@ -27,7 +19,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
     [Appearance("DisableSave&New", AppearanceItemType.Action, "True", TargetItems = "SaveAndNew", Visibility = ViewItemVisibility.Hide, Context = "Any")]
     [Appearance("DisableValidate", AppearanceItemType.Action, "True", TargetItems = "ShowAllContexts", Visibility = ViewItemVisibility.Hide, Context = "Any")]
     public class FTS11_vw_Component : XPLiteObject
-    { // Inherit from a different class to provide a custom primary key, concurrency and deletion behavior, etc. (https://documentation.devexpress.com/eXpressAppFramework/CustomDocument113146.aspx).
+    { 
         public FTS11_vw_Component(Session session)
             : base(session)
         {
@@ -35,7 +27,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
         public override void AfterConstruction()
         {
             base.AfterConstruction();
-            // Place your initialization code here (https://documentation.devexpress.com/eXpressAppFramework/CustomDocument112834.aspx).
+            
         }
 
         #region Parent Table

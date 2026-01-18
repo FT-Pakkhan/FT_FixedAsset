@@ -59,6 +59,8 @@ namespace FT_FixedAsset.Module.BusinessObjects
                     application.ConnectionString = row["ConnString"].ToString();
                 }
             }
+
+            dt.Dispose();
         }
     }
 

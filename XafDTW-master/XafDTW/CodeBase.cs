@@ -105,7 +105,10 @@ namespace XafDTW
             }
             catch (Exception ex)
             {
-                throw new MyException(ex.Message);
+                if (ex.InnerException != null)
+                    throw new InvalidOperationException(ex.InnerException.Message);
+                else
+                    throw new InvalidOperationException(ex.Message);
             }
         }
 

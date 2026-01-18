@@ -7,6 +7,7 @@ using FT_FixedAsset.Module.BusinessObjects;
 using FT_FixedAsset.Module.Controllers;
 using SAPbobsCOM;
 using System;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.IO;
@@ -136,7 +137,7 @@ namespace FT_FixedAsset.Module.Web.Controllers
                     HttpContext.Current.Session["UserID"] = string.IsNullOrEmpty(JEPreview.U_CreateBy) ? "" : JEPreview.U_CreateBy.ToString();
 
                     WebWindow.CurrentRequestWindow.RegisterStartupScript("Preview",
-                        "window.open('http://" + browserPath + @"/Reports.aspx','_blank');", true);
+                        "window.open('" + ConfigurationManager.AppSettings["HTTPSecure"].ToString() + "://" + browserPath + @"/Reports.aspx','_blank');", true);
                 }
                 else
                 {
@@ -242,7 +243,7 @@ namespace FT_FixedAsset.Module.Web.Controllers
                 HttpContext.Current.Session["U_AccTo"] = reportViewer.U_AccTo == null ? "" : reportViewer.U_AccTo.FormatCode;
 
                 WebWindow.CurrentRequestWindow.RegisterStartupScript("Preview",
-                    "window.open('http://" + browserPath + @"/Reports.aspx','_blank');", true);
+                    "window.open('" + ConfigurationManager.AppSettings["HTTPSecure"].ToString() + "://" + browserPath + @"/Reports.aspx','_blank');", true);
             }
         }
 

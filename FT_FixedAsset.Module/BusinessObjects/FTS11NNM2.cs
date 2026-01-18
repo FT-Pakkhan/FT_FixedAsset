@@ -12,8 +12,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
     [XafDisplayName("Numbering by Date")]
     [Appearance("DisableLink", AppearanceItemType.Action, "True", TargetItems = "Link", Visibility = ViewItemVisibility.Hide, Context = "Any")]
     [Appearance("DisableUnlink", AppearanceItemType.Action, "True", TargetItems = "Unlink", Visibility = ViewItemVisibility.Hide, Context = "Any")]
-    [Appearance("DisableSave", AppearanceItemType.Action, "True", TargetItems = "Save", Visibility = ViewItemVisibility.Hide, Context = "Any")]
-    [Appearance("DisableSave&New", AppearanceItemType.Action, "True", TargetItems = "SaveAndNew", Visibility = ViewItemVisibility.Hide, Context = "Any")]
+    [Appearance("DisableDelete", AppearanceItemType.Action, "True", TargetItems = "Delete", Visibility = ViewItemVisibility.Hide, Context = "Any")]
     [Appearance("DisableValidate", AppearanceItemType.Action, "True", TargetItems = "ShowAllContexts", Visibility = ViewItemVisibility.Hide, Context = "Any")]
     public class FTS11NNM2 : XPLiteObject
     {
@@ -26,19 +25,19 @@ namespace FT_FixedAsset.Module.BusinessObjects
             base.AfterConstruction();
         }
 
-        [Key(AutoGenerate = true), Browsable(false)]
-        public int Oid { get; set; }
-
         #region Parent Table
         private FTS11NNM1 _DocEntry;
         [Index(0), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
-        [Association("FTS11NNM1-FTS11NNM2", typeof(FTS11NNM1))]
+        [Association("FTS11NNM1-FTS11NNM2")]
         public FTS11NNM1 DocEntry
         {
             get { return _DocEntry; }
             set { SetPropertyValue("DocEntry", ref _DocEntry, value); }
         }
         #endregion
+
+        [Key(AutoGenerate = true), Browsable(false)]
+        public int Oid { get; set; }
 
         private int _DocYear;
         [XafDisplayName("Year"), ToolTip("Year")]

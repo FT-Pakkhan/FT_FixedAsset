@@ -822,6 +822,9 @@ namespace FT_FixedAsset.Module.Controllers
                 case "MSSQL2019":
                     oCom.DbServerType = SAPbobsCOM.BoDataServerTypes.dst_MSSQL2019;
                     break;
+                case "MSSQL2022":
+                    oCom.DbServerType = SAPbobsCOM.BoDataServerTypes.dst_MSSQL2022;
+                    break;
                 case "HANADB":
                     oCom.DbServerType = SAPbobsCOM.BoDataServerTypes.dst_HANADB;
                     break;
@@ -844,38 +847,26 @@ namespace FT_FixedAsset.Module.Controllers
 
         public void executeNonQuery(string query)
         {
-            #region Connect to xaf DB
-
             string PopUpMsg = "";
             string connectionString = getConnectionString();
 
-            SqlConnection conn = new SqlConnection(connectionString);
-
-            if (conn.State == ConnectionState.Open)
-            {
-                conn.Close();
-            }
-            #endregion
-
-            #region ExecuteNonQuery
             try
             {
-                conn.Open();
-
-                SqlCommand cmdsql = new SqlCommand(query, conn);
-                cmdsql.CommandTimeout = 0;
-                cmdsql.ExecuteNonQuery();
-                cmdsql.Dispose();
-
-                conn.Close();
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    using (SqlCommand cmdsql = new SqlCommand(query, conn))
+                    {
+                        cmdsql.CommandTimeout = 0;
+                        cmdsql.ExecuteNonQuery();
+                    }
+                }
             }
             catch (Exception ex)
             {
                 PopUpMsg = ex.Message;
                 MsgBox(InformationType.Error, "Error", PopUpMsg);
-                conn.Close();
             }
-            #endregion
         }
     }
 }

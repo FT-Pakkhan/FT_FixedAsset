@@ -6,6 +6,7 @@ using DevExpress.Xpo;
 using FT_FixedAsset.Module.BusinessObjects;
 using FT_FixedAsset.Module.Controllers;
 using System;
+using System.Collections;
 using System.Data.SqlClient;
 using System.Linq;
 

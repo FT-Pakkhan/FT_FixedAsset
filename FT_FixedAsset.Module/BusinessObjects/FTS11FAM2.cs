@@ -20,7 +20,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
     [Appearance("DisableLink", AppearanceItemType.Action, "True", TargetItems = "Link", Visibility = ViewItemVisibility.Hide, Context = "Any")]
     [Appearance("DisableUnlink", AppearanceItemType.Action, "True", TargetItems = "Unlink", Visibility = ViewItemVisibility.Hide, Context = "Any")]
     public class FTS11FAM2 : XPLiteObject
-    { // Inherit from a different class to provide a custom primary key, concurrency and deletion behavior, etc. (https://documentation.devexpress.com/eXpressAppFramework/CustomDocument113146.aspx).
+    { 
         public FTS11FAM2(Session session)
             : base(session)
         {
@@ -49,6 +49,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
         private FTS11OLOC _U_LocationKey;
         [XafDisplayName("Location"), ToolTip("Location")]
         [Index(10), VisibleInListView(true), VisibleInDetailView(true), VisibleInLookupListView(true)]
+        [NoForeignKey]
         [RuleRequiredField(DefaultContexts.Save)]
         public FTS11OLOC U_LocationKey
         {

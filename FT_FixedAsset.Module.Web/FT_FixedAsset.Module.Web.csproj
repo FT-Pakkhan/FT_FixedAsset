@@ -123,6 +123,7 @@
     <Reference Include="DevExpress.ExpressApp.Web.v19.2">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
+    <Reference Include="DevExpress.ExpressApp.Win.v19.2, Version=19.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.ExpressApp.Xpo.v19.2">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
@@ -147,6 +148,11 @@
     <Reference Include="DevExpress.Xpo.v19.2">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
+    <Reference Include="Interop.SAPbobsCOM, Version=10.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\diapi 10.00.300\Interop.SAPbobsCOM.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="mscorlib">
       <SpecificVersion>False</SpecificVersion>
@@ -154,6 +160,7 @@
     <Reference Include="System">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
@@ -177,6 +184,12 @@
     <Compile Include="Controllers\AdditionFieldController.cs" />
     <Compile Include="Controllers\AdditionFieldController.Designer.cs">
       <DependentUpon>AdditionFieldController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\UpdateXafDisplayNameController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\UpdateXafDisplayNameController.Designer.cs">
+      <DependentUpon>UpdateXafDisplayNameController.cs</DependentUpon>
     </Compile>
     <Compile Include="Editors\DynamicLoginEditor.cs" />
     <Compile Include="Editors\DynamicLoginEditor.designer.cs">
@@ -202,9 +215,17 @@
     <Compile Include="Editors\DropDownPropertyEditor.designer.cs">
       <DependentUpon>DropDownPropertyEditor.cs</DependentUpon>
     </Compile>
+    <Compile Include="Editors\NumberDetailViewEditor.cs" />
+    <Compile Include="Editors\NumberDetailViewEditor.Designer.cs">
+      <DependentUpon>NumberDetailViewEditor.cs</DependentUpon>
+    </Compile>
     <Compile Include="Editors\NumberEditor.cs" />
     <Compile Include="Editors\NumberEditor.Designer.cs">
       <DependentUpon>NumberEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Editors\NumberListViewEditor.cs" />
+    <Compile Include="Editors\NumberListViewEditor.Designer.cs">
+      <DependentUpon>NumberListViewEditor.cs</DependentUpon>
     </Compile>
     <Compile Include="WebModule.cs">
       <SubType>Component</SubType>
@@ -254,15 +275,6 @@
     <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
   </ItemGroup>
   <ItemGroup>
-    <COMReference Include="SAPbobsCOM">
-      <Guid>{FC8030BE-F5D2-4B8E-8F92-44228FE30100}</Guid>
-      <VersionMajor>10</VersionMajor>
-      <VersionMinor>0</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>tlbimp</WrapperTool>
-      <Isolated>False</Isolated>
-      <EmbedInteropTypes>False</EmbedInteropTypes>
-    </COMReference>
     <COMReference Include="SAPbouiCOM">
       <Guid>{6048236A-956D-498D-A6F1-9C81C13AB6E8}</Guid>
       <VersionMajor>10</VersionMajor>

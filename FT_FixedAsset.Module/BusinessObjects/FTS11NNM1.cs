@@ -10,6 +10,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
 {
     [XafDisplayName("Numbering")]
     [NavigationItem("System Initialization")]
+    [XafDefaultProperty("DocType")]
     [ImageName("ListNumbers_16x16")]
     [Appearance("DisableLink", AppearanceItemType.Action, "True", TargetItems = "Link", Visibility = ViewItemVisibility.Hide, Context = "Any")]
     [Appearance("DisableUnlink", AppearanceItemType.Action, "True", TargetItems = "Unlink", Visibility = ViewItemVisibility.Hide, Context = "Any")]
@@ -30,7 +31,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
         }
 
         #region Child Table
-        [Association("FTS11NNM1-FTS11NNM2", typeof(FTS11NNM2))]
+        [Association("FTS11NNM1-FTS11NNM2")]
         public XPCollection<FTS11NNM2> FTS11NNM2
         {
             get { return GetCollection<FTS11NNM2>("FTS11NNM2"); }

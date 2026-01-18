@@ -11,8 +11,9 @@ using DevExpress.Data.Filtering;
 namespace FT_FixedAsset.Module.Web.Editors
 {
     [PropertyEditor(typeof(decimal), true)]
-    public partial class DecimalPropertyEditor : ASPxDecimalPropertyEditor
+    public partial class DecimalPropertyEditor : ASPxDecimalPropertyEditor, IComplexViewItem
     {
+        private IObjectSpace os;
         public DecimalPropertyEditor(Type objectType, IModelMemberViewItem model) : base(objectType, model) { }
 
         protected override void SetupControl(WebControl control)
@@ -24,7 +25,13 @@ namespace FT_FixedAsset.Module.Web.Editors
             spinEditor.SpinButtons.ShowIncrementButtons = false;
             spinEditor.AllowMouseWheel = false;
             spinEditor.SelectInputTextOnClick = true;
-            spinEditor.DecimalPlaces = 6;
+            spinEditor.DecimalPlaces = os.FindObject<FTS11OADM>(CriteriaOperator.Parse("DocEntry=1")).U_SumDec;
+            spinEditor.DisplayFormatString = "{0:n" + os.FindObject<FTS11OADM>(CriteriaOperator.Parse("DocEntry=1")).U_SumDec.ToString() + "}";
+
+        }
+        void IComplexViewItem.Setup(IObjectSpace objectSpace, XafApplication application)
+        {
+            os = objectSpace;
         }
     }
 
@@ -36,7 +43,7 @@ namespace FT_FixedAsset.Module.Web.Editors
 
         protected override void SetupControl(WebControl control)
         {
-            base.SetupControl(control);
+             base.SetupControl(control);
 
             var spinEditor = control as ASPxSpinEdit;
             if (spinEditor == null) return;
@@ -53,8 +60,9 @@ namespace FT_FixedAsset.Module.Web.Editors
     }
 
     [PropertyEditor(typeof(int), true)]
-    public partial class IntPropertyEditor : ASPxIntPropertyEditor
+    public partial class IntPropertyEditor : ASPxIntPropertyEditor, IComplexViewItem
     {
+        private IObjectSpace os;
         public IntPropertyEditor(Type objectType, IModelMemberViewItem model) : base(objectType, model) { }
 
         protected override void SetupControl(WebControl control)
@@ -68,6 +76,10 @@ namespace FT_FixedAsset.Module.Web.Editors
             spinEditor.SelectInputTextOnClick = true;
             spinEditor.DecimalPlaces = 2;
             spinEditor.NumberType = SpinEditNumberType.Integer;
+        }
+        void IComplexViewItem.Setup(IObjectSpace objectSpace, XafApplication application)
+        {
+            os = objectSpace;
         }
     }
 }

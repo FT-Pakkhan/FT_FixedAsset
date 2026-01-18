@@ -11,7 +11,7 @@
 <body>
     <form id="form1" runat="server">
         <div>
-            <CR:CrystalReportViewer ID="CrystalReportViewer1" runat="server" AutoDataBind="True" ToolPanelWidth="200px" Width="1082px" EnableParameterPrompt="False" ReuseParameterValuesOnRefresh="True"/>
+            <CR:CrystalReportViewer ID="CrystalReportViewer1" runat="server" AutoDataBind="True" ToolPanelWidth="100%" Width="100%" Height="100%" EnableParameterPrompt="False" ReuseParameterValuesOnRefresh="True"/>
         </div>
     </form>
 </body>

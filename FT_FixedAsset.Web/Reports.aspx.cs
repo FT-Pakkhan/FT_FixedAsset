@@ -13,6 +13,28 @@ namespace FT_FixedAsset.Web
     public partial class Reports : System.Web.UI.Page
     {
         ReportDocument doc = new ReportDocument();
+
+        //protected void Page_Init(object sender, EventArgs e)
+        //{
+        //    if (!IsPostBack)
+        //    {
+        //        if (HttpContext.Current.Session["PreviewObj"].ToString() == "RV")
+        //            RVLoadReport(doc);
+        //        else
+        //            PWLoadReport(doc);
+        //    }
+        //}
+
+        //protected void Page_Unload(object sender, EventArgs e)
+        //{
+        //    if (Session["ReportSource"] != null)
+        //    {
+        //        ((ReportDocument)Session["ReportSource"]).Close();
+        //        ((ReportDocument)Session["ReportSource"]).Dispose();
+        //        Session["ReportSource"] = null;
+        //    }
+        //}
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (IsPostBack)
@@ -28,7 +50,7 @@ namespace FT_FixedAsset.Web
             doc.Dispose();
             doc.Close();
             doc = null;
-            GC.Collect();  
+            GC.Collect();
         }
 
         protected void Page_PreInit(object sender, EventArgs e)

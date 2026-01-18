@@ -21,7 +21,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
     [Appearance("DisableSave&New", AppearanceItemType.Action, "True", TargetItems = "SaveAndNew", Visibility = ViewItemVisibility.Hide, Context = "Any")]
     [Appearance("DisableValidate", AppearanceItemType.Action, "True", TargetItems = "ShowAllContexts", Visibility = ViewItemVisibility.Hide, Context = "Any")]
     public class FTS11TJDT : XPLiteObject
-    { // Inherit from a different class to provide a custom primary key, concurrency and deletion behavior, etc. (https://documentation.devexpress.com/eXpressAppFramework/CustomDocument113146.aspx).
+    { 
         public FTS11TJDT(Session session)
             : base(session)
         {
@@ -29,7 +29,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
         public override void AfterConstruction()
         {
             base.AfterConstruction();
-            // Place your initialization code here (https://documentation.devexpress.com/eXpressAppFramework/CustomDocument112834.aspx).
+            
         }
 
         #region Child Table
@@ -44,8 +44,8 @@ namespace FT_FixedAsset.Module.BusinessObjects
         [Key]
         [Index(0), VisibleInListView(true), VisibleInDetailView(true), VisibleInLookupListView(false)]
         [XafDisplayName("Document No."), ToolTip("Document No,")]
-        [ModelDefault("DisplayFormat", "{0:n0}")]
-        [ModelDefault("EditMask", "{0:n0}")]
+        [ModelDefault("DisplayFormat", "{0:d0}")]
+        [ModelDefault("EditMask", "{0:d0}")]
         [Appearance("DocEntry", Enabled = false)]
         [DbType("int")]
         public int DocEntry

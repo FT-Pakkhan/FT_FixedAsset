@@ -19,7 +19,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
     [RuleCriteria("T0301D_UseLifeN", DefaultContexts.Save, "U_UseLifeN > 0", "\"Useful Life\" must more than zero.")]
 
     public class FTS11T0301D : XPLiteObject
-    { // Inherit from a different class to provide a custom primary key, concurrency and deletion behavior, etc. (https://documentation.devexpress.com/eXpressAppFramework/CustomDocument113146.aspx).
+    { 
         public FTS11T0301D(Session session)
             : base(session)
         {

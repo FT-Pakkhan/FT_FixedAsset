@@ -1,5 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Application CurrentUserDisplayMode="Caption">
+  <BOModel>
+    <Class Name="FT_FixedAsset.Module.BusinessObjects.FTS11NNM1">
+      <OwnMembers>
+        <Member Name="FTS11NNM2" LookupProperty="Oid" />
+      </OwnMembers>
+    </Class>
+    <Class Name="FT_FixedAsset.Module.BusinessObjects.FTS11NNM2" ObjectCaptionFormat="{0:Oid}" />
+  </BOModel>
   <Options CollectionsEditMode="Edit">
     <LayoutManagerOptions RequiredFieldMark="&lt;b&gt;&lt;font color=&quot;red&quot;&gt;*&lt;/font&gt;&lt;/b&gt;" />
   </Options>
@@ -224,11 +232,11 @@
         <LayoutGroup Id="Main" RelativeSize="100">
           <LayoutGroup Id="SimpleEditors" RelativeSize="38.976377952755904">
             <LayoutGroup Id="FTS11NNM1" Caption="Numbering" RelativeSize="100">
-              <LayoutGroup Id="FTS11NNM1_col1" RelativeSize="49.826589595375722">
-                <LayoutItem Id="DocType" RelativeSize="24" />
-                <LayoutItem Id="Prefix" RelativeSize="17.333333333333332" />
-                <LayoutItem Id="Seq" RelativeSize="17.333333333333332" />
-                <LayoutItem Id="Suffix" RelativeSize="17.333333333333332" />
+              <LayoutGroup Id="FTS11NNM1_col1" RelativeSize="49.826589595375722" IsNewNode="True">
+                <LayoutItem Id="DocType" RelativeSize="24" IsNewNode="True" />
+                <LayoutItem Id="Prefix" RelativeSize="17.333333333333332" IsNewNode="True" />
+                <LayoutItem Id="Seq" RelativeSize="17.333333333333332" IsNewNode="True" />
+                <LayoutItem Id="Suffix" RelativeSize="17.333333333333332" IsNewNode="True" />
                 <LayoutItem Id="Length" ViewItem="Length" Index="4" RelativeSize="24" IsNewNode="True" />
               </LayoutGroup>
               <LayoutGroup Id="FTS11NNM1_col2" RelativeSize="50.173410404624278">
@@ -238,8 +246,8 @@
               </LayoutGroup>
             </LayoutGroup>
           </LayoutGroup>
-          <LayoutGroup Id="FTS11NNM2_Group" Caption="Date Numbering" Direction="Vertical" RelativeSize="61.023622047244096">
-            <LayoutItem Id="FTS11NNM2" RelativeSize="100" />
+          <LayoutGroup Id="FTS11NNM2_Group" Caption="Date Numbering" Direction="Vertical" RelativeSize="61.023622047244096" IsNewNode="True">
+            <LayoutItem Id="FTS11NNM2" Index="0" RelativeSize="100" ViewItem="FTS11NNM2" IsNewNode="True" />
           </LayoutGroup>
         </LayoutGroup>
       </Layout>
@@ -664,21 +672,132 @@
         <ColumnInfo Id="U_FilePath" Index="0" />
       </Columns>
     </ListView>
-    <ListView Id="FTS11OFAM_ListView" AutoExpandAllGroups="True">
+    <ListView Id="FTS11OFAM_ListView" AutoExpandAllGroups="True" DataAccessMode="DataView">
       <Columns>
         <ColumnInfo Id="U_FAGrpCod" SortOrder="Ascending" GroupIndex="0" />
       </Columns>
     </ListView>
-    <ListView Id="FTS11OFAM_LookupListView" AllowNew="False" AllowDelete="False" ShowSelectionColumn="False">
+    <ListView Id="FTS11OFAM_LookupListView" AllowNew="False" AllowDelete="False" ShowSelectionColumn="False" IsGroupPanelVisible="False" DataAccessMode="DataView">
       <Columns>
-        <ColumnInfo Id="U_AcqTypeKey" Index="-1" />
-        <ColumnInfo Id="U_FACode" Width="108" />
-        <ColumnInfo Id="U_FAName" Width="83" />
-        <ColumnInfo Id="U_FAGrpKey" Width="90" />
+        <ColumnInfo Id="CreateDate" Index="-1" Width="92" />
+        <ColumnInfo Id="IsFieldEditable" Index="-1" Width="114" />
+        <ColumnInfo Id="LogInst" Index="-1" />
+        <ColumnInfo Id="Object" Index="-1" />
+        <ColumnInfo Id="U_AccCodA" Index="-1" />
+        <ColumnInfo Id="U_AccCodC" Index="-1" Width="111" />
+        <ColumnInfo Id="U_AccCodD" Index="-1" />
+        <ColumnInfo Id="U_AccCodQ" Index="-1" Width="118" />
+        <ColumnInfo Id="U_AccCodV" Index="-1" />
+        <ColumnInfo Id="U_AccCodW" Index="-1" Width="96" />
+        <ColumnInfo Id="U_AccFrmA" Index="-1" />
+        <ColumnInfo Id="U_AccFrmC" Index="-1" Width="144" />
+        <ColumnInfo Id="U_AccFrmD" Index="-1" Width="153" />
+        <ColumnInfo Id="U_AccFrmQ" Index="-1" Width="151" />
+        <ColumnInfo Id="U_AccFrmV" Index="-1" />
+        <ColumnInfo Id="U_AccFrmW" Index="-1" Width="129" />
+        <ColumnInfo Id="U_AccNamA" Index="-1" Width="117" />
+        <ColumnInfo Id="U_AccNamC" Index="-1" Width="148" />
+        <ColumnInfo Id="U_AccNamD" Index="-1" Width="157" />
+        <ColumnInfo Id="U_AccNamQ" Index="-1" Width="155" SortIndex="0" SortOrder="Descending" />
+        <ColumnInfo Id="U_AccNamV" Index="-1" />
+        <ColumnInfo Id="U_AccNamW" Index="-1" Width="133" />
+        <ColumnInfo Id="U_AcqDate" Index="-1" />
+        <ColumnInfo Id="U_AcqType" Index="-1" Width="150" />
+        <ColumnInfo Id="U_AcqTypeKey" PropertyName="U_AcqTypeKey" Index="-1" Width="94" IsNewNode="True" Removed="True" />
+        <ColumnInfo Id="U_BarCode" Index="-1" Width="83" />
+        <ColumnInfo Id="U_BarCodYN" Index="-1" Width="117" />
+        <ColumnInfo Id="U_BaseLC" Index="-1" />
+        <ColumnInfo Id="U_BaseSC" Index="-1" />
+        <ColumnInfo Id="U_BFDepr" Index="-1" Width="98" />
+        <ColumnInfo Id="U_CnclBy" Index="-1" Width="79" />
+        <ColumnInfo Id="U_CnclDate" Index="-1" />
+        <ColumnInfo Id="U_CostFC" Index="-1" />
+        <ColumnInfo Id="U_CostLC" Index="-1" />
+        <ColumnInfo Id="U_CostSC" Index="-1" />
+        <ColumnInfo Id="U_CreateBy" Index="-1" Width="86" />
+        <ColumnInfo Id="U_Curr" Index="-1" />
+        <ColumnInfo Id="U_DeprnBy" Index="-1" />
+        <ColumnInfo Id="U_DeprnCnt" Index="-1" />
+        <ColumnInfo Id="U_DeprnTyp" Index="-1" />
+        <ColumnInfo Id="U_DeprnYN" Index="-1" Width="95" />
+        <ColumnInfo Id="U_DeprPrcnt" Index="-1" Width="104" />
+        <ColumnInfo Id="U_EffDate" Index="-1" Width="102" />
+        <ColumnInfo Id="U_ExFC" Index="-1" />
+        <ColumnInfo Id="U_ExSC" Index="-1" />
+        <ColumnInfo Id="U_FAGrpKey" Width="90" Index="-1" />
+        <ColumnInfo Id="U_FAGrpSyn" Index="-1" />
+        <ColumnInfo Id="U_FilePath" Index="-1" Width="89" />
+        <ColumnInfo Id="U_IndCod1" Index="-1" Width="118" />
+        <ColumnInfo Id="U_IndCod2" Index="-1" Width="118" />
+        <ColumnInfo Id="U_IndCod3" Index="-1" Width="118" />
+        <ColumnInfo Id="U_IndCod4" Index="-1" Width="118" />
+        <ColumnInfo Id="U_IndCod5" Index="-1" Width="118" />
+        <ColumnInfo Id="U_IndCod6" Index="-1" Width="118" />
+        <ColumnInfo Id="U_IndKey1" Index="-1" Width="85" />
+        <ColumnInfo Id="U_IndKey2" Index="-1" Width="85" />
+        <ColumnInfo Id="U_IndKey3" Index="-1" Width="85" />
+        <ColumnInfo Id="U_IndKey4" Index="-1" Width="85" />
+        <ColumnInfo Id="U_IndKey5" Index="-1" Width="85" />
+        <ColumnInfo Id="U_IndKey6" Index="-1" Width="85" />
+        <ColumnInfo Id="U_InsComp" Index="-1" Width="137" />
+        <ColumnInfo Id="U_InsCov" Index="-1" Width="78" />
+        <ColumnInfo Id="U_InsDate" Index="-1" Width="137" />
+        <ColumnInfo Id="U_InsNum" Index="-1" Width="107" />
+        <ColumnInfo Id="U_InsType" Index="-1" Width="112" />
+        <ColumnInfo Id="U_InsVal" Index="-1" Width="56" />
+        <ColumnInfo Id="U_LeasDate" Index="-1" Width="87" />
+        <ColumnInfo Id="U_LeasRef" Index="-1" Width="84" />
+        <ColumnInfo Id="U_Legacy" Index="-1" Width="96" />
+        <ColumnInfo Id="U_Location" Index="-1" />
+        <ColumnInfo Id="U_LocationKey" Index="-1" />
+        <ColumnInfo Id="U_MBaseLC" Index="-1" Width="99" />
+        <ColumnInfo Id="U_MBaseSC" Index="-1" />
+        <ColumnInfo Id="U_Model" Index="-1" Width="69" />
+        <ColumnInfo Id="U_OcrCode2" Index="-1" Width="110" />
+        <ColumnInfo Id="U_OcrCode3" Index="-1" Width="110" />
+        <ColumnInfo Id="U_OcrCode4" Index="-1" Width="110" />
+        <ColumnInfo Id="U_OcrCode5" Index="-1" Width="110" />
+        <ColumnInfo Id="U_OriCost" Index="-1" />
+        <ColumnInfo Id="U_OriCostSC" Index="-1" />
+        <ColumnInfo Id="U_ProfitCode" Index="-1" Width="110" />
+        <ColumnInfo Id="U_Project" Index="-1" Width="0" />
+        <ColumnInfo Id="U_Prorate" Index="-1" Width="77" />
+        <ColumnInfo Id="U_Quantity" Index="-1" />
+        <ColumnInfo Id="U_RefDate1" Index="-1" Width="94" />
+        <ColumnInfo Id="U_RefDate2" Index="-1" Width="88" />
+        <ColumnInfo Id="U_RefDate3" Index="-1" Width="88" />
+        <ColumnInfo Id="U_RefDoc1" Index="-1" Width="87" />
+        <ColumnInfo Id="U_RefDoc2" Index="-1" Width="87" />
+        <ColumnInfo Id="U_RefDoc3" Index="-1" Width="87" />
+        <ColumnInfo Id="U_Remark1" Index="-1" Width="97" />
+        <ColumnInfo Id="U_Remark2" Index="-1" Width="86" />
+        <ColumnInfo Id="U_Remark3" Index="-1" SortIndex="-1" SortOrder="None" Width="86" />
+        <ColumnInfo Id="U_Remark4" Index="-1" SortIndex="-1" SortOrder="None" Width="86" />
+        <ColumnInfo Id="U_Revalue" Index="-1" />
+        <ColumnInfo Id="U_RevalueSC" Index="-1" />
+        <ColumnInfo Id="U_RootKey" Index="-1" Width="107" />
+        <ColumnInfo Id="U_Serial" Index="-1" Width="68" />
+        <ColumnInfo Id="U_Status" Index="-1" />
+        <ColumnInfo Id="U_TagNum" Index="-1" Width="83" />
+        <ColumnInfo Id="U_TBaseLC" Index="-1" />
+        <ColumnInfo Id="U_TBaseSC" Index="-1" />
+        <ColumnInfo Id="U_TCostFC" Index="-1" />
+        <ColumnInfo Id="U_TCostLC" Index="-1" />
+        <ColumnInfo Id="U_TCostSC" Index="-1" />
+        <ColumnInfo Id="U_Text" Index="-1" Width="60" />
+        <ColumnInfo Id="U_UoM" Index="-1" />
+        <ColumnInfo Id="U_UpdateBy" Index="-1" Width="88" />
+        <ColumnInfo Id="U_UseLife" Index="-1" />
+        <ColumnInfo Id="U_WarExpr" Index="-1" Width="115" />
+        <ColumnInfo Id="UpdateDate" Index="-1" Width="94" />
+        <ColumnInfo Id="U_FACode" Width="79" SortIndex="2" SortOrder="Ascending" />
+        <ColumnInfo Id="U_FAName" Width="83" Index="1" />
+        <ColumnInfo Id="U_FAGrpCod" Index="2" Width="115" SortIndex="1" SortOrder="Ascending" />
         <ColumnInfo Id="U_LastLoc" Index="3" Width="77" />
-        <ColumnInfo Id="STotalCostLC" Index="4" Width="101" />
-        <ColumnInfo Id="SDeprLC" Index="5" Width="130" />
-        <ColumnInfo Id="SNBVLC" Index="6" Width="47" />
+        <ColumnInfo Id="SQuantity" Index="4" Width="95" />
+        <ColumnInfo Id="STotalCostLC" Index="5" Width="101" />
+        <ColumnInfo Id="SDeprLC" Index="6" Width="130" />
+        <ColumnInfo Id="SNBVLC" Index="7" Width="47" />
       </Columns>
     </ListView>
     <ListView Id="FTS11OIND_LookupListView" AllowDelete="False" AllowNew="False" ShowSelectionColumn="False" />
@@ -749,6 +868,7 @@
         <ColumnInfo Id="U_AccFrmW" LookupEditorMode="AllItemsWithSearch" />
       </Columns>
     </ListView>
+    <ListView Id="FTS11T0201_ListView" DataAccessMode="DataView" />
     <DetailView Id="FTS11T0201D_DetailView">
       <Items>
         <PropertyEditor Id="U_AccFrmW" LookupEditorMode="AllItemsWithSearch" />
@@ -811,6 +931,7 @@
         <ColumnInfo Id="U_AccFrmB" LookupEditorMode="AllItemsWithSearch" />
       </Columns>
     </ListView>
+    <ListView Id="FTS11T0202_ListView" DataAccessMode="DataView" />
     <DetailView Id="FTS11T0202D_DetailView">
       <Items>
         <PropertyEditor Id="U_AccFrmB" LookupEditorMode="AllItemsWithSearch" />
@@ -880,6 +1001,7 @@
         <ColumnInfo Id="U_AccFrmW" LookupEditorMode="AllItemsWithSearch" />
       </Columns>
     </ListView>
+    <ListView Id="FTS11T0203_ListView" DataAccessMode="DataView" />
     <DetailView Id="FTS11T0203D_DetailView">
       <Items>
         <PropertyEditor Id="U_AccFrmW" LookupEditorMode="AllItemsWithSearch" />
@@ -941,6 +1063,7 @@
         <ColumnInfo Id="U_AccFrmW" LookupEditorMode="AllItemsWithSearch" />
       </Columns>
     </ListView>
+    <ListView Id="FTS11T0204_ListView" DataAccessMode="DataView" />
     <DetailView Id="FTS11T0204D_DetailView">
       <Items>
         <PropertyEditor Id="U_AccFrmW" LookupEditorMode="AllItemsWithSearch" />
@@ -1002,6 +1125,7 @@
         <ColumnInfo Id="U_AccFrmW" LookupEditorMode="AllItemsWithSearch" />
       </Columns>
     </ListView>
+    <ListView Id="FTS11T0205_ListView" DataAccessMode="DataView" />
     <DetailView Id="FTS11T0205D_DetailView">
       <Items>
         <PropertyEditor Id="U_AccFrmW" LookupEditorMode="AllItemsWithSearch" />
@@ -1061,6 +1185,7 @@
         <ColumnInfo Id="U_FAKey" LookupEditorMode="AllItemsWithSearch" />
       </Columns>
     </ListView>
+    <ListView Id="FTS11T0301_ListView" DataAccessMode="DataView" />
     <DetailView Id="FTS11T0301D_DetailView">
       <Items>
         <PropertyEditor Id="U_FAKey" LookupEditorMode="AllItemsWithSearch" />
@@ -1117,6 +1242,7 @@
         <ColumnInfo Id="U_AccFrmC" LookupEditorMode="AllItemsWithSearch" />
       </Columns>
     </ListView>
+    <ListView Id="FTS11T0302_ListView" DataAccessMode="DataView" />
     <DetailView Id="FTS11T0302D_DetailView">
       <Items>
         <PropertyEditor Id="U_AccFrmC" LookupEditorMode="AllItemsWithSearch" />
@@ -1200,6 +1326,7 @@
         <ColumnInfo Id="U_AccFrmG" LookupEditorMode="AllItemsWithSearch" />
       </Columns>
     </ListView>
+    <ListView Id="FTS11T0303_ListView" DataAccessMode="DataView" />
     <DetailView Id="FTS11T0303D_DetailView">
       <Items>
         <PropertyEditor Id="U_AccFrmG" LookupEditorMode="AllItemsWithSearch" />
@@ -1268,6 +1395,7 @@
         <ColumnInfo Id="U_ToLocKey" LookupEditorMode="AllItemsWithSearch" />
       </Columns>
     </ListView>
+    <ListView Id="FTS11T0304_ListView" DataAccessMode="DataView" />
     <DetailView Id="FTS11T0304D_DetailView">
       <Items>
         <PropertyEditor Id="U_FAKey" LookupEditorMode="AllItemsWithSearch" />
@@ -1334,6 +1462,7 @@
         <ColumnInfo Id="U_FAKey" LookupEditorMode="AllItemsWithSearch" />
       </Columns>
     </ListView>
+    <ListView Id="FTS11T0305_ListView" DataAccessMode="DataView" />
     <DetailView Id="FTS11T0305D_DetailView">
       <Items>
         <PropertyEditor Id="U_FAKey" LookupEditorMode="AllItemsWithSearch" />
