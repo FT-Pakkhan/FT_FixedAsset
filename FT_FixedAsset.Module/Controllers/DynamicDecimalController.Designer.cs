@@ -1,7 +1,7 @@
 ﻿
-namespace FT_FixedAsset.Module.Web.Editors
+namespace FT_FixedAsset.Module.Controllers
 {
-    partial class NumberListViewEditor
+    partial class DynamicDecimalController
     {
         /// <summary>
         /// Required designer variable.

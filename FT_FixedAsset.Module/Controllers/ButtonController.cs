@@ -2,6 +2,7 @@
 using DevExpress.ExpressApp;
 using DevExpress.ExpressApp.Actions;
 using DevExpress.ExpressApp.Editors;
+using DevExpress.ExpressApp.SystemModule;
 using FT_FixedAsset.Module.BusinessObjects;
 using FT_FixedAsset.Module.Controllers;
 using System;
@@ -242,7 +243,7 @@ namespace FT_FixedAsset.Module.Web.Controllers
             Action.Active["Action"] = View is ListView || (View is DetailView && ((DetailView)View).ViewEditMode == ViewEditMode.View);
             CancelTrans.Active["CancelTrans"] = View is ListView || (View is DetailView && ((DetailView)View).ViewEditMode == ViewEditMode.View);
             Duplicate.Active["Duplicate"] = View is ListView || (View is DetailView && ((DetailView)View).ViewEditMode == ViewEditMode.View);
-            Advanced.Enabled["Advanced"] = View is DetailView && ((DetailView)View).ViewEditMode == ViewEditMode.Edit;
+            Advanced.Enabled["Advanced"] = View is DetailView;
         }
 
         void ViewController1_ViewEditModeChanged(object sender, EventArgs e)
@@ -371,7 +372,7 @@ namespace FT_FixedAsset.Module.Web.Controllers
             oCom.DbUserName = OADMSettings.U_SqlUID;
             oCom.DbPassword = OADMSettings.U_SqlPWD;
             oCom.language = SAPbobsCOM.BoSuppLangs.ln_English;
-            //oCom.LicenseServer = ConfigurationManager.AppSettings.Get("LicenseServer").ToString();
+            //oCom.LicenseServer = OADMSettings.U_LicSvr;
             oCom.CompanyDB = OADMSettings.U_SboDB;
             oCom.UserName = OADMSettings.U_SboUID;
             oCom.Password = OADMSettings.U_SboPWD;
@@ -1753,11 +1754,11 @@ namespace FT_FixedAsset.Module.Web.Controllers
                 {
                     foreach (var selectedObject in e.SelectedObjects)
                     {
-                        selectedT0201.Add((FTS11OFAM)ObjectSpace.GetObject(selectedObject));
+                        selectedT0201.Add((FTS11T0201)ObjectSpace.GetObject(selectedObject));
                     }
                 }
 
-                foreach (FTS11T0201 selectedObject in selectedT0201)
+                foreach (FTS11T0201 selectedObject in e.SelectedObjects)
                 {
                     FTS11T0201 T0201 = (FTS11T0201)selectedObject;
 
@@ -1785,7 +1786,7 @@ namespace FT_FixedAsset.Module.Web.Controllers
                 {
                     foreach (var selectedObject in e.SelectedObjects)
                     {
-                        selectedT0202.Add((FTS11OFAM)ObjectSpace.GetObject(selectedObject));
+                        selectedT0202.Add((FTS11T0202)ObjectSpace.GetObject(selectedObject));
                     }
                 }
 
@@ -1817,7 +1818,7 @@ namespace FT_FixedAsset.Module.Web.Controllers
                 {
                     foreach (var selectedObject in e.SelectedObjects)
                     {
-                        selectedT0203.Add((FTS11OFAM)ObjectSpace.GetObject(selectedObject));
+                        selectedT0203.Add((FTS11T0203)ObjectSpace.GetObject(selectedObject));
                     }
                 }
 
@@ -1849,7 +1850,7 @@ namespace FT_FixedAsset.Module.Web.Controllers
                 {
                     foreach (var selectedObject in e.SelectedObjects)
                     {
-                        selectedT0204.Add((FTS11OFAM)ObjectSpace.GetObject(selectedObject));
+                        selectedT0204.Add((FTS11T0204)ObjectSpace.GetObject(selectedObject));
                     }
                 }
 
@@ -1881,7 +1882,7 @@ namespace FT_FixedAsset.Module.Web.Controllers
                 {
                     foreach (var selectedObject in e.SelectedObjects)
                     {
-                        selectedT0205.Add((FTS11OFAM)ObjectSpace.GetObject(selectedObject));
+                        selectedT0205.Add((FTS11T0205)ObjectSpace.GetObject(selectedObject));
                     }
                 }
 
@@ -1913,7 +1914,7 @@ namespace FT_FixedAsset.Module.Web.Controllers
                 {
                     foreach (var selectedObject in e.SelectedObjects)
                     {
-                        selectedT0301.Add((FTS11OFAM)ObjectSpace.GetObject(selectedObject));
+                        selectedT0301.Add((FTS11T0301)ObjectSpace.GetObject(selectedObject));
                     }
                 }
 
@@ -1945,7 +1946,7 @@ namespace FT_FixedAsset.Module.Web.Controllers
                 {
                     foreach (var selectedObject in e.SelectedObjects)
                     {
-                        selectedT0302.Add((FTS11OFAM)ObjectSpace.GetObject(selectedObject));
+                        selectedT0302.Add((FTS11T0302)ObjectSpace.GetObject(selectedObject));
                     }
                 }
 
@@ -1977,7 +1978,7 @@ namespace FT_FixedAsset.Module.Web.Controllers
                 {
                     foreach (var selectedObject in e.SelectedObjects)
                     {
-                        selectedT0303.Add((FTS11OFAM)ObjectSpace.GetObject(selectedObject));
+                        selectedT0303.Add((FTS11T0303)ObjectSpace.GetObject(selectedObject));
                     }
                 }
 
@@ -2009,7 +2010,7 @@ namespace FT_FixedAsset.Module.Web.Controllers
                 {
                     foreach (var selectedObject in e.SelectedObjects)
                     {
-                        selectedT0304.Add((FTS11OFAM)ObjectSpace.GetObject(selectedObject));
+                        selectedT0304.Add((FTS11T0304)ObjectSpace.GetObject(selectedObject));
                     }
                 }
 
@@ -2041,7 +2042,7 @@ namespace FT_FixedAsset.Module.Web.Controllers
                 {
                     foreach (var selectedObject in e.SelectedObjects)
                     {
-                        selectedT0305.Add((FTS11OFAM)ObjectSpace.GetObject(selectedObject));
+                        selectedT0305.Add((FTS11T0305)ObjectSpace.GetObject(selectedObject));
                     }
                 }
 
@@ -2183,10 +2184,17 @@ namespace FT_FixedAsset.Module.Web.Controllers
         {
             FTS11OFAM OFAM = (FTS11OFAM)View.CurrentObject;
             IObjectSpace os = Application.CreateObjectSpace(typeof(FTS11FAM2));
+            FTS11OFAM masterInNewOS = os.GetObject(OFAM);
 
             PropertyCollectionSource propertyCollectionSource = Application.CreatePropertyCollectionSource(os, typeof(FTS11OFAM), os.GetObject(OFAM), View.ObjectTypeInfo.FindMember(nameof(OFAM.FTS11FAM2)), Application.FindListViewId(typeof(FTS11FAM2)));
 
             ListView listView = Application.CreateListView(Application.FindListViewId(typeof(FTS11FAM2)), propertyCollectionSource, true);
+            listView.AllowNew["MasterViewReadOnly"] = true;
+            // 1. Handle the "Disable New" part immediately (This works even if Controller is null)
+            if (View is DetailView masterView && masterView.ViewEditMode == ViewEditMode.View)
+            {
+                listView.AllowNew["MasterViewReadOnly"] = false;
+            }
 
             Application.ShowViewStrategy.ShowViewInPopupWindow(listView);
         }

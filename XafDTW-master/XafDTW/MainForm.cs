@@ -103,6 +103,7 @@ namespace XafDTW
         {
             this.Dispose();
             this.Close();
+            Application.Exit();
         }
     }
 }

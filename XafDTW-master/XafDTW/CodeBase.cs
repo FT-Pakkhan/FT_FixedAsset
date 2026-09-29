@@ -77,7 +77,12 @@ namespace XafDTW
 
                         if (opcriteria == "") throw new MyException("Business Object's Key property is not valid.");
 
-                        GeneralHelper.SetPropertyValueCriteriaOperator(tobj, tcolumnname, DevExpress.Data.Filtering.CriteriaOperator.Parse(opcriteria, svalue));
+                        GeneralHelper.SetPropertyValueCriteriaOperator(tobj, tcolumnname, DevExpress.Data.Filtering.CriteriaOperator.Parse(opcriteria, Convert.ToString(svalue)));
+                        continue;
+                    }
+                    else if (tproperty.PropertyType == typeof(string))
+                    {
+                        GeneralHelper.SetPropertyValue(tobj, tcolumnname, Convert.ToString(svalue));
                         continue;
                     }
                     else if (tproperty.PropertyType == typeof(bool))
@@ -98,6 +103,11 @@ namespace XafDTW
                     else if (tproperty.PropertyType == typeof(decimal))
                     {
                         GeneralHelper.SetPropertyValue(tobj, tcolumnname, Convert.ToDecimal(svalue));
+                        continue;
+                    }
+                    else if (tproperty.PropertyType == typeof(DateTime))
+                    {
+                        GeneralHelper.SetPropertyValue(tobj, tcolumnname, Convert.ToDateTime(svalue));
                         continue;
                     }
                     GeneralHelper.SetPropertyValue(tobj, tcolumnname, svalue);

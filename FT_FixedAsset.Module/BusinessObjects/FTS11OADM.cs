@@ -2,6 +2,7 @@
 using DevExpress.ExpressApp.ConditionalAppearance;
 using DevExpress.ExpressApp.DC;
 using DevExpress.ExpressApp.Editors;
+using DevExpress.ExpressApp.Model;
 using DevExpress.Persistent.Base;
 using DevExpress.Xpo;
 using System.ComponentModel;
@@ -17,7 +18,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
     [Appearance("DisableUnlink", AppearanceItemType.Action, "True", TargetItems = "Unlink", Visibility = ViewItemVisibility.Hide, Context = "Any")]
     [Appearance("DisableExport", AppearanceItemType.Action, "True", TargetItems = "Export", Visibility = ViewItemVisibility.Hide, Context = "Any")]
     [Appearance("DisableDelete", AppearanceItemType.Action, "True", TargetItems = "Delete", Visibility = ViewItemVisibility.Hide, Context = "Any")]
-    [Appearance("DisableSave", AppearanceItemType.Action, "True", TargetItems = "Save", Visibility = ViewItemVisibility.Hide, Context = "Any")]
+    [Appearance("DisableSave&Close", AppearanceItemType.Action, "True", TargetItems = "SaveAndClose", Visibility = ViewItemVisibility.Hide, Context = "Any")]
     [Appearance("DisableSave&New", AppearanceItemType.Action, "True", TargetItems = "SaveAndNew", Visibility = ViewItemVisibility.Hide, Context = "Any")]
     [Appearance("DisableValidate", AppearanceItemType.Action, "True", TargetItems = "ShowAllContexts", Visibility = ViewItemVisibility.Hide, Context = "Any")]
     public class FTS11OADM : XPLiteObject
@@ -39,6 +40,11 @@ namespace FT_FixedAsset.Module.BusinessObjects
             U_FileType = Session.FindObject<SE_FAFileType>(CriteriaOperator.Parse("Code = 'JV'"));
             U_SplitBy = Session.FindObject<SE_FASplitBy>(CriteriaOperator.Parse("Code = 'N'"));
 
+            U_Ocr1Capt = "Cost Centre D1";
+            U_Ocr2Capt = "Cost Centre D2";
+            U_Ocr3Capt = "Cost Centre D3";
+            U_Ocr4Capt = "Cost Centre D4";
+            U_Ocr5Capt = "Cost Centre D5";
             U_Ind1Capt = "Indicator 1";
             U_Ind2Capt = "Indicator 2";
             U_Ind3Capt = "Indicator 3";
@@ -47,6 +53,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
             U_Ind6Capt = "Indicator 6";
             U_MainCur = "MYR";
             U_SysCur = "MYR";
+            U_QtyDec = 0;
             U_SumDec = 2;
             U_JEMemo = "Posting From Fixed Asset System";
             Object = "FTS11OADM";
@@ -71,6 +78,129 @@ namespace FT_FixedAsset.Module.BusinessObjects
             base.OnSaving();
 
         }
+
+        #region Dummy field
+        [Index(0), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Appearance("Dummy01", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide)]
+        public string Dummy01
+        {
+            get { return ""; }
+        }
+        [Index(0), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Appearance("Dummy02", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide)]
+        public string Dummy02
+        {
+            get { return ""; }
+        }
+        [Index(0), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Appearance("Dummy03", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide)]
+        public string Dummy03
+        {
+            get { return ""; }
+        }
+        [Index(0), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Appearance("Dummy04", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide)]
+        public string Dummy04
+        {
+            get { return ""; }
+        }
+        [Index(0), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Appearance("Dummy05", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide)]
+        public string Dummy05
+        {
+            get { return ""; }
+        }
+        [Index(0), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Appearance("Dummy06", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide)]
+        public string Dummy06
+        {
+            get { return ""; }
+        }
+        [Index(0), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Appearance("Dummy07", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide)]
+        public string Dummy07
+        {
+            get { return ""; }
+        }
+        [Index(0), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Appearance("Dummy08", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide)]
+        public string Dummy08
+        {
+            get { return ""; }
+        }
+        [Index(0), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Appearance("Dummy09", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide)]
+        public string Dummy09
+        {
+            get { return ""; }
+        }
+        [Index(0), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Appearance("Dummy10", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide)]
+        public string Dummy10
+        {
+            get { return ""; }
+        }
+        [Index(0), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Appearance("Dummy11", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide)]
+        public string Dummy11
+        {
+            get { return ""; }
+        }
+        [Index(0), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Appearance("Dummy12", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide)]
+        public string Dummy12
+        {
+            get { return ""; }
+        }
+        [Index(0), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Appearance("Dummy13", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide)]
+        public string Dummy13
+        {
+            get { return ""; }
+        }
+        [Index(0), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Appearance("Dummy14", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide)]
+        public string Dummy14
+        {
+            get { return ""; }
+        }
+        [Index(0), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Appearance("Dummy15", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide)]
+        public string Dummy15
+        {
+            get { return ""; }
+        }
+        [Index(0), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Appearance("Dummy16", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide)]
+        public string Dummy16
+        {
+            get { return ""; }
+        }
+        [Index(0), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Appearance("Dummy17", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide)]
+        public string Dummy17
+        {
+            get { return ""; }
+        }
+        [Index(0), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Appearance("Dummy18", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide)]
+        public string Dummy18
+        {
+            get { return ""; }
+        }
+        [Index(0), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Appearance("Dummy19", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide)]
+        public string Dummy19
+        {
+            get { return ""; }
+        }
+        [Index(0), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Appearance("Dummy20", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide)]
+        public string Dummy20
+        {
+            get { return ""; }
+        }
+        #endregion
 
         [Key(AutoGenerate = true), Browsable(false)]
         public int DocEntry { get; set; }
@@ -102,6 +232,15 @@ namespace FT_FixedAsset.Module.BusinessObjects
         {
             get { return _U_FACodeDt; }
             set { SetPropertyValue("U_FACodeDt", ref _U_FACodeDt, value); }
+        }
+
+        private bool _U_DisFACode;
+        [Index(13), VisibleInListView(true), VisibleInDetailView(true), VisibleInLookupListView(false)]
+        [XafDisplayName("Disable F/A Code")]
+        public bool U_DisFACode
+        {
+            get { return _U_DisFACode; }
+            set { SetPropertyValue("U_DisFACode", ref _U_DisFACode, value); }
         }
 
         private SE_FADeprnBy _U_DeprBy;
@@ -186,6 +325,51 @@ namespace FT_FixedAsset.Module.BusinessObjects
             set { SetPropertyValue("U_Ind6Capt", ref _U_Ind6Capt, value); }
         }
 
+        private string _U_Ocr1Capt;
+        [XafDisplayName("Cost Centre D1"), ToolTip("Cost Centre D1")]
+        [Index(80), VisibleInListView(true), VisibleInDetailView(true), VisibleInLookupListView(false)]
+        public string U_Ocr1Capt
+        {
+            get { return _U_Ocr1Capt; }
+            set { SetPropertyValue("U_Ocr1Capt", ref _U_Ocr1Capt, value); }
+        }
+
+        private string _U_Ocr2Capt;
+        [XafDisplayName("Cost Centre D2"), ToolTip("Cost Centre D2")]
+        [Index(81), VisibleInListView(true), VisibleInDetailView(true), VisibleInLookupListView(false)]
+        public string U_Ocr2Capt
+        {
+            get { return _U_Ocr2Capt; }
+            set { SetPropertyValue("U_Ocr2Capt", ref _U_Ocr2Capt, value); }
+        }
+
+        private string _U_Ocr3Capt;
+        [XafDisplayName("Cost Centre D3"), ToolTip("Cost Centre D3")]
+        [Index(82), VisibleInListView(true), VisibleInDetailView(true), VisibleInLookupListView(false)]
+        public string U_Ocr3Capt
+        {
+            get { return _U_Ocr3Capt; }
+            set { SetPropertyValue("U_Ocr3Capt", ref _U_Ocr3Capt, value); }
+        }
+
+        private string _U_Ocr4Capt;
+        [XafDisplayName("Cost Centre D4"), ToolTip("Cost Centre D4")]
+        [Index(83), VisibleInListView(true), VisibleInDetailView(true), VisibleInLookupListView(false)]
+        public string U_Ocr4Capt
+        {
+            get { return _U_Ocr4Capt; }
+            set { SetPropertyValue("U_Ocr4Capt", ref _U_Ocr4Capt, value); }
+        }
+
+        private string _U_Ocr5Capt;
+        [XafDisplayName("Cost Centre D5"), ToolTip("Cost Centre D5")]
+        [Index(84), VisibleInListView(true), VisibleInDetailView(true), VisibleInLookupListView(false)]
+        public string U_Ocr5Capt
+        {
+            get { return _U_Ocr5Capt; }
+            set { SetPropertyValue("U_Ocr5Capt", ref _U_Ocr5Capt, value); }
+        }
+
         private string _U_MainCur;
         [XafDisplayName("Local Currency"), ToolTip("Local Currency")]
         [Index(40), VisibleInListView(true), VisibleInDetailView(true), VisibleInLookupListView(false)]
@@ -215,8 +399,10 @@ namespace FT_FixedAsset.Module.BusinessObjects
         }
 
         private int _U_SumDec;
-        [XafDisplayName("Decimals"), ToolTip("Decimals")]
+        [XafDisplayName("Amount Decimals"), ToolTip("Amount Decimals")]
         [Index(43), VisibleInListView(true), VisibleInDetailView(true), VisibleInLookupListView(false)]
+        [ModelDefault("DisplayFormat", "{0:n0}")]
+        [ModelDefault("EditMask", "{0:n0}")]
         [DbType("numeric(19,6)")]
         public int U_SumDec
         {
@@ -240,6 +426,18 @@ namespace FT_FixedAsset.Module.BusinessObjects
         {
             get { return _U_CRPath; }
             set { SetPropertyValue("U_CRPath", ref _U_CRPath, value); }
+        }
+
+        private int _U_QtyDec;
+        [XafDisplayName("Quantity Decimals"), ToolTip("Quantity Decimals")]
+        [Index(46), VisibleInListView(true), VisibleInDetailView(true), VisibleInLookupListView(false)]
+        [ModelDefault("DisplayFormat", "{0:n0}")]
+        [ModelDefault("EditMask", "{0:n0}")]
+        [DbType("numeric(19,6)")]
+        public int U_QtyDec
+        {
+            get { return _U_QtyDec; }
+            set { SetPropertyValue("U_QtyDec", ref _U_QtyDec, value); }
         }
 
         private SE_FASvrTyp _U_SvrTyp;
@@ -372,7 +570,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
         private string _U_JEMemo;
         [XafDisplayName("Journal Remark"), ToolTip("Journal Remark")]
         [Index(63), VisibleInListView(true), VisibleInDetailView(true), VisibleInLookupListView(false)]
-        [DbType("nvarchar(50)")]
+        [DbType("nvarchar(254)")]
         public string U_JEMemo
         {
             get { return _U_JEMemo; }
@@ -407,6 +605,42 @@ namespace FT_FixedAsset.Module.BusinessObjects
             set { SetPropertyValue("U_DiToBs", ref _U_DiToBs, value); }
         }
 
+        private bool _U_DisposeWoQty;
+        [Index(70), VisibleInListView(true), VisibleInDetailView(true), VisibleInLookupListView(false)]
+        [XafDisplayName("Write Off W/O Affect Qty")]
+        public bool U_DisposeWoQty
+        {
+            get { return _U_DisposeWoQty; }
+            set { SetPropertyValue("U_DisposeWoQty", ref _U_DisposeWoQty, value); }
+        }
+
+        private bool _U_DisposeCost;
+        [Index(71), VisibleInListView(true), VisibleInDetailView(true), VisibleInLookupListView(false)]
+        [XafDisplayName("Amend Write Off cost")]
+        public bool U_DisposeCost
+        {
+            get { return _U_DisposeCost; }
+            set { SetPropertyValue("U_DisposeCost", ref _U_DisposeCost, value); }
+        }
+
+        private bool _U_ApportDepr;
+        [Index(72), VisibleInListView(true), VisibleInDetailView(true), VisibleInLookupListView(false)]
+        [XafDisplayName("Apportion 1st Period Depr")]
+        public bool U_ApportDepr
+        {
+            get { return _U_ApportDepr; }
+            set { SetPropertyValue("U_ApportDepr", ref _U_ApportDepr, value); }
+        }
+
+        private bool _U_BFByNBV;
+        [Index(73), VisibleInListView(true), VisibleInDetailView(true), VisibleInLookupListView(false)]
+        [XafDisplayName("B/F Asset Depr by B/F NBV")]
+        public bool U_BFByNBV
+        {
+            get { return _U_BFByNBV; }
+            set { SetPropertyValue("U_BFByNBV", ref _U_BFByNBV, value); }
+        }
+
         private SE_FARateYr _U_RateYr;
         [XafDisplayName("Rounding Piority"), ToolTip("Rounding Piority")]
         [Index(67), VisibleInListView(true), VisibleInDetailView(true), VisibleInLookupListView(false)]
@@ -415,6 +649,26 @@ namespace FT_FixedAsset.Module.BusinessObjects
         {
             get { return _U_RateYr; }
             set { SetPropertyValue("U_RateYr", ref _U_RateYr, value); }
+        }
+
+        private string _U_Ref1;
+        [XafDisplayName("Ref. 1"), ToolTip("Ref. 1")]
+        [Index(68), VisibleInListView(true), VisibleInDetailView(true), VisibleInLookupListView(false)]
+        [DbType("nvarchar(100)")]
+        public string U_Ref1
+        {
+            get { return _U_Ref1; }
+            set { SetPropertyValue("U_Ref1", ref _U_Ref1, value); }
+        }
+
+        private string _U_Ref2;
+        [XafDisplayName("Ref. 2"), ToolTip("Ref. 2")]
+        [Index(69), VisibleInListView(true), VisibleInDetailView(true), VisibleInLookupListView(false)]
+        [DbType("nvarchar(100)")]
+        public string U_Ref2
+        {
+            get { return _U_Ref2; }
+            set { SetPropertyValue("U_Ref2", ref _U_Ref2, value); }
         }
 
         private string _Object;

@@ -1,6 +1,7 @@
 ﻿using DevExpress.ExpressApp.ConditionalAppearance;
 using DevExpress.ExpressApp.DC;
 using DevExpress.ExpressApp.Editors;
+using DevExpress.ExpressApp.Model;
 using DevExpress.Persistent.Base;
 using DevExpress.Persistent.Validation;
 using DevExpress.Xpo;
@@ -64,6 +65,8 @@ namespace FT_FixedAsset.Module.BusinessObjects
         [XafDisplayName("Seq"), ToolTip("Seq")]
         [Index(30), VisibleInListView(true), VisibleInDetailView(true), VisibleInLookupListView(true)]
         [RuleRequiredField(DefaultContexts.Save)]
+        [ModelDefault("DisplayFormat", "{0:d0}")]
+        [ModelDefault("EditMask", "{0:d0}")]
         public int Seq
         {
             get { return _Seq; }
@@ -83,6 +86,8 @@ namespace FT_FixedAsset.Module.BusinessObjects
         [XafDisplayName("Length"), ToolTip("Length")]
         [Index(50), VisibleInListView(true), VisibleInDetailView(true), VisibleInLookupListView(true)]
         [RuleRequiredField(DefaultContexts.Save)]
+        [ModelDefault("DisplayFormat", "{0:d0}")]
+        [ModelDefault("EditMask", "{0:d0}")]
         public int Length
         {
             get { return _Length; }

@@ -153,6 +153,10 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
       <HintPath>..\diapi 10.00.300\Interop.SAPbobsCOM.dll</HintPath>
     </Reference>
+    <Reference Include="log4net, Version=2.0.12.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Windows\assembly\GAC_64\log4net\1.2.10.0__692fbea5521e1304\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="mscorlib">
       <SpecificVersion>False</SpecificVersion>
@@ -215,17 +219,9 @@
     <Compile Include="Editors\DropDownPropertyEditor.designer.cs">
       <DependentUpon>DropDownPropertyEditor.cs</DependentUpon>
     </Compile>
-    <Compile Include="Editors\NumberDetailViewEditor.cs" />
-    <Compile Include="Editors\NumberDetailViewEditor.Designer.cs">
-      <DependentUpon>NumberDetailViewEditor.cs</DependentUpon>
-    </Compile>
     <Compile Include="Editors\NumberEditor.cs" />
     <Compile Include="Editors\NumberEditor.Designer.cs">
       <DependentUpon>NumberEditor.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Editors\NumberListViewEditor.cs" />
-    <Compile Include="Editors\NumberListViewEditor.Designer.cs">
-      <DependentUpon>NumberListViewEditor.cs</DependentUpon>
     </Compile>
     <Compile Include="WebModule.cs">
       <SubType>Component</SubType>

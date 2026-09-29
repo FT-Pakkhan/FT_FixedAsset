@@ -25,8 +25,8 @@ namespace FT_FixedAsset.Module.Web.Editors
             spinEditor.SpinButtons.ShowIncrementButtons = false;
             spinEditor.AllowMouseWheel = false;
             spinEditor.SelectInputTextOnClick = true;
-            spinEditor.DecimalPlaces = os.FindObject<FTS11OADM>(CriteriaOperator.Parse("DocEntry=1")).U_SumDec;
-            spinEditor.DisplayFormatString = "{0:n" + os.FindObject<FTS11OADM>(CriteriaOperator.Parse("DocEntry=1")).U_SumDec.ToString() + "}";
+            //spinEditor.DecimalPlaces = os.FindObject<FTS11OADM>(CriteriaOperator.Parse("DocEntry=1")).U_SumDec;
+            //spinEditor.DisplayFormatString = "{0:n" + os.FindObject<FTS11OADM>(CriteriaOperator.Parse("DocEntry=1")).U_SumDec.ToString() + "}";
 
         }
         void IComplexViewItem.Setup(IObjectSpace objectSpace, XafApplication application)
@@ -50,8 +50,8 @@ namespace FT_FixedAsset.Module.Web.Editors
             spinEditor.SpinButtons.ShowIncrementButtons = false;
             spinEditor.AllowMouseWheel = false;
             spinEditor.SelectInputTextOnClick = true;
-            spinEditor.DecimalPlaces = os.FindObject<FTS11OADM>(CriteriaOperator.Parse("DocEntry=1")).U_SumDec;
-            spinEditor.DisplayFormatString = "{0:n" + os.FindObject<FTS11OADM>(CriteriaOperator.Parse("DocEntry=1")).U_SumDec.ToString() + "}";
+            //spinEditor.DecimalPlaces = os.FindObject<FTS11OADM>(CriteriaOperator.Parse("DocEntry=1")).U_SumDec;
+            //spinEditor.DisplayFormatString = "{0:n" + os.FindObject<FTS11OADM>(CriteriaOperator.Parse("DocEntry=1")).U_SumDec.ToString() + "}";
         }
         void IComplexViewItem.Setup(IObjectSpace objectSpace, XafApplication application)
         {
@@ -74,7 +74,8 @@ namespace FT_FixedAsset.Module.Web.Editors
             spinEditor.SpinButtons.ShowIncrementButtons = false;
             spinEditor.AllowMouseWheel = false;
             spinEditor.SelectInputTextOnClick = true;
-            spinEditor.DecimalPlaces = 2;
+            //spinEditor.DecimalPlaces = os.FindObject<FTS11OADM>(CriteriaOperator.Parse("DocEntry=1")).U_QtyDec;
+            //spinEditor.DisplayFormatString = "{0:n" + os.FindObject<FTS11OADM>(CriteriaOperator.Parse("DocEntry=1")).U_QtyDec.ToString() + "}";
             spinEditor.NumberType = SpinEditNumberType.Integer;
         }
         void IComplexViewItem.Setup(IObjectSpace objectSpace, XafApplication application)

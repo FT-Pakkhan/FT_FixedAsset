@@ -45,6 +45,19 @@ namespace FT_FixedAsset.Module.Controllers
 
         void showNavigationItemController_CustomShowNavigationItem(object sender, CustomShowNavigationItemEventArgs e)
         {
+            if (e.ActionArguments.SelectedChoiceActionItem.Id == "FTS11OADM_ListView")
+            {
+                IObjectSpace objectSpace = Application.CreateObjectSpace(typeof(FTS11OADM));
+                FTS11OADM OADM = objectSpace.FindObject<FTS11OADM>(CriteriaOperator.Parse("DocEntry = 1"));
+
+                DetailView detailView = Application.CreateDetailView(objectSpace, OADM);
+                detailView.ViewEditMode = DevExpress.ExpressApp.Editors.ViewEditMode.View;
+                View.BreakLinksToControls();
+                View.CreateControls();
+                e.ActionArguments.ShowViewParameters.CreatedView = detailView;
+                e.Handled = true;
+            }
+
             if (e.ActionArguments.SelectedChoiceActionItem.Id == "DeprnWidget_ListView")
             {
                 IObjectSpace objectSpace = Application.CreateObjectSpace(typeof(DeprnWidget));

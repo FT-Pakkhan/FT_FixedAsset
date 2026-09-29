@@ -87,5 +87,12 @@ namespace XafDTW
             txtPassword.Text = defpassword;
 
         }
+
+        private void Login_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            this.Dispose();
+            this.Close();
+            Application.Exit();
+        }
     }
 }

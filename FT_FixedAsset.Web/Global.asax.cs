@@ -18,10 +18,15 @@ namespace FT_FixedAsset.Web {
             InitializeComponent();
         }
         protected void Application_Start(Object sender, EventArgs e) {
-            RouteTable.Routes.RegisterXafRoutes();
+            System.Web.Routing.RouteTable.Routes.Ignore("CrystalImageHandler.aspx/{*pathInfo}");
+            System.Web.Routing.RouteTable.Routes.Ignore("{resource}.aspx/{*pathInfo}");
+            System.Web.Routing.RouteTable.Routes.Ignore("aspnet_client/{*pathInfo}");
+            System.Web.Routing.RouteTable.Routes.Ignore("{resource}.axd/{*pathInfo}");
+
             var routes = new RouteCollection();
-            routes.Ignore("CrystalImageHandler.aspx/{*pathInfo}");
             routes.Ignore("{*allaspx}", new { allaspx = @".*\.aspx(/.*)?" });
+
+            RouteTable.Routes.RegisterXafRoutes();
             DevExpress.ExpressApp.BaseObjectSpace.ThrowExceptionForNotRegisteredEntityType = true;
             ASPxWebControl.CallbackError += new EventHandler(Application_Error);
 #if EASYTEST

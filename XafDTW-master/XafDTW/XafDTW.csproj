@@ -257,6 +257,5 @@
       <Name>FT_FixedAsset.Module</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

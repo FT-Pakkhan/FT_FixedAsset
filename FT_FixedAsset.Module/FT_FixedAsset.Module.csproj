@@ -243,6 +243,12 @@
     <Compile Include="Controllers\DisableButtonController.Designer.cs">
       <DependentUpon>DisableButtonController.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\DynamicDecimalController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\DynamicDecimalController.Designer.cs">
+      <DependentUpon>DynamicDecimalController.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\FilterListViewController.cs">
       <SubType>Component</SubType>
     </Compile>

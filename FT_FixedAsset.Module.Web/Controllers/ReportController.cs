@@ -63,11 +63,27 @@ namespace FT_FixedAsset.Module.Web.Controllers
         private void Preview_Execute(object sender, SimpleActionExecuteEventArgs e)
         {
             string browserPath = "";
+            string HTTPSecure = "";
 
-            if (HttpContext.Current.Request.ApplicationPath == "/")
-                browserPath = HttpContext.Current.Request.Url.Authority;
+            if (string.IsNullOrEmpty(ConfigurationManager.AppSettings["HTTPSecure"].ToString()))
+                throw new InvalidOperationException("HTTPSecure Key cannot be found in webconfig.");
+
+
+
+            if (!string.IsNullOrEmpty(ConfigurationManager.AppSettings["BrowserPath"].ToString()))
+                browserPath = ConfigurationManager.AppSettings["BrowserPath"].ToString();
             else
-                browserPath = HttpContext.Current.Request.Url.Authority + HttpContext.Current.Request.ApplicationPath;
+            {
+                if (HttpContext.Current.Request.ApplicationPath == "/")
+                    browserPath = HttpContext.Current.Request.Url.Authority;
+                else
+                    browserPath = HttpContext.Current.Request.Url.Authority + HttpContext.Current.Request.ApplicationPath;
+            }
+
+            if (HttpContext.Current.Request.IsLocal && browserPath.Contains("localhost"))
+                HTTPSecure = "http";
+            else
+                HTTPSecure = ConfigurationManager.AppSettings["HTTPSecure"].ToString();
 
             if (View.ObjectTypeInfo.Type == typeof(PostWidget))
             {
@@ -137,7 +153,7 @@ namespace FT_FixedAsset.Module.Web.Controllers
                     HttpContext.Current.Session["UserID"] = string.IsNullOrEmpty(JEPreview.U_CreateBy) ? "" : JEPreview.U_CreateBy.ToString();
 
                     WebWindow.CurrentRequestWindow.RegisterStartupScript("Preview",
-                        "window.open('" + ConfigurationManager.AppSettings["HTTPSecure"].ToString() + "://" + browserPath + @"/Reports.aspx','_blank');", true);
+                        "window.open('" + HTTPSecure + "://" + browserPath + @"/Reports.aspx','_blank');", true);
                 }
                 else
                 {
@@ -243,7 +259,7 @@ namespace FT_FixedAsset.Module.Web.Controllers
                 HttpContext.Current.Session["U_AccTo"] = reportViewer.U_AccTo == null ? "" : reportViewer.U_AccTo.FormatCode;
 
                 WebWindow.CurrentRequestWindow.RegisterStartupScript("Preview",
-                    "window.open('" + ConfigurationManager.AppSettings["HTTPSecure"].ToString() + "://" + browserPath + @"/Reports.aspx','_blank');", true);
+                    "window.open('" + HTTPSecure + "://" + browserPath + @"/Reports.aspx','_blank');", true);
             }
         }
 

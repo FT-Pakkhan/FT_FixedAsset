@@ -29,8 +29,139 @@ namespace FT_FixedAsset.Module.BusinessObjects
         {
             base.AfterConstruction();
 
+            if (SecuritySystem.CurrentUserId != null && SecuritySystem.CurrentUserId.ToString() != "")
+            {
+                U_CreateBy = Session.GetObjectByKey<SystemUsers>(SecuritySystem.CurrentUserId).UserName;
+                U_UpdateBy = Session.GetObjectByKey<SystemUsers>(SecuritySystem.CurrentUserId).UserName;
+            }
+            CreateDate = DateTime.Today;
+            UpdateDate = DateTime.Today;
             Object = "FTS11FAM2";
+            LogInst = 0;
         }
+
+        #region Dummy field
+        [Index(0), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Appearance("Dummy01", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide)]
+        public string Dummy01
+        {
+            get { return ""; }
+        }
+        [Index(0), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Appearance("Dummy02", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide)]
+        public string Dummy02
+        {
+            get { return ""; }
+        }
+        [Index(0), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Appearance("Dummy03", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide)]
+        public string Dummy03
+        {
+            get { return ""; }
+        }
+        [Index(0), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Appearance("Dummy04", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide)]
+        public string Dummy04
+        {
+            get { return ""; }
+        }
+        [Index(0), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Appearance("Dummy05", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide)]
+        public string Dummy05
+        {
+            get { return ""; }
+        }
+        [Index(0), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Appearance("Dummy06", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide)]
+        public string Dummy06
+        {
+            get { return ""; }
+        }
+        [Index(0), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Appearance("Dummy07", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide)]
+        public string Dummy07
+        {
+            get { return ""; }
+        }
+        [Index(0), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Appearance("Dummy08", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide)]
+        public string Dummy08
+        {
+            get { return ""; }
+        }
+        [Index(0), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Appearance("Dummy09", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide)]
+        public string Dummy09
+        {
+            get { return ""; }
+        }
+        [Index(0), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Appearance("Dummy10", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide)]
+        public string Dummy10
+        {
+            get { return ""; }
+        }
+        [Index(0), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Appearance("Dummy11", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide)]
+        public string Dummy11
+        {
+            get { return ""; }
+        }
+        [Index(0), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Appearance("Dummy12", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide)]
+        public string Dummy12
+        {
+            get { return ""; }
+        }
+        [Index(0), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Appearance("Dummy13", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide)]
+        public string Dummy13
+        {
+            get { return ""; }
+        }
+        [Index(0), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Appearance("Dummy14", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide)]
+        public string Dummy14
+        {
+            get { return ""; }
+        }
+        [Index(0), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Appearance("Dummy15", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide)]
+        public string Dummy15
+        {
+            get { return ""; }
+        }
+        [Index(0), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Appearance("Dummy16", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide)]
+        public string Dummy16
+        {
+            get { return ""; }
+        }
+        [Index(0), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Appearance("Dummy17", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide)]
+        public string Dummy17
+        {
+            get { return ""; }
+        }
+        [Index(0), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Appearance("Dummy18", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide)]
+        public string Dummy18
+        {
+            get { return ""; }
+        }
+        [Index(0), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Appearance("Dummy19", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide)]
+        public string Dummy19
+        {
+            get { return ""; }
+        }
+        [Index(0), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Appearance("Dummy20", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide)]
+        public string Dummy20
+        {
+            get { return ""; }
+        }
+        #endregion
 
         [Key(AutoGenerate = true), Browsable(false)]
         public int DocEntry { get; set; }
@@ -480,6 +611,66 @@ namespace FT_FixedAsset.Module.BusinessObjects
             set { SetPropertyValue("U_IndCod6", ref _U_IndCod6, value); }
         }
 
+        private string _U_CreateBy;
+        [XafDisplayName("Create By"), ToolTip("Create By")]
+        [Index(993), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(true)]
+        public string U_CreateBy
+        {
+            get { return _U_CreateBy; }
+            set { SetPropertyValue("U_CreateBy", ref _U_CreateBy, value); }
+        }
+
+        private string _U_UpdateBy;
+        [XafDisplayName("Update By"), ToolTip("Update By")]
+        [Index(994), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(true)]
+        public string U_UpdateBy
+        {
+            get { return _U_UpdateBy; }
+            set { SetPropertyValue("U_UpdateBy", ref _U_UpdateBy, value); }
+        }
+
+        private string _U_CnclBy;
+        [XafDisplayName("Cancel By"), ToolTip("Cancel By")]
+        [Index(995), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(true)]
+        public string U_CnclBy
+        {
+            get { return _U_CnclBy; }
+            set { SetPropertyValue("U_CnclBy", ref _U_CnclBy, value); }
+        }
+
+        private DateTime _CreateDate;
+        [Index(996), VisibleInDetailView(false), VisibleInListView(false), VisibleInLookupListView(true)]
+        [XafDisplayName("Create Date")]
+        [ModelDefault("DisplayFormat", "dd/MM/yyyy")]
+        [DbType("datetime")]
+        public DateTime CreateDate
+        {
+            get { return _CreateDate; }
+            set { SetPropertyValue("CreateDate", ref _CreateDate, value); }
+        }
+
+        private DateTime _UpdateDate;
+        [Index(997), VisibleInDetailView(false), VisibleInListView(false), VisibleInLookupListView(true)]
+        [XafDisplayName("Update Date")]
+        [ModelDefault("DisplayFormat", "dd/MM/yyyy")]
+        [DbType("datetime")]
+        public DateTime UpdateDate
+        {
+            get { return _UpdateDate; }
+            set { SetPropertyValue("UpdateDate", ref _UpdateDate, value); }
+        }
+
+        private DateTime _U_CnclDate;
+        [Index(998), VisibleInDetailView(false), VisibleInListView(false), VisibleInLookupListView(true)]
+        [XafDisplayName("Cancel Date")]
+        [ModelDefault("DisplayFormat", "dd/MM/yyyy")]
+        [DbType("datetime")]
+        public DateTime U_CnclDate
+        {
+            get { return _U_CnclDate; }
+            set { SetPropertyValue("U_CnclDate", ref _U_CnclDate, value); }
+        }
+
         private string _Object;
         [XafDisplayName("Object"), ToolTip("Object")]
         [Index(999), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
@@ -487,6 +678,19 @@ namespace FT_FixedAsset.Module.BusinessObjects
         {
             get { return _Object; }
             set { SetPropertyValue("Object", ref _Object, value); }
+        }
+
+        private int _LogInst;
+        [Index(1000), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(true)]
+        [XafDisplayName("LogInst"), ToolTip("LogInst")]
+        [ModelDefault("DisplayFormat", "{0:n0}")]
+        [ModelDefault("EditMask", "{0:n0}")]
+        [ImmediatePostData]
+        [DbType("numeric(19,6)")]
+        public int LogInst
+        {
+            get { return _LogInst; }
+            set { SetPropertyValue("LogInst", ref _LogInst, value); }
         }
     }
 }
