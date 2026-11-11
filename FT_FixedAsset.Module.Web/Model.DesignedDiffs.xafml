@@ -29,6 +29,30 @@
         <PropertyEditor Id="FACodeTo" LookupEditorMode="AllItemsWithSearch" />
         <PropertyEditor Id="FAGrpFrm" LookupEditorMode="AllItemsWithSearch" />
         <PropertyEditor Id="FAGrpTo" LookupEditorMode="AllItemsWithSearch" />
+        <PropertyEditor Id="U_IndKey1Frm" LookupEditorMode="AllItemsWithSearch" />
+        <PropertyEditor Id="U_IndKey1To" LookupEditorMode="AllItemsWithSearch" />
+        <PropertyEditor Id="U_IndKey2Frm" LookupEditorMode="AllItemsWithSearch" />
+        <PropertyEditor Id="U_IndKey2To" LookupEditorMode="AllItemsWithSearch" />
+        <PropertyEditor Id="U_IndKey3Frm" LookupEditorMode="AllItemsWithSearch" />
+        <PropertyEditor Id="U_IndKey3To" LookupEditorMode="AllItemsWithSearch" />
+        <PropertyEditor Id="U_IndKey4Frm" LookupEditorMode="AllItemsWithSearch" />
+        <PropertyEditor Id="U_IndKey4To" LookupEditorMode="AllItemsWithSearch" />
+        <PropertyEditor Id="U_IndKey5Frm" LookupEditorMode="AllItemsWithSearch" />
+        <PropertyEditor Id="U_IndKey5To" LookupEditorMode="AllItemsWithSearch" />
+        <PropertyEditor Id="U_IndKey6Frm" LookupEditorMode="AllItemsWithSearch" />
+        <PropertyEditor Id="U_IndKey6To" LookupEditorMode="AllItemsWithSearch" />
+        <PropertyEditor Id="U_OcrCode2Frm" LookupEditorMode="AllItemsWithSearch" />
+        <PropertyEditor Id="U_OcrCode2To" LookupEditorMode="AllItemsWithSearch" />
+        <PropertyEditor Id="U_OcrCode3Frm" LookupEditorMode="AllItemsWithSearch" />
+        <PropertyEditor Id="U_OcrCode3To" LookupEditorMode="AllItemsWithSearch" />
+        <PropertyEditor Id="U_OcrCode4Frm" LookupEditorMode="AllItemsWithSearch" />
+        <PropertyEditor Id="U_OcrCode4To" LookupEditorMode="AllItemsWithSearch" />
+        <PropertyEditor Id="U_OcrCode5Frm" LookupEditorMode="AllItemsWithSearch" />
+        <PropertyEditor Id="U_OcrCode5To" LookupEditorMode="AllItemsWithSearch" />
+        <PropertyEditor Id="U_ProfitCodeFrm" LookupEditorMode="AllItemsWithSearch" />
+        <PropertyEditor Id="U_ProfitCodeTo" LookupEditorMode="AllItemsWithSearch" />
+        <PropertyEditor Id="U_ProjectFrm" LookupEditorMode="AllItemsWithSearch" />
+        <PropertyEditor Id="U_ProjectTo" LookupEditorMode="AllItemsWithSearch" />
       </Items>
       <Layout>
         <LayoutGroup Id="Main" RelativeSize="100">
@@ -36,17 +60,41 @@
             <LayoutGroup Id="DeprnWidget_col1" ShowCaption="False" Index="0" RelativeSize="100" IsNewNode="True">
               <TabbedGroup Id="Item2" CaptionLocation="Top" Index="0" RelativeSize="100" IsNewNode="True">
                 <LayoutGroup Id="Item1" ShowCaption="True" CaptionLocation="Top" Index="0" RelativeSize="100" Caption="Depreciation Widget" Direction="Horizontal" IsNewNode="True">
-                  <LayoutGroup Id="Auto9adbd4e3-8cac-403d-bc6f-a090da4c11c7" ShowCaption="False" Caption="" Index="0" RelativeSize="49.92272024729521" IsNewNode="True">
-                    <LayoutItem Id="DateFrm" ViewItem="DateFrm" Index="0" RelativeSize="7.9470198675496686" IsNewNode="True" />
-                    <LayoutItem Id="FACodeFrm" ViewItem="FACodeFrm" Index="1" RelativeSize="5.739514348785872" IsNewNode="True" />
-                    <LayoutItem Id="FAGrpFrm" ViewItem="FAGrpFrm" Index="2" RelativeSize="5.739514348785872" IsNewNode="True" />
-                    <LayoutItem Id="FAClsFrm" ViewItem="FAClsFrm" Index="3" RelativeSize="80.57395143487858" IsNewNode="True" />
+                  <LayoutGroup Id="Auto9adbd4e3-8cac-403d-bc6f-a090da4c11c7" ShowCaption="False" Caption="Auto9adbd4e3-8cac-403d-bc6f-a090da4c11c7(6)" Index="0" RelativeSize="49.821640903686088" IsNewNode="True">
+                    <LayoutItem Id="DateFrm" ViewItem="DateFrm" Index="0" RelativeSize="7.5789473684210522" IsNewNode="True" />
+                    <LayoutItem Id="FACodeFrm" ViewItem="FACodeFrm" Index="1" RelativeSize="5.4736842105263159" IsNewNode="True" />
+                    <LayoutItem Id="FAGrpFrm" ViewItem="FAGrpFrm" Index="2" RelativeSize="5.4736842105263159" IsNewNode="True" />
+                    <LayoutItem Id="FAClsFrm" ViewItem="FAClsFrm" Index="3" RelativeSize="5.4736842105263159" IsNewNode="True" />
+                    <LayoutItem Id="U_ProjectFrm" ViewItem="U_ProjectFrm" Index="4" RelativeSize="5.4736842105263159" IsNewNode="True" />
+                    <LayoutItem Id="U_ProfitCodeFrm" ViewItem="U_ProfitCodeFrm" Index="5" RelativeSize="5.4736842105263159" IsNewNode="True" />
+                    <LayoutItem Id="U_OcrCode2Frm" ViewItem="U_OcrCode2Frm" Index="6" RelativeSize="5.4736842105263159" IsNewNode="True" />
+                    <LayoutItem Id="U_OcrCode3Frm" ViewItem="U_OcrCode3Frm" Index="7" RelativeSize="5.4736842105263159" IsNewNode="True" />
+                    <LayoutItem Id="U_OcrCode4Frm" ViewItem="U_OcrCode4Frm" Index="8" RelativeSize="5.4736842105263159" IsNewNode="True" />
+                    <LayoutItem Id="U_OcrCode5Frm" ViewItem="U_OcrCode5Frm" Index="9" RelativeSize="5.4736842105263159" IsNewNode="True" />
+                    <LayoutItem Id="U_IndKey1Frm" ViewItem="U_IndKey1Frm" Index="10" RelativeSize="5.4736842105263159" IsNewNode="True" />
+                    <LayoutItem Id="U_IndKey2Frm" ViewItem="U_IndKey2Frm" Index="11" RelativeSize="5.4736842105263159" IsNewNode="True" />
+                    <LayoutItem Id="U_IndKey3Frm" ViewItem="U_IndKey3Frm" Index="12" RelativeSize="5.4736842105263159" IsNewNode="True" />
+                    <LayoutItem Id="U_IndKey4Frm" ViewItem="U_IndKey4Frm" Index="13" RelativeSize="5.4736842105263159" IsNewNode="True" />
+                    <LayoutItem Id="U_IndKey5Frm" ViewItem="U_IndKey5Frm" Index="14" RelativeSize="5.4736842105263159" IsNewNode="True" />
+                    <LayoutItem Id="U_IndKey6Frm" ViewItem="U_IndKey6Frm" Index="15" RelativeSize="15.789473684210526" IsNewNode="True" />
                   </LayoutGroup>
-                  <LayoutGroup Id="Auto00fd5659-417a-4a69-94c8-307522289d39" ShowCaption="False" Caption="" Index="1" RelativeSize="50.07727975270479" IsNewNode="True">
-                    <LayoutItem Id="DateTo" ViewItem="DateTo" Index="0" RelativeSize="7.9470198675496686" IsNewNode="True" />
-                    <LayoutItem Id="FACodeTo" ViewItem="FACodeTo" Index="1" RelativeSize="5.739514348785872" IsNewNode="True" />
-                    <LayoutItem Id="FAGrpTo" ViewItem="FAGrpTo" Index="2" RelativeSize="5.739514348785872" IsNewNode="True" />
-                    <LayoutItem Id="FAClsTo" ViewItem="FAClsTo" Index="3" RelativeSize="80.57395143487858" IsNewNode="True" />
+                  <LayoutGroup Id="Auto00fd5659-417a-4a69-94c8-307522289d39" ShowCaption="False" Caption="Auto00fd5659-417a-4a69-94c8-307522289d39(11)" Index="1" RelativeSize="50.178359096313912" IsNewNode="True">
+                    <LayoutItem Id="DateTo" ViewItem="DateTo" Index="0" RelativeSize="7.5789473684210522" IsNewNode="True" />
+                    <LayoutItem Id="FACodeTo" ViewItem="FACodeTo" Index="1" RelativeSize="5.4736842105263159" IsNewNode="True" />
+                    <LayoutItem Id="FAGrpTo" ViewItem="FAGrpTo" Index="2" RelativeSize="5.4736842105263159" IsNewNode="True" />
+                    <LayoutItem Id="FAClsTo" ViewItem="FAClsTo" Index="3" RelativeSize="5.4736842105263159" IsNewNode="True" />
+                    <LayoutItem Id="U_ProjectTo" ViewItem="U_ProjectTo" Index="4" RelativeSize="5.4736842105263159" IsNewNode="True" />
+                    <LayoutItem Id="U_ProfitCodeTo" ViewItem="U_ProfitCodeTo" Index="5" RelativeSize="5.4736842105263159" IsNewNode="True" />
+                    <LayoutItem Id="U_OcrCode2To" ViewItem="U_OcrCode2To" Index="6" RelativeSize="5.4736842105263159" IsNewNode="True" />
+                    <LayoutItem Id="U_OcrCode3To" ViewItem="U_OcrCode3To" Index="7" RelativeSize="5.4736842105263159" IsNewNode="True" />
+                    <LayoutItem Id="U_OcrCode4To" ViewItem="U_OcrCode4To" Index="8" RelativeSize="5.4736842105263159" IsNewNode="True" />
+                    <LayoutItem Id="U_OcrCode5To" ViewItem="U_OcrCode5To" Index="9" RelativeSize="5.4736842105263159" IsNewNode="True" />
+                    <LayoutItem Id="U_IndKey1To" ViewItem="U_IndKey1To" Index="10" RelativeSize="5.4736842105263159" IsNewNode="True" />
+                    <LayoutItem Id="U_IndKey2To" ViewItem="U_IndKey2To" Index="11" RelativeSize="5.4736842105263159" IsNewNode="True" />
+                    <LayoutItem Id="U_IndKey3To" ViewItem="U_IndKey3To" Index="12" RelativeSize="5.4736842105263159" IsNewNode="True" />
+                    <LayoutItem Id="U_IndKey4To" ViewItem="U_IndKey4To" Index="13" RelativeSize="5.4736842105263159" IsNewNode="True" />
+                    <LayoutItem Id="U_IndKey5To" ViewItem="U_IndKey5To" Index="14" RelativeSize="5.4736842105263159" IsNewNode="True" />
+                    <LayoutItem Id="U_IndKey6To" ViewItem="U_IndKey6To" Index="15" RelativeSize="15.789473684210526" IsNewNode="True" />
                   </LayoutGroup>
                 </LayoutGroup>
               </TabbedGroup>
@@ -1840,6 +1888,18 @@
         <PropertyEditor Id="PostOpt" AllowClear="False" />
         <PropertyEditor Id="PostTo" AllowClear="False" />
         <PropertyEditor Id="Series" AllowClear="False" />
+        <PropertyEditor Id="U_OcrCode2Frm" LookupEditorMode="AllItemsWithSearch" />
+        <PropertyEditor Id="U_OcrCode2To" LookupEditorMode="AllItemsWithSearch" />
+        <PropertyEditor Id="U_OcrCode3Frm" LookupEditorMode="AllItemsWithSearch" />
+        <PropertyEditor Id="U_OcrCode3To" LookupEditorMode="AllItemsWithSearch" />
+        <PropertyEditor Id="U_OcrCode4Frm" LookupEditorMode="AllItemsWithSearch" />
+        <PropertyEditor Id="U_OcrCode4To" LookupEditorMode="AllItemsWithSearch" />
+        <PropertyEditor Id="U_OcrCode5Frm" LookupEditorMode="AllItemsWithSearch" />
+        <PropertyEditor Id="U_OcrCode5To" LookupEditorMode="AllItemsWithSearch" />
+        <PropertyEditor Id="U_ProfitCodeFrm" LookupEditorMode="AllItemsWithSearch" />
+        <PropertyEditor Id="U_ProfitCodeTo" LookupEditorMode="AllItemsWithSearch" />
+        <PropertyEditor Id="U_ProjectFrm" LookupEditorMode="AllItemsWithSearch" />
+        <PropertyEditor Id="U_ProjectTo" LookupEditorMode="AllItemsWithSearch" />
       </Items>
       <Layout>
         <LayoutGroup Id="Main" RelativeSize="100">
@@ -1848,40 +1908,53 @@
               <TabbedGroup Id="Item2" CaptionLocation="Top" Index="0" RelativeSize="100" IsNewNode="True">
                 <LayoutGroup Id="Item1" ShowCaption="True" CaptionLocation="Top" Index="0" RelativeSize="100" Caption="Posting Widget" Direction="Vertical" IsNewNode="True">
                   <LayoutGroup Id="Autof86abb0f-f092-4a2e-b633-31d6566a0ada" ShowCaption="False" Caption="Autof86abb0f-f092-4a2e-b633-31d6566a0ada(6)" Index="0" RelativeSize="100" IsNewNode="True">
-                    <LayoutGroup Id="Autob67bb6bf-62cb-424d-bb43-d1a6e99b9bd5" ShowCaption="False" Caption="Autob67bb6bf-62cb-424d-bb43-d1a6e99b9bd5(7)" Direction="Horizontal" Index="0" RelativeSize="25.684210526315791" IsNewNode="True">
-                      <LayoutGroup Id="Auto50f96ea4-3b1f-41f0-8d08-af583a442fcf" ShowCaption="False" Caption="Auto50f96ea4-3b1f-41f0-8d08-af583a442fcf(8)" Index="0" RelativeSize="49.756690997566913" IsNewNode="True">
-                        <LayoutItem Id="DateFrm" ViewItem="DateFrm" Index="0" RelativeSize="29.508196721311474" IsNewNode="True" />
-                        <LayoutItem Id="FACodeFrm" ViewItem="FACodeFrm" Index="1" RelativeSize="21.311475409836067" IsNewNode="True" />
-                        <LayoutItem Id="FAGrpFrm" ViewItem="FAGrpFrm" Index="2" RelativeSize="21.311475409836067" IsNewNode="True" />
-                        <LayoutItem Id="FAClsFrm" ViewItem="FAClsFrm" Index="3" RelativeSize="27.868852459016395" IsNewNode="True" />
+                    <LayoutGroup Id="Autob67bb6bf-62cb-424d-bb43-d1a6e99b9bd5" ShowCaption="False" Caption="Autob67bb6bf-62cb-424d-bb43-d1a6e99b9bd5(7)" Direction="Horizontal" Index="0" RelativeSize="53.667953667953668" IsNewNode="True">
+                      <LayoutGroup Id="Auto50f96ea4-3b1f-41f0-8d08-af583a442fcf" ShowCaption="False" Caption="Auto50f96ea4-3b1f-41f0-8d08-af583a442fcf(8)" Index="0" RelativeSize="49.756097560975611" IsNewNode="True">
+                        <LayoutItem Id="DateFrm" ViewItem="DateFrm" Index="0" RelativeSize="12.949640287769784" IsNewNode="True" />
+                        <LayoutItem Id="FACodeFrm" ViewItem="FACodeFrm" Index="1" RelativeSize="9.3525179856115113" IsNewNode="True" />
+                        <LayoutItem Id="FAGrpFrm" ViewItem="FAGrpFrm" Index="2" RelativeSize="9.3525179856115113" IsNewNode="True" />
+                        <LayoutItem Id="FAClsFrm" ViewItem="FAClsFrm" Index="3" RelativeSize="9.3525179856115113" IsNewNode="True" />
+                        <LayoutItem Id="U_ProjectFrm" ViewItem="U_ProjectFrm" Index="4" RelativeSize="9.3525179856115113" IsNewNode="True" />
+                        <LayoutItem Id="U_ProfitCodeFrm" ViewItem="U_ProfitCodeFrm" Index="5" RelativeSize="9.3525179856115113" IsNewNode="True" />
+                        <LayoutItem Id="U_OcrCode2Frm" ViewItem="U_OcrCode2Frm" Index="6" RelativeSize="9.3525179856115113" IsNewNode="True" />
+                        <LayoutItem Id="U_OcrCode3Frm" ViewItem="U_OcrCode3Frm" Index="7" RelativeSize="9.3525179856115113" IsNewNode="True" />
+                        <LayoutItem Id="U_OcrCode4Frm" ViewItem="U_OcrCode4Frm" Index="8" RelativeSize="9.3525179856115113" IsNewNode="True" />
+                        <LayoutItem Id="U_OcrCode5Frm" ViewItem="U_OcrCode5Frm" Index="9" RelativeSize="12.23021582733813" IsNewNode="True" />
                       </LayoutGroup>
-                      <LayoutGroup Id="Auto1903ce0f-9943-4ad5-a043-becdce53daa7" ShowCaption="False" Caption="Auto1903ce0f-9943-4ad5-a043-becdce53daa7(13)" Index="1" RelativeSize="50.243309002433087" IsNewNode="True">
-                        <LayoutItem Id="DateTo" ViewItem="DateTo" Index="0" RelativeSize="29.508196721311474" IsNewNode="True" />
-                        <LayoutItem Id="FACodeTo" ViewItem="FACodeTo" Index="1" RelativeSize="21.311475409836067" IsNewNode="True" />
-                        <LayoutItem Id="FAGrpTo" ViewItem="FAGrpTo" Index="2" RelativeSize="21.311475409836067" IsNewNode="True" />
-                        <LayoutItem Id="FAClsTo" ViewItem="FAClsTo" Index="3" RelativeSize="27.868852459016395" IsNewNode="True" />
+                      <LayoutGroup Id="Auto1903ce0f-9943-4ad5-a043-becdce53daa7" ShowCaption="False" Caption="Auto1903ce0f-9943-4ad5-a043-becdce53daa7(13)" Index="1" RelativeSize="50.243902439024389" IsNewNode="True">
+                        <LayoutItem Id="DateTo" ViewItem="DateTo" Index="0" RelativeSize="12.949640287769784" IsNewNode="True" />
+                        <LayoutItem Id="FACodeTo" ViewItem="FACodeTo" Index="1" RelativeSize="9.3525179856115113" IsNewNode="True" />
+                        <LayoutItem Id="FAGrpTo" ViewItem="FAGrpTo" Index="2" RelativeSize="9.3525179856115113" IsNewNode="True" />
+                        <LayoutItem Id="FAClsTo" ViewItem="FAClsTo" Index="3" RelativeSize="9.3525179856115113" IsNewNode="True" />
+                        <LayoutItem Id="U_ProjectTo" ViewItem="U_ProjectTo" Index="4" RelativeSize="9.3525179856115113" IsNewNode="True" />
+                        <LayoutItem Id="U_ProfitCodeTo" ViewItem="U_ProfitCodeTo" Index="5" RelativeSize="9.3525179856115113" IsNewNode="True" />
+                        <LayoutItem Id="U_OcrCode2To" ViewItem="U_OcrCode2To" Index="6" RelativeSize="9.3525179856115113" IsNewNode="True" />
+                        <LayoutItem Id="U_OcrCode3To" ViewItem="U_OcrCode3To" Index="7" RelativeSize="9.3525179856115113" IsNewNode="True" />
+                        <LayoutItem Id="U_OcrCode4To" ViewItem="U_OcrCode4To" Index="8" RelativeSize="9.3525179856115113" IsNewNode="True" />
+                        <LayoutItem Id="U_OcrCode5To" ViewItem="U_OcrCode5To" Index="9" RelativeSize="12.23021582733813" IsNewNode="True" />
                       </LayoutGroup>
                     </LayoutGroup>
-                    <LayoutGroup Id="Item3" ShowCaption="True" Caption="Posting Option" CaptionLocation="Top" Index="1" RelativeSize="74.3157894736842" IsNewNode="True">
-                      <LayoutGroup Id="Auto43d5cdca-b490-41a2-94e3-0d354f127f5d" ShowCaption="False" Caption="Auto43d5cdca-b490-41a2-94e3-0d354f127f5d(20)" Direction="Vertical" Index="0" RelativeSize="38.977635782747605" IsNewNode="True">
+                    <LayoutGroup Id="Item3" ShowCaption="True" Caption="Posting Option" CaptionLocation="Top" Index="1" RelativeSize="46.332046332046332" IsNewNode="True">
+                      <LayoutGroup Id="Auto43d5cdca-b490-41a2-94e3-0d354f127f5d" ShowCaption="False" Caption="Auto43d5cdca-b490-41a2-94e3-0d354f127f5d(20)" Direction="Vertical" Index="0" RelativeSize="82" IsNewNode="True">
                         <LayoutGroup Id="Auto386dbd72-4fd9-4cf4-a108-6a9195515b34" ShowCaption="False" Caption="Auto386dbd72-4fd9-4cf4-a108-6a9195515b34(21)" Index="0" RelativeSize="100" Direction="Vertical" IsNewNode="True">
                           <LayoutGroup Id="Auto0765aef0-fc0c-4d0a-b8ec-e31e45149080" ShowCaption="False" Caption="Auto0765aef0-fc0c-4d0a-b8ec-e31e45149080(21)" Index="0" RelativeSize="100" IsNewNode="True">
-                            <LayoutItem Id="PostOpt" ViewItem="PostOpt" Index="0" RelativeSize="29.508196721311474" IsNewNode="True" />
-                            <LayoutGroup Id="Auto87fa0f7b-3052-4ab8-9f18-1e9530cc375c" ShowCaption="False" Caption="" Direction="Horizontal" Index="1" RelativeSize="42.622950819672134" IsNewNode="True">
-                              <LayoutGroup Id="Auto8ded0fa2-ede4-48f2-b137-7d4f2d2801a6" ShowCaption="False" Caption="" Index="0" RelativeSize="49.874371859296481" IsNewNode="True">
+                            <LayoutItem Id="PostOpt" ViewItem="PostOpt" Index="0" RelativeSize="21.951219512195124" IsNewNode="True" />
+                            <LayoutGroup Id="Auto87fa0f7b-3052-4ab8-9f18-1e9530cc375c" ShowCaption="False" Caption="Auto87fa0f7b-3052-4ab8-9f18-1e9530cc375c(23)" Direction="Horizontal" Index="1" RelativeSize="41.463414634146339" IsNewNode="True">
+                              <LayoutGroup Id="Auto8ded0fa2-ede4-48f2-b137-7d4f2d2801a6" ShowCaption="False" Caption="Auto8ded0fa2-ede4-48f2-b137-7d4f2d2801a6(24)" Index="0" RelativeSize="49.874055415617129" IsNewNode="True">
                                 <LayoutItem Id="PostTo" ViewItem="PostTo" Index="0" RelativeSize="50" IsNewNode="True" />
                                 <LayoutItem Id="Series" ViewItem="Series" Index="1" RelativeSize="50" IsNewNode="True" />
                               </LayoutGroup>
-                              <LayoutGroup Id="Auto7b9827cd-5b67-472e-8f17-3960aac8f29f" ShowCaption="False" Caption="" Index="1" RelativeSize="50.125628140703519" IsNewNode="True">
+                              <LayoutGroup Id="Auto7b9827cd-5b67-472e-8f17-3960aac8f29f" ShowCaption="False" Caption="Auto7b9827cd-5b67-472e-8f17-3960aac8f29f(27)" Index="1" RelativeSize="50.125944584382871" IsNewNode="True">
                                 <LayoutItem Id="FileType" ViewItem="FileType" Index="0" RelativeSize="50" IsNewNode="True" />
                                 <LayoutItem Id="DocDate" ViewItem="DocDate" Index="1" RelativeSize="50" IsNewNode="True" />
                               </LayoutGroup>
                             </LayoutGroup>
-                            <LayoutItem Id="Ref1" ViewItem="Ref1" Index="2" RelativeSize="27.868852459016395" IsNewNode="True" />
+                            <LayoutItem Id="Ref1" ViewItem="Ref1" Index="2" RelativeSize="15.853658536585366" IsNewNode="True" />
+                            <LayoutItem Id="Ref2" ViewItem="Ref2" Index="3" RelativeSize="20.73170731707317" IsNewNode="True" />
                           </LayoutGroup>
                         </LayoutGroup>
                       </LayoutGroup>
-                      <LayoutItem Id="JEMemo" ViewItem="JEMemo" Index="1" RelativeSize="61.022364217252395" IsNewNode="True" />
+                      <LayoutItem Id="JEMemo" ViewItem="JEMemo" Index="1" RelativeSize="18" IsNewNode="True" />
                     </LayoutGroup>
                   </LayoutGroup>
                 </LayoutGroup>

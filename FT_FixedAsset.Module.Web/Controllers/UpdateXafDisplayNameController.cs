@@ -31,7 +31,8 @@ namespace FT_FixedAsset.Module.Web.Controllers
             base.OnActivated();
 
             if (View.ObjectTypeInfo.Type == typeof(FTS11OFAM) || View.ObjectTypeInfo.Type == typeof(FTS11FAM2) || 
-                View.ObjectTypeInfo.Type == typeof(FTS11OLOC) || View.ObjectTypeInfo.Type == typeof(ReportViewer))
+                View.ObjectTypeInfo.Type == typeof(FTS11OLOC) || View.ObjectTypeInfo.Type == typeof(ReportViewer) ||
+                View.ObjectTypeInfo.Type == typeof(DeprnWidget) || View.ObjectTypeInfo.Type == typeof(PostWidget))
             {
                 FTS11OADM OADM = ObjectSpace.FindObject<FTS11OADM>(CriteriaOperator.Parse("DocEntry = 1"));
 

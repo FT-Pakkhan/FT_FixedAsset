@@ -2,7 +2,6 @@
 using DevExpress.ExpressApp;
 using DevExpress.ExpressApp.Actions;
 using DevExpress.ExpressApp.Editors;
-using DevExpress.ExpressApp.SystemModule;
 using FT_FixedAsset.Module.BusinessObjects;
 using FT_FixedAsset.Module.Controllers;
 using System;
@@ -241,7 +240,7 @@ namespace FT_FixedAsset.Module.Web.Controllers
         private void UpdateActionState()
         {
             Action.Active["Action"] = View is ListView || (View is DetailView && ((DetailView)View).ViewEditMode == ViewEditMode.View);
-            CancelTrans.Active["CancelTrans"] = View is ListView || (View is DetailView && ((DetailView)View).ViewEditMode == ViewEditMode.View);
+            CancelTrans.Active["CancelTrans"] = (View is DetailView && ((DetailView)View).ViewEditMode == ViewEditMode.View);
             Duplicate.Active["Duplicate"] = View is ListView || (View is DetailView && ((DetailView)View).ViewEditMode == ViewEditMode.View);
             Advanced.Enabled["Advanced"] = View is DetailView;
         }
@@ -291,6 +290,34 @@ namespace FT_FixedAsset.Module.Web.Controllers
                     string faclsfrm = RunDeprn.FAClsFrm == null ? "" : RunDeprn.FAClsFrm.Code;
                     string faclsto = RunDeprn.FAClsTo == null ? "" : RunDeprn.FAClsTo.Code;
 
+                    //Project / Dimensions
+                    string U_ProjectFrm = RunDeprn.U_ProjectFrm == null ? "" : RunDeprn.U_ProjectFrm.PrjCode;
+                    string U_ProjectTo = RunDeprn.U_ProjectTo == null ? "" : RunDeprn.U_ProjectTo.PrjCode;
+                    string U_ProfitCodeFrm = RunDeprn.U_ProfitCodeFrm == null ? "" : RunDeprn.U_ProfitCodeFrm.PrcCode;
+                    string U_ProfitCodeTo = RunDeprn.U_ProfitCodeTo == null ? "" : RunDeprn.U_ProfitCodeTo.PrcCode;
+                    string U_OcrCode2Frm = RunDeprn.U_OcrCode2Frm == null ? "" : RunDeprn.U_OcrCode2Frm.PrcCode;
+                    string U_OcrCode2To = RunDeprn.U_OcrCode2To == null ? "" : RunDeprn.U_OcrCode2To.PrcCode;
+                    string U_OcrCode3Frm = RunDeprn.U_OcrCode3Frm == null ? "" : RunDeprn.U_OcrCode3Frm.PrcCode;
+                    string U_OcrCode3To = RunDeprn.U_OcrCode3To == null ? "" : RunDeprn.U_OcrCode3To.PrcCode;
+                    string U_OcrCode4Frm = RunDeprn.U_OcrCode4Frm == null ? "" : RunDeprn.U_OcrCode4Frm.PrcCode;
+                    string U_OcrCode4To = RunDeprn.U_OcrCode4To == null ? "" : RunDeprn.U_OcrCode4To.PrcCode;
+                    string U_OcrCode5Frm = RunDeprn.U_OcrCode5Frm == null ? "" : RunDeprn.U_OcrCode5Frm.PrcCode;
+                    string U_OcrCode5To = RunDeprn.U_OcrCode5To == null ? "" : RunDeprn.U_OcrCode5To.PrcCode;
+
+                    //Indicator keys
+                    string U_IndKey1Frm = RunDeprn.U_IndKey1Frm == null ? "" : RunDeprn.U_IndKey1Frm.U_IndCode;
+                    string U_IndKey1To = RunDeprn.U_IndKey1To == null ? "" : RunDeprn.U_IndKey1To.U_IndCode;
+                    string U_IndKey2Frm = RunDeprn.U_IndKey2Frm == null ? "" : RunDeprn.U_IndKey2Frm.U_IndCode;
+                    string U_IndKey2To = RunDeprn.U_IndKey2To == null ? "" : RunDeprn.U_IndKey2To.U_IndCode;
+                    string U_IndKey3Frm = RunDeprn.U_IndKey3Frm == null ? "" : RunDeprn.U_IndKey3Frm.U_IndCode;
+                    string U_IndKey3To = RunDeprn.U_IndKey3To == null ? "" : RunDeprn.U_IndKey3To.U_IndCode;
+                    string U_IndKey4Frm = RunDeprn.U_IndKey4Frm == null ? "" : RunDeprn.U_IndKey4Frm.U_IndCode;
+                    string U_IndKey4To = RunDeprn.U_IndKey4To == null ? "" : RunDeprn.U_IndKey4To.U_IndCode;
+                    string U_IndKey5Frm = RunDeprn.U_IndKey5Frm == null ? "" : RunDeprn.U_IndKey5Frm.U_IndCode;
+                    string U_IndKey5To = RunDeprn.U_IndKey5To == null ? "" : RunDeprn.U_IndKey5To.U_IndCode;
+                    string U_IndKey6Frm = RunDeprn.U_IndKey6Frm == null ? "" : RunDeprn.U_IndKey6Frm.U_IndCode;
+                    string U_IndKey6To = RunDeprn.U_IndKey6To == null ? "" : RunDeprn.U_IndKey6To.U_IndCode;
+
                     getDeprFAList.CommandText = "SELECT FAKey, U_FACode FROM FTS_fn_FADeprList ('" +
                         dateto + "', '" +
                         facodefrm + "', '" +
@@ -298,7 +325,35 @@ namespace FT_FixedAsset.Module.Web.Controllers
                         fagrpfrm + "', '" +
                         fagrpto + "', '" +
                         faclsfrm + "', '" +
-                        faclsto + "')";
+                        faclsto + "', '" +
+
+                        //Project / Dimensions
+                        U_ProjectFrm + "', '" +
+                        U_ProjectTo + "', '" +
+                        U_ProfitCodeFrm + "', '" +
+                        U_ProfitCodeTo + "', '" +
+                        U_OcrCode2Frm + "', '" +
+                        U_OcrCode2To + "', '" +
+                        U_OcrCode3Frm + "', '" +
+                        U_OcrCode3To + "', '" +
+                        U_OcrCode4Frm + "', '" +
+                        U_OcrCode4To + "', '" +
+                        U_OcrCode5Frm + "', '" +
+                        U_OcrCode5To + "', '" +
+
+                        //Indicator keys
+                        U_IndKey1Frm + "', '" +
+                        U_IndKey1To + "', '" +
+                        U_IndKey2Frm + "', '" +
+                        U_IndKey2To + "', '" +
+                        U_IndKey3Frm + "', '" +
+                        U_IndKey3To + "', '" +
+                        U_IndKey4Frm + "', '" +
+                        U_IndKey4To + "', '" +
+                        U_IndKey5Frm + "', '" +
+                        U_IndKey5To + "', '" +
+                        U_IndKey6Frm + "', '" +
+                        U_IndKey6To + "')";
 
                     SqlDataAdapter da = new SqlDataAdapter(getDeprFAList);
                     DataTable dt = new DataTable();
@@ -1687,6 +1742,8 @@ namespace FT_FixedAsset.Module.Web.Controllers
 
                 if (e.SelectedObjects.Count > 0)
                 {
+                    CancelTrans.ConfirmationMessage = "Are you sure to CANCEL this Fixed Asset?";
+
                     foreach (var selectedObject in e.SelectedObjects)
                     {
                         selectedOFAM.Add((FTS11OFAM)ObjectSpace.GetObject(selectedObject));

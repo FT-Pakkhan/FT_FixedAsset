@@ -141,6 +141,17 @@ namespace FT_FixedAsset.Module.Web.Controllers
                     HttpContext.Current.Session["FAGrpTo"] = JEPreview.FAGrpTo == null ? "" : JEPreview.FAGrpTo.U_FAGrpCod;
                     HttpContext.Current.Session["FAClsFrm"] = JEPreview.FAClsFrm == null ? "" : JEPreview.FAClsFrm.Code;
                     HttpContext.Current.Session["FAClsTo"] = JEPreview.FAClsTo == null ? "" : JEPreview.FAClsTo.Code;
+                    HttpContext.Current.Session["U_ProjectFrm"] = JEPreview.U_ProjectTo == null ? "" : JEPreview.U_ProjectTo.PrjCode;
+                    HttpContext.Current.Session["U_ProfitCodeFrm"] = JEPreview.U_ProfitCodeFrm == null ? "" : JEPreview.U_ProfitCodeFrm.PrcCode;
+                    HttpContext.Current.Session["U_ProfitCodeTo"] = JEPreview.U_ProfitCodeTo == null ? "" : JEPreview.U_ProfitCodeTo.PrcCode;
+                    HttpContext.Current.Session["U_OcrCode2Frm"] = JEPreview.U_OcrCode2Frm == null ? "" : JEPreview.U_OcrCode2Frm.PrcCode;
+                    HttpContext.Current.Session["U_OcrCode2To"] = JEPreview.U_OcrCode2To == null ? "" : JEPreview.U_OcrCode2To.PrcCode;
+                    HttpContext.Current.Session["U_OcrCode3Frm"] = JEPreview.U_OcrCode3Frm == null ? "" : JEPreview.U_OcrCode3Frm.PrcCode;
+                    HttpContext.Current.Session["U_OcrCode3To"] = JEPreview.U_OcrCode3To == null ? "" : JEPreview.U_OcrCode3To.PrcCode;
+                    HttpContext.Current.Session["U_OcrCode4Frm"] = JEPreview.U_OcrCode4Frm == null ? "" : JEPreview.U_OcrCode4Frm.PrcCode;
+                    HttpContext.Current.Session["U_OcrCode4To"] = JEPreview.U_OcrCode4To == null ? "" : JEPreview.U_OcrCode4To.PrcCode;
+                    HttpContext.Current.Session["U_OcrCode5Frm"] = JEPreview.U_OcrCode5Frm == null ? "" : JEPreview.U_OcrCode5Frm.PrcCode;
+                    HttpContext.Current.Session["U_OcrCode5To"] = JEPreview.U_OcrCode5To == null ? "" : JEPreview.U_OcrCode5To.PrcCode;
                     HttpContext.Current.Session["JESplitBy"] = OADM.U_SplitBy == null ? "" : OADM.U_SplitBy.Code;
                     HttpContext.Current.Session["Option"] = JEPreview.PostOpt == null ? "" : JEPreview.PostOpt.Code;
                     HttpContext.Current.Session["PostTo"] = JEPreview.PostTo == null ? "" : JEPreview.PostTo.Code;

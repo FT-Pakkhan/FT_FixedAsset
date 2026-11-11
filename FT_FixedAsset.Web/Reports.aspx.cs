@@ -1,13 +1,7 @@
 ﻿using CrystalDecisions.CrystalReports.Engine;
-using CrystalDecisions.Shared;
-using DevExpress.ExpressApp;
 using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
 using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace FT_FixedAsset.Web
 {
@@ -106,6 +100,42 @@ namespace FT_FixedAsset.Web
                 if (param.Name.Equals("FAClsTo"))
                     doc.SetParameterValue("FAClsTo", HttpContext.Current.Session["FAClsTo"].ToString());
 
+                if (param.Name.Equals("projectfrom"))
+                    doc.SetParameterValue("projectfrom", HttpContext.Current.Session["U_ProjectFrm"].ToString());
+
+                if (param.Name.Equals("projectto"))
+                    doc.SetParameterValue("projectto", HttpContext.Current.Session["U_Projectto"].ToString());
+
+                if (param.Name.Equals("profitcofrom"))
+                    doc.SetParameterValue("profitcofrom", HttpContext.Current.Session["U_ProfitCodeFrm"].ToString());
+
+                if (param.Name.Equals("profitcoto"))
+                    doc.SetParameterValue("profitcoto", HttpContext.Current.Session["U_ProfitCodeto"].ToString());
+
+                if (param.Name.Equals("ocrcode2from"))
+                    doc.SetParameterValue("ocrcode2from", HttpContext.Current.Session["U_OcrCode2Frm"].ToString());
+
+                if (param.Name.Equals("ocrcode2to"))
+                    doc.SetParameterValue("ocrcode2to", HttpContext.Current.Session["U_OcrCode2to"].ToString());
+
+                if (param.Name.Equals("ocrcode3from"))
+                    doc.SetParameterValue("ocrcode3from", HttpContext.Current.Session["U_OcrCode3Frm"].ToString());
+
+                if (param.Name.Equals("ocrcode3to"))
+                    doc.SetParameterValue("ocrcode3to", HttpContext.Current.Session["U_OcrCode3to"].ToString());
+
+                if (param.Name.Equals("ocrcode4from"))
+                    doc.SetParameterValue("ocrcode4from", HttpContext.Current.Session["U_OcrCode4Frm"].ToString());
+
+                if (param.Name.Equals("ocrcode4to"))
+                    doc.SetParameterValue("ocrcode4to", HttpContext.Current.Session["U_OcrCode4to"].ToString());
+
+                if (param.Name.Equals("ocrcode5from"))
+                    doc.SetParameterValue("ocrcode5from", HttpContext.Current.Session["U_OcrCode5Frm"].ToString());
+
+                if (param.Name.Equals("ocrcode5to"))
+                    doc.SetParameterValue("ocrcode5to", HttpContext.Current.Session["U_OcrCode5to"].ToString());
+
                 if (param.Name.Equals("JESplitBy"))
                     doc.SetParameterValue("JESplitBy", HttpContext.Current.Session["JESplitBy"]);
 
@@ -128,7 +158,7 @@ namespace FT_FixedAsset.Web
                     doc.SetParameterValue("Ref1", HttpContext.Current.Session["Ref1"]);
 
                 if (param.Name.Equals("Ref2"))
-                    doc.SetParameterValue("Memo", HttpContext.Current.Session["Ref2"]);
+                    doc.SetParameterValue("Ref2", HttpContext.Current.Session["Ref2"]);
 
                 if (param.Name.Equals("Memo"))
                     doc.SetParameterValue("Memo", HttpContext.Current.Session["Memo"]);

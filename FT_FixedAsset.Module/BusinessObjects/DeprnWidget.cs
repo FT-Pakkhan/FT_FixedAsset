@@ -106,5 +106,255 @@ namespace FT_FixedAsset.Module.BusinessObjects
             get { return _FAClsTo; }
             set { SetPropertyValue("FAClsTo", ref _FAClsTo, value); }
         }
+
+        private FTS11_vw_OPRJ _U_ProjectFrm;
+        [XafDisplayName("Project From"), ToolTip("Project From")]
+        [Index(90), VisibleInListView(true), VisibleInDetailView(true), VisibleInLookupListView(true)]
+        [NoForeignKey]
+        public FTS11_vw_OPRJ U_ProjectFrm
+        {
+            get { return _U_ProjectFrm; }
+            set { SetPropertyValue("U_ProjectFrm", ref _U_ProjectFrm, value); }
+        }
+
+        private FTS11_vw_OPRJ _U_ProjectTo;
+        [XafDisplayName("Project To"), ToolTip("Project To")]
+        [Index(91), VisibleInListView(true), VisibleInDetailView(true), VisibleInLookupListView(true)]
+        [NoForeignKey]
+        public FTS11_vw_OPRJ U_ProjectTo
+        {
+            get { return _U_ProjectTo; }
+            set { SetPropertyValue("U_ProjectTo", ref _U_ProjectTo, value); }
+        }
+
+        private FTS11_vw_OPRC _U_ProfitCodeFrm;
+        [XafDisplayName("C.Centre D1 From"), ToolTip("C.Centre D1 From")]
+        [Index(100), VisibleInListView(true), VisibleInDetailView(true), VisibleInLookupListView(true)]
+        [NoForeignKey]
+        [DataSourceCriteria("DimCode = '1'")]
+        public FTS11_vw_OPRC U_ProfitCodeFrm
+        {
+            get { return _U_ProfitCodeFrm; }
+            set { SetPropertyValue("U_ProfitCodeFrm", ref _U_ProfitCodeFrm, value); }
+        }
+
+        private FTS11_vw_OPRC _U_ProfitCodeTo;
+        [XafDisplayName("C.Centre D1 To"), ToolTip("C.Centre D1 To")]
+        [Index(101), VisibleInListView(true), VisibleInDetailView(true), VisibleInLookupListView(true)]
+        [NoForeignKey]
+        [DataSourceCriteria("DimCode = '1'")]
+        public FTS11_vw_OPRC U_ProfitCodeTo
+        {
+            get { return _U_ProfitCodeTo; }
+            set { SetPropertyValue("U_ProfitCodeTo", ref _U_ProfitCodeTo, value); }
+        }
+
+        private FTS11_vw_OPRC _U_OcrCode2Frm;
+        [XafDisplayName("C.Centre D2 From"), ToolTip("C.Centre D2 From")]
+        [Index(110), VisibleInListView(true), VisibleInDetailView(true), VisibleInLookupListView(true)]
+        [NoForeignKey]
+        [DataSourceCriteria("DimCode = '2'")]
+        public FTS11_vw_OPRC U_OcrCode2Frm
+        {
+            get { return _U_OcrCode2Frm; }
+            set { SetPropertyValue("U_OcrCode2Frm", ref _U_OcrCode2Frm, value); }
+        }
+
+        private FTS11_vw_OPRC _U_OcrCode2To;
+        [XafDisplayName("C.Centre D2 To"), ToolTip("C.Centre D2 To")]
+        [Index(111), VisibleInListView(true), VisibleInDetailView(true), VisibleInLookupListView(true)]
+        [NoForeignKey]
+        [DataSourceCriteria("DimCode = '2'")]
+        public FTS11_vw_OPRC U_OcrCode2To
+        {
+            get { return _U_OcrCode2To; }
+            set { SetPropertyValue("U_OcrCode2To", ref _U_OcrCode2To, value); }
+        }
+
+        private FTS11_vw_OPRC _U_OcrCode3Frm;
+        [XafDisplayName("C.Centre D3 From"), ToolTip("Cost Centre D3 From")]
+        [Index(120), VisibleInListView(true), VisibleInDetailView(true), VisibleInLookupListView(true)]
+        [NoForeignKey]
+        [DataSourceCriteria("DimCode = '3'")]
+        public FTS11_vw_OPRC U_OcrCode3Frm
+        {
+            get { return _U_OcrCode3Frm; }
+            set { SetPropertyValue("U_OcrCode3Frm", ref _U_OcrCode3Frm, value); }
+        }
+
+        private FTS11_vw_OPRC _U_OcrCode3To;
+        [XafDisplayName("C.Centre D3 To"), ToolTip("Cost Centre D3 To")]
+        [Index(121), VisibleInListView(true), VisibleInDetailView(true), VisibleInLookupListView(true)]
+        [NoForeignKey]
+        [DataSourceCriteria("DimCode = '3'")]
+        public FTS11_vw_OPRC U_OcrCode3To
+        {
+            get { return _U_OcrCode3To; }
+            set { SetPropertyValue("U_OcrCode3To", ref _U_OcrCode3To, value); }
+        }
+
+        private FTS11_vw_OPRC _U_OcrCode4Frm;
+        [XafDisplayName("C.Centre D4 From"), ToolTip("C.Centre D4 From")]
+        [Index(130), VisibleInListView(true), VisibleInDetailView(true), VisibleInLookupListView(true)]
+        [NoForeignKey]
+        [DataSourceCriteria("DimCode = '4'")]
+        public FTS11_vw_OPRC U_OcrCode4Frm
+        {
+            get { return _U_OcrCode4Frm; }
+            set { SetPropertyValue("U_OcrCode4Frm", ref _U_OcrCode4Frm, value); }
+        }
+
+        private FTS11_vw_OPRC _U_OcrCode4To;
+        [XafDisplayName("C.Centre D4 To"), ToolTip("C.Centre D4 To")]
+        [Index(131), VisibleInListView(true), VisibleInDetailView(true), VisibleInLookupListView(true)]
+        [NoForeignKey]
+        [DataSourceCriteria("DimCode = '4'")]
+        public FTS11_vw_OPRC U_OcrCode4To
+        {
+            get { return _U_OcrCode4To; }
+            set { SetPropertyValue("U_OcrCode4To", ref _U_OcrCode4To, value); }
+        }
+
+        private FTS11_vw_OPRC _U_OcrCode5Frm;
+        [XafDisplayName("C.Centre D5 From"), ToolTip("C.Centre D5 From")]
+        [Index(140), VisibleInListView(true), VisibleInDetailView(true), VisibleInLookupListView(true)]
+        [NoForeignKey]
+        [DataSourceCriteria("DimCode = '5'")]
+        public FTS11_vw_OPRC U_OcrCode5Frm
+        {
+            get { return _U_OcrCode5Frm; }
+            set { SetPropertyValue("U_OcrCode5Frm", ref _U_OcrCode5Frm, value); }
+        }
+
+        private FTS11_vw_OPRC _U_OcrCode5To;
+        [XafDisplayName("C.Centre D5 To"), ToolTip("C.Centre D5 To")]
+        [Index(141), VisibleInListView(true), VisibleInDetailView(true), VisibleInLookupListView(true)]
+        [NoForeignKey]
+        [DataSourceCriteria("DimCode = '5'")]
+        public FTS11_vw_OPRC U_OcrCode5To
+        {
+            get { return _U_OcrCode5To; }
+            set { SetPropertyValue("U_OcrCode5To", ref _U_OcrCode5To, value); }
+        }
+
+        private FTS11OIND _U_IndKey1Frm;
+        [XafDisplayName("Indicator 1 From"), ToolTip("Indicator 1 From")]
+        [Index(150), VisibleInListView(true), VisibleInDetailView(true), VisibleInLookupListView(true)]
+        [DataSourceCriteria("U_IndDim = '1'")]
+        public FTS11OIND U_IndKey1Frm
+        {
+            get { return _U_IndKey1Frm; }
+            set { SetPropertyValue("U_IndKey1Frm", ref _U_IndKey1Frm, value); }
+        }
+
+        private FTS11OIND _U_IndKey1To;
+        [XafDisplayName("Indicator 1 To"), ToolTip("Indicator 1 To")]
+        [Index(151), VisibleInListView(true), VisibleInDetailView(true), VisibleInLookupListView(true)]
+        [DataSourceCriteria("U_IndDim = '1'")]
+        public FTS11OIND U_IndKey1To
+        {
+            get { return _U_IndKey1To; }
+            set { SetPropertyValue("U_IndKey1To", ref _U_IndKey1To, value); }
+        }
+
+        private FTS11OIND _U_IndKey2Frm;
+        [XafDisplayName("Indicator 2 From"), ToolTip("Indicator 2 From")]
+        [Index(160), VisibleInListView(true), VisibleInDetailView(true), VisibleInLookupListView(true)]
+        [DataSourceCriteria("U_IndDim = '2'")]
+        public FTS11OIND U_IndKey2Frm
+        {
+            get { return _U_IndKey2Frm; }
+            set { SetPropertyValue("U_IndKey2Frm", ref _U_IndKey2Frm, value); }
+        }
+
+        private FTS11OIND _U_IndKey2To;
+        [XafDisplayName("Indicator 2 To"), ToolTip("Indicator 2 To")]
+        [Index(161), VisibleInListView(true), VisibleInDetailView(true), VisibleInLookupListView(true)]
+        [DataSourceCriteria("U_IndDim = '2'")]
+        public FTS11OIND U_IndKey2To
+        {
+            get { return _U_IndKey2To; }
+            set { SetPropertyValue("U_IndKey2To", ref _U_IndKey2To, value); }
+        }
+
+        private FTS11OIND _U_IndKey3Frm;
+        [XafDisplayName("Indicator 3 From"), ToolTip("Indicator 3 From")]
+        [Index(170), VisibleInListView(true), VisibleInDetailView(true), VisibleInLookupListView(true)]
+        [DataSourceCriteria("U_IndDim = '3'")]
+        public FTS11OIND U_IndKey3Frm
+        {
+            get { return _U_IndKey3Frm; }
+            set { SetPropertyValue("U_IndKey3Frm", ref _U_IndKey3Frm, value); }
+        }
+
+        private FTS11OIND _U_IndKey3To;
+        [XafDisplayName("Indicator 3 To"), ToolTip("Indicator 3 To")]
+        [Index(171), VisibleInListView(true), VisibleInDetailView(true), VisibleInLookupListView(true)]
+        [DataSourceCriteria("U_IndDim = '3'")]
+        public FTS11OIND U_IndKey3To
+        {
+            get { return _U_IndKey3To; }
+            set { SetPropertyValue("U_IndKey3To", ref _U_IndKey3To, value); }
+        }
+
+        private FTS11OIND _U_IndKey4Frm;
+        [XafDisplayName("Indicator 4 From"), ToolTip("Indicator 4 From")]
+        [Index(180), VisibleInListView(true), VisibleInDetailView(true), VisibleInLookupListView(true)]
+        [DataSourceCriteria("U_IndDim = '4'")]
+        public FTS11OIND U_IndKey4Frm
+        {
+            get { return _U_IndKey4Frm; }
+            set { SetPropertyValue("U_IndKey4Frm", ref _U_IndKey4Frm, value); }
+        }
+
+        private FTS11OIND _U_IndKey4To;
+        [XafDisplayName("Indicator 4 To"), ToolTip("Indicator 4 To")]
+        [Index(181), VisibleInListView(true), VisibleInDetailView(true), VisibleInLookupListView(true)]
+        [DataSourceCriteria("U_IndDim = '4'")]
+        public FTS11OIND U_IndKey4To
+        {
+            get { return _U_IndKey4To; }
+            set { SetPropertyValue("U_IndKey4To", ref _U_IndKey4To, value); }
+        }
+
+        private FTS11OIND _U_IndKey5Frm;
+        [XafDisplayName("Indicator 5 From"), ToolTip("Indicator 5 From")]
+        [Index(190), VisibleInListView(true), VisibleInDetailView(true), VisibleInLookupListView(true)]
+        [DataSourceCriteria("U_IndDim = '5'")]
+        public FTS11OIND U_IndKey5Frm
+        {
+            get { return _U_IndKey5Frm; }
+            set { SetPropertyValue("U_IndKey5Frm", ref _U_IndKey5Frm, value); }
+        }
+
+        private FTS11OIND _U_IndKey5To;
+        [XafDisplayName("Indicator 5 To"), ToolTip("Indicator 5 To")]
+        [Index(191), VisibleInListView(true), VisibleInDetailView(true), VisibleInLookupListView(true)]
+        [DataSourceCriteria("U_IndDim = '5'")]
+        public FTS11OIND U_IndKey5To
+        {
+            get { return _U_IndKey5To; }
+            set { SetPropertyValue("U_IndKey5To", ref _U_IndKey5To, value); }
+        }
+
+        private FTS11OIND _U_IndKey6Frm;
+        [XafDisplayName("Indicator 6 From"), ToolTip("Indicator 6 From")]
+        [Index(200), VisibleInListView(true), VisibleInDetailView(true), VisibleInLookupListView(true)]
+        [DataSourceCriteria("U_IndDim = '6'")]
+        public FTS11OIND U_IndKey6Frm
+        {
+            get { return _U_IndKey6Frm; }
+            set { SetPropertyValue("U_IndKey6Frm", ref _U_IndKey6Frm, value); }
+        }
+
+        private FTS11OIND _U_IndKey6To;
+        [XafDisplayName("Indicator 6 To"), ToolTip("Indicator 6 To")]
+        [Index(201), VisibleInListView(true), VisibleInDetailView(true), VisibleInLookupListView(true)]
+        [DataSourceCriteria("U_IndDim = '6'")]
+        public FTS11OIND U_IndKey6To
+        {
+            get { return _U_IndKey6To; }
+            set { SetPropertyValue("U_IndKey6To", ref _U_IndKey6To, value); }
+        }
     }
 }
