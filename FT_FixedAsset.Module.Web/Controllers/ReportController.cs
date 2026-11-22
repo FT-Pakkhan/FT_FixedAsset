@@ -1,4 +1,10 @@
-﻿using DevExpress.Data.Filtering;
+﻿using System;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.IO;
+using System.Web;
+using DevExpress.Data.Filtering;
 using DevExpress.ExpressApp;
 using DevExpress.ExpressApp.Actions;
 using DevExpress.ExpressApp.Editors;
@@ -6,12 +12,6 @@ using DevExpress.ExpressApp.Web;
 using FT_FixedAsset.Module.BusinessObjects;
 using FT_FixedAsset.Module.Controllers;
 using SAPbobsCOM;
-using System;
-using System.Configuration;
-using System.Data;
-using System.Data.SqlClient;
-using System.IO;
-using System.Web;
 
 namespace FT_FixedAsset.Module.Web.Controllers
 {
@@ -65,13 +65,13 @@ namespace FT_FixedAsset.Module.Web.Controllers
             string browserPath = "";
             string HTTPSecure = "";
 
-            if (string.IsNullOrEmpty(ConfigurationManager.AppSettings["HTTPSecure"].ToString()))
+            // read without .ToString(): a missing key is null and used to crash with "Object reference not set..."
+            if (string.IsNullOrEmpty(ConfigurationManager.AppSettings["HTTPSecure"]))
                 throw new InvalidOperationException("HTTPSecure Key cannot be found in webconfig.");
 
-
-
-            if (!string.IsNullOrEmpty(ConfigurationManager.AppSettings["BrowserPath"].ToString()))
-                browserPath = ConfigurationManager.AppSettings["BrowserPath"].ToString();
+            // BrowserPath is optional: when it is not in Web.config, use this site's own address
+            if (!string.IsNullOrEmpty(ConfigurationManager.AppSettings["BrowserPath"]))
+                browserPath = ConfigurationManager.AppSettings["BrowserPath"];
             else
             {
                 if (HttpContext.Current.Request.ApplicationPath == "/")
@@ -83,7 +83,7 @@ namespace FT_FixedAsset.Module.Web.Controllers
             if (HttpContext.Current.Request.IsLocal && browserPath.Contains("localhost"))
                 HTTPSecure = "http";
             else
-                HTTPSecure = ConfigurationManager.AppSettings["HTTPSecure"].ToString();
+                HTTPSecure = ConfigurationManager.AppSettings["HTTPSecure"];
 
             if (View.ObjectTypeInfo.Type == typeof(PostWidget))
             {
@@ -141,7 +141,8 @@ namespace FT_FixedAsset.Module.Web.Controllers
                     HttpContext.Current.Session["FAGrpTo"] = JEPreview.FAGrpTo == null ? "" : JEPreview.FAGrpTo.U_FAGrpCod;
                     HttpContext.Current.Session["FAClsFrm"] = JEPreview.FAClsFrm == null ? "" : JEPreview.FAClsFrm.Code;
                     HttpContext.Current.Session["FAClsTo"] = JEPreview.FAClsTo == null ? "" : JEPreview.FAClsTo.Code;
-                    HttpContext.Current.Session["U_ProjectFrm"] = JEPreview.U_ProjectTo == null ? "" : JEPreview.U_ProjectTo.PrjCode;
+                    HttpContext.Current.Session["U_ProjectFrm"] = JEPreview.U_ProjectFrm == null ? "" : JEPreview.U_ProjectFrm.PrjCode;
+                    HttpContext.Current.Session["U_Projectto"] = JEPreview.U_ProjectTo == null ? "" : JEPreview.U_ProjectTo.PrjCode;
                     HttpContext.Current.Session["U_ProfitCodeFrm"] = JEPreview.U_ProfitCodeFrm == null ? "" : JEPreview.U_ProfitCodeFrm.PrcCode;
                     HttpContext.Current.Session["U_ProfitCodeTo"] = JEPreview.U_ProfitCodeTo == null ? "" : JEPreview.U_ProfitCodeTo.PrcCode;
                     HttpContext.Current.Session["U_OcrCode2Frm"] = JEPreview.U_OcrCode2Frm == null ? "" : JEPreview.U_OcrCode2Frm.PrcCode;

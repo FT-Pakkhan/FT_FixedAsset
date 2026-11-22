@@ -1,12 +1,12 @@
-﻿using DevExpress.ExpressApp.Editors;
+﻿using System;
+using System.Data;
+using System.Web.UI.WebControls;
+using DevExpress.ExpressApp.Editors;
 using DevExpress.ExpressApp.Model;
 using DevExpress.ExpressApp.Web;
 using DevExpress.ExpressApp.Web.Editors.ASPx;
 using DevExpress.Web;
 using FT_FixedAsset.Module.BusinessObjects;
-using System;
-using System.Data;
-using System.Web.UI.WebControls;
 
 namespace FT_FixedAsset.Module.Web.Editors
 {

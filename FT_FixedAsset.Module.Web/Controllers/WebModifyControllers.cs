@@ -1,15 +1,12 @@
-﻿using DevExpress.Data.Filtering;
+﻿using System;
+using System.Linq;
+using DevExpress.Data.Filtering;
 using DevExpress.ExpressApp;
 using DevExpress.ExpressApp.Actions;
 using DevExpress.ExpressApp.Editors;
 using DevExpress.ExpressApp.Web.SystemModule;
-using DevExpress.Xpo;
 using FT_FixedAsset.Module.BusinessObjects;
 using FT_FixedAsset.Module.Controllers;
-using System;
-using System.Collections;
-using System.Data.SqlClient;
-using System.Linq;
 
 namespace FT_FixedAsset.Module.Web.Controllers
 {
@@ -39,8 +36,26 @@ namespace FT_FixedAsset.Module.Web.Controllers
             base.OnDeactivated();
         }
 
+        // No posting into the period of a depreciation run in progress (see DeprnRunLock)
+        private bool BlockedByDeprnRun(SimpleActionExecuteEventArgs args)
+        {
+            if (genCon == null) return false;
+            foreach (object obj in args.SelectedObjects)
+            {
+                string msg = DeprnRunLock.CheckDocument(genCon.getConnectionString(), obj, false);
+                if (msg != null)
+                {
+                    genCon.MsgBox(InformationType.Error, "Error", msg);
+                    return true;
+                }
+            }
+            return false;
+        }
+
         protected override void Save(SimpleActionExecuteEventArgs args)
         {
+            if (BlockedByDeprnRun(args)) return;
+
             // General Settings
             if (View.ObjectTypeInfo.Type == typeof(FTS11OADM))
             {
@@ -50,8 +65,8 @@ namespace FT_FixedAsset.Module.Web.Controllers
 
             base.Save(args);
 
-            // General Settings
-            if (View.ObjectTypeInfo.Type == typeof(FTS11OADM))
+            // General Settings / Password Administration: back to view mode after saving
+            if (View.ObjectTypeInfo.Type == typeof(FTS11OADM) || View.ObjectTypeInfo.Type == typeof(FTS11OPPA))
             {
                 ((DetailView)View).ViewEditMode = ViewEditMode.View;
                 View.BreakLinksToControls();
@@ -63,6 +78,8 @@ namespace FT_FixedAsset.Module.Web.Controllers
         {
             string query = "";
             SystemUsers user = (SystemUsers)SecuritySystem.CurrentUser;
+
+            if (BlockedByDeprnRun(args)) return;
 
             //Fixed Asset Class
             if (View.ObjectTypeInfo.Type == typeof(FTS11OFAC))
@@ -173,36 +190,7 @@ namespace FT_FixedAsset.Module.Web.Controllers
                         IObjectSpace os = Application.CreateObjectSpace();
                         FTS11OADM OADM = os.FindObject<FTS11OADM>(CriteriaOperator.Parse("DocEntry = '1'"));
 
-                        if (OADM.U_FACodeBy.Code == "FAClsCod")
-                            docType = OFAM.U_FAGrpKey == null ? "" : OFAM.U_FAGrpKey.U_FAClsCod;
-                        if (OADM.U_FACodeBy.Code == "FAGrpCod")
-                            docType = OFAM.U_FAGrpKey == null ? "" : OFAM.U_FAGrpCod;
-                        if (OADM.U_FACodeBy.Code == "IndCod1")
-                            docType = OFAM.U_IndKey1 == null ? "" : OFAM.U_IndCod1;
-                        if (OADM.U_FACodeBy.Code == "IndCod2")
-                            docType = OFAM.U_IndKey2 == null ? "" : OFAM.U_IndCod2;
-                        if (OADM.U_FACodeBy.Code == "IndCod3")
-                            docType = OFAM.U_IndKey3 == null ? "" : OFAM.U_IndCod3;
-                        if (OADM.U_FACodeBy.Code == "IndCod4")
-                            docType = OFAM.U_IndKey4 == null ? "" : OFAM.U_IndCod4;
-                        if (OADM.U_FACodeBy.Code == "IndCod5")
-                            docType = OFAM.U_IndKey5 == null ? "" : OFAM.U_IndCod5;
-                        if (OADM.U_FACodeBy.Code == "IndCod6")
-                            docType = OFAM.U_IndKey6 == null ? "" : OFAM.U_IndCod6;
-                        if (OADM.U_FACodeBy.Code == "Project")
-                            docType = OFAM.U_Project == null ? "" : OFAM.U_Project.PrjCode;
-                        if (OADM.U_FACodeBy.Code == "ProfitCo")
-                            docType = OFAM.U_ProfitCode == null ? "" : OFAM.U_ProfitCode.PrcCode;
-                        if (OADM.U_FACodeBy.Code == "OcrCode2")
-                            docType = OFAM.U_OcrCode2 == null ? "" : OFAM.U_OcrCode2.PrcCode;
-                        if (OADM.U_FACodeBy.Code == "OcrCode3")
-                            docType = OFAM.U_OcrCode3 == null ? "" : OFAM.U_OcrCode3.PrcCode;
-                        if (OADM.U_FACodeBy.Code == "OcrCode4")
-                            docType = OFAM.U_OcrCode4 == null ? "" : OFAM.U_OcrCode4.PrcCode;
-                        if (OADM.U_FACodeBy.Code == "OcrCode5")
-                            docType = OFAM.U_OcrCode5 == null ? "" : OFAM.U_OcrCode5.PrcCode;
-                        if (OADM.U_FACodeBy.Code == "Location")
-                            docType = OFAM.U_LocationKey == null ? "" : OFAM.U_Location;
+                        docType = GenController.GetFACodeDocType(OADM, OFAM);
 
                         FTS11NNM1 code = os.FindObject<FTS11NNM1>(CriteriaOperator.Parse("DocType=?", docType));
 

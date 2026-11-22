@@ -1,4 +1,7 @@
-﻿using DevExpress.Data.Filtering;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using DevExpress.Data.Filtering;
 using DevExpress.ExpressApp;
 using DevExpress.ExpressApp.ConditionalAppearance;
 using DevExpress.ExpressApp.DC;
@@ -8,9 +11,6 @@ using DevExpress.Persistent.Base;
 using DevExpress.Persistent.Validation;
 using DevExpress.Xpo;
 using FileSystemData.BusinessObjects;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 
 namespace FT_FixedAsset.Module.BusinessObjects
 {
@@ -770,6 +770,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
         [XafDisplayName("Ex. Rate (SC)"), ToolTip("Ex. Rate (SC)")]
         [Index(160), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(true)]
         [ModelDefault("DisplayFormat", "{0:n6}")]
+        [ModelDefault("EditMask", "{0:n6}")]
         [Appearance("U_ExSC", Enabled = false, Criteria = "IsFieldEditable = 'N'")]
         [DbType("numeric(19,6)")]
         public decimal U_ExSC
@@ -782,6 +783,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
         [XafDisplayName("Ex. Rate (FC)"), ToolTip("Ex. Rate (SC)")]
         [Index(170), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(true)]
         [ModelDefault("DisplayFormat", "{0:n6}")]
+        [ModelDefault("EditMask", "{0:n6}")]
         [Appearance("U_ExFC", Enabled = false, Criteria = "IsFieldEditable = 'N'")]
         [DbType("numeric(19,6)")]
         public decimal U_ExFC

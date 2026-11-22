@@ -1,9 +1,9 @@
-﻿using DevExpress.ExpressApp.ConditionalAppearance;
+﻿using System.ComponentModel;
+using DevExpress.ExpressApp.ConditionalAppearance;
 using DevExpress.ExpressApp.DC;
 using DevExpress.ExpressApp.Editors;
 using DevExpress.Persistent.Base;
 using DevExpress.Xpo;
-using System.ComponentModel;
 
 namespace FT_FixedAsset.Module.BusinessObjects
 {

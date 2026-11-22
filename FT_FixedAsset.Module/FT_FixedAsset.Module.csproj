@@ -211,6 +211,15 @@
     <Compile Include="BusinessObjects\DropdownSelection.cs" />
     <Compile Include="BusinessObjects\FTS11FAG1.cs" />
     <Compile Include="BusinessObjects\FTS11OADM.cs" />
+    <Compile Include="BusinessObjects\CancelConfirmation.cs" />
+    <Compile Include="BusinessObjects\FTS11OPPA.cs" />
+    <Compile Include="Controllers\ChgPwdController.cs" />
+    <Compile Include="Controllers\DecimalPlaces.cs" />
+    <Compile Include="Controllers\DeprnRunLock.cs" />
+    <Compile Include="Controllers\DeprnRunner.cs" />
+    <Compile Include="Security\ExpiringPasswordAuthentication.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="BusinessObjects\FTS11OFAC.cs" />
     <Compile Include="BusinessObjects\FTS11OFAG.cs" />
     <Compile Include="BusinessObjects\FTS11OFAM.cs" />

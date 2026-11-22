@@ -1,11 +1,11 @@
-﻿using DevExpress.Xpo;
-using DevExpress.Persistent.BaseImpl;
-using DevExpress.ExpressApp.DC;
+﻿using System;
 using DevExpress.ExpressApp.ConditionalAppearance;
+using DevExpress.ExpressApp.DC;
 using DevExpress.ExpressApp.Editors;
-using System;
-using DevExpress.Persistent.Base;
 using DevExpress.ExpressApp.Model;
+using DevExpress.Persistent.Base;
+using DevExpress.Persistent.BaseImpl;
+using DevExpress.Xpo;
 
 namespace FT_FixedAsset.Module.BusinessObjects
 {

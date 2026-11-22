@@ -1,18 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using DevExpress.Data.Filtering;
+﻿using DevExpress.Data.Filtering;
 using DevExpress.ExpressApp;
-using DevExpress.ExpressApp.Actions;
-using DevExpress.ExpressApp.Editors;
-using DevExpress.ExpressApp.Layout;
-using DevExpress.ExpressApp.Model.NodeGenerators;
 using DevExpress.ExpressApp.SystemModule;
-using DevExpress.ExpressApp.Templates;
-using DevExpress.ExpressApp.Utils;
-using DevExpress.Persistent.Base;
-using DevExpress.Persistent.Validation;
 using FT_FixedAsset.Module.BusinessObjects;
 
 namespace FT_FixedAsset.Module.Controllers
@@ -51,6 +39,25 @@ namespace FT_FixedAsset.Module.Controllers
                 FTS11OADM OADM = objectSpace.FindObject<FTS11OADM>(CriteriaOperator.Parse("DocEntry = 1"));
 
                 DetailView detailView = Application.CreateDetailView(objectSpace, OADM);
+                detailView.ViewEditMode = DevExpress.ExpressApp.Editors.ViewEditMode.View;
+                View.BreakLinksToControls();
+                View.CreateControls();
+                e.ActionArguments.ShowViewParameters.CreatedView = detailView;
+                e.Handled = true;
+            }
+
+            if (e.ActionArguments.SelectedChoiceActionItem.Id == "FTS11OPPA_ListView")
+            {
+                // Password Administration - a single settings record (DocEntry = 1), created on first open
+                IObjectSpace objectSpace = Application.CreateObjectSpace(typeof(FTS11OPPA));
+                FTS11OPPA OPPA = objectSpace.FindObject<FTS11OPPA>(CriteriaOperator.Parse("DocEntry = 1"));
+                if (OPPA == null)
+                {
+                    OPPA = objectSpace.CreateObject<FTS11OPPA>();
+                    objectSpace.CommitChanges();
+                }
+
+                DetailView detailView = Application.CreateDetailView(objectSpace, OPPA);
                 detailView.ViewEditMode = DevExpress.ExpressApp.Editors.ViewEditMode.View;
                 View.BreakLinksToControls();
                 View.CreateControls();

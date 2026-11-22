@@ -1,13 +1,13 @@
-﻿using DevExpress.Data.Filtering;
+﻿using System;
+using System.Collections;
+using System.Data;
+using System.Data.SqlClient;
+using DevExpress.Data.Filtering;
 using DevExpress.ExpressApp;
 using DevExpress.ExpressApp.Actions;
 using DevExpress.ExpressApp.Editors;
 using FT_FixedAsset.Module.BusinessObjects;
 using FT_FixedAsset.Module.Controllers;
-using System;
-using System.Collections;
-using System.Data;
-using System.Data.SqlClient;
 
 namespace FT_FixedAsset.Module.Web.Controllers
 {
@@ -223,7 +223,77 @@ namespace FT_FixedAsset.Module.Web.Controllers
             }
 
             #endregion
+
+            // "Cancel Assets" on Fixed Asset Master, "Cancel Trans." on transactions
+            CancelTrans.Caption = View.ObjectTypeInfo.Type == typeof(FTS11OFAM) ? "Cancel Assets" : "Cancel Trans.";
+            CancelTrans.ConfirmationMessage = null;   // confirmation is our own centred popup (CancelTrans_Execute)
         }
+
+        #region Cancel confirmation (centred popup instead of the browser confirm box)
+        private void CancelTrans_Execute(object sender, SimpleActionExecuteEventArgs e)
+        {
+            // nothing selected: let the cancel logic show its own message
+            if (e.SelectedObjects == null || e.SelectedObjects.Count == 0)
+            {
+                CancelConfirmed(e);
+                return;
+            }
+
+            IObjectSpace os = Application.CreateObjectSpace(typeof(CancelConfirmation));
+            CancelConfirmation confirm = os.CreateObject<CancelConfirmation>();
+            confirm.Message = CancelQuestion(e);
+
+            DetailView dv = Application.CreateDetailView(os, confirm, false);
+            dv.ViewEditMode = ViewEditMode.View;
+            dv.Caption = CancelTrans.Caption;
+            // plain read-only text (static text item, see CancelConfirmation_DetailView in the model)
+            if (dv.FindItem("MessageText") is StaticText messageText) messageText.Text = confirm.Message;
+
+            e.ShowViewParameters.CreatedView = dv;
+            e.ShowViewParameters.TargetWindow = TargetWindow.NewModalWindow;
+            e.ShowViewParameters.Context = TemplateContext.PopupWindow;
+
+            var dc = Application.CreateController<DevExpress.ExpressApp.SystemModule.DialogController>();
+            dc.SaveOnAccept = false;
+            dc.AcceptAction.Caption = "Yes";
+            dc.CancelAction.Caption = "No";
+            dc.AcceptAction.Execute += (s, a) => CancelConfirmed(e);
+            e.ShowViewParameters.Controllers.Add(dc);
+        }
+
+        // "Are you sure to cancel this write off?" / "... these 3 assets?"
+        private string CancelQuestion(SimpleActionExecuteEventArgs e)
+        {
+            Type t = View.ObjectTypeInfo.Type;
+            int n = e.SelectedObjects.Count;
+            string what;
+            if (t == typeof(FTS11OFAM)) what = n == 1 ? "asset" : "assets";
+            else
+            {
+                string caption = DevExpress.ExpressApp.Utils.CaptionHelper.GetClassCaption(t.FullName);
+                if (string.IsNullOrEmpty(caption)) caption = "transaction";
+                what = caption.ToLowerInvariant() + (n == 1 ? "" : " documents");
+            }
+
+            string ids = "";
+            DevExpress.ExpressApp.DC.IMemberInfo idMember = View.ObjectTypeInfo.DefaultMember;
+            if (idMember != null)
+            {
+                var values = new System.Collections.Generic.List<string>();
+                foreach (object o in e.SelectedObjects)
+                {
+                    object v = idMember.GetValue(o);
+                    if (v != null && v.ToString() != "" && v.ToString() != "0") values.Add(v.ToString());
+                }
+                if (values.Count > 0 && values.Count <= 10) ids = " (" + string.Join(", ", values) + ")";
+                else if (values.Count > 10) ids = " (" + string.Join(", ", values.GetRange(0, 10)) + ", ...)";
+            }
+
+            return n == 1
+                ? "Are you sure to cancel this " + what + ids + "?"
+                : "Are you sure to cancel these " + n + " " + what + ids + "?";
+        }
+        #endregion
 
         protected override void OnViewControlsCreated()
         {
@@ -362,11 +432,24 @@ namespace FT_FixedAsset.Module.Web.Controllers
 
                     if (dt.Rows.Count > 0)
                     {
+                        var assets = new System.Collections.Generic.List<DeprnRunner.Asset>();
                         foreach (DataRow row in dt.Rows)
+                            assets.Add(new DeprnRunner.Asset { FAKey = int.Parse(row["FAKey"].ToString()), FACode = row["U_FACode"].ToString() });
+                        conn.Close();
+
+                        // one run at a time; postings into the period are blocked until it ends.
+                        // The run continues in the background - this button returns at once and the progress window shows it.
+                        string blockMsg;
+                        int runId = DeprnRunner.Start(connectionString, RunDeprn.DateFrm, RunDeprn.DateTo, user.UserName.ToString(), assets, out blockMsg);
+                        if (runId == 0)
                         {
-                            genCon.GenerateDeprn(RunDeprn.DateFrm, RunDeprn.DateTo, int.Parse(row["FAKey"].ToString()), user.UserName.ToString());
+                            genCon.MsgBox(InformationType.Error, "Error", blockMsg);
+                            return;
                         }
-                        genCon.MsgBox(InformationType.Info, "Information", "Depreciation has been generated.");
+                        if (System.Web.HttpContext.Current != null && System.Web.HttpContext.Current.Session != null)
+                            System.Web.HttpContext.Current.Session[DeprnRunner.SessionConnKey] = connectionString;
+                        if (DeprnRunner.ShowProgress != null) DeprnRunner.ShowProgress(runId);
+                        return;
                     }
                     else
                     {
@@ -1728,8 +1811,20 @@ namespace FT_FixedAsset.Module.Web.Controllers
             }
         }
 
-        private void CancelTrans_Execute(object sender, SimpleActionExecuteEventArgs e)
+        // the cancel itself - runs after the user clicks "Yes" in the confirmation popup
+        private void CancelConfirmed(SimpleActionExecuteEventArgs e)
         {
+            // no cancelling inside the period of a depreciation run in progress (see DeprnRunLock)
+            foreach (object obj in e.SelectedObjects)
+            {
+                string runMsg = DeprnRunLock.CheckDocument(genCon.getConnectionString(), obj, true);
+                if (runMsg != null)
+                {
+                    genCon.MsgBox(InformationType.Error, "Error", runMsg);
+                    return;
+                }
+            }
+
             if (View.ObjectTypeInfo.Type == typeof(FTS11OFAM))
             {
                 if (e.SelectedObjects.Count <= 0)
@@ -1742,7 +1837,6 @@ namespace FT_FixedAsset.Module.Web.Controllers
 
                 if (e.SelectedObjects.Count > 0)
                 {
-                    CancelTrans.ConfirmationMessage = "Are you sure to CANCEL this Fixed Asset?";
 
                     foreach (var selectedObject in e.SelectedObjects)
                     {

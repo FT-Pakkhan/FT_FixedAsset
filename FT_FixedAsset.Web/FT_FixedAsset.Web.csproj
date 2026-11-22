@@ -92,6 +92,12 @@
       <SpecificVersion>False</SpecificVersion>
       <Private>False</Private>
     </Reference>
+    <Reference Include="DevExpress.Docs.v19.2">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.Spreadsheet.v19.2.Core">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
     <Reference Include="DevExpress.Office.v19.2.Core">
       <SpecificVersion>False</SpecificVersion>
       <Private>False</Private>
@@ -1050,7 +1056,10 @@
     <Content Include="Model.Tablet.xafml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="ReadMe.txt" />
+    <Content Include="ImportDownload.ashx" />
     <Content Include="Reports.aspx" />
+    <Content Include="DeprnProgress.aspx" />
+    <Content Include="ImportResult.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

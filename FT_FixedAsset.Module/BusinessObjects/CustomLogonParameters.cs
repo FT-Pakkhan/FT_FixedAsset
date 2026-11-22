@@ -1,11 +1,11 @@
-﻿using DevExpress.ExpressApp;
-using DevExpress.ExpressApp.DC;
-using DevExpress.ExpressApp.Security;
-using DevExpress.Persistent.Base;
-using System;
+﻿using System;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using DevExpress.ExpressApp;
+using DevExpress.ExpressApp.DC;
+using DevExpress.ExpressApp.Security;
+using DevExpress.Persistent.Base;
 
 namespace FT_FixedAsset.Module.BusinessObjects
 {

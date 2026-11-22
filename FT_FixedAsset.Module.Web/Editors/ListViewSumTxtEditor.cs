@@ -24,12 +24,17 @@ namespace FT_FixedAsset.Module.Web.Editors
             if (editor != null)
             {
                 editor.Grid.GroupSummary.Clear();
+
+                // non-persistent lists (Import Result, widgets) cannot read General Settings - nothing to set up there
+                if (!(ObjectSpace is DevExpress.ExpressApp.Xpo.XPObjectSpace)) return;
+
                 ASPxSummaryItem groupSummary = new ASPxSummaryItem();
 
                 groupSummary.FieldName = "CostFC";
                 groupSummary.SummaryType = SummaryItemType.Sum;
                 groupSummary.ShowInGroupFooterColumn = "CostFC";
-                groupSummary.DisplayFormat = "{0:n" + ObjectSpace.FindObject<FTS11OADM>(CriteriaOperator.Parse("DocEntry=1")).U_SumDec.ToString() + "}";
+                FTS11OADM oadm = ObjectSpace.FindObject<FTS11OADM>(CriteriaOperator.Parse("DocEntry=1"));
+                groupSummary.DisplayFormat = "{0:n" + (oadm == null ? FT_FixedAsset.Module.Controllers.DecimalPlaces.DefaultSumDec : oadm.U_SumDec) + "}";
             }
         }
         protected override void OnDeactivated()

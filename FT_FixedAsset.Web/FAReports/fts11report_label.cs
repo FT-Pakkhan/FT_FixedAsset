@@ -11,9 +11,9 @@
 namespace FT_FixedAsset.Web.FAReports {
     using System;
     using System.ComponentModel;
-    using CrystalDecisions.Shared;
-    using CrystalDecisions.ReportSource;
     using CrystalDecisions.CrystalReports.Engine;
+    using CrystalDecisions.ReportSource;
+    using CrystalDecisions.Shared;
     
     
     public class fts11report_label : ReportClass {

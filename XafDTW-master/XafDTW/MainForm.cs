@@ -1,10 +1,10 @@
-﻿using DevExpress.ExpressApp;
-using DevExpress.ExpressApp.Security;
-using DevExpress.Persistent.BaseImpl.PermissionPolicy;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using DevExpress.ExpressApp;
+using DevExpress.ExpressApp.Security;
+using DevExpress.Persistent.BaseImpl.PermissionPolicy;
 using XafDTW.Helpers;
 
 namespace XafDTW

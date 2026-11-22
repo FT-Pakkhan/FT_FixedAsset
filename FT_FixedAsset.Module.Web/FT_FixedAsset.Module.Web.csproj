@@ -95,6 +95,12 @@
     <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="CrystalDecisions.ReportSource, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="CrystalDecisions.Shared, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Docs.v19.2">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.Spreadsheet.v19.2.Core">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
     <Reference Include="DevExpress.Data.v19.2">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
@@ -158,6 +164,7 @@
       <HintPath>..\..\..\..\..\Windows\assembly\GAC_64\log4net\1.2.10.0__692fbea5521e1304\log4net.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.IO.Compression" />
     <Reference Include="mscorlib">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
@@ -186,6 +193,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\AdditionFieldController.cs" />
+    <Compile Include="Controllers\ConfirmationPopupController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\DeprnProgressController.cs" />
     <Compile Include="Controllers\AdditionFieldController.Designer.cs">
       <DependentUpon>AdditionFieldController.cs</DependentUpon>
     </Compile>
@@ -223,6 +234,16 @@
     <Compile Include="Editors\NumberEditor.Designer.cs">
       <DependentUpon>NumberEditor.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\ImportController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Import\ImportDefinitions.cs" />
+    <Compile Include="Import\ImportDownloadHandler.cs" />
+    <Compile Include="Import\ImportEngine.cs" />
+    <Compile Include="Import\ImportFileReader.cs" />
+    <Compile Include="Import\ImportModels.cs" />
+    <Compile Include="Import\ImportSummary.cs" />
+    <Compile Include="Import\ImportTemplateBuilder.cs" />
     <Compile Include="WebModule.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -234,6 +255,21 @@
   <ItemGroup>
     <EmbeddedResource Include="Controllers\ReportController.resx">
       <DependentUpon>ReportController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Import\Templates\FTS11OFAC.xlsx">
+      <LogicalName>ImportTemplates.FTS11OFAC.xlsx</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Import\Templates\FTS11OFAG.xlsx">
+      <LogicalName>ImportTemplates.FTS11OFAG.xlsx</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Import\Templates\FTS11OIND.xlsx">
+      <LogicalName>ImportTemplates.FTS11OIND.xlsx</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Import\Templates\FTS11OLOC.xlsx">
+      <LogicalName>ImportTemplates.FTS11OLOC.xlsx</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Import\Templates\FTS11OFAM.xlsx">
+      <LogicalName>ImportTemplates.FTS11OFAM.xlsx</LogicalName>
     </EmbeddedResource>
     <EmbeddedResource Include="Model.DesignedDiffs.xafml" />
     <EmbeddedResource Include="Properties\licenses.licx" />

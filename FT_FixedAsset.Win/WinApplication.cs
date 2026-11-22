@@ -1,13 +1,10 @@
 ﻿using System;
-using System.ComponentModel;
 using DevExpress.ExpressApp;
-using DevExpress.ExpressApp.Win;
-using System.Collections.Generic;
-using DevExpress.ExpressApp.Updating;
-using DevExpress.ExpressApp.Win.Utils;
-using DevExpress.ExpressApp.Xpo;
 using DevExpress.ExpressApp.Security;
 using DevExpress.ExpressApp.Security.ClientServer;
+using DevExpress.ExpressApp.Win;
+using DevExpress.ExpressApp.Win.Utils;
+using DevExpress.ExpressApp.Xpo;
 
 namespace FT_FixedAsset.Win {
     // For more typical usage scenarios, be sure to check out https://docs.devexpress.com/eXpressAppFramework/DevExpress.ExpressApp.Win.WinApplication._members

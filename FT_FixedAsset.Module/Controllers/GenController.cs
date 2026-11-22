@@ -1,11 +1,10 @@
-﻿using DevExpress.Data.Filtering;
+﻿using System;
+using System.Data;
+using System.Data.SqlClient;
+using DevExpress.Data.Filtering;
 using DevExpress.ExpressApp;
 using DevExpress.Xpo.DB.Helpers;
 using FT_FixedAsset.Module.BusinessObjects;
-using System;
-using System.Data;
-using System.Data.SqlClient;
-using System.Windows.Forms;
 
 namespace FT_FixedAsset.Module.Controllers
 {
@@ -288,6 +287,12 @@ namespace FT_FixedAsset.Module.Controllers
             #endregion
         }
 
+        // a code with ' inside would break the EXEC text
+        private static string SqlText(string value)
+        {
+            return (value ?? "").Replace("'", "''");
+        }
+
         public void prepareJEPreview(PostWidget JEPreview, FTS11OADM OADM)
         {
             #region Connect to xaf DB
@@ -326,7 +331,20 @@ namespace FT_FixedAsset.Module.Controllers
                     (string.IsNullOrEmpty(JEPreview.Ref2) ? "" : JEPreview.Ref2.ToString()) + "', '" +
                     (string.IsNullOrEmpty(JEPreview.JEMemo) ? "" : JEPreview.JEMemo.ToString()) + "', '" +
                     (JEPreview.PostTo == null ? "" : JEPreview.PostTo.Code) + "', '" +
-                    (JEPreview.FileType == null ? "" : JEPreview.FileType.Code) + "'";
+                    (JEPreview.FileType == null ? "" : JEPreview.FileType.Code) + "', '" +
+                    // Project / Cost Centre D1-D5 from-to (blank = all)
+                    SqlText(JEPreview.U_ProjectFrm == null ? "" : JEPreview.U_ProjectFrm.PrjCode) + "', '" +
+                    SqlText(JEPreview.U_ProjectTo == null ? "" : JEPreview.U_ProjectTo.PrjCode) + "', '" +
+                    SqlText(JEPreview.U_ProfitCodeFrm == null ? "" : JEPreview.U_ProfitCodeFrm.PrcCode) + "', '" +
+                    SqlText(JEPreview.U_ProfitCodeTo == null ? "" : JEPreview.U_ProfitCodeTo.PrcCode) + "', '" +
+                    SqlText(JEPreview.U_OcrCode2Frm == null ? "" : JEPreview.U_OcrCode2Frm.PrcCode) + "', '" +
+                    SqlText(JEPreview.U_OcrCode2To == null ? "" : JEPreview.U_OcrCode2To.PrcCode) + "', '" +
+                    SqlText(JEPreview.U_OcrCode3Frm == null ? "" : JEPreview.U_OcrCode3Frm.PrcCode) + "', '" +
+                    SqlText(JEPreview.U_OcrCode3To == null ? "" : JEPreview.U_OcrCode3To.PrcCode) + "', '" +
+                    SqlText(JEPreview.U_OcrCode4Frm == null ? "" : JEPreview.U_OcrCode4Frm.PrcCode) + "', '" +
+                    SqlText(JEPreview.U_OcrCode4To == null ? "" : JEPreview.U_OcrCode4To.PrcCode) + "', '" +
+                    SqlText(JEPreview.U_OcrCode5Frm == null ? "" : JEPreview.U_OcrCode5Frm.PrcCode) + "', '" +
+                    SqlText(JEPreview.U_OcrCode5To == null ? "" : JEPreview.U_OcrCode5To.PrcCode) + "'";
                 #region Check Rule Validation
 
                 TransactionNotification.CommandTimeout = 0;
@@ -417,6 +435,36 @@ namespace FT_FixedAsset.Module.Controllers
             }
         }
 
+        /// <summary>
+        /// Numbering series (FTS11NNM1.DocType) an asset belongs to, based on General Settings "F/A Code By".
+        /// Shared by the Save action and the Import function.
+        /// </summary>
+        public static string GetFACodeDocType(FTS11OADM OADM, FTS11OFAM OFAM)
+        {
+            string docType = "";
+            if (OADM == null || OADM.U_FACodeBy == null) return docType;
+
+            switch (OADM.U_FACodeBy.Code)
+            {
+                case "FAClsCod": docType = OFAM.U_FAGrpKey == null ? "" : OFAM.U_FAGrpKey.U_FAClsCod; break;
+                case "FAGrpCod": docType = OFAM.U_FAGrpKey == null ? "" : OFAM.U_FAGrpCod; break;
+                case "IndCod1": docType = OFAM.U_IndKey1 == null ? "" : OFAM.U_IndCod1; break;
+                case "IndCod2": docType = OFAM.U_IndKey2 == null ? "" : OFAM.U_IndCod2; break;
+                case "IndCod3": docType = OFAM.U_IndKey3 == null ? "" : OFAM.U_IndCod3; break;
+                case "IndCod4": docType = OFAM.U_IndKey4 == null ? "" : OFAM.U_IndCod4; break;
+                case "IndCod5": docType = OFAM.U_IndKey5 == null ? "" : OFAM.U_IndCod5; break;
+                case "IndCod6": docType = OFAM.U_IndKey6 == null ? "" : OFAM.U_IndCod6; break;
+                case "Project": docType = OFAM.U_Project == null ? "" : OFAM.U_Project.PrjCode; break;
+                case "ProfitCo": docType = OFAM.U_ProfitCode == null ? "" : OFAM.U_ProfitCode.PrcCode; break;
+                case "OcrCode2": docType = OFAM.U_OcrCode2 == null ? "" : OFAM.U_OcrCode2.PrcCode; break;
+                case "OcrCode3": docType = OFAM.U_OcrCode3 == null ? "" : OFAM.U_OcrCode3.PrcCode; break;
+                case "OcrCode4": docType = OFAM.U_OcrCode4 == null ? "" : OFAM.U_OcrCode4.PrcCode; break;
+                case "OcrCode5": docType = OFAM.U_OcrCode5 == null ? "" : OFAM.U_OcrCode5.PrcCode; break;
+                case "Location": docType = OFAM.U_LocationKey == null ? "" : OFAM.U_Location; break;
+            }
+            return docType;
+        }
+
         public void AutoNumbering(FTS11OADM OADM, FTS11NNM1 code, FTS11OFAM OFAM, IObjectSpace os)
         {
             string prefix = "";
@@ -461,7 +509,7 @@ namespace FT_FixedAsset.Module.Controllers
                     NNM2.DocEntry = code;
                     NNM2.DocYear = 0;
                     NNM2.DocMonth = int.Parse(OFAM.U_AcqDate.ToString("MM"));
-                    NNM2.Seq = 1;
+                    NNM2.Seq = 2;   // 0001 is used by this asset - store the NEXT number (same as existing rows)
                     NNM2.Length = code.Length;
                     code.FTS11NNM2.Add(NNM2);
 
@@ -518,7 +566,7 @@ namespace FT_FixedAsset.Module.Controllers
                     NNM2.DocEntry = code;
                     NNM2.DocYear = int.Parse(OFAM.U_AcqDate.ToString("yyyy"));
                     NNM2.DocMonth = 0;
-                    NNM2.Seq = 1;
+                    NNM2.Seq = 2;   // 0001 is used by this asset - store the NEXT number (same as existing rows)
                     NNM2.Length = code.Length;
                     code.FTS11NNM2.Add(NNM2);
 
@@ -581,7 +629,7 @@ namespace FT_FixedAsset.Module.Controllers
                     NNM2.DocEntry = code;
                     NNM2.DocYear = int.Parse(OFAM.U_AcqDate.ToString("yyyy"));
                     NNM2.DocMonth = int.Parse(OFAM.U_AcqDate.ToString("MM"));
-                    NNM2.Seq = 1;
+                    NNM2.Seq = 2;   // 0001 is used by this asset - store the NEXT number (same as existing rows)
                     NNM2.Length = code.Length;
                     code.FTS11NNM2.Add(NNM2);
 
@@ -637,7 +685,7 @@ namespace FT_FixedAsset.Module.Controllers
                     FTS11NNM2 NNM2 = os.CreateObject<FTS11NNM2>();
                     NNM2.DocEntry = code;
                     NNM2.DocMonth = int.Parse(OFAM.U_EffDate.ToString("MM"));
-                    NNM2.Seq = 1;
+                    NNM2.Seq = 2;   // 0001 is used by this asset - store the NEXT number (same as existing rows)
                     NNM2.Length = code.Length;
                     code.FTS11NNM2.Add(NNM2);
 
@@ -694,7 +742,7 @@ namespace FT_FixedAsset.Module.Controllers
                     NNM2.DocEntry = code;
                     NNM2.DocYear = int.Parse(OFAM.U_EffDate.ToString("yyyy"));
                     NNM2.DocMonth = 0;
-                    NNM2.Seq = 1;
+                    NNM2.Seq = 2;   // 0001 is used by this asset - store the NEXT number (same as existing rows)
                     NNM2.Length = code.Length;
                     code.FTS11NNM2.Add(NNM2);
 
@@ -757,7 +805,7 @@ namespace FT_FixedAsset.Module.Controllers
                     NNM2.DocEntry = code;
                     NNM2.DocYear = int.Parse(OFAM.U_EffDate.ToString("yyyy"));
                     NNM2.DocMonth = int.Parse(OFAM.U_EffDate.ToString("MM"));
-                    NNM2.Seq = 1;
+                    NNM2.Seq = 2;   // 0001 is used by this asset - store the NEXT number (same as existing rows)
                     NNM2.Length = code.Length;
                     code.FTS11NNM2.Add(NNM2);
 

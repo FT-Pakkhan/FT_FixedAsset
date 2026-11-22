@@ -1,18 +1,11 @@
 ﻿using System;
+using System.Data;
 using DevExpress.ExpressApp;
-using System.ComponentModel;
-using DevExpress.ExpressApp.Web;
-using System.Collections.Generic;
-using DevExpress.ExpressApp.Xpo;
 using DevExpress.ExpressApp.Security;
 using DevExpress.ExpressApp.Security.ClientServer;
+using DevExpress.ExpressApp.Web;
+using DevExpress.ExpressApp.Xpo;
 using FT_FixedAsset.Module.BusinessObjects;
-using DevExpress.ExpressApp.Web.Templates;
-using System.Linq;
-using DevExpress.Web;
-using System.Web.UI.WebControls;
-using System.Data;
-using System.Web.UI;
 
 namespace FT_FixedAsset.Web {
     // For more typical usage scenarios, be sure to check out https://docs.devexpress.com/eXpressAppFramework/DevExpress.ExpressApp.Web.WebApplication
@@ -121,7 +114,7 @@ namespace FT_FixedAsset.Web {
             this.module4 = new FT_FixedAsset.Module.Web.FT_FixedAssetAspNetModule();
             this.securityModule1 = new DevExpress.ExpressApp.Security.SecurityModule();
             this.securityStrategyComplex1 = new DevExpress.ExpressApp.Security.SecurityStrategyComplex();
-            this.authenticationStandard1 = new DevExpress.ExpressApp.Security.AuthenticationStandard();
+            this.authenticationStandard1 = new FT_FixedAsset.Module.Security.ExpiringPasswordAuthentication();   // Password Administration: lock / expiry
             this.conditionalAppearanceModule = new DevExpress.ExpressApp.ConditionalAppearance.ConditionalAppearanceModule();
             this.validationModule = new DevExpress.ExpressApp.Validation.ValidationModule();
             this.validationAspNetModule = new DevExpress.ExpressApp.Validation.Web.ValidationAspNetModule();

@@ -1,13 +1,13 @@
-﻿using DevExpress.Data.Filtering;
-using DevExpress.ExpressApp;
-using DevExpress.ExpressApp.Security;
-using DevExpress.Persistent.Validation;
-using FT_FixedAsset.Module.BusinessObjects;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
+using DevExpress.Data.Filtering;
+using DevExpress.ExpressApp;
+using DevExpress.ExpressApp.Security;
+using DevExpress.Persistent.Validation;
+using FT_FixedAsset.Module.BusinessObjects;
 using XafDTW.Helpers;
 
 namespace XafDTW

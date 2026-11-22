@@ -1,7 +1,7 @@
-﻿using DevExpress.ExpressApp;
+﻿using System;
+using DevExpress.ExpressApp;
 using DevExpress.ExpressApp.Web.Editors.ASPx;
 using DevExpress.Web;
-using System;
 
 namespace FT_FixedAsset.Module.Controllers
 {

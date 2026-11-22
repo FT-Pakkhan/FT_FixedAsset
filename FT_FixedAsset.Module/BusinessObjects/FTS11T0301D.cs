@@ -1,4 +1,6 @@
-﻿using DevExpress.Data.Filtering;
+﻿using System;
+using System.ComponentModel;
+using DevExpress.Data.Filtering;
 using DevExpress.ExpressApp.ConditionalAppearance;
 using DevExpress.ExpressApp.DC;
 using DevExpress.ExpressApp.Editors;
@@ -6,8 +8,6 @@ using DevExpress.ExpressApp.Model;
 using DevExpress.Persistent.Base;
 using DevExpress.Persistent.Validation;
 using DevExpress.Xpo;
-using System;
-using System.ComponentModel;
 
 namespace FT_FixedAsset.Module.BusinessObjects
 {

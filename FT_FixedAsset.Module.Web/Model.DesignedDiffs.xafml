@@ -8,6 +8,21 @@
     </Class>
     <Class Name="FT_FixedAsset.Module.BusinessObjects.FTS11NNM2" ObjectCaptionFormat="{0:Oid}" />
   </BOModel>
+  <NavigationItems>
+    <Items>
+      <Item Id="Data Import" Index="5" ImageName="Action_Export_ToExcel">
+        <Items>
+          <Item Id="DataImport_ListView" Caption="Import Data" Index="0" ViewId="DataImport_DetailView" />
+        </Items>
+      </Item>
+      <Item Id="System Initialization">
+        <Items>
+          <Item Id="FTS11OPPA_ListView" Index="2" />
+          <Item Id="FTS11NNM1_ListView" Index="3" />
+        </Items>
+      </Item>
+    </Items>
+  </NavigationItems>
   <Options CollectionsEditMode="Edit">
     <LayoutManagerOptions RequiredFieldMark="&lt;b&gt;&lt;font color=&quot;red&quot;&gt;*&lt;/font&gt;&lt;/b&gt;" />
   </Options>
@@ -21,6 +36,32 @@
     </PropertyEditor>
   </ViewItems>
   <Views>
+    <DetailView Id="CancelConfirmation_DetailView">
+      <Items>
+        <StaticText Id="MessageText" Text=" " IsNewNode="True" />
+      </Items>
+      <Layout>
+        <LayoutGroup Id="Main" ShowCaption="False" IsNewNode="True">
+          <LayoutItem Id="MessageText" ViewItem="MessageText" ShowCaption="False" Index="0" IsNewNode="True" />
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="DataImport_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="ImportFields" ShowCaption="False" Index="0" Direction="Vertical" IsNewNode="True">
+              <LayoutItem Id="ImportInto" ViewItem="ImportInto" Index="0" IsNewNode="True" />
+              <LayoutItem Id="File" ViewItem="File" Index="1" IsNewNode="True" />
+              <LayoutItem Id="LinesFile" ViewItem="LinesFile" Index="2" IsNewNode="True" />
+              <LayoutItem Id="FileNote" ViewItem="FileNote" Index="3" IsNewNode="True" />
+              <LayoutItem Id="RunSimulation" ViewItem="RunSimulation" Index="4" IsNewNode="True" />
+            </LayoutGroup>
+            <LayoutGroup Id="DataImport" Removed="True" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
     <DetailView Id="DeprnWidget_DetailView">
       <Items>
         <PropertyEditor Id="FAClsFrm" LookupEditorMode="AllItemsWithSearch" />
@@ -746,7 +787,7 @@
                 </LayoutGroup>
               </LayoutGroup>
             </LayoutGroup>
-            <TabbedGroup Id="Item18" CaptionLocation="Top" Index="2" RelativeSize="13.813229571984437" IsNewNode="True">
+            <TabbedGroup Id="Item18" CaptionLocation="Top" Index="2" RelativeSize="13.813229571984436" IsNewNode="True">
               <LayoutGroup Id="Item17" ShowCaption="True" CaptionLocation="Top" Index="0" RelativeSize="100" Caption="Advanced" IsNewNode="True">
                 <LayoutItem Id="FTS11FAM2" ViewItem="FTS11FAM2" Index="0" RelativeSize="100" IsNewNode="True" />
               </LayoutGroup>
@@ -886,7 +927,7 @@
                 <LayoutItem Id="AccNamV" RelativeSize="11.255411255411255" Index="2" Removed="True" />
                 <LayoutItem Id="LocationKey" RelativeSize="73.160173160173159" Index="2" Removed="True" />
                 <LayoutItem Id="AccFrmV" RelativeSize="11.255411255411255" Removed="True" />
-                <LayoutItem Id="Quantity" RelativeSize="14.285714285714287" Removed="True" />
+                <LayoutItem Id="Quantity" RelativeSize="14.285714285714286" Removed="True" />
                 <LayoutItem Id="UoM" RelativeSize="11.255411255411255" Removed="True" />
               </LayoutGroup>
             </LayoutGroup>
@@ -1117,6 +1158,39 @@
       </Layout>
     </DetailView>
     <ListView Id="FTS11OLOC_LookupListView" AllowDelete="False" AllowNew="False" ShowSelectionColumn="False" />
+    <DetailView Id="FTS11OPPA_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main" RelativeSize="100">
+          <LayoutGroup Id="SimpleEditors" Direction="Vertical" RelativeSize="100">
+            <LayoutGroup Id="FTS11OPPA_col2" ShowCaption="False" Index="0" RelativeSize="100" Caption="FTS11OPPA_col2" Direction="Horizontal" IsNewNode="True">
+              <LayoutGroup Id="Auto2d35e4fa-604a-46bb-aafd-52ae0f3e2ec5" ShowCaption="False" Caption="Auto2d35e4fa-604a-46bb-aafd-52ae0f3e2ec5(4)" Index="0" RelativeSize="50" IsNewNode="True">
+                <LayoutItem Id="PwdExp" ViewItem="PwdExp" Index="0" RelativeSize="9.8245614035087723" CaptionLocation="Top" IsNewNode="True" />
+                <LayoutItem Id="PwdMinLen" ViewItem="PwdMinLen" Index="1" RelativeSize="8.0701754385964914" CaptionLocation="Top" IsNewNode="True" />
+                <LayoutItem Id="MinUppers" ViewItem="MinUppers" Index="2" RelativeSize="8.0701754385964914" CaptionLocation="Top" IsNewNode="True" />
+                <LayoutItem Id="MinLowCase" ViewItem="MinLowCase" Index="3" RelativeSize="8.0701754385964914" CaptionLocation="Top" IsNewNode="True" />
+                <LayoutItem Id="MinDigits" ViewItem="MinDigits" Index="4" RelativeSize="8.0701754385964914" CaptionLocation="Top" IsNewNode="True" />
+                <LayoutItem Id="MinNonAlph" ViewItem="MinNonAlph" Index="5" RelativeSize="8.0701754385964914" CaptionLocation="Top" IsNewNode="True" />
+                <LayoutItem Id="NumPrevPwd" ViewItem="NumPrevPwd" Index="6" RelativeSize="8.0701754385964914" CaptionLocation="Top" IsNewNode="True" />
+                <LayoutItem Id="NumAuthLoc" ViewItem="NumAuthLoc" Index="7" RelativeSize="8.0701754385964914" CaptionLocation="Top" IsNewNode="True" />
+                <LayoutItem Id="AccLocDuration" ViewItem="AccLocDuration" Index="8" RelativeSize="33.684210526315788" CaptionLocation="Top" IsNewNode="True" />
+              </LayoutGroup>
+              <LayoutGroup Id="Autofe7a2940-d8ed-4fd9-afbf-323c2a5a66e8" ShowCaption="False" Caption="Autofe7a2940-d8ed-4fd9-afbf-323c2a5a66e8(14)" Index="1" RelativeSize="50" IsNewNode="True">
+                <LayoutItem Id="Dummy01" ViewItem="Dummy01" Index="0" RelativeSize="6.3157894736842106" IsNewNode="True" />
+                <LayoutItem Id="Dummy02" ViewItem="Dummy02" Index="1" RelativeSize="4.56140350877193" IsNewNode="True" />
+                <LayoutItem Id="Dummy03" ViewItem="Dummy03" Index="2" RelativeSize="4.56140350877193" IsNewNode="True" />
+                <LayoutItem Id="Dummy04" ViewItem="Dummy04" Index="3" RelativeSize="4.56140350877193" IsNewNode="True" />
+                <LayoutItem Id="Dummy05" ViewItem="Dummy05" Index="4" RelativeSize="4.56140350877193" IsNewNode="True" />
+                <LayoutItem Id="Dummy06" ViewItem="Dummy06" Index="5" RelativeSize="4.56140350877193" IsNewNode="True" />
+                <LayoutItem Id="Dummy07" ViewItem="Dummy07" Index="6" RelativeSize="4.56140350877193" IsNewNode="True" />
+                <LayoutItem Id="Dummy08" ViewItem="Dummy08" Index="7" RelativeSize="4.56140350877193" IsNewNode="True" />
+                <LayoutItem Id="Dummy09" ViewItem="Dummy09" Index="8" RelativeSize="61.754385964912281" IsNewNode="True" />
+              </LayoutGroup>
+            </LayoutGroup>
+            <LayoutGroup Id="FTS11OPPA" Removed="True" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
     <DetailView Id="FTS11SRPT_DetailView">
       <Layout>
         <LayoutGroup Id="Main" RelativeSize="100">
@@ -2115,18 +2189,19 @@
     <DetailView Id="SystemUsers_DetailView">
       <Layout>
         <LayoutGroup Id="Main" RelativeSize="100">
-          <LayoutGroup Id="SimpleEditors" RelativeSize="23.228346456692915">
+          <LayoutGroup Id="SimpleEditors" RelativeSize="30">
             <LayoutGroup Id="PermissionPolicyUser" RelativeSize="100" Index="0">
-              <LayoutItem Id="UserName" RelativeSize="30.508474576271187" Index="0" />
-              <LayoutItem Id="FullName" ViewItem="FullName" Index="1" RelativeSize="22.033898305084747" IsNewNode="True" />
-              <LayoutItem Id="IsActive" Index="2" RelativeSize="20.338983050847457" />
-              <LayoutItem Id="ChangePasswordOnFirstLogon" RelativeSize="27.118644067796609" Index="3" />
+              <LayoutItem Id="UserName" RelativeSize="20" Index="0" />
+              <LayoutItem Id="FullName" ViewItem="FullName" Index="1" RelativeSize="20" IsNewNode="True" />
+              <LayoutItem Id="IsActive" Index="2" RelativeSize="20" />
+              <LayoutItem Id="ChangePasswordOnFirstLogon" RelativeSize="20" Index="3" />
+              <LayoutItem Id="IsLocked" ViewItem="IsLocked" Index="4" RelativeSize="20" IsNewNode="True" />
             </LayoutGroup>
             <LayoutGroup Id="SystemUsers" Caption="Full Name" RelativeSize="7.9365079365079367" Removed="True">
               <LayoutItem Id="FullName" Removed="True" />
             </LayoutGroup>
           </LayoutGroup>
-          <LayoutGroup Id="Roles_Group" Direction="Vertical" RelativeSize="76.771653543307082">
+          <LayoutGroup Id="Roles_Group" Direction="Vertical" RelativeSize="70">
             <LayoutItem Id="Roles" RelativeSize="100" />
           </LayoutGroup>
         </LayoutGroup>

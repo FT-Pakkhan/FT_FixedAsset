@@ -1,16 +1,11 @@
 ﻿using System;
 using System.Configuration;
-using System.Web.Configuration;
-using System.Web;
 using System.Web.Routing;
 using DevExpress.ExpressApp;
-using DevExpress.Persistent.Base;
-using DevExpress.Persistent.BaseImpl;
 using DevExpress.ExpressApp.Security;
 using DevExpress.ExpressApp.Web;
+using DevExpress.Persistent.Base;
 using DevExpress.Web;
-using FT_FixedAsset.Module.BusinessObjects;
-using System.Web.Security;
 
 namespace FT_FixedAsset.Web {
     public class Global : System.Web.HttpApplication {
