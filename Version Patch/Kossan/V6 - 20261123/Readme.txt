@@ -37,7 +37,10 @@ WHAT'S NEW FOR KOSSAN
    Unlock: Profile > Staff > open the user > Edit > untick "Locked" > Save.
 6. Confirmation popups, Crystal report viewer no longer moves right on Next Page.
 7. Reset Database also clears the depreciation run log.
-8. Earlier standard enhancements (V1-V5) that Kossan did not have yet, e.g. Company Setup captions
+8. General Settings: new "Project" caption (above Cost Centre D1). The patch sets it to "Plant".
+   All captions (Plant, Project Code, Department, Area Code, ...) can now be changed in
+   General Settings without a program change; "Plant" gives "Plant", "Plant From", "Plant To".
+9. Earlier standard enhancements (V1-V5) that Kossan did not have yet, e.g. Company Setup captions
    for Cost Centres / Indicators, quantity decimals, disposal options, Status on the asset screen.
    The "Advanced" button on the asset screen is replaced by the standard layout.
 
@@ -60,7 +63,7 @@ Step 2 - Check for missing depreciation (read-only, every company FA database)
 Step 3 - Database patch (every Kossan company FA database)
    a. Open "Run this Script at your FA DB to patch.sql" in SSMS.
    b. Select the company FA database (NOT FA_COMMON, NOT the SAP database).
-   c. Execute (F5). The last result row must show OK in every column (0 to 8).
+   c. Execute (F5). The last result row must show OK in every column (0 to 9).
    Notes:
    - Safe to run again.
    - Messages you may see on the first run (normal):
@@ -68,8 +71,8 @@ Step 3 - Database patch (every Kossan company FA database)
          audit columns. If Kossan's server copy has extra changes, merge them back from Step 1.
        "sp_FTS11_RegenerateView updated" - G/L account lists now show all postable accounts.
          Open Company Setup and Save once to refresh the account lists.
-   - Part 8 sets the Company Setup captions Project Code / Department / Area Code (only where the
-     caption is blank or still the standard name). Other captions can be changed in Company Setup.
+   - Part 9 sets the Company Setup captions Plant / Project Code / Department / Area Code (only where
+     the caption is blank or still the standard name). Other captions can be changed in Company Setup.
 
 Step 4 - Program files
    a. Stop the Fixed Asset site in IIS (or its Application Pool).

@@ -17,7 +17,8 @@
      5. Posting Widget Project / Cost Centre D1-D5 filter (sp_FTS11_PrepareJEPreview)
      6. Corrected "Missing depreciation" check            (sp_FTS11_GenerateDeprn)
      7. Reset Database also clears the run log            (sp_FTS11_ResetDatabase, 2 lines added)
-     8. Kossan captions in Company Setup                  (Project Code, Department, Area Code)
+     8. Company Setup: Project caption                    (FTS11OADM.U_PrjCapt)
+     9. Kossan captions in Company Setup                  (Plant, Project Code, Department, Area Code)
 
    BEFORE running:
      - Back up the database.
@@ -2262,17 +2263,26 @@ GO
 
 
 /* #####################################################################################
-   8. Kossan captions
+   8. Company Setup - Project caption (like the Cost Centre / Indicator captions)
    ##################################################################################### */
-/* The V6 program takes the Cost Centre / Indicator captions from Company Setup.
-   Set Kossan's names, only where the caption is blank or still the standard default,
-   so a caption the client already changed in Company Setup is kept. */
-UPDATE dbo.FTS11OADM SET U_Ocr1Capt = 'Project Code' WHERE ISNULL(U_Ocr1Capt, '') IN ('', 'Cost Centre D1');
-UPDATE dbo.FTS11OADM SET U_Ocr2Capt = 'Department'   WHERE ISNULL(U_Ocr2Capt, '') IN ('', 'Cost Centre D2');
-UPDATE dbo.FTS11OADM SET U_Ind1Capt = 'Area Code'    WHERE ISNULL(U_Ind1Capt, '') IN ('', 'Indicator 1');
-PRINT DB_NAME() + ': Kossan captions set (Project Code, Department, Area Code).';
+IF COL_LENGTH('dbo.FTS11OADM','U_PrjCapt') IS NULL ALTER TABLE dbo.FTS11OADM ADD U_PrjCapt nvarchar(100) NULL;
+GO
+UPDATE dbo.FTS11OADM SET U_PrjCapt = 'Project' WHERE LTRIM(RTRIM(ISNULL(U_PrjCapt, ''))) = '';
+PRINT DB_NAME() + ': Project caption ready (Company Setup > Project).';
 GO
 
+/* #####################################################################################
+   9. Kossan captions
+   ##################################################################################### */
+/* The V6 program takes the Project / Cost Centre / Indicator captions from Company Setup.
+   Set Kossan's names, only where the caption is blank or still the standard default,
+   so a caption the client already changed in Company Setup is kept. */
+UPDATE dbo.FTS11OADM SET U_PrjCapt  = 'Plant'        WHERE LTRIM(RTRIM(ISNULL(U_PrjCapt, '')))  IN ('', 'Project');
+UPDATE dbo.FTS11OADM SET U_Ocr1Capt = 'Project Code' WHERE LTRIM(RTRIM(ISNULL(U_Ocr1Capt, ''))) IN ('', 'Cost Centre D1');
+UPDATE dbo.FTS11OADM SET U_Ocr2Capt = 'Department'   WHERE LTRIM(RTRIM(ISNULL(U_Ocr2Capt, ''))) IN ('', 'Cost Centre D2');
+UPDATE dbo.FTS11OADM SET U_Ind1Capt = 'Area Code'    WHERE LTRIM(RTRIM(ISNULL(U_Ind1Capt, ''))) IN ('', 'Indicator 1');
+PRINT DB_NAME() + ': Kossan captions set (Plant, Project Code, Department, Area Code).';
+GO
 
 /* #####################################################################################
    Result - every column should say OK
@@ -2291,7 +2301,8 @@ SELECT DB_NAME() AS [Database],
     CASE WHEN (SELECT COUNT(*) FROM sys.parameters WHERE object_id = OBJECT_ID('dbo.sp_FTS11_PrepareJEPreview')) = 29 THEN 'OK' ELSE 'MISSING' END AS [5 JE Preview],
     CASE WHEN OBJECT_DEFINITION(OBJECT_ID('dbo.sp_FTS11_GenerateDeprn')) LIKE '%2026-11-22%' THEN 'OK' ELSE 'MISSING' END AS [6 Missing Check],
     CASE WHEN OBJECT_DEFINITION(OBJECT_ID('dbo.sp_FTS11_ResetDatabase')) LIKE '%FTS11DRL1%' THEN 'OK' ELSE 'MISSING' END AS [7 Reset DB],
-    CASE WHEN (SELECT COUNT(*) FROM dbo.FTS11OADM WHERE ISNULL(U_Ocr1Capt,'') <> '' AND ISNULL(U_Ocr2Capt,'') <> '' AND ISNULL(U_Ind1Capt,'') <> '') > 0 THEN 'OK' ELSE 'MISSING' END AS [8 Kossan Captions];
+    CASE WHEN COL_LENGTH('dbo.FTS11OADM','U_PrjCapt') IS NOT NULL THEN 'OK' ELSE 'MISSING' END AS [8 Project Caption],
+    CASE WHEN (SELECT COUNT(*) FROM dbo.FTS11OADM WHERE ISNULL(U_PrjCapt,'') <> '' AND ISNULL(U_Ocr1Capt,'') <> '' AND ISNULL(U_Ocr2Capt,'') <> '' AND ISNULL(U_Ind1Capt,'') <> '') > 0 THEN 'OK' ELSE 'MISSING' END AS [9 Kossan Captions];
 PRINT 'Kossan Version Patch V6 finished on ' + DB_NAME();
 GO
 SET NOEXEC OFF;

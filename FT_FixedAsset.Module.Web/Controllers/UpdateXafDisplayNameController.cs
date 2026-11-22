@@ -62,6 +62,17 @@ namespace FT_FixedAsset.Module.Web.Controllers
                     IModelColumn U_IndKey5To = listView.Model.Columns["U_IndKey5To"];
                     IModelColumn U_IndKey6To = listView.Model.Columns["U_IndKey6To"];
 
+                    /* Project (Company Setup caption) */
+                    if (!string.IsNullOrEmpty(OADM.U_PrjCapt))
+                    {
+                        IModelColumn U_Project = listView.Model.Columns["U_Project"];
+                        IModelColumn U_ProjectFrm = listView.Model.Columns["U_ProjectFrm"];
+                        IModelColumn U_ProjectTo = listView.Model.Columns["U_ProjectTo"];
+                        if (U_Project != null) U_Project.Caption = OADM.U_PrjCapt;
+                        if (U_ProjectFrm != null) U_ProjectFrm.Caption = OADM.U_PrjCapt + " From";
+                        if (U_ProjectTo != null) U_ProjectTo.Caption = OADM.U_PrjCapt + " To";
+                    }
+
                     /* Cost Center */
                     if (U_ProfitCode != null)
                         if (!string.IsNullOrEmpty(OADM.U_Ocr1Capt))
@@ -241,6 +252,17 @@ namespace FT_FixedAsset.Module.Web.Controllers
                     PropertyEditor U_IndKey4To = detailView.FindItem("U_IndKey4To") as PropertyEditor;
                     PropertyEditor U_IndKey5To = detailView.FindItem("U_IndKey5To") as PropertyEditor;
                     PropertyEditor U_IndKey6To = detailView.FindItem("U_IndKey6To") as PropertyEditor;
+
+                    /* Project (Company Setup caption) */
+                    if (!string.IsNullOrEmpty(OADM.U_PrjCapt))
+                    {
+                        PropertyEditor U_Project = detailView.FindItem("U_Project") as PropertyEditor;
+                        PropertyEditor U_ProjectFrm = detailView.FindItem("U_ProjectFrm") as PropertyEditor;
+                        PropertyEditor U_ProjectTo = detailView.FindItem("U_ProjectTo") as PropertyEditor;
+                        if (U_Project != null) U_Project.Caption = OADM.U_PrjCapt;
+                        if (U_ProjectFrm != null) U_ProjectFrm.Caption = OADM.U_PrjCapt + " From";
+                        if (U_ProjectTo != null) U_ProjectTo.Caption = OADM.U_PrjCapt + " To";
+                    }
 
                     /* Cost Center */
                     if (U_ProfitCode != null)
