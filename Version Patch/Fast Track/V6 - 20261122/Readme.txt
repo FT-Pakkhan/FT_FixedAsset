@@ -37,6 +37,9 @@ WHAT'S NEW IN V6
    as the Cancel button instead of the browser's box.
 6. Crystal report viewer no longer moves to the right on every Next Page
    (happened when Windows display scaling was not 100%).
+7. General Settings: new "Project" caption (above Cost Centre D1). Like the Cost Centre and
+   Indicator captions, it renames Project on the asset screen, lists, widgets and report filters
+   (e.g. "Plant" gives "Plant", "Plant From", "Plant To"). Default: Project.
 
 
 HOW TO INSTALL

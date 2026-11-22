@@ -40,6 +40,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
             U_FileType = Session.FindObject<SE_FAFileType>(CriteriaOperator.Parse("Code = 'JV'"));
             U_SplitBy = Session.FindObject<SE_FASplitBy>(CriteriaOperator.Parse("Code = 'N'"));
 
+            U_PrjCapt = "Project";
             U_Ocr1Capt = "Cost Centre D1";
             U_Ocr2Capt = "Cost Centre D2";
             U_Ocr3Capt = "Cost Centre D3";
@@ -323,6 +324,15 @@ namespace FT_FixedAsset.Module.BusinessObjects
         {
             get { return _U_Ind6Capt; }
             set { SetPropertyValue("U_Ind6Capt", ref _U_Ind6Capt, value); }
+        }
+
+        private string _U_PrjCapt;
+        [XafDisplayName("Project"), ToolTip("Caption used for Project on the screens")]
+        [Index(79), VisibleInListView(true), VisibleInDetailView(true), VisibleInLookupListView(false)]
+        public string U_PrjCapt
+        {
+            get { return _U_PrjCapt; }
+            set { SetPropertyValue("U_PrjCapt", ref _U_PrjCapt, value); }
         }
 
         private string _U_Ocr1Capt;

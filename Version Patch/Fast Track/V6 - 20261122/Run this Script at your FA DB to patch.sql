@@ -16,6 +16,7 @@
      5. Posting Widget Project / Cost Centre D1-D5 filter (sp_FTS11_PrepareJEPreview)
      6. Corrected "Missing depreciation" check            (sp_FTS11_GenerateDeprn)
      7. Reset Database also clears the run log            (sp_FTS11_ResetDatabase, 2 lines added)
+     8. Company Setup: Project caption                    (FTS11OADM.U_PrjCapt)
 
    BEFORE running:
      - Back up the database.
@@ -2260,6 +2261,15 @@ GO
 
 
 /* #####################################################################################
+   8. Company Setup - Project caption (like the Cost Centre / Indicator captions)
+   ##################################################################################### */
+IF COL_LENGTH('dbo.FTS11OADM','U_PrjCapt') IS NULL ALTER TABLE dbo.FTS11OADM ADD U_PrjCapt nvarchar(100) NULL;
+GO
+UPDATE dbo.FTS11OADM SET U_PrjCapt = 'Project' WHERE ISNULL(U_PrjCapt, '') = '';
+PRINT DB_NAME() + ': Project caption ready (Company Setup > Project).';
+GO
+
+/* #####################################################################################
    Result - every column should say OK
    ##################################################################################### */
 SELECT DB_NAME() AS [Database],
@@ -2275,7 +2285,8 @@ SELECT DB_NAME() AS [Database],
     CASE WHEN (SELECT COUNT(*) FROM sys.parameters WHERE object_id = OBJECT_ID('dbo.FTS_fn_FADeprList')) = 31 THEN 'OK' ELSE 'MISSING' END AS [4 FADeprList],
     CASE WHEN (SELECT COUNT(*) FROM sys.parameters WHERE object_id = OBJECT_ID('dbo.sp_FTS11_PrepareJEPreview')) = 29 THEN 'OK' ELSE 'MISSING' END AS [5 JE Preview],
     CASE WHEN OBJECT_DEFINITION(OBJECT_ID('dbo.sp_FTS11_GenerateDeprn')) LIKE '%2026-11-22%' THEN 'OK' ELSE 'MISSING' END AS [6 Missing Check],
-    CASE WHEN OBJECT_DEFINITION(OBJECT_ID('dbo.sp_FTS11_ResetDatabase')) LIKE '%FTS11DRL1%' THEN 'OK' ELSE 'MISSING' END AS [7 Reset DB];
+    CASE WHEN OBJECT_DEFINITION(OBJECT_ID('dbo.sp_FTS11_ResetDatabase')) LIKE '%FTS11DRL1%' THEN 'OK' ELSE 'MISSING' END AS [7 Reset DB],
+    CASE WHEN COL_LENGTH('dbo.FTS11OADM','U_PrjCapt') IS NOT NULL THEN 'OK' ELSE 'MISSING' END AS [8 Project Caption];
 PRINT 'Version Patch V6 finished on ' + DB_NAME();
 GO
 SET NOEXEC OFF;

@@ -465,17 +465,18 @@
                 <LayoutGroup Id="Item4" ShowCaption="True" Caption=" " CaptionLocation="Top" Index="0" RelativeSize="49.952153110047846" IsNewNode="True">
                   <LayoutGroup Id="Auto54e7b81c-2f66-45d4-b1ac-2ec9fd19faf6" ShowCaption="False" Caption="Auto54e7b81c-2f66-45d4-b1ac-2ec9fd19faf6(17)" Direction="Vertical" Index="0" RelativeSize="100" IsNewNode="True">
                     <LayoutGroup Id="Auto6cea0233-158a-497d-a910-911d43d18061" ShowCaption="False" Caption="Auto6cea0233-158a-497d-a910-911d43d18061(18)" Index="0" RelativeSize="100" IsNewNode="True">
-                      <LayoutItem Id="U_Ocr1Capt" ViewItem="U_Ocr1Capt" Index="0" RelativeSize="11.764705882352942" IsNewNode="True" />
-                      <LayoutItem Id="U_Ocr2Capt" ViewItem="U_Ocr2Capt" Index="1" RelativeSize="8.49673202614379" IsNewNode="True" />
-                      <LayoutItem Id="U_Ocr3Capt" ViewItem="U_Ocr3Capt" Index="2" RelativeSize="8.49673202614379" IsNewNode="True" />
-                      <LayoutItem Id="U_Ocr4Capt" ViewItem="U_Ocr4Capt" Index="3" RelativeSize="8.49673202614379" IsNewNode="True" />
-                      <LayoutItem Id="U_Ocr5Capt" ViewItem="U_Ocr5Capt" Index="4" RelativeSize="8.49673202614379" IsNewNode="True" />
-                      <LayoutItem Id="U_Ind1Capt" ViewItem="U_Ind1Capt" Index="5" RelativeSize="8.49673202614379" IsNewNode="True" />
-                      <LayoutItem Id="U_Ind2Capt" ViewItem="U_Ind2Capt" Index="6" RelativeSize="8.49673202614379" IsNewNode="True" />
-                      <LayoutItem Id="U_Ind3Capt" ViewItem="U_Ind3Capt" Index="7" RelativeSize="8.49673202614379" IsNewNode="True" />
-                      <LayoutItem Id="U_Ind4Capt" ViewItem="U_Ind4Capt" Index="8" RelativeSize="8.49673202614379" IsNewNode="True" />
-                      <LayoutItem Id="U_Ind5Capt" ViewItem="U_Ind5Capt" Index="9" RelativeSize="8.49673202614379" IsNewNode="True" />
-                      <LayoutItem Id="U_Ind6Capt" ViewItem="U_Ind6Capt" Index="10" RelativeSize="11.764705882352942" IsNewNode="True" />
+                      <LayoutItem Id="U_PrjCapt" ViewItem="U_PrjCapt" Index="0" RelativeSize="8.49673202614379" IsNewNode="True" />
+                      <LayoutItem Id="U_Ocr1Capt" ViewItem="U_Ocr1Capt" Index="1" RelativeSize="11.764705882352942" IsNewNode="True" />
+                      <LayoutItem Id="U_Ocr2Capt" ViewItem="U_Ocr2Capt" Index="2" RelativeSize="8.49673202614379" IsNewNode="True" />
+                      <LayoutItem Id="U_Ocr3Capt" ViewItem="U_Ocr3Capt" Index="3" RelativeSize="8.49673202614379" IsNewNode="True" />
+                      <LayoutItem Id="U_Ocr4Capt" ViewItem="U_Ocr4Capt" Index="4" RelativeSize="8.49673202614379" IsNewNode="True" />
+                      <LayoutItem Id="U_Ocr5Capt" ViewItem="U_Ocr5Capt" Index="5" RelativeSize="8.49673202614379" IsNewNode="True" />
+                      <LayoutItem Id="U_Ind1Capt" ViewItem="U_Ind1Capt" Index="6" RelativeSize="8.49673202614379" IsNewNode="True" />
+                      <LayoutItem Id="U_Ind2Capt" ViewItem="U_Ind2Capt" Index="7" RelativeSize="8.49673202614379" IsNewNode="True" />
+                      <LayoutItem Id="U_Ind3Capt" ViewItem="U_Ind3Capt" Index="8" RelativeSize="8.49673202614379" IsNewNode="True" />
+                      <LayoutItem Id="U_Ind4Capt" ViewItem="U_Ind4Capt" Index="9" RelativeSize="8.49673202614379" IsNewNode="True" />
+                      <LayoutItem Id="U_Ind5Capt" ViewItem="U_Ind5Capt" Index="10" RelativeSize="8.49673202614379" IsNewNode="True" />
+                      <LayoutItem Id="U_Ind6Capt" ViewItem="U_Ind6Capt" Index="11" RelativeSize="11.764705882352942" IsNewNode="True" />
                     </LayoutGroup>
                   </LayoutGroup>
                 </LayoutGroup>
