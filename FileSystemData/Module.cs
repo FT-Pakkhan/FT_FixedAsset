@@ -1,12 +1,10 @@
 using System;
-using System.IO;
 using System.ComponentModel;
+using System.IO;
 using DevExpress.ExpressApp;
-using System.Collections.Generic;
-using DevExpress.Persistent.Base;
 using DevExpress.ExpressApp.Utils;
+using DevExpress.Persistent.Base;
 using DevExpress.Persistent.BaseImpl;
-using System.Configuration;
 
 namespace FileSystemData {
     [Description("This module provides the FileSystemStoreObject and FileSystemLinkObject classes that enable you to store uploaded files in a file system instead of the database.")]

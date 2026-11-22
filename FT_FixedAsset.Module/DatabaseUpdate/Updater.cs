@@ -1,4 +1,5 @@
-﻿using DevExpress.Data.Filtering;
+﻿using System;
+using DevExpress.Data.Filtering;
 using DevExpress.ExpressApp;
 using DevExpress.ExpressApp.Security;
 using DevExpress.ExpressApp.Updating;
@@ -6,7 +7,6 @@ using DevExpress.Persistent.Base;
 using DevExpress.Persistent.BaseImpl;
 using DevExpress.Persistent.BaseImpl.PermissionPolicy;
 using FT_FixedAsset.Module.BusinessObjects;
-using System;
 
 namespace FT_FixedAsset.Module.DatabaseUpdate
 {

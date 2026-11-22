@@ -1,19 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using DevExpress.Data.Filtering;
-using DevExpress.ExpressApp;
-using DevExpress.ExpressApp.Actions;
-using DevExpress.ExpressApp.Editors;
-using DevExpress.ExpressApp.Layout;
+﻿using DevExpress.ExpressApp;
 using DevExpress.ExpressApp.Model;
-using DevExpress.ExpressApp.Model.NodeGenerators;
-using DevExpress.ExpressApp.SystemModule;
-using DevExpress.ExpressApp.Templates;
-using DevExpress.ExpressApp.Utils;
-using DevExpress.Persistent.Base;
-using DevExpress.Persistent.Validation;
 
 namespace FT_FixedAsset.Module.Controllers
 {
@@ -84,12 +70,12 @@ namespace FT_FixedAsset.Module.Controllers
                         column.SortIndex = 0;
                         column.SortOrder = DevExpress.Data.ColumnSortOrder.Ascending;
                     }
-                    if (column.PropertyName == "TransType")
+                    if (column.PropertyName == "DocEntry")
                     {
                         column.SortIndex = 1;
                         column.SortOrder = DevExpress.Data.ColumnSortOrder.Ascending;
                     }
-                    if (column.PropertyName == "DocEntry")
+                    if (column.PropertyName == "TransType")
                     {
                         column.SortIndex = 2;
                         column.SortOrder = DevExpress.Data.ColumnSortOrder.Ascending;

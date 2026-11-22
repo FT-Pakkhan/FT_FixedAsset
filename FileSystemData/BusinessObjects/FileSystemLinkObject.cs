@@ -1,11 +1,11 @@
 using System;
-using System.IO;
-using DevExpress.Xpo;
-using DevExpress.ExpressApp;
 using System.ComponentModel;
+using System.IO;
+using DevExpress.ExpressApp;
 using DevExpress.Persistent.Base;
 using DevExpress.Persistent.BaseImpl;
 using DevExpress.Persistent.Validation;
+using DevExpress.Xpo;
 
 namespace FileSystemData.BusinessObjects {
     /// <summary>

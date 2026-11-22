@@ -1,4 +1,7 @@
-﻿using DevExpress.Data.Filtering;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using DevExpress.Data.Filtering;
 using DevExpress.ExpressApp;
 using DevExpress.ExpressApp.ConditionalAppearance;
 using DevExpress.ExpressApp.DC;
@@ -8,9 +11,6 @@ using DevExpress.Persistent.Base;
 using DevExpress.Persistent.Validation;
 using DevExpress.Xpo;
 using FileSystemData.BusinessObjects;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 
 namespace FT_FixedAsset.Module.BusinessObjects
 {
@@ -24,7 +24,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
     [Appearance("DisableSave", AppearanceItemType.Action, "True", TargetItems = "Save", Visibility = ViewItemVisibility.Hide, Context = "Any")]
     [Appearance("DisableSave&New", AppearanceItemType.Action, "True", TargetItems = "SaveAndNew", Visibility = ViewItemVisibility.Hide, Context = "Any")]
     [Appearance("DisableValidate", AppearanceItemType.Action, "True", TargetItems = "ShowAllContexts", Visibility = ViewItemVisibility.Hide, Context = "Any")]
-    [RuleCriteria("OFAM_Quantity", DefaultContexts.Save, "U_Quantity > 0", "\"Quantity\" must more than zero.")]
+    //[RuleCriteria("OFAM_Quantity", DefaultContexts.Save, "U_Quantity > 0", "\"Quantity\" must more than zero.")]
     [RuleCriteria("OFAM_ExSC", DefaultContexts.Save, "U_ExSC > 0", "\"Ex. Rate (SC)\" must more than zero.")]
     [RuleCriteria("OFAM_ExFC", DefaultContexts.Save, "U_ExFC > 0", "\"Ex. Rate (FC)\" must more than zero.")]
     [RuleCriteria("AcqEffDate", DefaultContexts.Save, "U_EffDate >= U_AcqDate", "\"Acquire Date\" must be earlier or equal to Effective Date")]
@@ -69,6 +69,159 @@ namespace FT_FixedAsset.Module.BusinessObjects
             LogInst = 0;
         }
 
+        #region Dummy field
+        [Index(0), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Appearance("Dummy01", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide)]
+        public string Dummy01
+        {
+            get { return ""; }
+        }
+        [Index(0), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Appearance("Dummy02", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide)]
+        public string Dummy02
+        {
+            get { return ""; }
+        }
+        [Index(0), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Appearance("Dummy03", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide)]
+        public string Dummy03
+        {
+            get { return ""; }
+        }
+        [Index(0), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Appearance("Dummy04", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide)]
+        public string Dummy04
+        {
+            get { return ""; }
+        }
+        [Index(0), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Appearance("Dummy05", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide)]
+        public string Dummy05
+        {
+            get { return ""; }
+        }
+        [Index(0), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Appearance("Dummy06", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide)]
+        public string Dummy06
+        {
+            get { return ""; }
+        }
+        [Index(0), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Appearance("Dummy07", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide)]
+        public string Dummy07
+        {
+            get { return ""; }
+        }
+        [Index(0), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Appearance("Dummy08", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide)]
+        public string Dummy08
+        {
+            get { return ""; }
+        }
+        [Index(0), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Appearance("Dummy09", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide)]
+        public string Dummy09
+        {
+            get { return ""; }
+        }
+        [Index(0), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Appearance("Dummy10", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide)]
+        public string Dummy10
+        {
+            get { return ""; }
+        }
+        [Index(0), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Appearance("Dummy11", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide)]
+        public string Dummy11
+        {
+            get { return ""; }
+        }
+        [Index(0), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Appearance("Dummy12", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide)]
+        public string Dummy12
+        {
+            get { return ""; }
+        }
+        [Index(0), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Appearance("Dummy13", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide)]
+        public string Dummy13
+        {
+            get { return ""; }
+        }
+        [Index(0), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Appearance("Dummy14", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide)]
+        public string Dummy14
+        {
+            get { return ""; }
+        }
+        [Index(0), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Appearance("Dummy15", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide)]
+        public string Dummy15
+        {
+            get { return ""; }
+        }
+        [Index(0), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Appearance("Dummy16", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide)]
+        public string Dummy16
+        {
+            get { return ""; }
+        }
+        [Index(0), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Appearance("Dummy17", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide)]
+        public string Dummy17
+        {
+            get { return ""; }
+        }
+        [Index(0), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Appearance("Dummy18", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide)]
+        public string Dummy18
+        {
+            get { return ""; }
+        }
+        [Index(0), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Appearance("Dummy19", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide)]
+        public string Dummy19
+        {
+            get { return ""; }
+        }
+        [Index(0), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Appearance("Dummy20", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide)]
+        public string Dummy20
+        {
+            get { return ""; }
+        }
+        [Index(0), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Appearance("Dummy21", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide)]
+        public string Dummy21
+        {
+            get { return ""; }
+        }
+        [Index(0), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Appearance("Dummy22", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide)]
+        public string Dummy22
+        {
+            get { return ""; }
+        }
+        [Index(0), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Appearance("Dummy23", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide)]
+        public string Dummy23
+        {
+            get { return ""; }
+        }
+        [Index(0), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Appearance("Dummy24", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide)]
+        public string Dummy24
+        {
+            get { return ""; }
+        }
+        [Index(0), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Appearance("Dummy25", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide)]
+        public string Dummy25
+        {
+            get { return ""; }
+        }
+        #endregion
+
         #region Child Table
         [Browsable(false)]
         [NonPersistent]
@@ -97,6 +250,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
         }
 
         [Association("FTS11OFAM-FTS11FAM2", typeof(FTS11FAM2))]
+        [Appearance("FTS11FAM2", Enabled = false, Criteria = "IsFieldEditable = 'N'")]
         public XPCollection FTS11FAM2
         {
             get { return GetCollection("FTS11FAM2"); }
@@ -121,7 +275,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
         private SE_FAStatus _U_Status;
         [XafDisplayName("Status"), ToolTip("Status")]
         [NoForeignKey]
-        [Index(10), VisibleInListView(true), VisibleInDetailView(true), VisibleInLookupListView(false)]
+        [Index(10), VisibleInListView(true), VisibleInDetailView(true), VisibleInLookupListView(true)]
         [Appearance("Status", Enabled = false)]
         public SE_FAStatus U_Status
         {
@@ -132,7 +286,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
         private string _U_FACode;
         [XafDisplayName("F/A Code"), ToolTip("F/A Code")]
         [Index(20), VisibleInListView(true), VisibleInDetailView(true), VisibleInLookupListView(true)]
-        [Appearance("FACode", Enabled = false, Criteria = "IsFieldEditable = 'N'")]
+        [Appearance("FACode", Enabled = false, Criteria = "IsFieldEditable = 'N' OR IsFACodeDisabled")]
         [RuleUniqueValue(DefaultContexts.Save)]
         public string U_FACode
         {
@@ -174,6 +328,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
                         SetPropertyValue("U_DeprnTyp", ref _U_DeprnTyp, Session.FindObject<FTS11OFAG>(CriteriaOperator.Parse("DocEntry=?", U_FAGrpKey.DocEntry)).U_DeprnTyp);
                         SetPropertyValue("U_Prorate", ref _U_Prorate, Session.FindObject<FTS11OFAG>(CriteriaOperator.Parse("DocEntry=?", U_FAGrpKey.DocEntry)).U_Prorate);
                         SetPropertyValue("U_UseLife", ref _U_UseLife, Session.FindObject<FTS11OFAG>(CriteriaOperator.Parse("DocEntry=?", U_FAGrpKey.DocEntry)).U_UseLife);
+                        SetPropertyValue("U_DeprPrcnt", ref _U_DeprPrcnt, Session.FindObject<FTS11OFAG>(CriteriaOperator.Parse("DocEntry=?", U_FAGrpKey.DocEntry)).U_DeprPrcnt);
                         SetPropertyValue("U_MBaseLC", ref _U_MBaseLC, Session.FindObject<FTS11OFAG>(CriteriaOperator.Parse("DocEntry=?", U_FAGrpKey.DocEntry)).U_MBaseLC);
                         SetPropertyValue("U_MBaseSC", ref _U_MBaseSC, Session.FindObject<FTS11OFAG>(CriteriaOperator.Parse("DocEntry=?", U_FAGrpKey.DocEntry)).U_MBaseSC);
                         SetPropertyValue("U_AccCodA", ref _U_AccCodA, Session.FindObject<FTS11OFAG>(CriteriaOperator.Parse("DocEntry=?", U_FAGrpKey.DocEntry)).U_AccCodA);
@@ -202,7 +357,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
 
         private string _U_FAGrpCod;
         [XafDisplayName("F/A Group Code"), ToolTip("F/A Group Code")]
-        [Index(41), VisibleInListView(true), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Index(41), VisibleInListView(true), VisibleInDetailView(false), VisibleInLookupListView(true)]
         public string U_FAGrpCod
         {
             get { return _U_FAGrpCod; }
@@ -210,7 +365,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
         }
 
         private bool _U_FAGrpSyn;
-        [Index(50), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(false)]
+        [Index(50), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(true)]
         [XafDisplayName("Sync F/A Group Settings"), ToolTip("Sync F/A Group Settings")]
         [ImmediatePostData]
         public bool U_FAGrpSyn
@@ -226,6 +381,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
                     SetPropertyValue("U_DeprnTyp", ref _U_DeprnTyp, Session.FindObject<FTS11OFAG>(CriteriaOperator.Parse("DocEntry=?", U_FAGrpKey.DocEntry)).U_DeprnTyp);
                     SetPropertyValue("U_Prorate", ref _U_Prorate, Session.FindObject<FTS11OFAG>(CriteriaOperator.Parse("DocEntry=?", U_FAGrpKey.DocEntry)).U_Prorate);
                     SetPropertyValue("U_UseLife", ref _U_UseLife, Session.FindObject<FTS11OFAG>(CriteriaOperator.Parse("DocEntry=?", U_FAGrpKey.DocEntry)).U_UseLife);
+                    SetPropertyValue("U_DeprPrcnt", ref _U_DeprPrcnt, Session.FindObject<FTS11OFAG>(CriteriaOperator.Parse("DocEntry=?", U_FAGrpKey.DocEntry)).U_DeprPrcnt);
                     SetPropertyValue("U_MBaseLC", ref _U_MBaseLC, Session.FindObject<FTS11OFAG>(CriteriaOperator.Parse("DocEntry=?", U_FAGrpKey.DocEntry)).U_MBaseLC);
                     SetPropertyValue("U_MBaseSC", ref _U_MBaseSC, Session.FindObject<FTS11OFAG>(CriteriaOperator.Parse("DocEntry=?", U_FAGrpKey.DocEntry)).U_MBaseSC);
                     SetPropertyValue("U_AccCodA", ref _U_AccCodA, Session.FindObject<FTS11OFAG>(CriteriaOperator.Parse("DocEntry=?", U_FAGrpKey.DocEntry)).U_AccCodA);
@@ -271,7 +427,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
 
         private string _U_AcqType;
         [XafDisplayName("Acquisition Type Code"), ToolTip("Acquisition Type Code")]
-        [Index(61), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Index(61), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(true)]
         public string U_AcqType
         {
             get { return _U_AcqType; }
@@ -279,7 +435,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
         }
 
         private DateTime _U_AcqDate;
-        [Index(70), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(false)]
+        [Index(70), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(true)]
         [RuleRequiredField(DefaultContexts.Save)]
         [XafDisplayName("Acquire Date")]
         [ImmediatePostData]
@@ -295,15 +451,15 @@ namespace FT_FixedAsset.Module.BusinessObjects
             }
         }
 
-        private int _U_Quantity;
-        [Index(80), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(false)]
+        private double _U_Quantity;
+        [Index(80), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(true)]
         [XafDisplayName("Quantity"), ToolTip("Quantity")]
-        [ModelDefault("DisplayFormat", "{0:n0}")]
-        [ModelDefault("EditMask", "{0:n0}")]
+        [ModelDefault("DisplayFormat", "{0:n2}")]
+        [ModelDefault("EditMask", "{0:n2}")]
         [Appearance("Quantity", Enabled = false, Criteria = "IsFieldEditable = 'N'")]
         [ImmediatePostData]
         [DbType("numeric(19,6)")]
-        public int U_Quantity
+        public double U_Quantity
         {
             get { return _U_Quantity; }
             set
@@ -325,7 +481,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
 
         private string _U_UoM;
         [XafDisplayName("UOM"), ToolTip("UoM")]
-        [Index(90), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(false)]
+        [Index(90), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(true)]
         public string U_UoM
         {
             get { return _U_UoM; }
@@ -334,7 +490,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
 
         private FTS11OLOC _U_LocationKey;
         [XafDisplayName("Acq. Location"), ToolTip("Acq. Location")]
-        [Index(100), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(false)]
+        [Index(100), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(true)]
         [Appearance("Location", Enabled = false, Criteria = "IsFieldEditable = 'N'")]
         [ImmediatePostData]
         [RuleRequiredField(DefaultContexts.Save)]
@@ -386,7 +542,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
 
         private string _U_Location;
         [XafDisplayName("Location Code"), ToolTip("Location Code")]
-        [Index(101), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Index(101), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(true)]
         public string U_Location
         {
             get { return _U_Location; }
@@ -395,7 +551,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
 
         private FTS11_vw_OCRN _U_Curr;
         [XafDisplayName("Currency"), ToolTip("Currency")]
-        [Index(110), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Index(110), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(true)]
         [RuleRequiredField(DefaultContexts.Save)]
         [Appearance("Curr", Enabled = false)]
         [NoForeignKey]
@@ -407,7 +563,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
 
         private double _U_OriCost;
         [XafDisplayName("Original Cost"), ToolTip("Original Cost")]
-        [Index(120), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(false)]
+        [Index(120), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(true)]
         [ModelDefault("DisplayFormat", "{0:n2}")]
         [DbType("numeric(19,6)")]
         public double U_OriCost
@@ -418,7 +574,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
 
         private double _U_OriCostSC;
         [XafDisplayName("Original Cost (SC)"), ToolTip("Original Cost (SC)")]
-        [Index(121), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(false)]
+        [Index(121), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(true)]
         [ModelDefault("DisplayFormat", "{0:n2}")]
         [DbType("numeric(19,6)")]
         public double U_OriCostSC
@@ -429,7 +585,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
 
         private double _U_Revalue;
         [XafDisplayName("Residual Value"), ToolTip("Residual Value")]
-        [Index(122), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(false)]
+        [Index(122), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(true)]
         [ModelDefault("DisplayFormat", "{0:n2}")]
         [Appearance("U_Revalue", Enabled = false, Criteria = "IsFieldEditable = 'N'")]
         [DbType("numeric(19,6)")]
@@ -441,7 +597,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
 
         private double _U_RevalueSC;
         [XafDisplayName("Residual Value (SC)"), ToolTip("Residual Value (SC)")]
-        [Index(123), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(false)]
+        [Index(123), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(true)]
         [ModelDefault("DisplayFormat", "{0:n2}")]
         [Appearance("U_RevalueSC", Enabled = false, Criteria = "IsFieldEditable = 'N'")]
         [DbType("numeric(19,6)")]
@@ -453,7 +609,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
 
         private string _U_AccCodV;
         [XafDisplayName("Acquire Frm A/C"), ToolTip("Acquire Frm A/C")]
-        [Index(130), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Index(130), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(true)]
         public string U_AccCodV
         {
             get { return _U_AccCodV; }
@@ -462,7 +618,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
 
         private FTS11_vw_OACT_OCRD _U_AccFrmV;
         [XafDisplayName("Acquire Frm A/C Code"), ToolTip("Acquire Frm A/C Code")]
-        [Index(131), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(false)]
+        [Index(131), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(true)]
         [NoForeignKey]
         [ImmediatePostData]
         public FTS11_vw_OACT_OCRD U_AccFrmV
@@ -489,7 +645,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
 
         private string _U_AccNamV;
         [XafDisplayName("Acquire Frm A/C Name"), ToolTip("Acquire Frm A/C Name")]
-        [Index(132), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(false)]
+        [Index(132), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(true)]
         public string U_AccNamV
         {
             get { return _U_AccNamV; }
@@ -498,7 +654,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
 
         private double _U_CostLC;
         [XafDisplayName("Unit Cost (LC)"), ToolTip("Unit Cost (LC)")]
-        [Index(140), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(false)]
+        [Index(140), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(true)]
         [ModelDefault("DisplayFormat", "{0:n2}")]
         [Appearance("U_CostLC", Enabled = false, Criteria = "IsFieldEditable = 'N'")]
         [ImmediatePostData]
@@ -532,7 +688,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
 
         private double _U_TCostLC;
         [XafDisplayName("Total Cost (LC)"), ToolTip("Total Cost (LC)")]
-        [Index(141), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(false)]
+        [Index(141), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(true)]
         [ModelDefault("DisplayFormat", "{0:n2}")]
         [Appearance("U_TCostLC", Enabled = false, Criteria = "IsFieldEditable = 'N'")]
         [DbType("numeric(19,6)")]
@@ -544,7 +700,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
 
         private double _U_CostSC;
         [XafDisplayName("Unit Cost (SC)"), ToolTip("Unit Cost (SC)")]
-        [Index(150), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(false)]
+        [Index(150), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(true)]
         [ModelDefault("DisplayFormat", "{0:n2}")]
         [Appearance("U_CostSC", Enabled = false, Criteria = "IsFieldEditable = 'N'")]
         [DbType("numeric(19,6)")]
@@ -572,7 +728,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
 
         private double _U_TCostSC;
         [XafDisplayName("Total Cost (SC)"), ToolTip("Total Cost (SC)")]
-        [Index(151), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(false)]
+        [Index(151), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(true)]
         [ModelDefault("DisplayFormat", "{0:n2}")]
         [Appearance("U_TCostSC", Enabled = false, Criteria = "IsFieldEditable = 'N'")]
         [DbType("numeric(19,6)")]
@@ -584,7 +740,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
 
         private double _U_CostFC;
         [XafDisplayName("Unit Cost (FC)"), ToolTip("Unit Cost (FC)")]
-        [Index(150), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(false)]
+        [Index(150), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(true)]
         [ModelDefault("DisplayFormat", "{0:n2}")]
         [Appearance("U_CostFC", Enabled = false, Criteria = "IsFieldEditable = 'N'")]
         [DbType("numeric(19,6)")]
@@ -606,7 +762,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
 
         private double _U_TCostFC;
         [XafDisplayName("Total Cost (FC)"), ToolTip("Total Cost (FC)")]
-        [Index(151), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(false)]
+        [Index(151), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(true)]
         [ModelDefault("DisplayFormat", "{0:n2}")]
         [Appearance("U_TCostFC", Enabled = false, Criteria = "IsFieldEditable = 'N'")]
         [DbType("numeric(19,6)")]
@@ -618,8 +774,9 @@ namespace FT_FixedAsset.Module.BusinessObjects
 
         private decimal _U_ExSC;
         [XafDisplayName("Ex. Rate (SC)"), ToolTip("Ex. Rate (SC)")]
-        [Index(160), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(false)]
+        [Index(160), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(true)]
         [ModelDefault("DisplayFormat", "{0:n6}")]
+        [ModelDefault("EditMask", "{0:n6}")]
         [Appearance("U_ExSC", Enabled = false, Criteria = "IsFieldEditable = 'N'")]
         [DbType("numeric(19,6)")]
         public decimal U_ExSC
@@ -630,8 +787,9 @@ namespace FT_FixedAsset.Module.BusinessObjects
 
         private decimal _U_ExFC;
         [XafDisplayName("Ex. Rate (FC)"), ToolTip("Ex. Rate (SC)")]
-        [Index(170), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(false)]
+        [Index(170), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(true)]
         [ModelDefault("DisplayFormat", "{0:n6}")]
+        [ModelDefault("EditMask", "{0:n6}")]
         [Appearance("U_ExFC", Enabled = false, Criteria = "IsFieldEditable = 'N'")]
         [DbType("numeric(19,6)")]
         public decimal U_ExFC
@@ -642,7 +800,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
 
         private double _U_BaseLC;
         [XafDisplayName("Unit B/F NBV (LC)"), ToolTip("Unit B/F NBV (LC)")]
-        [Index(180), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(false)]
+        [Index(180), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(true)]
         [ModelDefault("DisplayFormat", "{0:n2}")]
         [ImmediatePostData]
         [Appearance("U_BaseLC", Enabled = false, Criteria = "IsFieldEditable = 'N'")]
@@ -676,7 +834,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
 
         private double _U_TBaseLC;
         [XafDisplayName("Total B/F NBV (LC)"), ToolTip("Total B/F NBV (LC)")]
-        [Index(181), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(false)]
+        [Index(181), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(true)]
         [ModelDefault("DisplayFormat", "{0:n2}")]
         [Appearance("U_TBaseLC", Enabled = false, Criteria = "IsFieldEditable = 'N'")]
         [DbType("numeric(19,6)")]
@@ -688,7 +846,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
 
         private double _U_BaseSC;
         [XafDisplayName("Unit B/F NBV (SC)"), ToolTip("Unit B/F NBV (SC)")]
-        [Index(180), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(false)]
+        [Index(180), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(true)]
         [ModelDefault("DisplayFormat", "{0:n2}")]
         [ImmediatePostData]
         [Appearance("U_BaseSC", Enabled = false, Criteria = "IsFieldEditable = 'N'")]
@@ -711,7 +869,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
 
         private double _U_TBaseSC;
         [XafDisplayName("Total B/F NBV (SC)"), ToolTip("Total B/F NBV (SC)")]
-        [Index(181), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(false)]
+        [Index(181), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(true)]
         [ModelDefault("DisplayFormat", "{0:n2}")]
         [Appearance("U_TBaseSC", Enabled = false, Criteria = "IsFieldEditable = 'N'")]
         [DbType("numeric(19,6)")]
@@ -722,7 +880,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
         }
 
         private double _U_BFDepr;
-        [Index(190), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(false)]
+        [Index(190), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(true)]
         [XafDisplayName("B/F Depr Life"), ToolTip("B/F Depr Life")]
         [Appearance("BFDepr", Enabled = false)]
         [ModelDefault("DisplayFormat", "{0:n2}")]
@@ -735,7 +893,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
         }
 
         private double _U_DeprnCnt;
-        [Index(191), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Index(191), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(true)]
         [XafDisplayName("Depr Count"), ToolTip("Depr Count")]
         [ModelDefault("DisplayFormat", "{0:n0}")]
         [ModelDefault("EditMask", "{0:n0}")]
@@ -747,7 +905,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
         }
 
         private DateTime _U_EffDate;
-        [Index(200), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(false)]
+        [Index(200), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(true)]
         [RuleRequiredField(DefaultContexts.Save)]
         [XafDisplayName("Effective Date")]
         [ModelDefault("DisplayFormat", "dd/MM/yyyy")]
@@ -759,7 +917,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
         }
 
         private bool _U_DeprnYN;
-        [Index(210), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(false)]
+        [Index(210), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(true)]
         [XafDisplayName("Depreciation")]
         [Appearance("DeprnYN", Enabled = false, Criteria = "U_FAGrpSyn = true OR IsFieldEditable = 'N'")]
         public bool U_DeprnYN
@@ -772,7 +930,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
         [XafDisplayName("Depreciate By"), ToolTip("Depreciate By")]
         [NoForeignKey]
         [ImmediatePostData]
-        [Index(220), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(false)]
+        [Index(220), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(true)]
         [Appearance("DeprnBy", Enabled = false, Criteria = "U_FAGrpSyn = true OR IsFieldEditable = 'N'")]
         [RuleRequiredField(DefaultContexts.Save)]
         public SE_FADeprnBy U_DeprnBy
@@ -799,7 +957,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
         [XafDisplayName("Depreciate Type"), ToolTip("Depreciate Type")]
         [NoForeignKey]
         [ImmediatePostData]
-        [Index(240), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(false)]
+        [Index(240), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(true)]
         [Appearance("DeprnTyp", Enabled = false, Criteria = "U_FAGrpSyn = true OR IsFieldEditable = 'N'")]
         [RuleRequiredField(DefaultContexts.Save)]
         public SE_FADeprnTyp U_DeprnTyp
@@ -812,7 +970,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
         [XafDisplayName("Prorate"), ToolTip("Prorate")]
         [NoForeignKey]
         [Appearance("Prorate", Enabled = false, Criteria = "[U_DeprnTyp].[Code] <> 'S' OR U_FAGrpSyn = true OR IsFieldEditable = 'N'")]
-        [Index(250), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(false)]
+        [Index(250), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(true)]
         [RuleRequiredField(DefaultContexts.Save)]
         public SE_FAProrate U_Prorate
         {
@@ -821,7 +979,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
         }
 
         private double _U_UseLife;
-        [Index(260), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(false)]
+        [Index(260), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(true)]
         [XafDisplayName("Useful Life (Months)"), ToolTip("Useful Life (Months)")]
         [Appearance("UseLife", Enabled = false, Criteria = "[U_DeprnBy].[Code] <> 'U' OR U_FAGrpSyn = true OR IsFieldEditable = 'N'")]
         [ModelDefault("DisplayFormat", "{0:n2}")]
@@ -845,7 +1003,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
         }
 
         private double _U_DeprPrcnt;
-        [Index(270), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(false)]
+        [Index(270), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(true)]
         [XafDisplayName("Percentage %"), ToolTip("Precentage %")]
         [Appearance("DeprPrcnt", Enabled = false, Criteria = "[U_DeprnBy].[Code] <> 'P' OR U_FAGrpSyn = true OR IsFieldEditable = 'N'")]
         [ModelDefault("DisplayFormat", "{0:n2}")]
@@ -870,7 +1028,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
 
         private double _U_MBaseLC;
         [XafDisplayName("Min NBV (LC)"), ToolTip("Min NBV (LC)")]
-        [Index(280), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(false)]
+        [Index(280), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(true)]
         [Appearance("MBaseLC", Enabled = false, Criteria = "U_FAGrpSyn = true OR IsFieldEditable = 'N'")]
         [ModelDefault("DisplayFormat", "{0:n2}")]
         [DbType("numeric(19,6)")]
@@ -882,7 +1040,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
 
         private double _U_MBaseSC;
         [XafDisplayName("Min NBV (SC)"), ToolTip("Min NBV (SC)")]
-        [Index(290), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(false)]
+        [Index(290), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(true)]
         [Appearance("MBaseSC", Enabled = false, Criteria = "U_FAGrpSyn = true OR IsFieldEditable = 'N'")]
         [ModelDefault("DisplayFormat", "{0:n2}")]
         [DbType("numeric(19,6)")]
@@ -894,7 +1052,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
 
         private string _U_AccCodA;
         [XafDisplayName("Asset A/C"), ToolTip("Asset A/C")]
-        [Index(300), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Index(300), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(true)]
         [Appearance("AccCodA", Enabled = false, Criteria = "U_FAGrpSyn = true OR IsFieldEditable = 'N'")]
         public string U_AccCodA
         {
@@ -904,7 +1062,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
 
         private FTS11_vw_OACT _U_AccFrmA;
         [XafDisplayName("Asset A/C Code"), ToolTip("Asset A/C Code")]
-        [Index(301), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(false)]
+        [Index(301), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(true)]
         [RuleRequiredField(DefaultContexts.Save)]
         [Appearance("AccFrmA", Enabled = false, Criteria = "U_FAGrpSyn = true OR IsFieldEditable = 'N'")]
         [NoForeignKey]
@@ -933,7 +1091,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
 
         private string _U_AccNamA;
         [XafDisplayName("Asset A/C Name"), ToolTip("Asset A/C Name")]
-        [Index(302), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(false)]
+        [Index(302), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(true)]
         [Appearance("AccNamA", Enabled = false, Criteria = "U_FAGrpSyn = true OR IsFieldEditable = 'N'")]
         public string U_AccNamA
         {
@@ -943,7 +1101,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
 
         private string _U_AccCodD;
         [XafDisplayName("Depreciation A/C"), ToolTip("Depreciation A/C")]
-        [Index(310), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Index(310), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(true)]
         [Appearance("AccCodD", Enabled = false, Criteria = "U_FAGrpSyn = true OR IsFieldEditable = 'N'")]
         public string U_AccCodD
         {
@@ -953,8 +1111,8 @@ namespace FT_FixedAsset.Module.BusinessObjects
 
         private FTS11_vw_OACT _U_AccFrmD;
         [XafDisplayName("Depreciation A/C Code"), ToolTip("Depreciation A/C Code")]
-        [Index(311), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(false)]
-        [RuleRequiredField(DefaultContexts.Save)]
+        [Index(311), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(true)]
+        [RuleRequiredField(DefaultContexts.Save, TargetCriteria = "U_DeprnYN = true")]
         [Appearance("AccFrmD", Enabled = false, Criteria = "U_FAGrpSyn = true OR IsFieldEditable = 'N'")]
         [NoForeignKey]
         [ImmediatePostData]
@@ -982,7 +1140,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
 
         private string _U_AccNamD;
         [XafDisplayName("Depreciation A/C Name"), ToolTip("Depreciation A/C Name")]
-        [Index(312), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(false)]
+        [Index(312), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(true)]
         [Appearance("AccNamD", Enabled = false, Criteria = "U_FAGrpSyn = true OR IsFieldEditable = 'N'")]
         public string U_AccNamD
         {
@@ -992,8 +1150,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
 
         private string _U_AccCodC;
         [XafDisplayName("Acc. Deprn A/C"), ToolTip("Acc. Deprn A/C")]
-        [Index(320), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
-        [RuleRequiredField(DefaultContexts.Save)]
+        [Index(320), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(true)]
         [Appearance("AccCodC", Enabled = false, Criteria = "U_FAGrpSyn = true OR IsFieldEditable = 'N'")]
         public string U_AccCodC
         {
@@ -1003,8 +1160,8 @@ namespace FT_FixedAsset.Module.BusinessObjects
 
         private FTS11_vw_OACT _U_AccFrmC;
         [XafDisplayName("Acc. Deprn A/C Code"), ToolTip("Acc. Deprn A/C Code")]
-        [Index(321), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(false)]
-        [RuleRequiredField(DefaultContexts.Save)]
+        [Index(321), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(true)]
+        [RuleRequiredField(DefaultContexts.Save, TargetCriteria = "U_DeprnYN = true")]
         [Appearance("AccFrmC", Enabled = false, Criteria = "U_FAGrpSyn = true OR IsFieldEditable = 'N'")]
         [NoForeignKey]
         [ImmediatePostData]
@@ -1032,7 +1189,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
 
         private string _U_AccNamC;
         [XafDisplayName("Acc. Deprn A/C Name"), ToolTip("Acc. Deprn A/C Name")]
-        [Index(322), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(false)]
+        [Index(322), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(true)]
         [Appearance("AccNamC", Enabled = false, Criteria = "U_FAGrpSyn = true OR IsFieldEditable = 'N'")]
         public string U_AccNamC
         {
@@ -1042,7 +1199,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
 
         private string _U_AccCodW;
         [XafDisplayName("Disposal A/C"), ToolTip("Disposal A/C")]
-        [Index(330), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Index(330), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(true)]
         [Appearance("AccCodW", Enabled = false, Criteria = "U_FAGrpSyn = true OR IsFieldEditable = 'N'")]
         public string U_AccCodW
         {
@@ -1052,7 +1209,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
 
         private FTS11_vw_OACT _U_AccFrmW;
         [XafDisplayName("Disposal A/C Code"), ToolTip("Disposal A/C Code")]
-        [Index(331), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(false)]
+        [Index(331), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(true)]
         [Appearance("AccFrmW", Enabled = false, Criteria = "U_FAGrpSyn = true OR IsFieldEditable = 'N'")]
         [NoForeignKey]
         [ImmediatePostData]
@@ -1080,7 +1237,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
 
         private string _U_AccNamW;
         [XafDisplayName("Disposal A/C Name"), ToolTip("Disposal A/C Name")]
-        [Index(332), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(false)]
+        [Index(332), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(true)]
         [Appearance("AccNamW", Enabled = false, Criteria = "U_FAGrpSyn = true OR IsFieldEditable = 'N'")]
         public string U_AccNamW
         {
@@ -1090,7 +1247,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
 
         private string _U_AccCodQ;
         [XafDisplayName("Asset Offset A/C"), ToolTip("Asset Offset A/C")]
-        [Index(340), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Index(340), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(true)]
         [Appearance("AccCodQ", Enabled = false, Criteria = "U_FAGrpSyn = true OR IsFieldEditable = 'N'")]
         public string U_AccCodQ
         {
@@ -1100,7 +1257,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
 
         private FTS11_vw_OACT _U_AccFrmQ;
         [XafDisplayName("Asset Offset A/C Code"), ToolTip("Asset Offset A/C Code")]
-        [Index(341), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(false)]
+        [Index(341), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(true)]
         [Appearance("AccFrmQ", Enabled = false, Criteria = "U_FAGrpSyn = true OR IsFieldEditable = 'N'")]
         [NoForeignKey]
         [ImmediatePostData]
@@ -1128,7 +1285,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
 
         private string _U_AccNamQ;
         [XafDisplayName("Asset Offset A/C Name"), ToolTip("Asset Offset A/C Name")]
-        [Index(342), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(false)]
+        [Index(342), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(true)]
         [Appearance("AccNamQ", Enabled = false, Criteria = "U_FAGrpSyn = true OR IsFieldEditable = 'N'")]
         public string U_AccNamQ
         {
@@ -1139,7 +1296,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
         private FTS11_vw_OPRJ _U_Project;
         //[XafDisplayName("Project"), ToolTip("Project")]
         [XafDisplayName("Plant"), ToolTip("Plant")]
-        [Index(350), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(false)]
+        [Index(350), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(true)]
         [NoForeignKey]
         public FTS11_vw_OPRJ U_Project
         {
@@ -1150,7 +1307,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
         private FTS11_vw_OPRC _U_ProfitCode;
         //[XafDisplayName("Cost Centre D1"), ToolTip("Cost Centre D1")]
         [XafDisplayName("Project Code"), ToolTip("Project Code")]
-        [Index(360), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(false)]
+        [Index(360), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(true)]
         [NoForeignKey]
         [DataSourceCriteria("DimCode = '1'")]
         public FTS11_vw_OPRC U_ProfitCode
@@ -1162,7 +1319,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
         private FTS11_vw_OPRC _U_OcrCode2;
         //[XafDisplayName("Cost Centre D2"), ToolTip("Cost Centre D2")]
         [XafDisplayName("Department"), ToolTip("Department")]
-        [Index(370), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(false)]
+        [Index(370), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(true)]
         [NoForeignKey]
         [DataSourceCriteria("DimCode = '2'")]
         public FTS11_vw_OPRC U_OcrCode2
@@ -1173,7 +1330,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
 
         private FTS11_vw_OPRC _U_OcrCode3;
         [XafDisplayName("Cost Centre D3"), ToolTip("Cost Centre D3")]
-        [Index(380), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(false)]
+        [Index(380), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(true)]
         [NoForeignKey]
         [DataSourceCriteria("DimCode = '3'")]
         public FTS11_vw_OPRC U_OcrCode3
@@ -1184,7 +1341,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
 
         private FTS11_vw_OPRC _U_OcrCode4;
         [XafDisplayName("Cost Centre D4"), ToolTip("Cost Centre D4")]
-        [Index(390), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(false)]
+        [Index(390), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(true)]
         [NoForeignKey]
         [DataSourceCriteria("DimCode = '4'")]
         public FTS11_vw_OPRC U_OcrCode4
@@ -1195,7 +1352,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
 
         private FTS11_vw_OPRC _U_OcrCode5;
         [XafDisplayName("Cost Centre D5"), ToolTip("Cost Centre D5")]
-        [Index(400), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(false)]
+        [Index(400), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(true)]
         [NoForeignKey]
         [DataSourceCriteria("DimCode = '5'")]
         public FTS11_vw_OPRC U_OcrCode5
@@ -1207,7 +1364,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
         private FTS11OIND _U_IndKey1;
         //[XafDisplayName("Indicator 1"), ToolTip("Indicator 1")]
         [XafDisplayName("Area Code"), ToolTip("Area Code")]
-        [Index(410), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(false)]
+        [Index(410), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(true)]
         [DataSourceCriteria("U_IndDim = '1'")]
         public FTS11OIND U_IndKey1
         {
@@ -1227,7 +1384,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
 
         private string _U_IndCod1;
         [XafDisplayName("Indicator Code 1"), ToolTip("Indicator Code 1")]
-        [Index(411), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Index(411), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(true)]
         public string U_IndCod1
         {
             get { return _U_IndCod1; }
@@ -1236,7 +1393,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
 
         private FTS11OIND _U_IndKey2;
         [XafDisplayName("Indicator 2"), ToolTip("Indicator 2")]
-        [Index(420), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(false)]
+        [Index(420), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(true)]
         [DataSourceCriteria("U_IndDim = '2'")]
         public FTS11OIND U_IndKey2
         {
@@ -1256,7 +1413,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
 
         private string _U_IndCod2;
         [XafDisplayName("Indicator Code 2"), ToolTip("Indicator Code 2")]
-        [Index(421), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Index(421), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(true)]
         public string U_IndCod2
         {
             get { return _U_IndCod2; }
@@ -1266,7 +1423,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
 
         private FTS11OIND _U_IndKey3;
         [XafDisplayName("Indicator 3"), ToolTip("Indicator 3")]
-        [Index(420), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(false)]
+        [Index(420), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(true)]
         [DataSourceCriteria("U_IndDim = '3'")]
         public FTS11OIND U_IndKey3
         {
@@ -1286,7 +1443,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
 
         private string _U_IndCod3;
         [XafDisplayName("Indicator Code 3"), ToolTip("Indicator Code 3")]
-        [Index(421), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Index(421), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(true)]
         public string U_IndCod3
         {
             get { return _U_IndCod3; }
@@ -1295,7 +1452,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
 
         private FTS11OIND _U_IndKey4;
         [XafDisplayName("Indicator 4"), ToolTip("Indicator 4")]
-        [Index(430), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(false)]
+        [Index(430), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(true)]
         [DataSourceCriteria("U_IndDim = '4'")]
         public FTS11OIND U_IndKey4
         {
@@ -1315,7 +1472,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
 
         private string _U_IndCod4;
         [XafDisplayName("Indicator Code 4"), ToolTip("Indicator Code 4")]
-        [Index(431), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Index(431), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(true)]
         public string U_IndCod4
         {
             get { return _U_IndCod4; }
@@ -1324,7 +1481,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
 
         private FTS11OIND _U_IndKey5;
         [XafDisplayName("Indicator 5"), ToolTip("Indicator 5")]
-        [Index(440), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(false)]
+        [Index(440), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(true)]
         [DataSourceCriteria("U_IndDim = '5'")]
         public FTS11OIND U_IndKey5
         {
@@ -1344,7 +1501,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
 
         private string _U_IndCod5;
         [XafDisplayName("Indicator Code 5"), ToolTip("Indicator Code 5")]
-        [Index(441), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Index(441), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(true)]
         public string U_IndCod5
         {
             get { return _U_IndCod5; }
@@ -1353,7 +1510,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
 
         private FTS11OIND _U_IndKey6;
         [XafDisplayName("Indicator 6"), ToolTip("Indicator 6")]
-        [Index(450), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(false)]
+        [Index(450), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(true)]
         [DataSourceCriteria("U_IndDim = '6'")]
         public FTS11OIND U_IndKey6
         {
@@ -1373,7 +1530,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
 
         private string _U_IndCod6;
         [XafDisplayName("Indicator Code 6"), ToolTip("Indicator Code 6")]
-        [Index(451), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Index(451), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(true)]
         public string U_IndCod6
         {
             get { return _U_IndCod6; }
@@ -1382,7 +1539,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
 
         private string _U_BarCode;
         [XafDisplayName("Barcode"), ToolTip("Barcode")]
-        [Index(460), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(false)]
+        [Index(460), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(true)]
         public string U_BarCode
         {
             get { return _U_BarCode; }
@@ -1390,7 +1547,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
         }
 
         private bool _U_BarCodYN;
-        [Index(461), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(false)]
+        [Index(461), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(true)]
         [XafDisplayName("Barcode Printing")]
         public bool U_BarCodYN
         {
@@ -1400,7 +1557,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
 
         private string _U_TagNum;
         [XafDisplayName("Tag No."), ToolTip("Tag No.")]
-        [Index(470), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(false)]
+        [Index(470), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(true)]
         public string U_TagNum
         {
             get { return _U_TagNum; }
@@ -1409,7 +1566,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
 
         private string _U_Legacy;
         [XafDisplayName("Legacy Code"), ToolTip("Legacy Code")]
-        [Index(480), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(false)]
+        [Index(480), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(true)]
         public string U_Legacy
         {
             get { return _U_Legacy; }
@@ -1418,7 +1575,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
 
         private string _U_Serial;
         [XafDisplayName("Serial"), ToolTip("Serial")]
-        [Index(490), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(false)]
+        [Index(490), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(true)]
         public string U_Serial
         {
             get { return _U_Serial; }
@@ -1427,7 +1584,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
 
         private string _U_Model;
         [XafDisplayName("Model"), ToolTip("Model")]
-        [Index(500), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(false)]
+        [Index(500), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(true)]
         public string U_Model
         {
             get { return _U_Model; }
@@ -1435,7 +1592,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
         }
 
         private DateTime _U_WarExpr;
-        [Index(510), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(false)]
+        [Index(510), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(true)]
         [XafDisplayName("Warranty Expiry")]
         [ModelDefault("DisplayFormat", "dd/MM/yyyy")]
         public DateTime U_WarExpr
@@ -1446,7 +1603,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
 
         private string _U_InsNum;
         [XafDisplayName("Insurance Ref."), ToolTip("Insurance Ref.")]
-        [Index(520), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(false)]
+        [Index(520), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(true)]
         public string U_InsNum
         {
             get { return _U_InsNum; }
@@ -1454,7 +1611,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
         }
 
         private DateTime _U_InsDate;
-        [Index(521), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(false)]
+        [Index(521), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(true)]
         [XafDisplayName("Insurance Ref. Date")]
         [ModelDefault("DisplayFormat", "dd/MM/yyyy")]
         public DateTime U_InsDate
@@ -1465,7 +1622,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
 
         private string _U_InsType;
         [XafDisplayName("Insurance Type"), ToolTip("Insurance Type")]
-        [Index(522), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(false)]
+        [Index(522), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(true)]
         public string U_InsType
         {
             get { return _U_InsType; }
@@ -1474,7 +1631,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
 
         private string _U_InsComp;
         [XafDisplayName("Insurance Company"), ToolTip("Insurance Company")]
-        [Index(523), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(false)]
+        [Index(523), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(true)]
         public string U_InsComp
         {
             get { return _U_InsComp; }
@@ -1483,7 +1640,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
 
         private double _U_InsCov;
         [XafDisplayName("Coverage"), ToolTip("Coverage")]
-        [Index(524), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(false)]
+        [Index(524), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(true)]
         [ModelDefault("DisplayFormat", "{0:n2}")]
         [DbType("numeric(19,6)")]
         public double U_InsCov
@@ -1494,7 +1651,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
 
         private double _U_InsVal;
         [XafDisplayName("Value"), ToolTip("Value")]
-        [Index(525), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(false)]
+        [Index(525), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(true)]
         [ModelDefault("DisplayFormat", "{0:n2}")]
         [DbType("numeric(19,6)")]
         public double U_InsVal
@@ -1505,7 +1662,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
 
         private string _U_LeasRef;
         [XafDisplayName("Lease Ref."), ToolTip("Lease Ref.")]
-        [Index(530), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(false)]
+        [Index(530), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(true)]
         public string U_LeasRef
         {
             get { return _U_LeasRef; }
@@ -1513,7 +1670,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
         }
 
         private DateTime _U_LeasDate;
-        [Index(531), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(false)]
+        [Index(531), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(true)]
         [XafDisplayName("Lease Date")]
         [ModelDefault("DisplayFormat", "dd/MM/yyyy")]
         public DateTime U_LeasDate
@@ -1525,7 +1682,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
         private string _U_RefDoc1;
         //[XafDisplayName("Ref. Doc. 1"), ToolTip("Ref Doc. 1")]
         [XafDisplayName("Invoice No."), ToolTip("Invoice No.")]
-        [Index(540), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(false)]
+        [Index(540), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(true)]
         public string U_RefDoc1
         {
             get { return _U_RefDoc1; }
@@ -1533,7 +1690,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
         }
 
         private DateTime _U_RefDate1;
-        [Index(541), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(false)]
+        [Index(541), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(true)]
         [XafDisplayName("Ref. Date 1"), ToolTip("Ref. Date 1")]
         //[XafDisplayName("Invoice Date"), ToolTip("Invoice Date")]
         [ModelDefault("DisplayFormat", "dd/MM/yyyy")]
@@ -1546,7 +1703,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
         private string _U_RefDoc2;
         //[XafDisplayName("Ref. Doc. 2"), ToolTip("Ref Doc. 2")]
         [XafDisplayName("PO No."), ToolTip("PO No.")]
-        [Index(550), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(false)]
+        [Index(550), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(true)]
         public string U_RefDoc2
         {
             get { return _U_RefDoc2; }
@@ -1554,7 +1711,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
         }
 
         private DateTime _U_RefDate2;
-        [Index(551), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(false)]
+        [Index(551), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(true)]
         [XafDisplayName("Ref. Date 2")]
         [ModelDefault("DisplayFormat", "dd/MM/yyyy")]
         public DateTime U_RefDate2
@@ -1566,7 +1723,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
         private string _U_RefDoc3;
         //[XafDisplayName("Ref. Doc. 3"), ToolTip("Ref Doc. 3")]
         [XafDisplayName("VR No."), ToolTip("VR No.")]
-        [Index(560), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(false)]
+        [Index(560), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(true)]
         public string U_RefDoc3
         {
             get { return _U_RefDoc3; }
@@ -1574,7 +1731,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
         }
 
         private DateTime _U_RefDate3;
-        [Index(561), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(false)]
+        [Index(561), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(true)]
         [XafDisplayName("Ref. Date 3")]
         [ModelDefault("DisplayFormat", "dd/MM/yyyy")]
         public DateTime U_RefDate3
@@ -1587,7 +1744,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
         //[XafDisplayName("Remark 1"), ToolTip("Remark 1")]
         [XafDisplayName("Asset Owner"), ToolTip("Asset Owner")]
         [Size(255)]
-        [Index(570), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(false)]
+        [Index(570), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(true)]
         public string U_Remark1
         {
             get { return _U_Remark1; }
@@ -1597,7 +1754,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
         private string _U_Remark2;
         [XafDisplayName("Remark 2"), ToolTip("Remark 2")]
         [Size(255)]
-        [Index(571), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(false)]
+        [Index(571), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(true)]
         public string U_Remark2
         {
             get { return _U_Remark2; }
@@ -1607,7 +1764,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
         private string _U_Remark3;
         [XafDisplayName("Remark 3"), ToolTip("Remark 3")]
         [Size(255)]
-        [Index(572), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(false)]
+        [Index(572), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(true)]
         public string U_Remark3
         {
             get { return _U_Remark3; }
@@ -1617,7 +1774,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
         private string _U_Remark4;
         [XafDisplayName("Remark 4"), ToolTip("Remark 4")]
         [Size(255)]
-        [Index(573), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(false)]
+        [Index(573), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(true)]
         public string U_Remark4
         {
             get { return _U_Remark4; }
@@ -1627,7 +1784,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
         private string _U_Text;
         [XafDisplayName("Note"), ToolTip("Note")]
         [Size(SizeAttribute.Unlimited)]
-        [Index(574), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(false)]
+        [Index(574), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(true)]
         public string U_Text
         {
             get { return _U_Text; }
@@ -1635,7 +1792,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
         }
 
         [DevExpress.ExpressApp.DC.Aggregated, ExpandObjectMembers(ExpandObjectMembers.Never), ImmediatePostData]
-        [Index(575), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Index(575), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(true)]
         [XafDisplayName("Attachment"), ToolTip("Attachment")]
         public FileSystemStoreObject U_FilePath
         {
@@ -1646,21 +1803,21 @@ namespace FT_FixedAsset.Module.BusinessObjects
         private FTS11OFAM _U_RootKey;
         [DataSourceCriteria("DocEntry != '@This.DocEntry'")]
         [XafDisplayName("Component Of"), ToolTip("Component Of")]
-        [Index(576), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(false)]
+        [Index(576), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(true)]
         public FTS11OFAM U_RootKey
         {
             get { return _U_RootKey; }
             set { SetPropertyValue("U_RootKey", ref _U_RootKey, value); }
         }
 
-        private int _SQuantity;
-        [Index(800), VisibleInListView(true), VisibleInDetailView(true), VisibleInLookupListView(false)]
+        private double _SQuantity;
+        [Index(800), VisibleInListView(true), VisibleInDetailView(true), VisibleInLookupListView(true)]
         [XafDisplayName("C/F Quantity"), ToolTip("C/F Quantity")]
-        [ModelDefault("DisplayFormat", "{0:n0}")]
-        [ModelDefault("EditMask", "{0:n0}")]
+        [ModelDefault("DisplayFormat", "{0:n2}")]
+        [ModelDefault("EditMask", "{0:n2}")]
         [Appearance("SQuantity", Enabled = false)]
         [DbType("numeric(19,6)")]
-        public int SQuantity
+        public double SQuantity
         {
             get { return _SQuantity; }
             set { SetPropertyValue("SQuantity", ref _SQuantity, value); }
@@ -1680,8 +1837,8 @@ namespace FT_FixedAsset.Module.BusinessObjects
         [XafDisplayName("C/F Cost (LC)"), ToolTip("C/F (LC)")]
         [Index(802), VisibleInListView(true), VisibleInDetailView(true), VisibleInLookupListView(true)]
         [Appearance("STotalCostLC", Enabled = false)]
-        [ModelDefault("DisplayFormat", "{0:n2}")]
-        [ModelDefault("EditMask", "{0:n2}")]
+        //[ModelDefault("DisplayFormat", "{0:n2}")]
+        //[ModelDefault("EditMask", "{0:n2}")]
         [DbType("numeric(19,6)")]
         public double STotalCostLC
         {
@@ -1693,8 +1850,8 @@ namespace FT_FixedAsset.Module.BusinessObjects
         [XafDisplayName("Accu. Depreciation"), ToolTip("Accu. Depreciation")]
         [Index(803), VisibleInListView(true), VisibleInDetailView(true), VisibleInLookupListView(true)]
         [Appearance("SDeprLC", Enabled = false)]
-        [ModelDefault("DisplayFormat", "{0:n2}")]
-        [ModelDefault("EditMask", "{0:n2}")]
+        //[ModelDefault("DisplayFormat", "{0:n2}")]
+        //[ModelDefault("EditMask", "{0:n2}")]
         [DbType("numeric(19,6)")]
         public double SDeprLC
         {
@@ -1706,8 +1863,8 @@ namespace FT_FixedAsset.Module.BusinessObjects
         [XafDisplayName("NBV"), ToolTip("NBV")]
         [Index(804), VisibleInListView(true), VisibleInDetailView(true), VisibleInLookupListView(true)]
         [Appearance("SNBVLC", Enabled = false)]
-        [ModelDefault("DisplayFormat", "{0:n2}")]
-        [ModelDefault("EditMask", "{0:n2}")]
+        //[ModelDefault("DisplayFormat", "{0:n2}")]
+        //[ModelDefault("EditMask", "{0:n2}")]
         [DbType("numeric(19,6)")]
         public double SNBVLC
         {
@@ -1717,7 +1874,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
 
         private string _U_CreateBy;
         [XafDisplayName("Create By"), ToolTip("Create By")]
-        [Index(993), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Index(993), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(true)]
         public string U_CreateBy
         {
             get { return _U_CreateBy; }
@@ -1726,7 +1883,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
 
         private string _U_UpdateBy;
         [XafDisplayName("Update By"), ToolTip("Update By")]
-        [Index(994), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Index(994), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(true)]
         public string U_UpdateBy
         {
             get { return _U_UpdateBy; }
@@ -1735,7 +1892,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
 
         private string _U_CnclBy;
         [XafDisplayName("Cancel By"), ToolTip("Cancel By")]
-        [Index(995), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Index(995), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(true)]
         public string U_CnclBy
         {
             get { return _U_CnclBy; }
@@ -1743,7 +1900,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
         }
 
         private DateTime _CreateDate;
-        [Index(996), VisibleInDetailView(false), VisibleInListView(false), VisibleInLookupListView(false)]
+        [Index(996), VisibleInDetailView(false), VisibleInListView(false), VisibleInLookupListView(true)]
         [XafDisplayName("Create Date")]
         [ModelDefault("DisplayFormat", "dd/MM/yyyy")]
         [DbType("datetime")]
@@ -1754,7 +1911,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
         }
 
         private DateTime _UpdateDate;
-        [Index(997), VisibleInDetailView(false), VisibleInListView(false), VisibleInLookupListView(false)]
+        [Index(997), VisibleInDetailView(false), VisibleInListView(false), VisibleInLookupListView(true)]
         [XafDisplayName("Update Date")]
         [ModelDefault("DisplayFormat", "dd/MM/yyyy")]
         [DbType("datetime")]
@@ -1765,7 +1922,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
         }
 
         private DateTime _U_CnclDate;
-        [Index(998), VisibleInDetailView(false), VisibleInListView(false), VisibleInLookupListView(false)]
+        [Index(998), VisibleInDetailView(false), VisibleInListView(false), VisibleInLookupListView(true)]
         [XafDisplayName("Cancel Date")]
         [ModelDefault("DisplayFormat", "dd/MM/yyyy")]
         [DbType("datetime")]
@@ -1777,7 +1934,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
 
         private string _Object;
         [XafDisplayName("Object"), ToolTip("Object")]
-        [Index(999), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Index(999), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(true)]
         public string Object
         {
             get { return _Object; }
@@ -1785,7 +1942,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
         }
 
         private int _LogInst;
-        [Index(1000), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Index(1000), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(true)]
         [XafDisplayName("LogInst"), ToolTip("LogInst")]
         [ModelDefault("DisplayFormat", "{0:n0}")]
         [ModelDefault("EditMask", "{0:n0}")]
@@ -1799,7 +1956,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
 
         [Browsable(false)]
         private string _IsFieldEditable;
-        [Index(1010), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Index(1010), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(true)]
         [DbType("nvarchar(1)")]
         public string IsFieldEditable
         {
@@ -1808,9 +1965,16 @@ namespace FT_FixedAsset.Module.BusinessObjects
         }
 
         [Browsable(false)]
+        public bool IsFACodeDisabled
+        {
+            get { return Session.FindObject<FTS11OADM>(CriteriaOperator.Parse("DocEntry = '1'")).U_DisFACode; }
+        }
+
+        [Browsable(false)]
         public bool IsNew
         {
             get { return Session.IsNewObject(this); }
         }
+
     }
 }

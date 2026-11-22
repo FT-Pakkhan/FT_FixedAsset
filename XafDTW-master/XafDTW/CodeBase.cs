@@ -2,9 +2,6 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.OleDb;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.ExpressApp;
 using DevExpress.ExpressApp.Security;
@@ -77,7 +74,12 @@ namespace XafDTW
 
                         if (opcriteria == "") throw new MyException("Business Object's Key property is not valid.");
 
-                        GeneralHelper.SetPropertyValueCriteriaOperator(tobj, tcolumnname, DevExpress.Data.Filtering.CriteriaOperator.Parse(opcriteria, svalue));
+                        GeneralHelper.SetPropertyValueCriteriaOperator(tobj, tcolumnname, DevExpress.Data.Filtering.CriteriaOperator.Parse(opcriteria, Convert.ToString(svalue)));
+                        continue;
+                    }
+                    else if (tproperty.PropertyType == typeof(string))
+                    {
+                        GeneralHelper.SetPropertyValue(tobj, tcolumnname, Convert.ToString(svalue));
                         continue;
                     }
                     else if (tproperty.PropertyType == typeof(bool))
@@ -100,12 +102,20 @@ namespace XafDTW
                         GeneralHelper.SetPropertyValue(tobj, tcolumnname, Convert.ToDecimal(svalue));
                         continue;
                     }
+                    else if (tproperty.PropertyType == typeof(DateTime))
+                    {
+                        GeneralHelper.SetPropertyValue(tobj, tcolumnname, Convert.ToDateTime(svalue));
+                        continue;
+                    }
                     GeneralHelper.SetPropertyValue(tobj, tcolumnname, svalue);
                 }
             }
             catch (Exception ex)
             {
-                throw new MyException(ex.Message);
+                if (ex.InnerException != null)
+                    throw new InvalidOperationException(ex.InnerException.Message);
+                else
+                    throw new InvalidOperationException(ex.Message);
             }
         }
 

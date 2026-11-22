@@ -361,3 +361,5 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+# Nested local copy of the project (not part of repo)
+/FT_FixedAsset/

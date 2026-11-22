@@ -1,13 +1,13 @@
-﻿using DevExpress.Xpo;
-using DevExpress.Persistent.BaseImpl;
-using DevExpress.ExpressApp.DC;
-using DevExpress.ExpressApp.ConditionalAppearance;
-using DevExpress.ExpressApp.Editors;
-using DevExpress.Persistent.Base;
-using System;
-using DevExpress.ExpressApp.Model;
+﻿using System;
 using DevExpress.Data.Filtering;
 using DevExpress.ExpressApp;
+using DevExpress.ExpressApp.ConditionalAppearance;
+using DevExpress.ExpressApp.DC;
+using DevExpress.ExpressApp.Editors;
+using DevExpress.ExpressApp.Model;
+using DevExpress.Persistent.Base;
+using DevExpress.Persistent.BaseImpl;
+using DevExpress.Xpo;
 
 namespace FT_FixedAsset.Module.BusinessObjects
 {
@@ -40,11 +40,136 @@ namespace FT_FixedAsset.Module.BusinessObjects
             FileType = Session.FindObject<FTS11OADM>(CriteriaOperator.Parse("DocEntry = '1'")).U_FileType;
             Series = Session.FindObject<FTS11OADM>(CriteriaOperator.Parse("DocEntry = '1'")).U_Series;
             JEMemo = Session.FindObject<FTS11OADM>(CriteriaOperator.Parse("DocEntry = '1'")).U_JEMemo;
+            Ref1 = Session.FindObject<FTS11OADM>(CriteriaOperator.Parse("DocEntry = '1'")).U_Ref1;
+            Ref2 = Session.FindObject<FTS11OADM>(CriteriaOperator.Parse("DocEntry = '1'")).U_Ref2;
             if (SecuritySystem.CurrentUserId != null)
             {
                 U_CreateBy = Session.GetObjectByKey<SystemUsers>(SecuritySystem.CurrentUserId).UserName;
             }
         }
+
+        #region Dummy field
+        [Index(0), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Appearance("Dummy01", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide)]
+        public string Dummy01
+        {
+            get { return ""; }
+        }
+        [Index(0), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Appearance("Dummy02", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide)]
+        public string Dummy02
+        {
+            get { return ""; }
+        }
+        [Index(0), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Appearance("Dummy03", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide)]
+        public string Dummy03
+        {
+            get { return ""; }
+        }
+        [Index(0), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Appearance("Dummy04", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide)]
+        public string Dummy04
+        {
+            get { return ""; }
+        }
+        [Index(0), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Appearance("Dummy05", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide)]
+        public string Dummy05
+        {
+            get { return ""; }
+        }
+        [Index(0), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Appearance("Dummy06", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide)]
+        public string Dummy06
+        {
+            get { return ""; }
+        }
+        [Index(0), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Appearance("Dummy07", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide)]
+        public string Dummy07
+        {
+            get { return ""; }
+        }
+        [Index(0), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Appearance("Dummy08", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide)]
+        public string Dummy08
+        {
+            get { return ""; }
+        }
+        [Index(0), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Appearance("Dummy09", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide)]
+        public string Dummy09
+        {
+            get { return ""; }
+        }
+        [Index(0), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Appearance("Dummy10", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide)]
+        public string Dummy10
+        {
+            get { return ""; }
+        }
+        [Index(0), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Appearance("Dummy11", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide)]
+        public string Dummy11
+        {
+            get { return ""; }
+        }
+        [Index(0), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Appearance("Dummy12", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide)]
+        public string Dummy12
+        {
+            get { return ""; }
+        }
+        [Index(0), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Appearance("Dummy13", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide)]
+        public string Dummy13
+        {
+            get { return ""; }
+        }
+        [Index(0), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Appearance("Dummy14", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide)]
+        public string Dummy14
+        {
+            get { return ""; }
+        }
+        [Index(0), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Appearance("Dummy15", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide)]
+        public string Dummy15
+        {
+            get { return ""; }
+        }
+        [Index(0), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Appearance("Dummy16", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide)]
+        public string Dummy16
+        {
+            get { return ""; }
+        }
+        [Index(0), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Appearance("Dummy17", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide)]
+        public string Dummy17
+        {
+            get { return ""; }
+        }
+        [Index(0), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Appearance("Dummy18", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide)]
+        public string Dummy18
+        {
+            get { return ""; }
+        }
+        [Index(0), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Appearance("Dummy19", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide)]
+        public string Dummy19
+        {
+            get { return ""; }
+        }
+        [Index(0), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Appearance("Dummy20", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide)]
+        public string Dummy20
+        {
+            get { return ""; }
+        }
+        #endregion
 
         private DateTime _DateFrm;
         [Index(10), VisibleInDetailView(true), VisibleInListView(true), VisibleInLookupListView(false)]
@@ -127,6 +252,136 @@ namespace FT_FixedAsset.Module.BusinessObjects
         {
             get { return _FAClsTo; }
             set { SetPropertyValue("FAClsTo", ref _FAClsTo, value); }
+        }
+
+        private FTS11_vw_OPRJ _U_ProjectFrm;
+        [XafDisplayName("Plant From"), ToolTip("Plant From")]
+        [Index(90), VisibleInListView(true), VisibleInDetailView(true), VisibleInLookupListView(true)]
+        [NoForeignKey]
+        public FTS11_vw_OPRJ U_ProjectFrm
+        {
+            get { return _U_ProjectFrm; }
+            set { SetPropertyValue("U_ProjectFrm", ref _U_ProjectFrm, value); }
+        }
+
+        private FTS11_vw_OPRJ _U_ProjectTo;
+        [XafDisplayName("Plant To"), ToolTip("Plant To")]
+        [Index(91), VisibleInListView(true), VisibleInDetailView(true), VisibleInLookupListView(true)]
+        [NoForeignKey]
+        public FTS11_vw_OPRJ U_ProjectTo
+        {
+            get { return _U_ProjectTo; }
+            set { SetPropertyValue("U_ProjectTo", ref _U_ProjectTo, value); }
+        }
+
+        private FTS11_vw_OPRC _U_ProfitCodeFrm;
+        [XafDisplayName("C.Centre D1 From"), ToolTip("C.Centre D1 From")]
+        [Index(100), VisibleInListView(true), VisibleInDetailView(true), VisibleInLookupListView(true)]
+        [NoForeignKey]
+        [DataSourceCriteria("DimCode = '1'")]
+        public FTS11_vw_OPRC U_ProfitCodeFrm
+        {
+            get { return _U_ProfitCodeFrm; }
+            set { SetPropertyValue("U_ProfitCodeFrm", ref _U_ProfitCodeFrm, value); }
+        }
+
+        private FTS11_vw_OPRC _U_ProfitCodeTo;
+        [XafDisplayName("C.Centre D1 To"), ToolTip("C.Centre D1 To")]
+        [Index(101), VisibleInListView(true), VisibleInDetailView(true), VisibleInLookupListView(true)]
+        [NoForeignKey]
+        [DataSourceCriteria("DimCode = '1'")]
+        public FTS11_vw_OPRC U_ProfitCodeTo
+        {
+            get { return _U_ProfitCodeTo; }
+            set { SetPropertyValue("U_ProfitCodeTo", ref _U_ProfitCodeTo, value); }
+        }
+
+        private FTS11_vw_OPRC _U_OcrCode2Frm;
+        [XafDisplayName("C.Centre D2 From"), ToolTip("C.Centre D2 From")]
+        [Index(110), VisibleInListView(true), VisibleInDetailView(true), VisibleInLookupListView(true)]
+        [NoForeignKey]
+        [DataSourceCriteria("DimCode = '2'")]
+        public FTS11_vw_OPRC U_OcrCode2Frm
+        {
+            get { return _U_OcrCode2Frm; }
+            set { SetPropertyValue("U_OcrCode2Frm", ref _U_OcrCode2Frm, value); }
+        }
+
+        private FTS11_vw_OPRC _U_OcrCode2To;
+        [XafDisplayName("C.Centre D2 To"), ToolTip("C.Centre D2 To")]
+        [Index(111), VisibleInListView(true), VisibleInDetailView(true), VisibleInLookupListView(true)]
+        [NoForeignKey]
+        [DataSourceCriteria("DimCode = '2'")]
+        public FTS11_vw_OPRC U_OcrCode2To
+        {
+            get { return _U_OcrCode2To; }
+            set { SetPropertyValue("U_OcrCode2To", ref _U_OcrCode2To, value); }
+        }
+
+        private FTS11_vw_OPRC _U_OcrCode3Frm;
+        [XafDisplayName("C.Centre D3 From"), ToolTip("Cost Centre D3 From")]
+        [Index(120), VisibleInListView(true), VisibleInDetailView(true), VisibleInLookupListView(true)]
+        [NoForeignKey]
+        [DataSourceCriteria("DimCode = '3'")]
+        public FTS11_vw_OPRC U_OcrCode3Frm
+        {
+            get { return _U_OcrCode3Frm; }
+            set { SetPropertyValue("U_OcrCode3Frm", ref _U_OcrCode3Frm, value); }
+        }
+
+        private FTS11_vw_OPRC _U_OcrCode3To;
+        [XafDisplayName("C.Centre D3 To"), ToolTip("Cost Centre D3 To")]
+        [Index(121), VisibleInListView(true), VisibleInDetailView(true), VisibleInLookupListView(true)]
+        [NoForeignKey]
+        [DataSourceCriteria("DimCode = '3'")]
+        public FTS11_vw_OPRC U_OcrCode3To
+        {
+            get { return _U_OcrCode3To; }
+            set { SetPropertyValue("U_OcrCode3To", ref _U_OcrCode3To, value); }
+        }
+
+        private FTS11_vw_OPRC _U_OcrCode4Frm;
+        [XafDisplayName("C.Centre D4 From"), ToolTip("C.Centre D4 From")]
+        [Index(130), VisibleInListView(true), VisibleInDetailView(true), VisibleInLookupListView(true)]
+        [NoForeignKey]
+        [DataSourceCriteria("DimCode = '4'")]
+        public FTS11_vw_OPRC U_OcrCode4Frm
+        {
+            get { return _U_OcrCode4Frm; }
+            set { SetPropertyValue("U_OcrCode4Frm", ref _U_OcrCode4Frm, value); }
+        }
+
+        private FTS11_vw_OPRC _U_OcrCode4To;
+        [XafDisplayName("C.Centre D4 To"), ToolTip("C.Centre D4 To")]
+        [Index(131), VisibleInListView(true), VisibleInDetailView(true), VisibleInLookupListView(true)]
+        [NoForeignKey]
+        [DataSourceCriteria("DimCode = '4'")]
+        public FTS11_vw_OPRC U_OcrCode4To
+        {
+            get { return _U_OcrCode4To; }
+            set { SetPropertyValue("U_OcrCode4To", ref _U_OcrCode4To, value); }
+        }
+
+        private FTS11_vw_OPRC _U_OcrCode5Frm;
+        [XafDisplayName("C.Centre D5 From"), ToolTip("C.Centre D5 From")]
+        [Index(140), VisibleInListView(true), VisibleInDetailView(true), VisibleInLookupListView(true)]
+        [NoForeignKey]
+        [DataSourceCriteria("DimCode = '5'")]
+        public FTS11_vw_OPRC U_OcrCode5Frm
+        {
+            get { return _U_OcrCode5Frm; }
+            set { SetPropertyValue("U_OcrCode5Frm", ref _U_OcrCode5Frm, value); }
+        }
+
+        private FTS11_vw_OPRC _U_OcrCode5To;
+        [XafDisplayName("C.Centre D5 To"), ToolTip("C.Centre D5 To")]
+        [Index(141), VisibleInListView(true), VisibleInDetailView(true), VisibleInLookupListView(true)]
+        [NoForeignKey]
+        [DataSourceCriteria("DimCode = '5'")]
+        public FTS11_vw_OPRC U_OcrCode5To
+        {
+            get { return _U_OcrCode5To; }
+            set { SetPropertyValue("U_OcrCode5To", ref _U_OcrCode5To, value); }
         }
 
         private SE_FAPostOpt _PostOpt;

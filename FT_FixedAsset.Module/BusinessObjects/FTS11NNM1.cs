@@ -1,17 +1,18 @@
-﻿using DevExpress.ExpressApp.ConditionalAppearance;
+﻿using System.ComponentModel;
+using DevExpress.ExpressApp.ConditionalAppearance;
 using DevExpress.ExpressApp.DC;
 using DevExpress.ExpressApp.Editors;
+using DevExpress.ExpressApp.Model;
 using DevExpress.Persistent.Base;
 using DevExpress.Persistent.Validation;
 using DevExpress.Xpo;
-using System.ComponentModel;
 
 namespace FT_FixedAsset.Module.BusinessObjects
 {
     [XafDisplayName("Numbering")]
     [NavigationItem("System Initialization")]
+    [XafDefaultProperty("DocType")]
     [ImageName("ListNumbers_16x16")]
-    [DefaultProperty("Code")]
     [Appearance("DisableLink", AppearanceItemType.Action, "True", TargetItems = "Link", Visibility = ViewItemVisibility.Hide, Context = "Any")]
     [Appearance("DisableUnlink", AppearanceItemType.Action, "True", TargetItems = "Unlink", Visibility = ViewItemVisibility.Hide, Context = "Any")]
     [Appearance("DisableSave", AppearanceItemType.Action, "True", TargetItems = "Save", Visibility = ViewItemVisibility.Hide, Context = "Any")]
@@ -31,10 +32,10 @@ namespace FT_FixedAsset.Module.BusinessObjects
         }
 
         #region Child Table
-        [Association("FTS11NNM1-FTS11NNM2", typeof(FTS11NNM2))]
-        public XPCollection FTS11NNM2
+        [Association("FTS11NNM1-FTS11NNM2")]
+        public XPCollection<FTS11NNM2> FTS11NNM2
         {
-            get { return GetCollection("FTS11NNM2"); }
+            get { return GetCollection<FTS11NNM2>("FTS11NNM2"); }
         }
         #endregion
 
@@ -64,6 +65,8 @@ namespace FT_FixedAsset.Module.BusinessObjects
         [XafDisplayName("Seq"), ToolTip("Seq")]
         [Index(30), VisibleInListView(true), VisibleInDetailView(true), VisibleInLookupListView(true)]
         [RuleRequiredField(DefaultContexts.Save)]
+        [ModelDefault("DisplayFormat", "{0:d0}")]
+        [ModelDefault("EditMask", "{0:d0}")]
         public int Seq
         {
             get { return _Seq; }
@@ -83,6 +86,8 @@ namespace FT_FixedAsset.Module.BusinessObjects
         [XafDisplayName("Length"), ToolTip("Length")]
         [Index(50), VisibleInListView(true), VisibleInDetailView(true), VisibleInLookupListView(true)]
         [RuleRequiredField(DefaultContexts.Save)]
+        [ModelDefault("DisplayFormat", "{0:d0}")]
+        [ModelDefault("EditMask", "{0:d0}")]
         public int Length
         {
             get { return _Length; }

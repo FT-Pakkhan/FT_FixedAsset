@@ -1,15 +1,13 @@
-﻿using DevExpress.Data.Filtering;
-using DevExpress.ExpressApp;
-using DevExpress.ExpressApp.Security;
-using DevExpress.ExpressApp.Web.SystemModule;
-using DevExpress.Persistent.Validation;
-using FT_FixedAsset.Module.BusinessObjects;
-using FT_FixedAsset.Module.Controllers;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
+using DevExpress.Data.Filtering;
+using DevExpress.ExpressApp;
+using DevExpress.ExpressApp.Security;
+using DevExpress.Persistent.Validation;
+using FT_FixedAsset.Module.BusinessObjects;
 using XafDTW.Helpers;
 
 namespace XafDTW
@@ -59,7 +57,14 @@ namespace XafDTW
                     catch (Exception ex)
                     {
                         securedObjectSpace.Rollback();
-                        list.Add(new DisplayResult() { SuccessFail = "Failed", Code = OFAC.Code, Message = ex.Message });
+                        list.Add(new DisplayResult()
+                        {
+                            SuccessFail = "Failed",
+                            Code = OFAC.Code,
+                            Message = OFAC.Code + " - " + (ex.InnerException != null ? ex.InnerException.Message : ex.Message)
+                        });
+                        Logs.WriteLog("Exception", "", OFAC.Code + " - " +
+                            (ex.InnerException != null ? ex.InnerException.Message : ex.Message));
                     }
                 }
                 Result result = new Result(list);
@@ -98,7 +103,14 @@ namespace XafDTW
                     catch (Exception ex)
                     {
                         securedObjectSpace.Rollback();
-                        list.Add(new DisplayResult() { SuccessFail = "Failed", Code = OFAG.U_FAGrpCod, Message = ex.Message });
+                        list.Add(new DisplayResult()
+                        {
+                            SuccessFail = "Failed",
+                            Code = OFAG.U_FAGrpCod,
+                            Message = OFAG.U_FAGrpCod + " - " + (ex.InnerException != null ? ex.InnerException.Message : ex.Message)
+                        });
+                        Logs.WriteLog("Exception", "", OFAG.U_FAGrpCod + " - " +
+                            (ex.InnerException != null ? ex.InnerException.Message : ex.Message));
                     }
                 }
                 Result result = new Result(list);
@@ -138,7 +150,14 @@ namespace XafDTW
                     catch (Exception ex)
                     {
                         securedObjectSpace.Rollback();
-                        list.Add(new DisplayResult() { SuccessFail = "Failed", Code = OLOC.Code, Message = ex.Message });
+                        list.Add(new DisplayResult() 
+                        { 
+                            SuccessFail = "Failed", 
+                            Code = OLOC.Code, 
+                            Message = OLOC.Code + " - " + (ex.InnerException != null ? ex.InnerException.Message : ex.Message) 
+                        });
+                        Logs.WriteLog("Exception", "", OLOC.Code + " - " +
+                            (ex.InnerException != null ? ex.InnerException.Message : ex.Message));
                     }
                 }
                 Result result = new Result(list);
@@ -178,7 +197,14 @@ namespace XafDTW
                     catch (Exception ex)
                     {
                         securedObjectSpace.Rollback();
-                        list.Add(new DisplayResult() { SuccessFail = "Failed", Code = OIND.U_IndCode, Message = ex.Message });
+                        list.Add(new DisplayResult()
+                        {
+                            SuccessFail = "Failed",
+                            Code = OIND.U_IndCode,
+                            Message = OIND.U_IndCode + " - " + (ex.InnerException != null ? ex.InnerException.Message : ex.Message)
+                        });
+                        Logs.WriteLog("Exception", "", OIND.U_IndCode + " - " +
+                            (ex.InnerException != null ? ex.InnerException.Message : ex.Message));
                     }
                 }
                 Result result = new Result(list);
@@ -217,7 +243,14 @@ namespace XafDTW
                     catch (Exception ex)
                     {
                         securedObjectSpace.Rollback();
-                        list.Add(new DisplayResult() { SuccessFail = "Failed", Code = OFAM.U_FACode, Message = ex.Message });
+                        list.Add(new DisplayResult()
+                        {
+                            SuccessFail = "Failed",
+                            Code = OFAM.U_FACode,
+                            Message = OFAM.U_FACode + " - " + (ex.InnerException != null ? ex.InnerException.Message : ex.Message)
+                        });
+                        Logs.WriteLog("Exception", "", OFAM.U_FACode + " - " +
+                            (ex.InnerException != null ? ex.InnerException.Message : ex.Message));
                     }
                 }
                 Result result = new Result(list);

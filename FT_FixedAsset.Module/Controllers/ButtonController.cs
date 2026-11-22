@@ -1,16 +1,13 @@
-﻿using DevExpress.Data.Filtering;
+﻿using System;
+using System.Collections;
+using System.Data;
+using System.Data.SqlClient;
+using DevExpress.Data.Filtering;
 using DevExpress.ExpressApp;
 using DevExpress.ExpressApp.Actions;
 using DevExpress.ExpressApp.Editors;
-using DevExpress.ExpressApp.SystemModule;
-using DevExpress.Xpo;
-using DevExpress.Xpo.DB.Helpers;
 using FT_FixedAsset.Module.BusinessObjects;
 using FT_FixedAsset.Module.Controllers;
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.SqlClient;
 
 namespace FT_FixedAsset.Module.Web.Controllers
 {
@@ -226,7 +223,77 @@ namespace FT_FixedAsset.Module.Web.Controllers
             }
 
             #endregion
+
+            // "Cancel Assets" on Fixed Asset Master, "Cancel Trans." on transactions
+            CancelTrans.Caption = View.ObjectTypeInfo.Type == typeof(FTS11OFAM) ? "Cancel Assets" : "Cancel Trans.";
+            CancelTrans.ConfirmationMessage = null;   // confirmation is our own centred popup (CancelTrans_Execute)
         }
+
+        #region Cancel confirmation (centred popup instead of the browser confirm box)
+        private void CancelTrans_Execute(object sender, SimpleActionExecuteEventArgs e)
+        {
+            // nothing selected: let the cancel logic show its own message
+            if (e.SelectedObjects == null || e.SelectedObjects.Count == 0)
+            {
+                CancelConfirmed(e);
+                return;
+            }
+
+            IObjectSpace os = Application.CreateObjectSpace(typeof(CancelConfirmation));
+            CancelConfirmation confirm = os.CreateObject<CancelConfirmation>();
+            confirm.Message = CancelQuestion(e);
+
+            DetailView dv = Application.CreateDetailView(os, confirm, false);
+            dv.ViewEditMode = ViewEditMode.View;
+            dv.Caption = CancelTrans.Caption;
+            // plain read-only text (static text item, see CancelConfirmation_DetailView in the model)
+            if (dv.FindItem("MessageText") is StaticText messageText) messageText.Text = confirm.Message;
+
+            e.ShowViewParameters.CreatedView = dv;
+            e.ShowViewParameters.TargetWindow = TargetWindow.NewModalWindow;
+            e.ShowViewParameters.Context = TemplateContext.PopupWindow;
+
+            var dc = Application.CreateController<DevExpress.ExpressApp.SystemModule.DialogController>();
+            dc.SaveOnAccept = false;
+            dc.AcceptAction.Caption = "Yes";
+            dc.CancelAction.Caption = "No";
+            dc.AcceptAction.Execute += (s, a) => CancelConfirmed(e);
+            e.ShowViewParameters.Controllers.Add(dc);
+        }
+
+        // "Are you sure to cancel this write off?" / "... these 3 assets?"
+        private string CancelQuestion(SimpleActionExecuteEventArgs e)
+        {
+            Type t = View.ObjectTypeInfo.Type;
+            int n = e.SelectedObjects.Count;
+            string what;
+            if (t == typeof(FTS11OFAM)) what = n == 1 ? "asset" : "assets";
+            else
+            {
+                string caption = DevExpress.ExpressApp.Utils.CaptionHelper.GetClassCaption(t.FullName);
+                if (string.IsNullOrEmpty(caption)) caption = "transaction";
+                what = caption.ToLowerInvariant() + (n == 1 ? "" : " documents");
+            }
+
+            string ids = "";
+            DevExpress.ExpressApp.DC.IMemberInfo idMember = View.ObjectTypeInfo.DefaultMember;
+            if (idMember != null)
+            {
+                var values = new System.Collections.Generic.List<string>();
+                foreach (object o in e.SelectedObjects)
+                {
+                    object v = idMember.GetValue(o);
+                    if (v != null && v.ToString() != "" && v.ToString() != "0") values.Add(v.ToString());
+                }
+                if (values.Count > 0 && values.Count <= 10) ids = " (" + string.Join(", ", values) + ")";
+                else if (values.Count > 10) ids = " (" + string.Join(", ", values.GetRange(0, 10)) + ", ...)";
+            }
+
+            return n == 1
+                ? "Are you sure to cancel this " + what + ids + "?"
+                : "Are you sure to cancel these " + n + " " + what + ids + "?";
+        }
+        #endregion
 
         protected override void OnViewControlsCreated()
         {
@@ -243,9 +310,9 @@ namespace FT_FixedAsset.Module.Web.Controllers
         private void UpdateActionState()
         {
             Action.Active["Action"] = View is ListView || (View is DetailView && ((DetailView)View).ViewEditMode == ViewEditMode.View);
-            CancelTrans.Active["CancelTrans"] = View is ListView || (View is DetailView && ((DetailView)View).ViewEditMode == ViewEditMode.View);
+            CancelTrans.Active["CancelTrans"] = (View is DetailView && ((DetailView)View).ViewEditMode == ViewEditMode.View);
             Duplicate.Active["Duplicate"] = View is ListView || (View is DetailView && ((DetailView)View).ViewEditMode == ViewEditMode.View);
-            Advanced.Enabled["Advanced"] = View is DetailView && ((DetailView)View).ViewEditMode == ViewEditMode.Edit;
+            Advanced.Enabled["Advanced"] = View is DetailView;
         }
 
         void ViewController1_ViewEditModeChanged(object sender, EventArgs e)
@@ -293,6 +360,34 @@ namespace FT_FixedAsset.Module.Web.Controllers
                     string faclsfrm = RunDeprn.FAClsFrm == null ? "" : RunDeprn.FAClsFrm.Code;
                     string faclsto = RunDeprn.FAClsTo == null ? "" : RunDeprn.FAClsTo.Code;
 
+                    //Project / Dimensions
+                    string U_ProjectFrm = RunDeprn.U_ProjectFrm == null ? "" : RunDeprn.U_ProjectFrm.PrjCode;
+                    string U_ProjectTo = RunDeprn.U_ProjectTo == null ? "" : RunDeprn.U_ProjectTo.PrjCode;
+                    string U_ProfitCodeFrm = RunDeprn.U_ProfitCodeFrm == null ? "" : RunDeprn.U_ProfitCodeFrm.PrcCode;
+                    string U_ProfitCodeTo = RunDeprn.U_ProfitCodeTo == null ? "" : RunDeprn.U_ProfitCodeTo.PrcCode;
+                    string U_OcrCode2Frm = RunDeprn.U_OcrCode2Frm == null ? "" : RunDeprn.U_OcrCode2Frm.PrcCode;
+                    string U_OcrCode2To = RunDeprn.U_OcrCode2To == null ? "" : RunDeprn.U_OcrCode2To.PrcCode;
+                    string U_OcrCode3Frm = RunDeprn.U_OcrCode3Frm == null ? "" : RunDeprn.U_OcrCode3Frm.PrcCode;
+                    string U_OcrCode3To = RunDeprn.U_OcrCode3To == null ? "" : RunDeprn.U_OcrCode3To.PrcCode;
+                    string U_OcrCode4Frm = RunDeprn.U_OcrCode4Frm == null ? "" : RunDeprn.U_OcrCode4Frm.PrcCode;
+                    string U_OcrCode4To = RunDeprn.U_OcrCode4To == null ? "" : RunDeprn.U_OcrCode4To.PrcCode;
+                    string U_OcrCode5Frm = RunDeprn.U_OcrCode5Frm == null ? "" : RunDeprn.U_OcrCode5Frm.PrcCode;
+                    string U_OcrCode5To = RunDeprn.U_OcrCode5To == null ? "" : RunDeprn.U_OcrCode5To.PrcCode;
+
+                    //Indicator keys
+                    string U_IndKey1Frm = RunDeprn.U_IndKey1Frm == null ? "" : RunDeprn.U_IndKey1Frm.U_IndCode;
+                    string U_IndKey1To = RunDeprn.U_IndKey1To == null ? "" : RunDeprn.U_IndKey1To.U_IndCode;
+                    string U_IndKey2Frm = RunDeprn.U_IndKey2Frm == null ? "" : RunDeprn.U_IndKey2Frm.U_IndCode;
+                    string U_IndKey2To = RunDeprn.U_IndKey2To == null ? "" : RunDeprn.U_IndKey2To.U_IndCode;
+                    string U_IndKey3Frm = RunDeprn.U_IndKey3Frm == null ? "" : RunDeprn.U_IndKey3Frm.U_IndCode;
+                    string U_IndKey3To = RunDeprn.U_IndKey3To == null ? "" : RunDeprn.U_IndKey3To.U_IndCode;
+                    string U_IndKey4Frm = RunDeprn.U_IndKey4Frm == null ? "" : RunDeprn.U_IndKey4Frm.U_IndCode;
+                    string U_IndKey4To = RunDeprn.U_IndKey4To == null ? "" : RunDeprn.U_IndKey4To.U_IndCode;
+                    string U_IndKey5Frm = RunDeprn.U_IndKey5Frm == null ? "" : RunDeprn.U_IndKey5Frm.U_IndCode;
+                    string U_IndKey5To = RunDeprn.U_IndKey5To == null ? "" : RunDeprn.U_IndKey5To.U_IndCode;
+                    string U_IndKey6Frm = RunDeprn.U_IndKey6Frm == null ? "" : RunDeprn.U_IndKey6Frm.U_IndCode;
+                    string U_IndKey6To = RunDeprn.U_IndKey6To == null ? "" : RunDeprn.U_IndKey6To.U_IndCode;
+
                     getDeprFAList.CommandText = "SELECT FAKey, U_FACode FROM FTS_fn_FADeprList ('" +
                         dateto + "', '" +
                         facodefrm + "', '" +
@@ -300,7 +395,35 @@ namespace FT_FixedAsset.Module.Web.Controllers
                         fagrpfrm + "', '" +
                         fagrpto + "', '" +
                         faclsfrm + "', '" +
-                        faclsto + "')";
+                        faclsto + "', '" +
+
+                        //Project / Dimensions
+                        U_ProjectFrm + "', '" +
+                        U_ProjectTo + "', '" +
+                        U_ProfitCodeFrm + "', '" +
+                        U_ProfitCodeTo + "', '" +
+                        U_OcrCode2Frm + "', '" +
+                        U_OcrCode2To + "', '" +
+                        U_OcrCode3Frm + "', '" +
+                        U_OcrCode3To + "', '" +
+                        U_OcrCode4Frm + "', '" +
+                        U_OcrCode4To + "', '" +
+                        U_OcrCode5Frm + "', '" +
+                        U_OcrCode5To + "', '" +
+
+                        //Indicator keys
+                        U_IndKey1Frm + "', '" +
+                        U_IndKey1To + "', '" +
+                        U_IndKey2Frm + "', '" +
+                        U_IndKey2To + "', '" +
+                        U_IndKey3Frm + "', '" +
+                        U_IndKey3To + "', '" +
+                        U_IndKey4Frm + "', '" +
+                        U_IndKey4To + "', '" +
+                        U_IndKey5Frm + "', '" +
+                        U_IndKey5To + "', '" +
+                        U_IndKey6Frm + "', '" +
+                        U_IndKey6To + "')";
 
                     SqlDataAdapter da = new SqlDataAdapter(getDeprFAList);
                     DataTable dt = new DataTable();
@@ -309,11 +432,24 @@ namespace FT_FixedAsset.Module.Web.Controllers
 
                     if (dt.Rows.Count > 0)
                     {
+                        var assets = new System.Collections.Generic.List<DeprnRunner.Asset>();
                         foreach (DataRow row in dt.Rows)
+                            assets.Add(new DeprnRunner.Asset { FAKey = int.Parse(row["FAKey"].ToString()), FACode = row["U_FACode"].ToString() });
+                        conn.Close();
+
+                        // one run at a time; postings into the period are blocked until it ends.
+                        // The run continues in the background - this button returns at once and the progress window shows it.
+                        string blockMsg;
+                        int runId = DeprnRunner.Start(connectionString, RunDeprn.DateFrm, RunDeprn.DateTo, user.UserName.ToString(), assets, out blockMsg);
+                        if (runId == 0)
                         {
-                            genCon.GenerateDeprn(RunDeprn.DateFrm, RunDeprn.DateTo, int.Parse(row["FAKey"].ToString()), user.UserName.ToString());
+                            genCon.MsgBox(InformationType.Error, "Error", blockMsg);
+                            return;
                         }
-                        genCon.MsgBox(InformationType.Info, "Information", "Depreciation has been generated.");
+                        if (System.Web.HttpContext.Current != null && System.Web.HttpContext.Current.Session != null)
+                            System.Web.HttpContext.Current.Session[DeprnRunner.SessionConnKey] = connectionString;
+                        if (DeprnRunner.ShowProgress != null) DeprnRunner.ShowProgress(runId);
+                        return;
                     }
                     else
                     {
@@ -362,6 +498,9 @@ namespace FT_FixedAsset.Module.Web.Controllers
                 case "MSSQL2019":
                     oCom.DbServerType = SAPbobsCOM.BoDataServerTypes.dst_MSSQL2019;
                     break;
+                case "MSSQL2022":
+                    oCom.DbServerType = SAPbobsCOM.BoDataServerTypes.dst_MSSQL2022;
+                    break;
                 case "HANADB":
                     oCom.DbServerType = SAPbobsCOM.BoDataServerTypes.dst_HANADB;
                     break;
@@ -371,7 +510,7 @@ namespace FT_FixedAsset.Module.Web.Controllers
             oCom.DbUserName = OADMSettings.U_SqlUID;
             oCom.DbPassword = OADMSettings.U_SqlPWD;
             oCom.language = SAPbobsCOM.BoSuppLangs.ln_English;
-            //oCom.LicenseServer = ConfigurationManager.AppSettings.Get("LicenseServer").ToString();
+            //oCom.LicenseServer = OADMSettings.U_LicSvr;
             oCom.CompanyDB = OADMSettings.U_SboDB;
             oCom.UserName = OADMSettings.U_SboUID;
             oCom.Password = OADMSettings.U_SboPWD;
@@ -414,45 +553,52 @@ namespace FT_FixedAsset.Module.Web.Controllers
                         FTS11T0201 T0201 = os.CreateObject<FTS11T0201>();
                         DetailView dv = Application.CreateDetailView(os, T0201);
 
-                        if (View.ObjectTypeInfo.Type == typeof(FTS11OFAM))
+                        ArrayList selectedOFAM = new ArrayList();
+
+                        if (e.SelectedObjects.Count > 0)
                         {
-                            foreach (FTS11OFAM selectedObject in e.SelectedObjects)
+                            foreach (var selectedObject in e.SelectedObjects)
                             {
-                                if (selectedObject.SQuantity <= 0)
-                                {
-                                    genCon.MsgBox(InformationType.Error, "Error", "Kindly select only asset which yet disposed.");
-                                    return;
-                                }
+                                selectedOFAM.Add((FTS11OFAM)ObjectSpace.GetObject(selectedObject));
                             }
+                        }
 
-                            using (SqlConnection conn = new SqlConnection(genCon.getConnectionString()))
+                        foreach (FTS11OFAM selectedObject in selectedOFAM)
+                        {
+                            if (selectedObject.SQuantity <= 0)
                             {
-                                using (SqlDataAdapter da = new SqlDataAdapter("", conn))
-                                {
-                                    da.SelectCommand.CommandText = "SELECT ISNULL(MAX(T0.Oid),0) + 1 AS [MaxOid] FROM FTS11T0201D T0 ";
-                                    DataTable dt = new DataTable();
-                                    da.Fill(dt);
+                                genCon.MsgBox(InformationType.Error, "Error", "Kindly select only asset which yet disposed.");
+                                return;
+                            }
+                        }
 
-                                    if (dt.Rows.Count > 0)
+                        using (SqlConnection conn = new SqlConnection(genCon.getConnectionString()))
+                        {
+                            using (SqlDataAdapter da = new SqlDataAdapter("", conn))
+                            {
+                                da.SelectCommand.CommandText = "SELECT ISNULL(MAX(T0.Oid),0) + 1 AS [MaxOid] FROM FTS11T0201D T0 ";
+                                DataTable dt = new DataTable();
+                                da.Fill(dt);
+
+                                if (dt.Rows.Count > 0)
+                                {
+                                    foreach (DataRow dtrow in dt.Rows)
                                     {
-                                        foreach (DataRow dtrow in dt.Rows)
-                                        {
-                                            row = int.Parse(dtrow["MaxOid"].ToString());
-                                        }
+                                        row = int.Parse(dtrow["MaxOid"].ToString());
                                     }
                                 }
                             }
+                        }
 
-                            foreach (FTS11OFAM selectedObject in e.SelectedObjects)
-                            {
-                                FTS11T0201D T0201D = os.CreateObject<FTS11T0201D>();
+                        foreach (FTS11OFAM selectedObject in selectedOFAM)
+                        {
+                            FTS11T0201D T0201D = os.CreateObject<FTS11T0201D>();
 
-                                T0201D.Oid = row;
-                                T0201D.DocEntry = T0201;
-                                T0201D.U_FAKey = os.GetObjectByKey<FTS11OFAM>(selectedObject.DocEntry);
+                            T0201D.Oid = row;
+                            T0201D.DocEntry = T0201;
+                            T0201D.U_FAKey = os.GetObjectByKey<FTS11OFAM>(selectedObject.DocEntry);
 
-                                row++;
-                            }
+                            row++;
                         }
 
                         ShowViewParameters svp = new ShowViewParameters();
@@ -475,7 +621,17 @@ namespace FT_FixedAsset.Module.Web.Controllers
                         FTS11T0202 T0202 = os.CreateObject<FTS11T0202>();
                         DetailView dv = Application.CreateDetailView(os, T0202);
 
-                        foreach (FTS11OFAM selectedObject in e.SelectedObjects)
+                        ArrayList selectedOFAM = new ArrayList();
+
+                        if (e.SelectedObjects.Count > 0)
+                        {
+                            foreach (var selectedObject in e.SelectedObjects)
+                            {
+                                selectedOFAM.Add((FTS11OFAM)ObjectSpace.GetObject(selectedObject));
+                            }
+                        }
+
+                        foreach (FTS11OFAM selectedObject in selectedOFAM)
                         {
                             if (selectedObject.SQuantity <= 0)
                             {
@@ -502,7 +658,7 @@ namespace FT_FixedAsset.Module.Web.Controllers
                             }
                         }
 
-                        foreach (FTS11OFAM selectedObject in e.SelectedObjects)
+                        foreach (FTS11OFAM selectedObject in selectedOFAM)
                         {
                             FTS11T0202D T0202D = os.CreateObject<FTS11T0202D>();
 
@@ -532,7 +688,17 @@ namespace FT_FixedAsset.Module.Web.Controllers
                         FTS11T0203 T0203 = os.CreateObject<FTS11T0203>();
                         DetailView dv = Application.CreateDetailView(os, T0203);
 
-                        foreach (FTS11OFAM selectedObject in e.SelectedObjects)
+                        ArrayList selectedOFAM = new ArrayList();
+
+                        if (e.SelectedObjects.Count > 0)
+                        {
+                            foreach (var selectedObject in e.SelectedObjects)
+                            {
+                                selectedOFAM.Add((FTS11OFAM)ObjectSpace.GetObject(selectedObject));
+                            }
+                        }
+
+                        foreach (FTS11OFAM selectedObject in selectedOFAM)
                         {
                             if (selectedObject.SQuantity <= 0)
                             {
@@ -559,7 +725,7 @@ namespace FT_FixedAsset.Module.Web.Controllers
                             }
                         }
 
-                        foreach (FTS11OFAM selectedObject in e.SelectedObjects)
+                        foreach (FTS11OFAM selectedObject in selectedOFAM)
                         { 
                             FTS11T0203D T0203D = os.CreateObject<FTS11T0203D>();
 
@@ -589,7 +755,17 @@ namespace FT_FixedAsset.Module.Web.Controllers
                         FTS11T0204 T0204 = os.CreateObject<FTS11T0204>();
                         DetailView dv = Application.CreateDetailView(os, T0204);
 
-                        foreach (FTS11OFAM selectedObject in e.SelectedObjects)
+                        ArrayList selectedOFAM = new ArrayList();
+
+                        if (e.SelectedObjects.Count > 0)
+                        {
+                            foreach (var selectedObject in e.SelectedObjects)
+                            {
+                                selectedOFAM.Add((FTS11OFAM)ObjectSpace.GetObject(selectedObject));
+                            }
+                        }
+
+                        foreach (FTS11OFAM selectedObject in selectedOFAM)
                         {
                             if (selectedObject.SQuantity <= 0)
                             {
@@ -616,7 +792,7 @@ namespace FT_FixedAsset.Module.Web.Controllers
                             }
                         }
 
-                        foreach (FTS11OFAM selectedObject in e.SelectedObjects)
+                        foreach (FTS11OFAM selectedObject in selectedOFAM)
                         { 
                             FTS11T0204D T0204D = os.CreateObject<FTS11T0204D>();
 
@@ -646,7 +822,17 @@ namespace FT_FixedAsset.Module.Web.Controllers
                         FTS11T0205 T0205 = os.CreateObject<FTS11T0205>();
                         DetailView dv = Application.CreateDetailView(os, T0205);
 
-                        foreach (FTS11OFAM selectedObject in e.SelectedObjects)
+                        ArrayList selectedOFAM = new ArrayList();
+
+                        if (e.SelectedObjects.Count > 0)
+                        {
+                            foreach (var selectedObject in e.SelectedObjects)
+                            {
+                                selectedOFAM.Add((FTS11OFAM)ObjectSpace.GetObject(selectedObject));
+                            }
+                        }
+
+                        foreach (FTS11OFAM selectedObject in selectedOFAM)
                         {
                             if (selectedObject.SQuantity <= 0)
                             {
@@ -673,7 +859,7 @@ namespace FT_FixedAsset.Module.Web.Controllers
                             }
                         }
 
-                        foreach (FTS11OFAM selectedObject in e.SelectedObjects)
+                        foreach (FTS11OFAM selectedObject in selectedOFAM)
                         {
                             FTS11T0205D T0205D = os.CreateObject<FTS11T0205D>();
 
@@ -703,7 +889,17 @@ namespace FT_FixedAsset.Module.Web.Controllers
                         FTS11T0301 T0301 = os.CreateObject<FTS11T0301>();
                         DetailView dv = Application.CreateDetailView(os, T0301);
 
-                        foreach (FTS11OFAM selectedObject in e.SelectedObjects)
+                        ArrayList selectedOFAM = new ArrayList();
+
+                        if (e.SelectedObjects.Count > 0)
+                        {
+                            foreach (var selectedObject in e.SelectedObjects)
+                            {
+                                selectedOFAM.Add((FTS11OFAM)ObjectSpace.GetObject(selectedObject));
+                            }
+                        }
+
+                        foreach (FTS11OFAM selectedObject in selectedOFAM)
                         {
                             if (selectedObject.SQuantity <= 0)
                             {
@@ -730,7 +926,7 @@ namespace FT_FixedAsset.Module.Web.Controllers
                             }
                         }
 
-                        foreach (FTS11OFAM selectedObject in e.SelectedObjects)
+                        foreach (FTS11OFAM selectedObject in selectedOFAM)
                         {
                             FTS11T0301D T0301D = os.CreateObject<FTS11T0301D>();
 
@@ -760,7 +956,17 @@ namespace FT_FixedAsset.Module.Web.Controllers
                         FTS11T0302 T0302 = os.CreateObject<FTS11T0302>();
                         DetailView dv = Application.CreateDetailView(os, T0302);
 
-                        foreach (FTS11OFAM selectedObject in e.SelectedObjects)
+                        ArrayList selectedOFAM = new ArrayList();
+
+                        if (e.SelectedObjects.Count > 0)
+                        {
+                            foreach (var selectedObject in e.SelectedObjects)
+                            {
+                                selectedOFAM.Add((FTS11OFAM)ObjectSpace.GetObject(selectedObject));
+                            }
+                        }
+
+                        foreach (FTS11OFAM selectedObject in selectedOFAM)
                         {
                             if (selectedObject.SQuantity <= 0)
                             {
@@ -787,7 +993,7 @@ namespace FT_FixedAsset.Module.Web.Controllers
                             }
                         }
 
-                        foreach (FTS11OFAM selectedObject in e.SelectedObjects)
+                        foreach (FTS11OFAM selectedObject in selectedOFAM)
                         { 
                             FTS11T0302D T0302D = os.CreateObject<FTS11T0302D>();
 
@@ -816,7 +1022,17 @@ namespace FT_FixedAsset.Module.Web.Controllers
                         FTS11T0303 T0303 = os.CreateObject<FTS11T0303>();
                         DetailView dv = Application.CreateDetailView(os, T0303);
 
-                        foreach (FTS11OFAM selectedObject in e.SelectedObjects)
+                        ArrayList selectedOFAM = new ArrayList();
+
+                        if (e.SelectedObjects.Count > 0)
+                        {
+                            foreach (var selectedObject in e.SelectedObjects)
+                            {
+                                selectedOFAM.Add((FTS11OFAM)ObjectSpace.GetObject(selectedObject));
+                            }
+                        }
+
+                        foreach (FTS11OFAM selectedObject in selectedOFAM)
                         {
                             if (selectedObject.SQuantity <= 0)
                             {
@@ -843,7 +1059,7 @@ namespace FT_FixedAsset.Module.Web.Controllers
                             }
                         }
 
-                        foreach (FTS11OFAM selectedObject in e.SelectedObjects)
+                        foreach (FTS11OFAM selectedObject in selectedOFAM)
                         {
                             FTS11T0303D T0303D = os.CreateObject<FTS11T0303D>();
 
@@ -873,7 +1089,17 @@ namespace FT_FixedAsset.Module.Web.Controllers
                         FTS11T0304 T0304 = os.CreateObject<FTS11T0304>();
                         DetailView dv = Application.CreateDetailView(os, T0304);
 
-                        foreach (FTS11OFAM selectedObject in e.SelectedObjects)
+                        ArrayList selectedOFAM = new ArrayList();
+
+                        if (e.SelectedObjects.Count > 0)
+                        {
+                            foreach (var selectedObject in e.SelectedObjects)
+                            {
+                                selectedOFAM.Add((FTS11OFAM)ObjectSpace.GetObject(selectedObject));
+                            }
+                        }
+
+                        foreach (FTS11OFAM selectedObject in selectedOFAM)
                         {
                             if (selectedObject.SQuantity <= 0)
                             {
@@ -900,7 +1126,7 @@ namespace FT_FixedAsset.Module.Web.Controllers
                             }
                         }
 
-                        foreach (FTS11OFAM selectedObject in e.SelectedObjects)
+                        foreach (FTS11OFAM selectedObject in selectedOFAM)
                         { 
                             FTS11T0304D T0304D = os.CreateObject<FTS11T0304D>();
 
@@ -930,7 +1156,17 @@ namespace FT_FixedAsset.Module.Web.Controllers
                         FTS11T0305 T0305 = os.CreateObject<FTS11T0305>();
                         DetailView dv = Application.CreateDetailView(os, T0305);
 
-                        foreach (FTS11OFAM selectedObject in e.SelectedObjects)
+                        ArrayList selectedOFAM = new ArrayList();
+
+                        if (e.SelectedObjects.Count > 0)
+                        {
+                            foreach (var selectedObject in e.SelectedObjects)
+                            {
+                                selectedOFAM.Add((FTS11OFAM)ObjectSpace.GetObject(selectedObject));
+                            }
+                        }
+
+                        foreach (FTS11OFAM selectedObject in selectedOFAM)
                         {
                             if (selectedObject.SQuantity <= 0)
                             {
@@ -957,7 +1193,7 @@ namespace FT_FixedAsset.Module.Web.Controllers
                             }
                         }
 
-                        foreach (FTS11OFAM selectedObject in e.SelectedObjects)
+                        foreach (FTS11OFAM selectedObject in selectedOFAM)
                         { 
                             FTS11T0305D T0305D = os.CreateObject<FTS11T0305D>();
 
@@ -1575,8 +1811,20 @@ namespace FT_FixedAsset.Module.Web.Controllers
             }
         }
 
-        private void CancelTrans_Execute(object sender, SimpleActionExecuteEventArgs e)
+        // the cancel itself - runs after the user clicks "Yes" in the confirmation popup
+        private void CancelConfirmed(SimpleActionExecuteEventArgs e)
         {
+            // no cancelling inside the period of a depreciation run in progress (see DeprnRunLock)
+            foreach (object obj in e.SelectedObjects)
+            {
+                string runMsg = DeprnRunLock.CheckDocument(genCon.getConnectionString(), obj, true);
+                if (runMsg != null)
+                {
+                    genCon.MsgBox(InformationType.Error, "Error", runMsg);
+                    return;
+                }
+            }
+
             if (View.ObjectTypeInfo.Type == typeof(FTS11OFAM))
             {
                 if (e.SelectedObjects.Count <= 0)
@@ -1585,7 +1833,18 @@ namespace FT_FixedAsset.Module.Web.Controllers
                     return;
                 }
 
-                foreach (FTS11OFAM selectedObject in e.SelectedObjects)
+                ArrayList selectedOFAM = new ArrayList();
+
+                if (e.SelectedObjects.Count > 0)
+                {
+
+                    foreach (var selectedObject in e.SelectedObjects)
+                    {
+                        selectedOFAM.Add((FTS11OFAM)ObjectSpace.GetObject(selectedObject));
+                    }
+                }
+
+                foreach (FTS11OFAM selectedObject in selectedOFAM)
                 {
                     if (selectedObject.U_Status.Code != "O")
                     {
@@ -1640,6 +1899,16 @@ namespace FT_FixedAsset.Module.Web.Controllers
             //Write Off
             if (View.ObjectTypeInfo.Type == typeof(FTS11T0201))
             {
+                ArrayList selectedT0201 = new ArrayList();
+
+                if (e.SelectedObjects.Count > 0)
+                {
+                    foreach (var selectedObject in e.SelectedObjects)
+                    {
+                        selectedT0201.Add((FTS11T0201)ObjectSpace.GetObject(selectedObject));
+                    }
+                }
+
                 foreach (FTS11T0201 selectedObject in e.SelectedObjects)
                 {
                     FTS11T0201 T0201 = (FTS11T0201)selectedObject;
@@ -1662,7 +1931,17 @@ namespace FT_FixedAsset.Module.Web.Controllers
             //Disposed
             if (View.ObjectTypeInfo.Type == typeof(FTS11T0202))
             {
-                foreach (FTS11T0202 selectedObject in e.SelectedObjects)
+                ArrayList selectedT0202 = new ArrayList();
+
+                if (e.SelectedObjects.Count > 0)
+                {
+                    foreach (var selectedObject in e.SelectedObjects)
+                    {
+                        selectedT0202.Add((FTS11T0202)ObjectSpace.GetObject(selectedObject));
+                    }
+                }
+
+                foreach (FTS11T0202 selectedObject in selectedT0202)
                 {
                     FTS11T0202 T0202 = (FTS11T0202)selectedObject;
 
@@ -1684,7 +1963,17 @@ namespace FT_FixedAsset.Module.Web.Controllers
             //Correction Out
             if (View.ObjectTypeInfo.Type == typeof(FTS11T0203))
             {
-                foreach (FTS11T0203 selectedObject in e.SelectedObjects)
+                ArrayList selectedT0203 = new ArrayList();
+
+                if (e.SelectedObjects.Count > 0)
+                {
+                    foreach (var selectedObject in e.SelectedObjects)
+                    {
+                        selectedT0203.Add((FTS11T0203)ObjectSpace.GetObject(selectedObject));
+                    }
+                }
+
+                foreach (FTS11T0203 selectedObject in selectedT0203)
                 {
                     FTS11T0203 T0203 = (FTS11T0203)selectedObject;
 
@@ -1706,7 +1995,17 @@ namespace FT_FixedAsset.Module.Web.Controllers
             //Transferred Out
             if (View.ObjectTypeInfo.Type == typeof(FTS11T0204))
             {
-                foreach (FTS11T0204 selectedObject in e.SelectedObjects)
+                ArrayList selectedT0204 = new ArrayList();
+
+                if (e.SelectedObjects.Count > 0)
+                {
+                    foreach (var selectedObject in e.SelectedObjects)
+                    {
+                        selectedT0204.Add((FTS11T0204)ObjectSpace.GetObject(selectedObject));
+                    }
+                }
+
+                foreach (FTS11T0204 selectedObject in selectedT0204)
                 {
                     FTS11T0204 T0204 = (FTS11T0204)selectedObject;
 
@@ -1728,7 +2027,17 @@ namespace FT_FixedAsset.Module.Web.Controllers
             //Reclassed Out
             if (View.ObjectTypeInfo.Type == typeof(FTS11T0205))
             {
-                foreach (FTS11T0205 selectedObject in e.SelectedObjects)
+                ArrayList selectedT0205 = new ArrayList();
+
+                if (e.SelectedObjects.Count > 0)
+                {
+                    foreach (var selectedObject in e.SelectedObjects)
+                    {
+                        selectedT0205.Add((FTS11T0205)ObjectSpace.GetObject(selectedObject));
+                    }
+                }
+
+                foreach (FTS11T0205 selectedObject in selectedT0205)
                 {
                     FTS11T0205 T0205 = (FTS11T0205)selectedObject;
 
@@ -1750,7 +2059,17 @@ namespace FT_FixedAsset.Module.Web.Controllers
             //Review Useful Life
             if (View.ObjectTypeInfo.Type == typeof(FTS11T0301))
             {
-                foreach (FTS11T0301 selectedObject in e.SelectedObjects)
+                ArrayList selectedT0301 = new ArrayList();
+
+                if (e.SelectedObjects.Count > 0)
+                {
+                    foreach (var selectedObject in e.SelectedObjects)
+                    {
+                        selectedT0301.Add((FTS11T0301)ObjectSpace.GetObject(selectedObject));
+                    }
+                }
+
+                foreach (FTS11T0301 selectedObject in selectedT0301)
                 {
                     FTS11T0301 T0301 = (FTS11T0301)selectedObject;
 
@@ -1772,7 +2091,17 @@ namespace FT_FixedAsset.Module.Web.Controllers
             //Revalue Cost
             if (View.ObjectTypeInfo.Type == typeof(FTS11T0302))
             {
-                foreach (FTS11T0302 selectedObject in e.SelectedObjects)
+                ArrayList selectedT0302 = new ArrayList();
+
+                if (e.SelectedObjects.Count > 0)
+                {
+                    foreach (var selectedObject in e.SelectedObjects)
+                    {
+                        selectedT0302.Add((FTS11T0302)ObjectSpace.GetObject(selectedObject));
+                    }
+                }
+
+                foreach (FTS11T0302 selectedObject in selectedT0302)
                 {
                     FTS11T0302 T0302 = (FTS11T0302)selectedObject;
 
@@ -1794,7 +2123,17 @@ namespace FT_FixedAsset.Module.Web.Controllers
             //Adjust Accumulated Depr
             if (View.ObjectTypeInfo.Type == typeof(FTS11T0303))
             {
-                foreach (FTS11T0303 selectedObject in e.SelectedObjects)
+                ArrayList selectedT0303 = new ArrayList();
+
+                if (e.SelectedObjects.Count > 0)
+                {
+                    foreach (var selectedObject in e.SelectedObjects)
+                    {
+                        selectedT0303.Add((FTS11T0303)ObjectSpace.GetObject(selectedObject));
+                    }
+                }
+
+                foreach (FTS11T0303 selectedObject in selectedT0303)
                 {
                     FTS11T0303 T0303 = (FTS11T0303)selectedObject;
 
@@ -1816,7 +2155,17 @@ namespace FT_FixedAsset.Module.Web.Controllers
             //Move
             if (View.ObjectTypeInfo.Type == typeof(FTS11T0304))
             {
-                foreach (FTS11T0304 selectedObject in e.SelectedObjects)
+                ArrayList selectedT0304 = new ArrayList();
+
+                if (e.SelectedObjects.Count > 0)
+                {
+                    foreach (var selectedObject in e.SelectedObjects)
+                    {
+                        selectedT0304.Add((FTS11T0304)ObjectSpace.GetObject(selectedObject));
+                    }
+                }
+
+                foreach (FTS11T0304 selectedObject in selectedT0304)
                 {
                     FTS11T0304 T0304 = (FTS11T0304)selectedObject;
 
@@ -1838,7 +2187,17 @@ namespace FT_FixedAsset.Module.Web.Controllers
             //Revalue Residual Value
             if (View.ObjectTypeInfo.Type == typeof(FTS11T0305))
             {
-                foreach (FTS11T0305 selectedObject in e.SelectedObjects)
+                ArrayList selectedT0305 = new ArrayList();
+
+                if (e.SelectedObjects.Count > 0)
+                {
+                    foreach (var selectedObject in e.SelectedObjects)
+                    {
+                        selectedT0305.Add((FTS11T0305)ObjectSpace.GetObject(selectedObject));
+                    }
+                }
+
+                foreach (FTS11T0305 selectedObject in selectedT0305)
                 {
                     FTS11T0305 T0305 = (FTS11T0305)selectedObject;
 
@@ -1862,6 +2221,8 @@ namespace FT_FixedAsset.Module.Web.Controllers
         {
             if (View.ObjectTypeInfo.Type == typeof(FTS11OFAM))
             {
+                ArrayList selectedOFAM = new ArrayList();
+
                 if (e.SelectedObjects.Count <= 0)
                 {
                     genCon.MsgBox(InformationType.Error, "Error", "No Asset selected.");
@@ -1873,8 +2234,15 @@ namespace FT_FixedAsset.Module.Web.Controllers
                     genCon.MsgBox(InformationType.Error, "Error", "Please select only 1 Asset to duplicate.");
                     return;
                 }
+                if (e.SelectedObjects.Count > 0)
+                {
+                    foreach (var selectedObject in e.SelectedObjects)
+                    {
+                        selectedOFAM.Add((FTS11OFAM)ObjectSpace.GetObject(selectedObject));
+                    }
+                }
 
-                foreach (FTS11OFAM selectedObject in e.SelectedObjects)
+                foreach (FTS11OFAM selectedObject in selectedOFAM)
                 {
                     IObjectSpace os = Application.CreateObjectSpace();
                     FTS11OFAM OFAM = os.CreateObject<FTS11OFAM>();
@@ -1928,6 +2296,31 @@ namespace FT_FixedAsset.Module.Web.Controllers
                     OFAM.U_IndKey4 = selectedObject.U_IndKey4 == null ? null : os.GetObjectByKey<FTS11OIND>(selectedObject.U_IndKey4.DocEntry);
                     OFAM.U_IndKey5 = selectedObject.U_IndKey5 == null ? null : os.GetObjectByKey<FTS11OIND>(selectedObject.U_IndKey5.DocEntry);
                     OFAM.U_IndKey6 = selectedObject.U_IndKey6 == null ? null : os.GetObjectByKey<FTS11OIND>(selectedObject.U_IndKey6.DocEntry);
+                    OFAM.U_BarCode = selectedObject.U_BarCode;
+                    OFAM.U_BarCodYN = selectedObject.U_BarCodYN;
+                    OFAM.U_TagNum = selectedObject.U_TagNum;
+                    OFAM.U_WarExpr = selectedObject.U_WarExpr;
+                    OFAM.U_Legacy = selectedObject.U_Legacy;
+                    OFAM.U_Serial = selectedObject.U_Serial;
+                    OFAM.U_Model = selectedObject.U_Model;
+                    OFAM.U_InsNum = selectedObject.U_InsNum;
+                    OFAM.U_InsDate = selectedObject.U_InsDate;
+                    OFAM.U_InsType = selectedObject.U_InsType;
+                    OFAM.U_InsCov = selectedObject.U_InsCov;
+                    OFAM.U_InsComp = selectedObject.U_InsComp;
+                    OFAM.U_LeasRef = selectedObject.U_LeasRef;
+                    OFAM.U_LeasDate = selectedObject.U_LeasDate;
+                    OFAM.U_RefDoc1 = selectedObject.U_RefDoc1;
+                    OFAM.U_RefDoc2 = selectedObject.U_RefDoc2;
+                    OFAM.U_RefDoc3 = selectedObject.U_RefDoc3;
+                    OFAM.U_RefDate1 = selectedObject.U_RefDate1;
+                    OFAM.U_RefDate2 = selectedObject.U_RefDate2;
+                    OFAM.U_RefDate3 = selectedObject.U_RefDate3;
+                    OFAM.U_Remark1 = selectedObject.U_Remark1;
+                    OFAM.U_Remark2 = selectedObject.U_Remark2;
+                    OFAM.U_Remark3 = selectedObject.U_Remark3;
+                    OFAM.U_Remark4 = selectedObject.U_Remark4;
+                    OFAM.U_Text = selectedObject.U_Text;
 
                     ShowViewParameters svp = new ShowViewParameters();
                     dv.ViewEditMode = ViewEditMode.Edit;
@@ -1942,10 +2335,17 @@ namespace FT_FixedAsset.Module.Web.Controllers
         {
             FTS11OFAM OFAM = (FTS11OFAM)View.CurrentObject;
             IObjectSpace os = Application.CreateObjectSpace(typeof(FTS11FAM2));
+            FTS11OFAM masterInNewOS = os.GetObject(OFAM);
 
             PropertyCollectionSource propertyCollectionSource = Application.CreatePropertyCollectionSource(os, typeof(FTS11OFAM), os.GetObject(OFAM), View.ObjectTypeInfo.FindMember(nameof(OFAM.FTS11FAM2)), Application.FindListViewId(typeof(FTS11FAM2)));
 
             ListView listView = Application.CreateListView(Application.FindListViewId(typeof(FTS11FAM2)), propertyCollectionSource, true);
+            listView.AllowNew["MasterViewReadOnly"] = true;
+            // 1. Handle the "Disable New" part immediately (This works even if Controller is null)
+            if (View is DetailView masterView && masterView.ViewEditMode == ViewEditMode.View)
+            {
+                listView.AllowNew["MasterViewReadOnly"] = false;
+            }
 
             Application.ShowViewStrategy.ShowViewInPopupWindow(listView);
         }

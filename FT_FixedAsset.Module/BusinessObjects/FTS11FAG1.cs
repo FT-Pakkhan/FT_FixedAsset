@@ -1,26 +1,21 @@
 ﻿using System;
-using System.Linq;
-using System.Text;
-using DevExpress.Xpo;
-using DevExpress.ExpressApp;
 using System.ComponentModel;
-using DevExpress.ExpressApp.DC;
-using DevExpress.Data.Filtering;
-using DevExpress.Persistent.Base;
-using System.Collections.Generic;
-using DevExpress.ExpressApp.Model;
-using DevExpress.Persistent.BaseImpl;
-using DevExpress.Persistent.Validation;
+using DevExpress.ExpressApp;
 using DevExpress.ExpressApp.ConditionalAppearance;
+using DevExpress.ExpressApp.DC;
 using DevExpress.ExpressApp.Editors;
+using DevExpress.ExpressApp.Model;
+using DevExpress.Persistent.Base;
+using DevExpress.Persistent.Validation;
+using DevExpress.Xpo;
 
 namespace FT_FixedAsset.Module.BusinessObjects
 {
-    [XafDisplayName("Advanced")]
+    [XafDisplayName("FA Group Advanced")]
     [Appearance("DisableLink", AppearanceItemType.Action, "True", TargetItems = "Link", Visibility = ViewItemVisibility.Hide, Context = "Any")]
     [Appearance("DisableUnlink", AppearanceItemType.Action, "True", TargetItems = "Unlink", Visibility = ViewItemVisibility.Hide, Context = "Any")]
     public class FTS11FAG1 : XPLiteObject
-    { // Inherit from a different class to provide a custom primary key, concurrency and deletion behavior, etc. (https://documentation.devexpress.com/eXpressAppFramework/CustomDocument113146.aspx).
+    { 
         public FTS11FAG1(Session session)
             : base(session)
         {
@@ -29,7 +24,15 @@ namespace FT_FixedAsset.Module.BusinessObjects
         {
             base.AfterConstruction();
 
+            if (SecuritySystem.CurrentUserId != null && SecuritySystem.CurrentUserId.ToString() != "")
+            {
+                U_CreateBy = Session.GetObjectByKey<SystemUsers>(SecuritySystem.CurrentUserId).UserName;
+                U_UpdateBy = Session.GetObjectByKey<SystemUsers>(SecuritySystem.CurrentUserId).UserName;
+            }
+            CreateDate = DateTime.Today;
+            UpdateDate = DateTime.Today;
             Object = "FTS11FAG1";
+            LogInst = 0;
         }
 
         [Key(AutoGenerate = true), Browsable(false)]
@@ -304,6 +307,66 @@ namespace FT_FixedAsset.Module.BusinessObjects
             set { SetPropertyValue("U_AccNamQ", ref _U_AccNamQ, value); }
         }
 
+        private string _U_CreateBy;
+        [XafDisplayName("Create By"), ToolTip("Create By")]
+        [Index(993), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(true)]
+        public string U_CreateBy
+        {
+            get { return _U_CreateBy; }
+            set { SetPropertyValue("U_CreateBy", ref _U_CreateBy, value); }
+        }
+
+        private string _U_UpdateBy;
+        [XafDisplayName("Update By"), ToolTip("Update By")]
+        [Index(994), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(true)]
+        public string U_UpdateBy
+        {
+            get { return _U_UpdateBy; }
+            set { SetPropertyValue("U_UpdateBy", ref _U_UpdateBy, value); }
+        }
+
+        private string _U_CnclBy;
+        [XafDisplayName("Cancel By"), ToolTip("Cancel By")]
+        [Index(995), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(true)]
+        public string U_CnclBy
+        {
+            get { return _U_CnclBy; }
+            set { SetPropertyValue("U_CnclBy", ref _U_CnclBy, value); }
+        }
+
+        private DateTime _CreateDate;
+        [Index(996), VisibleInDetailView(false), VisibleInListView(false), VisibleInLookupListView(true)]
+        [XafDisplayName("Create Date")]
+        [ModelDefault("DisplayFormat", "dd/MM/yyyy")]
+        [DbType("datetime")]
+        public DateTime CreateDate
+        {
+            get { return _CreateDate; }
+            set { SetPropertyValue("CreateDate", ref _CreateDate, value); }
+        }
+
+        private DateTime _UpdateDate;
+        [Index(997), VisibleInDetailView(false), VisibleInListView(false), VisibleInLookupListView(true)]
+        [XafDisplayName("Update Date")]
+        [ModelDefault("DisplayFormat", "dd/MM/yyyy")]
+        [DbType("datetime")]
+        public DateTime UpdateDate
+        {
+            get { return _UpdateDate; }
+            set { SetPropertyValue("UpdateDate", ref _UpdateDate, value); }
+        }
+
+        private DateTime _U_CnclDate;
+        [Index(998), VisibleInDetailView(false), VisibleInListView(false), VisibleInLookupListView(true)]
+        [XafDisplayName("Cancel Date")]
+        [ModelDefault("DisplayFormat", "dd/MM/yyyy")]
+        [DbType("datetime")]
+        public DateTime U_CnclDate
+        {
+            get { return _U_CnclDate; }
+            set { SetPropertyValue("U_CnclDate", ref _U_CnclDate, value); }
+        }
+
         private string _Object;
         [XafDisplayName("Object"), ToolTip("Object")]
         [Index(999), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
@@ -311,6 +374,19 @@ namespace FT_FixedAsset.Module.BusinessObjects
         {
             get { return _Object; }
             set { SetPropertyValue("Object", ref _Object, value); }
+        }
+
+        private int _LogInst;
+        [Index(1000), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(true)]
+        [XafDisplayName("LogInst"), ToolTip("LogInst")]
+        [ModelDefault("DisplayFormat", "{0:n0}")]
+        [ModelDefault("EditMask", "{0:n0}")]
+        [ImmediatePostData]
+        [DbType("numeric(19,6)")]
+        public int LogInst
+        {
+            get { return _LogInst; }
+            set { SetPropertyValue("LogInst", ref _LogInst, value); }
         }
     }
 }

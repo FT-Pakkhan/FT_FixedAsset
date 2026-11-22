@@ -1,4 +1,5 @@
-﻿using DevExpress.Data.Filtering;
+﻿using System.ComponentModel;
+using DevExpress.Data.Filtering;
 using DevExpress.ExpressApp.ConditionalAppearance;
 using DevExpress.ExpressApp.DC;
 using DevExpress.ExpressApp.Editors;
@@ -6,7 +7,6 @@ using DevExpress.ExpressApp.Model;
 using DevExpress.Persistent.Base;
 using DevExpress.Persistent.Validation;
 using DevExpress.Xpo;
-using System.ComponentModel;
 
 namespace FT_FixedAsset.Module.BusinessObjects
 {
@@ -18,7 +18,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
     [RuleCriteria("T0304D_Quantity", DefaultContexts.Save, "U_Quantity > 0", "\"Quantity\" must more than zero.")]
 
     public class FTS11T0304D : XPLiteObject
-    { // Inherit from a different class to provide a custom primary key, concurrency and deletion behavior, etc. (https://documentation.devexpress.com/eXpressAppFramework/CustomDocument113146.aspx).
+    { 
         public FTS11T0304D(Session session)
             : base(session)
         {
@@ -99,14 +99,14 @@ namespace FT_FixedAsset.Module.BusinessObjects
             set { SetPropertyValue("U_FAName", ref _U_FAName, value); }
         }
 
-        private int _U_Quantity;
+        private double _U_Quantity;
         [Index(20), VisibleInListView(true), VisibleInDetailView(true), VisibleInLookupListView(false)]
         [XafDisplayName("Quantity"), ToolTip("Quantity")]
-        [ModelDefault("DisplayFormat", "{0:n0}")]
-        [ModelDefault("EditMask", "{0:n0}")]
+        [ModelDefault("DisplayFormat", "{0:n2}")]
+        [ModelDefault("EditMask", "{0:n2}")]
         [Appearance("Quantity", Enabled = false)]
         [DbType("numeric(19,6)")]
-        public int U_Quantity
+        public double U_Quantity
         {
             get { return _U_Quantity; }
             set { SetPropertyValue("U_Quantity", ref _U_Quantity, value); }

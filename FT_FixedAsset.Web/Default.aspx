@@ -16,6 +16,25 @@
             /* font-weight: bold !important;*/
             font-family: Calibri !important;
         }
+
+        /*#region Gray out for disabled field */
+        .dxeEditArea_SoftOrange.dxeEditAreaSys.dxeDisabled_SoftOrange {
+            background-color: lightgray;
+            color: black;
+        }
+
+        .dxeDisabled_SoftOrange td.dxic {
+            background-color: lightgray;
+        }
+
+        .dxeEditArea_Office2010Blue.dxeEditAreaSys.dxeDisabled_Office2010Blue {
+            background-color: lightgray;
+            color: black;
+        }
+
+        .dxeDisabled_Office2010Blue td.dxic {
+            background-color: lightgray;
+        }
     </style>
 </head>
 <body class="VerticalTemplate">

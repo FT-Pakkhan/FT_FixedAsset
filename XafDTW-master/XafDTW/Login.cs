@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.ExpressApp;
 using DevExpress.ExpressApp.Security;
@@ -86,6 +81,13 @@ namespace XafDTW
             txtUserID.Text = defuserid;
             txtPassword.Text = defpassword;
 
+        }
+
+        private void Login_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            this.Dispose();
+            this.Close();
+            Application.Exit();
         }
     }
 }

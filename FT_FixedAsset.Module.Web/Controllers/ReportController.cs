@@ -1,4 +1,10 @@
-﻿using DevExpress.Data.Filtering;
+﻿using System;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.IO;
+using System.Web;
+using DevExpress.Data.Filtering;
 using DevExpress.ExpressApp;
 using DevExpress.ExpressApp.Actions;
 using DevExpress.ExpressApp.Editors;
@@ -6,11 +12,6 @@ using DevExpress.ExpressApp.Web;
 using FT_FixedAsset.Module.BusinessObjects;
 using FT_FixedAsset.Module.Controllers;
 using SAPbobsCOM;
-using System;
-using System.Data;
-using System.Data.SqlClient;
-using System.IO;
-using System.Web;
 
 namespace FT_FixedAsset.Module.Web.Controllers
 {
@@ -62,11 +63,27 @@ namespace FT_FixedAsset.Module.Web.Controllers
         private void Preview_Execute(object sender, SimpleActionExecuteEventArgs e)
         {
             string browserPath = "";
+            string HTTPSecure = "";
 
-            if (HttpContext.Current.Request.ApplicationPath == "/")
-                browserPath = HttpContext.Current.Request.Url.Authority;
+            // read without .ToString(): a missing key is null and used to crash with "Object reference not set..."
+            if (string.IsNullOrEmpty(ConfigurationManager.AppSettings["HTTPSecure"]))
+                throw new InvalidOperationException("HTTPSecure Key cannot be found in webconfig.");
+
+            // BrowserPath is optional: when it is not in Web.config, use this site's own address
+            if (!string.IsNullOrEmpty(ConfigurationManager.AppSettings["BrowserPath"]))
+                browserPath = ConfigurationManager.AppSettings["BrowserPath"];
             else
-                browserPath = HttpContext.Current.Request.Url.Authority + HttpContext.Current.Request.ApplicationPath;
+            {
+                if (HttpContext.Current.Request.ApplicationPath == "/")
+                    browserPath = HttpContext.Current.Request.Url.Authority;
+                else
+                    browserPath = HttpContext.Current.Request.Url.Authority + HttpContext.Current.Request.ApplicationPath;
+            }
+
+            if (HttpContext.Current.Request.IsLocal && browserPath.Contains("localhost"))
+                HTTPSecure = "http";
+            else
+                HTTPSecure = ConfigurationManager.AppSettings["HTTPSecure"];
 
             if (View.ObjectTypeInfo.Type == typeof(PostWidget))
             {
@@ -124,6 +141,18 @@ namespace FT_FixedAsset.Module.Web.Controllers
                     HttpContext.Current.Session["FAGrpTo"] = JEPreview.FAGrpTo == null ? "" : JEPreview.FAGrpTo.U_FAGrpCod;
                     HttpContext.Current.Session["FAClsFrm"] = JEPreview.FAClsFrm == null ? "" : JEPreview.FAClsFrm.Code;
                     HttpContext.Current.Session["FAClsTo"] = JEPreview.FAClsTo == null ? "" : JEPreview.FAClsTo.Code;
+                    HttpContext.Current.Session["U_ProjectFrm"] = JEPreview.U_ProjectFrm == null ? "" : JEPreview.U_ProjectFrm.PrjCode;
+                    HttpContext.Current.Session["U_Projectto"] = JEPreview.U_ProjectTo == null ? "" : JEPreview.U_ProjectTo.PrjCode;
+                    HttpContext.Current.Session["U_ProfitCodeFrm"] = JEPreview.U_ProfitCodeFrm == null ? "" : JEPreview.U_ProfitCodeFrm.PrcCode;
+                    HttpContext.Current.Session["U_ProfitCodeTo"] = JEPreview.U_ProfitCodeTo == null ? "" : JEPreview.U_ProfitCodeTo.PrcCode;
+                    HttpContext.Current.Session["U_OcrCode2Frm"] = JEPreview.U_OcrCode2Frm == null ? "" : JEPreview.U_OcrCode2Frm.PrcCode;
+                    HttpContext.Current.Session["U_OcrCode2To"] = JEPreview.U_OcrCode2To == null ? "" : JEPreview.U_OcrCode2To.PrcCode;
+                    HttpContext.Current.Session["U_OcrCode3Frm"] = JEPreview.U_OcrCode3Frm == null ? "" : JEPreview.U_OcrCode3Frm.PrcCode;
+                    HttpContext.Current.Session["U_OcrCode3To"] = JEPreview.U_OcrCode3To == null ? "" : JEPreview.U_OcrCode3To.PrcCode;
+                    HttpContext.Current.Session["U_OcrCode4Frm"] = JEPreview.U_OcrCode4Frm == null ? "" : JEPreview.U_OcrCode4Frm.PrcCode;
+                    HttpContext.Current.Session["U_OcrCode4To"] = JEPreview.U_OcrCode4To == null ? "" : JEPreview.U_OcrCode4To.PrcCode;
+                    HttpContext.Current.Session["U_OcrCode5Frm"] = JEPreview.U_OcrCode5Frm == null ? "" : JEPreview.U_OcrCode5Frm.PrcCode;
+                    HttpContext.Current.Session["U_OcrCode5To"] = JEPreview.U_OcrCode5To == null ? "" : JEPreview.U_OcrCode5To.PrcCode;
                     HttpContext.Current.Session["JESplitBy"] = OADM.U_SplitBy == null ? "" : OADM.U_SplitBy.Code;
                     HttpContext.Current.Session["Option"] = JEPreview.PostOpt == null ? "" : JEPreview.PostOpt.Code;
                     HttpContext.Current.Session["PostTo"] = JEPreview.PostTo == null ? "" : JEPreview.PostTo.Code;
@@ -136,7 +165,7 @@ namespace FT_FixedAsset.Module.Web.Controllers
                     HttpContext.Current.Session["UserID"] = string.IsNullOrEmpty(JEPreview.U_CreateBy) ? "" : JEPreview.U_CreateBy.ToString();
 
                     WebWindow.CurrentRequestWindow.RegisterStartupScript("Preview",
-                        "window.open('http://" + browserPath + @"/Reports.aspx','_blank');", true);
+                        "window.open('" + HTTPSecure + "://" + browserPath + @"/Reports.aspx','_blank');", true);
                 }
                 else
                 {
@@ -242,7 +271,7 @@ namespace FT_FixedAsset.Module.Web.Controllers
                 HttpContext.Current.Session["U_AccTo"] = reportViewer.U_AccTo == null ? "" : reportViewer.U_AccTo.FormatCode;
 
                 WebWindow.CurrentRequestWindow.RegisterStartupScript("Preview",
-                    "window.open('http://" + browserPath + @"/Reports.aspx','_blank');", true);
+                    "window.open('" + HTTPSecure + "://" + browserPath + @"/Reports.aspx','_blank');", true);
             }
         }
 

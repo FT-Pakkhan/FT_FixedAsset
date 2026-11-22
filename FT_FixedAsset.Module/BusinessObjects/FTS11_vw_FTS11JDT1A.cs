@@ -1,18 +1,12 @@
 ﻿using System;
-using System.Linq;
-using System.Text;
-using DevExpress.Xpo;
-using DevExpress.ExpressApp;
-using System.ComponentModel;
-using DevExpress.ExpressApp.DC;
-using DevExpress.Data.Filtering;
-using DevExpress.Persistent.Base;
 using System.Collections.Generic;
-using DevExpress.ExpressApp.Model;
-using DevExpress.Persistent.BaseImpl;
-using DevExpress.Persistent.Validation;
+using System.Linq;
 using DevExpress.ExpressApp.ConditionalAppearance;
+using DevExpress.ExpressApp.DC;
 using DevExpress.ExpressApp.Editors;
+using DevExpress.ExpressApp.Model;
+using DevExpress.Persistent.Base;
+using DevExpress.Xpo;
 
 namespace FT_FixedAsset.Module.BusinessObjects
 {
@@ -30,7 +24,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
         {
             IList<FTS11_vw_FTS11JDT1A> rtnlist = new List<FTS11_vw_FTS11JDT1A>();
 
-            foreach (FTS11_vw_FTS11JDT1 dtl in mylist.OrderBy(pp => pp.DocDate).ThenBy(pp => pp.TransType).ThenBy(pp => pp.DocEntry).ThenBy(pp => pp.TransID))
+            foreach (FTS11_vw_FTS11JDT1 dtl in mylist.OrderBy(pp => pp.DocDate).ThenBy(pp => pp.DocEntry).ThenBy(pp => pp.TransType).ThenBy(pp => pp.TransID))
             {
                 FTS11_vw_FTS11JDT1A obj = new FTS11_vw_FTS11JDT1A(Session);
                 obj.DocKey = dtl.DocKey;
@@ -70,7 +64,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
     [Appearance("DisableSave&New", AppearanceItemType.Action, "True", TargetItems = "SaveAndNew", Visibility = ViewItemVisibility.Hide, Context = "Any")]
     [Appearance("DisableValidate", AppearanceItemType.Action, "True", TargetItems = "ShowAllContexts", Visibility = ViewItemVisibility.Hide, Context = "Any")]
     public class FTS11_vw_FTS11JDT1A : XPLiteObject
-    { // Inherit from a different class to provide a custom primary key, concurrency and deletion behavior, etc. (https://documentation.devexpress.com/eXpressAppFramework/CustomDocument113146.aspx).
+    { 
         public FTS11_vw_FTS11JDT1A(Session session)
             : base(session)
         {
@@ -78,7 +72,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
         public override void AfterConstruction()
         {
             base.AfterConstruction();
-            // Place your initialization code here (https://documentation.devexpress.com/eXpressAppFramework/CustomDocument112834.aspx).
+            
         }
 
         //private string _DocKey;
@@ -131,9 +125,9 @@ namespace FT_FixedAsset.Module.BusinessObjects
         //private int _Quantity;
         [Index(100), VisibleInListView(true), VisibleInDetailView(true), VisibleInLookupListView(false)]
         [XafDisplayName("Quantity"), ToolTip("Quantity")]
-        [ModelDefault("DisplayFormat", "{0:n0}")]
-        [ModelDefault("EditMask", "{0:n0}")]
-        public int Quantity { get; set; }
+        [ModelDefault("DisplayFormat", "{0:n2}")]
+        [ModelDefault("EditMask", "{0:n2}")]
+        public double Quantity { get; set; }
 
         //Private string _Location;
         [XafDisplayName("Location"), ToolTip("Location")]

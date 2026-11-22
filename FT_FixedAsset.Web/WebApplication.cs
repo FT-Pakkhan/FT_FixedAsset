@@ -1,11 +1,10 @@
 ﻿using System;
+using System.Data;
 using DevExpress.ExpressApp;
-using System.ComponentModel;
-using DevExpress.ExpressApp.Web;
-using System.Collections.Generic;
-using DevExpress.ExpressApp.Xpo;
 using DevExpress.ExpressApp.Security;
 using DevExpress.ExpressApp.Security.ClientServer;
+using DevExpress.ExpressApp.Web;
+using DevExpress.ExpressApp.Xpo;
 using FT_FixedAsset.Module.BusinessObjects;
 
 namespace FT_FixedAsset.Web {
@@ -46,9 +45,24 @@ namespace FT_FixedAsset.Web {
         protected override void OnLoggingOn(LogonEventArgs args)
         {
             base.OnLoggingOn(args);
+
             if (String.IsNullOrEmpty(((IDatabaseNameParameter)args.LogonParameters).DatabaseName)) 
                 throw new InvalidOperationException("Please select Company.");
+
             MSSqlServerChangeDatabaseHelper.UpdateDatabaseName(this, ((IDatabaseNameParameter)args.LogonParameters).DatabaseName);
+
+            DataTable dt = null;
+            string sqlQuery = "SELECT * FROM ODBC WHERE DBName = '" + ((IDatabaseNameParameter)args.LogonParameters).DatabaseName + "'";
+            dt = SQLHandler.GetDataTable(sqlQuery);
+            if (dt.Rows.Count > 0)
+            {
+                foreach (DataRow row in dt.Rows)
+                {
+                    MainScreenTemplate.Company = row["DBName"].ToString() + " - " + row["Description"].ToString();
+                }
+            }
+
+            dt.Dispose();
         }
 
         protected override IViewUrlManager CreateViewUrlManager() {
@@ -83,13 +97,6 @@ namespace FT_FixedAsset.Web {
             }
             else
             {
-                //string message = "The application cannot connect to the specified database, " +
-                //	"because the database doesn't exist, its version is older " +
-                //	"than that of the application or its schema does not match " +
-                //	"the ORM data model structure. To avoid this error, use one " +
-                //	"of the solutions from the https://www.devexpress.com/kb=T367835 KB Article.";
-
-
                 string message = "Connection Error";
 
                 if (e.CompatibilityError != null && e.CompatibilityError.Exception != null)
@@ -107,7 +114,7 @@ namespace FT_FixedAsset.Web {
             this.module4 = new FT_FixedAsset.Module.Web.FT_FixedAssetAspNetModule();
             this.securityModule1 = new DevExpress.ExpressApp.Security.SecurityModule();
             this.securityStrategyComplex1 = new DevExpress.ExpressApp.Security.SecurityStrategyComplex();
-            this.authenticationStandard1 = new DevExpress.ExpressApp.Security.AuthenticationStandard();
+            this.authenticationStandard1 = new FT_FixedAsset.Module.Security.ExpiringPasswordAuthentication();   // Password Administration: lock / expiry
             this.conditionalAppearanceModule = new DevExpress.ExpressApp.ConditionalAppearance.ConditionalAppearanceModule();
             this.validationModule = new DevExpress.ExpressApp.Validation.ValidationModule();
             this.validationAspNetModule = new DevExpress.ExpressApp.Validation.Web.ValidationAspNetModule();

@@ -1,10 +1,10 @@
-﻿using DevExpress.ExpressApp.ConditionalAppearance;
+﻿using System.ComponentModel;
+using DevExpress.ExpressApp.ConditionalAppearance;
 using DevExpress.ExpressApp.DC;
 using DevExpress.ExpressApp.Editors;
 using DevExpress.Persistent.Base;
 using DevExpress.Xpo;
 using FileSystemData.BusinessObjects;
-using System.ComponentModel;
 
 namespace FT_FixedAsset.Module.BusinessObjects
 {
@@ -12,7 +12,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
     [Appearance("DisableLink", AppearanceItemType.Action, "True", TargetItems = "Link", Visibility = ViewItemVisibility.Hide, Context = "Any")]
     [Appearance("DisableUnlink", AppearanceItemType.Action, "True", TargetItems = "Unlink", Visibility = ViewItemVisibility.Hide, Context = "Any")]
     public class FTS11FAM3 : XPLiteObject
-    { // Inherit from a different class to provide a custom primary key, concurrency and deletion behavior, etc. (https://documentation.devexpress.com/eXpressAppFramework/CustomDocument113146.aspx).
+    { 
         public FTS11FAM3(Session session)
             : base(session)
         {
@@ -20,7 +20,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
         public override void AfterConstruction()
         {
             base.AfterConstruction();
-            // Place your initialization code here (https://documentation.devexpress.com/eXpressAppFramework/CustomDocument112834.aspx).
+            
         }
 
         [Key(AutoGenerate = true), Browsable(false)]

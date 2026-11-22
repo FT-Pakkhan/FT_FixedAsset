@@ -1,13 +1,12 @@
-﻿using DevExpress.Data.Filtering;
+﻿using System;
+using System.Linq;
+using DevExpress.Data.Filtering;
 using DevExpress.ExpressApp;
 using DevExpress.ExpressApp.Actions;
+using DevExpress.ExpressApp.Editors;
 using DevExpress.ExpressApp.Web.SystemModule;
-using DevExpress.Xpo;
 using FT_FixedAsset.Module.BusinessObjects;
 using FT_FixedAsset.Module.Controllers;
-using System;
-using System.Data.SqlClient;
-using System.Linq;
 
 namespace FT_FixedAsset.Module.Web.Controllers
 {
@@ -37,10 +36,25 @@ namespace FT_FixedAsset.Module.Web.Controllers
             base.OnDeactivated();
         }
 
-        protected override void SaveAndClose(SimpleActionExecuteEventArgs args)
+        // No posting into the period of a depreciation run in progress (see DeprnRunLock)
+        private bool BlockedByDeprnRun(SimpleActionExecuteEventArgs args)
         {
-            string query = "";
-            SystemUsers user = (SystemUsers)SecuritySystem.CurrentUser;
+            if (genCon == null) return false;
+            foreach (object obj in args.SelectedObjects)
+            {
+                string msg = DeprnRunLock.CheckDocument(genCon.getConnectionString(), obj, false);
+                if (msg != null)
+                {
+                    genCon.MsgBox(InformationType.Error, "Error", msg);
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        protected override void Save(SimpleActionExecuteEventArgs args)
+        {
+            if (BlockedByDeprnRun(args)) return;
 
             // General Settings
             if (View.ObjectTypeInfo.Type == typeof(FTS11OADM))
@@ -48,6 +62,24 @@ namespace FT_FixedAsset.Module.Web.Controllers
                 ObjectSpace.CommitChanges();
                 genCon.RegenerateView();
             }
+
+            base.Save(args);
+
+            // General Settings / Password Administration: back to view mode after saving
+            if (View.ObjectTypeInfo.Type == typeof(FTS11OADM) || View.ObjectTypeInfo.Type == typeof(FTS11OPPA))
+            {
+                ((DetailView)View).ViewEditMode = ViewEditMode.View;
+                View.BreakLinksToControls();
+                View.CreateControls();
+            }
+        }
+
+        protected override void SaveAndClose(SimpleActionExecuteEventArgs args)
+        {
+            string query = "";
+            SystemUsers user = (SystemUsers)SecuritySystem.CurrentUser;
+
+            if (BlockedByDeprnRun(args)) return;
 
             //Fixed Asset Class
             if (View.ObjectTypeInfo.Type == typeof(FTS11OFAC))
@@ -158,36 +190,7 @@ namespace FT_FixedAsset.Module.Web.Controllers
                         IObjectSpace os = Application.CreateObjectSpace();
                         FTS11OADM OADM = os.FindObject<FTS11OADM>(CriteriaOperator.Parse("DocEntry = '1'"));
 
-                        if (OADM.U_FACodeBy.Code == "FAClsCod")
-                            docType = OFAM.U_FAGrpKey == null ? "" : OFAM.U_FAGrpKey.U_FAClsCod;
-                        if (OADM.U_FACodeBy.Code == "FAGrpCod")
-                            docType = OFAM.U_FAGrpKey == null ? "" : OFAM.U_FAGrpCod;
-                        if (OADM.U_FACodeBy.Code == "IndCod1")
-                            docType = OFAM.U_IndKey1 == null ? "" : OFAM.U_IndCod1;
-                        if (OADM.U_FACodeBy.Code == "IndCod2")
-                            docType = OFAM.U_IndKey2 == null ? "" : OFAM.U_IndCod2;
-                        if (OADM.U_FACodeBy.Code == "IndCod3")
-                            docType = OFAM.U_IndKey3 == null ? "" : OFAM.U_IndCod3;
-                        if (OADM.U_FACodeBy.Code == "IndCod4")
-                            docType = OFAM.U_IndKey4 == null ? "" : OFAM.U_IndCod4;
-                        if (OADM.U_FACodeBy.Code == "IndCod5")
-                            docType = OFAM.U_IndKey5 == null ? "" : OFAM.U_IndCod5;
-                        if (OADM.U_FACodeBy.Code == "IndCod6")
-                            docType = OFAM.U_IndKey6 == null ? "" : OFAM.U_IndCod6;
-                        if (OADM.U_FACodeBy.Code == "Project")
-                            docType = OFAM.U_Project == null ? "" : OFAM.U_Project.PrjCode;
-                        if (OADM.U_FACodeBy.Code == "ProfitCo")
-                            docType = OFAM.U_ProfitCode == null ? "" : OFAM.U_ProfitCode.PrcCode;
-                        if (OADM.U_FACodeBy.Code == "OcrCode2")
-                            docType = OFAM.U_OcrCode2 == null ? "" : OFAM.U_OcrCode2.PrcCode;
-                        if (OADM.U_FACodeBy.Code == "OcrCode3")
-                            docType = OFAM.U_OcrCode3 == null ? "" : OFAM.U_OcrCode3.PrcCode;
-                        if (OADM.U_FACodeBy.Code == "OcrCode4")
-                            docType = OFAM.U_OcrCode4 == null ? "" : OFAM.U_OcrCode4.PrcCode;
-                        if (OADM.U_FACodeBy.Code == "OcrCode5")
-                            docType = OFAM.U_OcrCode5 == null ? "" : OFAM.U_OcrCode5.PrcCode;
-                        if (OADM.U_FACodeBy.Code == "Location")
-                            docType = OFAM.U_LocationKey == null ? "" : OFAM.U_Location;
+                        docType = GenController.GetFACodeDocType(OADM, OFAM);
 
                         FTS11NNM1 code = os.FindObject<FTS11NNM1>(CriteriaOperator.Parse("DocType=?", docType));
 
@@ -936,8 +939,138 @@ namespace FT_FixedAsset.Module.Web.Controllers
                     }
                 }
             }
-            
+
             base.SaveAndClose(args);
+
+            //Write Off
+            if (View.ObjectTypeInfo.Type == typeof(FTS11T0201))
+            {
+                foreach (FTS11T0201 selectedObject in args.SelectedObjects)
+                {
+                    FTS11T0201 T0201 = (FTS11T0201)selectedObject;
+
+                    T0201.DocNum = T0201.DocEntry;
+
+                    ObjectSpace.CommitChanges();
+                }
+            }
+
+            //Disposed
+            if (View.ObjectTypeInfo.Type == typeof(FTS11T0202))
+            {
+                foreach (FTS11T0202 selectedObject in args.SelectedObjects)
+                {
+                    FTS11T0202 T0202 = (FTS11T0202)selectedObject;
+
+                    T0202.DocNum = T0202.DocEntry;
+
+                    ObjectSpace.CommitChanges();
+                }
+            }
+
+            //Correction Out
+            if (View.ObjectTypeInfo.Type == typeof(FTS11T0203))
+            {
+                foreach (FTS11T0203 selectedObject in args.SelectedObjects)
+                {
+                    FTS11T0203 T0203 = (FTS11T0203)selectedObject;
+
+                    T0203.DocNum = T0203.DocEntry;
+
+                    ObjectSpace.CommitChanges();
+                }
+            }
+
+            //Transferred Out
+            if (View.ObjectTypeInfo.Type == typeof(FTS11T0204))
+            {
+                foreach (FTS11T0204 selectedObject in args.SelectedObjects)
+                {
+                    FTS11T0204 T0204 = (FTS11T0204)selectedObject;
+
+                    T0204.DocNum = T0204.DocEntry;
+
+                    ObjectSpace.CommitChanges();
+                }
+            }
+
+            //Reclassed Out
+            if (View.ObjectTypeInfo.Type == typeof(FTS11T0205))
+            {
+                foreach (FTS11T0205 selectedObject in args.SelectedObjects)
+                {
+                    FTS11T0205 T0205 = (FTS11T0205)selectedObject;
+
+                    T0205.DocNum = T0205.DocEntry;
+
+                    ObjectSpace.CommitChanges();
+                }
+            }
+
+            //Review Useful Life
+            if (View.ObjectTypeInfo.Type == typeof(FTS11T0301))
+            {
+                foreach (FTS11T0301 selectedObject in args.SelectedObjects)
+                {
+                    FTS11T0301 T0301 = (FTS11T0301)selectedObject;
+
+                    T0301.DocNum = T0301.DocEntry;
+
+                    ObjectSpace.CommitChanges();
+                }
+            }
+
+            //Revalue Cost
+            if (View.ObjectTypeInfo.Type == typeof(FTS11T0302))
+            {
+                foreach (FTS11T0302 selectedObject in args.SelectedObjects)
+                {
+                    FTS11T0302 T0302 = (FTS11T0302)selectedObject;
+
+                    T0302.DocNum = T0302.DocEntry;
+
+                    ObjectSpace.CommitChanges();
+                }
+            }
+
+            //Adjust Accumulated Depr
+            if (View.ObjectTypeInfo.Type == typeof(FTS11T0303))
+            {
+                foreach (FTS11T0303 selectedObject in args.SelectedObjects)
+                {
+                    FTS11T0303 T0303 = (FTS11T0303)selectedObject;
+
+                    T0303.DocNum = T0303.DocEntry;
+
+                    ObjectSpace.CommitChanges();
+                }
+            }
+
+            //Move
+            if (View.ObjectTypeInfo.Type == typeof(FTS11T0304))
+            {
+                foreach (FTS11T0304 selectedObject in args.SelectedObjects)
+                {
+                    FTS11T0304 T0304 = (FTS11T0304)selectedObject;
+
+                    T0304.DocNum = T0304.DocEntry;
+
+                    ObjectSpace.CommitChanges();
+                }
+            }
+
+            //Revalue Residual Value
+            if (View.ObjectTypeInfo.Type == typeof(FTS11T0305))
+            {
+                foreach (FTS11T0305 selectedObject in args.SelectedObjects)
+                {
+                    FTS11T0305 T0305 = (FTS11T0305)selectedObject;
+
+                    T0305.DocNum = T0305.DocEntry;
+
+                    ObjectSpace.CommitChanges();
+                }
+            }
         }
 
     }

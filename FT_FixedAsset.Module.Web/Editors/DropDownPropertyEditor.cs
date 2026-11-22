@@ -1,14 +1,11 @@
-﻿using DevExpress.ExpressApp;
+﻿using System;
+using System.Web.UI.WebControls;
 using DevExpress.ExpressApp.Editors;
 using DevExpress.ExpressApp.Model;
 using DevExpress.ExpressApp.Web.Editors.ASPx;
-using DevExpress.Web;
-using System;
-using System.Web.UI.WebControls;
 
 namespace FT_FixedAsset.Module.Web.Editors
 {
-    //[PropertyEditor(typeof(DevExpress.Xpo.IXPSimpleObject), false)]
     [PropertyEditor(typeof(object), false)]
     public partial class DropDownPropertyEditor : ASPxLookupPropertyEditor
     {
@@ -27,12 +24,6 @@ namespace FT_FixedAsset.Module.Web.Editors
         {
             DropDownEdit.ClearButton.Visible = false;
             DropDownEdit.NewButton.Enabled = false;
-
-            //ASPxButton addButton = sender as ASPxButton;
-            //if (addButton != null)
-            //{
-            //    addButton.Visible = false;
-            //}
         }
     }
 }

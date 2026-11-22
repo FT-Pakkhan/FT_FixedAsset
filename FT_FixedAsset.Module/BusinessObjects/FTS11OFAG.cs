@@ -1,4 +1,6 @@
-﻿using DevExpress.Data.Filtering;
+﻿using System;
+using System.ComponentModel;
+using DevExpress.Data.Filtering;
 using DevExpress.ExpressApp;
 using DevExpress.ExpressApp.ConditionalAppearance;
 using DevExpress.ExpressApp.DC;
@@ -7,8 +9,6 @@ using DevExpress.ExpressApp.Model;
 using DevExpress.Persistent.Base;
 using DevExpress.Persistent.Validation;
 using DevExpress.Xpo;
-using System;
-using System.ComponentModel;
 
 namespace FT_FixedAsset.Module.BusinessObjects
 {
@@ -45,6 +45,129 @@ namespace FT_FixedAsset.Module.BusinessObjects
             UpdateDate = DateTime.Today;
             Object = "FTS11OFAG";
         }
+
+        #region Dummy field
+        [Index(0), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Appearance("Dummy01", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide)]
+        public string Dummy01
+        {
+            get { return ""; }
+        }
+        [Index(0), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Appearance("Dummy02", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide)]
+        public string Dummy02
+        {
+            get { return ""; }
+        }
+        [Index(0), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Appearance("Dummy03", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide)]
+        public string Dummy03
+        {
+            get { return ""; }
+        }
+        [Index(0), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Appearance("Dummy04", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide)]
+        public string Dummy04
+        {
+            get { return ""; }
+        }
+        [Index(0), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Appearance("Dummy05", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide)]
+        public string Dummy05
+        {
+            get { return ""; }
+        }
+        [Index(0), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Appearance("Dummy06", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide)]
+        public string Dummy06
+        {
+            get { return ""; }
+        }
+        [Index(0), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Appearance("Dummy07", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide)]
+        public string Dummy07
+        {
+            get { return ""; }
+        }
+        [Index(0), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Appearance("Dummy08", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide)]
+        public string Dummy08
+        {
+            get { return ""; }
+        }
+        [Index(0), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Appearance("Dummy09", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide)]
+        public string Dummy09
+        {
+            get { return ""; }
+        }
+        [Index(0), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Appearance("Dummy10", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide)]
+        public string Dummy10
+        {
+            get { return ""; }
+        }
+        [Index(0), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Appearance("Dummy11", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide)]
+        public string Dummy11
+        {
+            get { return ""; }
+        }
+        [Index(0), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Appearance("Dummy12", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide)]
+        public string Dummy12
+        {
+            get { return ""; }
+        }
+        [Index(0), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Appearance("Dummy13", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide)]
+        public string Dummy13
+        {
+            get { return ""; }
+        }
+        [Index(0), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Appearance("Dummy14", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide)]
+        public string Dummy14
+        {
+            get { return ""; }
+        }
+        [Index(0), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Appearance("Dummy15", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide)]
+        public string Dummy15
+        {
+            get { return ""; }
+        }
+        [Index(0), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Appearance("Dummy16", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide)]
+        public string Dummy16
+        {
+            get { return ""; }
+        }
+        [Index(0), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Appearance("Dummy17", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide)]
+        public string Dummy17
+        {
+            get { return ""; }
+        }
+        [Index(0), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Appearance("Dummy18", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide)]
+        public string Dummy18
+        {
+            get { return ""; }
+        }
+        [Index(0), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Appearance("Dummy19", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide)]
+        public string Dummy19
+        {
+            get { return ""; }
+        }
+        [Index(0), VisibleInListView(false), VisibleInDetailView(false), VisibleInLookupListView(false)]
+        [Appearance("Dummy20", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide)]
+        public string Dummy20
+        {
+            get { return ""; }
+        }
+        #endregion
 
         #region Child Table
         [Association("FTS11OFAG-FTS11FAG1", typeof(FTS11FAG1))]
@@ -120,6 +243,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
         private bool _U_DeprnYN;
         [Index(30), VisibleInListView(true), VisibleInDetailView(true), VisibleInLookupListView(false)]
         [XafDisplayName("Depreciation")]
+        [ImmediatePostData]
         public bool U_DeprnYN
         {
             get { return _U_DeprnYN; }
@@ -179,26 +303,46 @@ namespace FT_FixedAsset.Module.BusinessObjects
         [Index(70), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(false)]
         [XafDisplayName("Useful Life (Months)"), ToolTip("Useful Life (Months)")]
         [Appearance("UseLife", Enabled = false, Criteria = "[U_DeprnBy].[Code] <> 'U'")]
+        [ImmediatePostData]
         [ModelDefault("DisplayFormat", "{0:n2}")]
         [ModelDefault("EditMask", "{0:n2}")]
         [DbType("numeric(19,6)")]
         public double U_UseLife
         {
             get { return _U_UseLife; }
-            set { SetPropertyValue("U_UseLife", ref _U_UseLife, value); }
+            set { 
+                SetPropertyValue("U_UseLife", ref _U_UseLife, value);
+                if (!IsLoading && U_DeprnBy.Code == "U")
+                {
+                    if (value != 0)
+                        U_DeprPrcnt = Math.Round(12 / U_UseLife * 100, 6);
+                    else
+                        U_DeprPrcnt = 0;
+                }
+            }
         }
 
         private double _U_DeprPrcnt;
         [Index(80), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(false)]
         [XafDisplayName("Percentage %"), ToolTip("Precentage %")]
         [Appearance("DeprPrcnt", Enabled = false, Criteria = "[U_DeprnBy].[Code] <> 'P'")]
+        [ImmediatePostData]
         [ModelDefault("DisplayFormat", "{0:n2}")]
         [ModelDefault("EditMask", "{0:n2}")]
         [DbType("numeric(19,6)")]
         public double U_DeprPrcnt
         {
             get { return _U_DeprPrcnt; }
-            set { SetPropertyValue("U_DeprPrcnt", ref _U_DeprPrcnt, value); }
+            set { 
+                SetPropertyValue("U_DeprPrcnt", ref _U_DeprPrcnt, value);
+                if (!IsLoading && U_DeprnBy.Code == "P")
+                {
+                    if (value != 0)
+                        U_UseLife = Math.Round(12 / U_DeprPrcnt * 100, 6);
+                    else
+                        U_UseLife = 0;
+                }
+            }
         }
 
         private double _U_MBaseLC;
@@ -282,7 +426,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
         private FTS11_vw_OACT _U_AccFrmD;
         [XafDisplayName("Depreciation A/C Code"), ToolTip("Depreciation A/C Code")]
         [Index(121), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(false)]
-        [RuleRequiredField(DefaultContexts.Save)]
+        [RuleRequiredField(DefaultContexts.Save, TargetCriteria = "U_DeprnYN = true")]
         [NoForeignKey]
         [ImmediatePostData]
         public FTS11_vw_OACT U_AccFrmD
@@ -328,7 +472,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
         private FTS11_vw_OACT _U_AccFrmC;
         [XafDisplayName("Acc. Deprn A/C Code"), ToolTip("Acc. Deprn A/C Code")]
         [Index(131), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(false)]
-        [RuleRequiredField(DefaultContexts.Save)]
+        [RuleRequiredField(DefaultContexts.Save, TargetCriteria = "U_DeprnYN = true")]
         [NoForeignKey]
         [ImmediatePostData]
         public FTS11_vw_OACT U_AccFrmC

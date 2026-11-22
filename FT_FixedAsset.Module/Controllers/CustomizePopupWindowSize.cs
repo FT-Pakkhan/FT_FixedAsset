@@ -1,6 +1,6 @@
-﻿using DevExpress.ExpressApp;
+﻿using System.Web.UI.WebControls;
+using DevExpress.ExpressApp;
 using DevExpress.ExpressApp.Web;
-using System.Web.UI.WebControls;
 
 namespace FT_FixedAsset.Module.Controllers
 {
@@ -32,6 +32,16 @@ namespace FT_FixedAsset.Module.Controllers
         }
         private void XafPopupWindowControl_CustomizePopupWindowSize(object sender, DevExpress.ExpressApp.Web.Controls.CustomizePopupWindowSizeEventArgs e)
         {
+            // Cancel Assets / Cancel Trans. confirmation: small dialog in the middle of the screen
+            if (e.PopupFrame != null && e.PopupFrame.View != null && e.PopupFrame.View.ObjectTypeInfo != null
+                && e.PopupFrame.View.ObjectTypeInfo.Type == typeof(FT_FixedAsset.Module.BusinessObjects.CancelConfirmation))
+            {
+                e.Width = Unit.Pixel(460);
+                e.Height = Unit.Pixel(230);
+                e.ShowPopupMode = DevExpress.ExpressApp.Web.Controls.ShowPopupMode.Centered;
+                e.Handled = true;
+                return;
+            }
             e.Width = Unit.Percentage(80);
             e.Height = Unit.Percentage(65);
             e.ShowPopupMode = DevExpress.ExpressApp.Web.Controls.ShowPopupMode.Centered;

@@ -50,7 +50,7 @@
             this.dgvResult.RowHeadersWidth = 51;
             this.dgvResult.RowTemplate.Height = 24;
             this.dgvResult.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvResult.Size = new System.Drawing.Size(776, 303);
+            this.dgvResult.Size = new System.Drawing.Size(850, 295);
             this.dgvResult.TabIndex = 0;
             // 
             // label1
@@ -58,7 +58,7 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(12, 18);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(56, 17);
+            this.label1.Size = new System.Drawing.Size(51, 16);
             this.label1.TabIndex = 1;
             this.label1.Text = "Result :";
             // 
@@ -75,7 +75,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(797, 380);
+            this.ClientSize = new System.Drawing.Size(877, 372);
             this.Controls.Add(this.cmbResult);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dgvResult);

@@ -67,7 +67,7 @@
             // CancelTrans
             // 
             this.CancelTrans.Caption = "Cancel";
-            this.CancelTrans.ConfirmationMessage = "Are you sure to cancel this transaction?";
+            this.CancelTrans.ConfirmationMessage = null;   // confirmation: centred popup in ButtonController.CancelTrans_Execute
             this.CancelTrans.Id = "CancelTrans";
             this.CancelTrans.ImageName = "Cancel_16x16";
             this.CancelTrans.PaintStyle = DevExpress.ExpressApp.Templates.ActionItemPaintStyle.CaptionAndImage;

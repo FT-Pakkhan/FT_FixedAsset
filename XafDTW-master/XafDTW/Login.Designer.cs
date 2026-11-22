@@ -68,7 +68,7 @@ namespace XafDTW
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(100, 164);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(69, 17);
+            this.label2.Size = new System.Drawing.Size(67, 16);
             this.label2.TabIndex = 6;
             this.label2.Text = "Password";
             // 
@@ -77,7 +77,7 @@ namespace XafDTW
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(100, 124);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(55, 17);
+            this.label1.Size = new System.Drawing.Size(52, 16);
             this.label1.TabIndex = 5;
             this.label1.Text = "User ID";
             // 
@@ -86,7 +86,7 @@ namespace XafDTW
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(100, 81);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(67, 17);
+            this.label3.Size = new System.Drawing.Size(65, 16);
             this.label3.TabIndex = 10;
             this.label3.Text = "Company";
             // 
@@ -113,6 +113,7 @@ namespace XafDTW
             this.Name = "Login";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Login_FormClosing);
             this.Load += new System.EventHandler(this.Login_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

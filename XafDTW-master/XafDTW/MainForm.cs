@@ -1,10 +1,10 @@
-﻿using DevExpress.ExpressApp;
-using DevExpress.ExpressApp.Security;
-using DevExpress.Persistent.BaseImpl.PermissionPolicy;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using DevExpress.ExpressApp;
+using DevExpress.ExpressApp.Security;
+using DevExpress.Persistent.BaseImpl.PermissionPolicy;
 using XafDTW.Helpers;
 
 namespace XafDTW
@@ -97,6 +97,13 @@ namespace XafDTW
             loginForm.defpassword = Logs.getConfigurationAppSettingValue("DefaultPassword");
             loginForm.Show();
 
+        }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            this.Dispose();
+            this.Close();
+            Application.Exit();
         }
     }
 }

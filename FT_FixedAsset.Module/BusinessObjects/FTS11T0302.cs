@@ -1,4 +1,6 @@
-﻿using DevExpress.Data.Filtering;
+﻿using System;
+using System.ComponentModel;
+using DevExpress.Data.Filtering;
 using DevExpress.ExpressApp;
 using DevExpress.ExpressApp.ConditionalAppearance;
 using DevExpress.ExpressApp.DC;
@@ -6,8 +8,6 @@ using DevExpress.ExpressApp.Editors;
 using DevExpress.ExpressApp.Model;
 using DevExpress.Persistent.Base;
 using DevExpress.Xpo;
-using System;
-using System.ComponentModel;
 
 namespace FT_FixedAsset.Module.BusinessObjects
 {
@@ -24,7 +24,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
     [Appearance("DisableEdit", AppearanceItemType.Action, "True", Criteria = "Status.Code != 'O'", TargetItems = "SwitchToEditMode; Edit", Visibility = ViewItemVisibility.Hide, Context = "Any")]
     [Appearance("DisableCancelTrans", AppearanceItemType.Action, "True", Criteria = "Status.Code != 'O' and Status.Code != 'P'", TargetItems = "CancelTrans", Visibility = ViewItemVisibility.Hide, Context = "Any")]
     public class FTS11T0302 : XPLiteObject
-    { // Inherit from a different class to provide a custom primary key, concurrency and deletion behavior, etc. (https://documentation.devexpress.com/eXpressAppFramework/CustomDocument113146.aspx).
+    { 
         public FTS11T0302(Session session)
             : base(session)
         {
@@ -32,7 +32,7 @@ namespace FT_FixedAsset.Module.BusinessObjects
         public override void AfterConstruction()
         {
             base.AfterConstruction();
-            // Place your initialization code here (https://documentation.devexpress.com/eXpressAppFramework/CustomDocument112834.aspx).
+            
 
             Status = Session.FindObject<SE_FAStatus>(CriteriaOperator.Parse("Code = 'O'"));
             U_DocDate = DateTime.Today;
@@ -72,8 +72,8 @@ namespace FT_FixedAsset.Module.BusinessObjects
         private int _DocNum;
         [Index(10), VisibleInListView(true), VisibleInDetailView(true), VisibleInLookupListView(false)]
         [XafDisplayName("Document No."), ToolTip("Document No,")]
-        [ModelDefault("DisplayFormat", "{0:n0}")]
-        [ModelDefault("EditMask", "{0:n0}")]
+        [ModelDefault("DisplayFormat", "{0:d0}")]
+        [ModelDefault("EditMask", "{0:d0}")]
         [Appearance("DocNum", Enabled = false)]
         [DbType("int")]
         public int DocNum

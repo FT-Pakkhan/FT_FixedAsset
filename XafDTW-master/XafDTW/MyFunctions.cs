@@ -1,12 +1,7 @@
-﻿using DevExpress.ExpressApp;
+﻿using System.Reflection;
+using DevExpress.ExpressApp;
 using DevExpress.ExpressApp.Xpo;
 using DevExpress.Persistent.BaseImpl.PermissionPolicy;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using FT_FixedAsset.Module.BusinessObjects;
 namespace XafDTW
 {
