@@ -118,7 +118,7 @@ namespace FT_FixedAsset.Module.Web.Import
             get
             {
                 ImportDefinition d = ImportDefinitions.Find(ImportInto);
-                return d != null && d.IsTransaction;
+                return d != null && d.HasLines;   // transactions, or assets with Referenced Documents (Kossan)
             }
         }
 
@@ -163,6 +163,8 @@ namespace FT_FixedAsset.Module.Web.Import
                        "Transactions: the template is a .zip with a HEADER file (one row per document) and a LINES file (one row per asset), " +
                        "linked by 'Import Doc No.' - choose the header file as 'Header File' and the lines file as 'Lines File'. " +
                        "(A single file with header + line columns on each row also works - leave 'Lines File' empty.) " +
+                       "Fixed Asset Master: Referenced Documents can be imported with the assets - give the asset an 'Import Doc No.' " +
+                       "and choose the Referenced Documents file as 'Lines File' (optional). " +
                        "All rows are validated first - if any row has an error, nothing is saved.";
             }
         }

@@ -190,8 +190,9 @@ namespace FT_FixedAsset.Module.Web.Controllers
             if (p.File == null || p.File.Size == 0)
                 throw new UserFriendlyException("Please choose a file to import.");
 
+            bool linesGiven = def.IsTransaction || (p.LinesFile != null && p.LinesFile.Size > 0);
             bool canCreate = SecuritySystem.IsGranted(ObjectSpace, def.HeaderType, SecurityOperations.Create, null, null)
-                && (def.LineType == null || SecuritySystem.IsGranted(ObjectSpace, def.LineType, SecurityOperations.Create, null, null));
+                && (def.LineType == null || !linesGiven || SecuritySystem.IsGranted(ObjectSpace, def.LineType, SecurityOperations.Create, null, null));
             if (!canCreate)
                 throw new UserFriendlyException("You do not have permission to create " + def.Caption + " records.");
 
@@ -201,7 +202,7 @@ namespace FT_FixedAsset.Module.Web.Controllers
             DateTime started = DateTime.Now;
             var watch = System.Diagnostics.Stopwatch.StartNew();
 
-            bool twoFiles = def.IsTransaction && p.LinesFile != null && p.LinesFile.Size > 0;
+            bool twoFiles = def.HasLines && p.LinesFile != null && p.LinesFile.Size > 0;
             ImportTable table = ReadFile(p.File, engine, twoFiles ? "Header file" : "File");
 
             if (twoFiles)

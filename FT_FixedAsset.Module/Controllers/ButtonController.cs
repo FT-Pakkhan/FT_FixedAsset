@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
 using DevExpress.Data.Filtering;
 using DevExpress.ExpressApp;
 using DevExpress.ExpressApp.Actions;
@@ -2321,6 +2322,19 @@ namespace FT_FixedAsset.Module.Web.Controllers
                     OFAM.U_Remark3 = selectedObject.U_Remark3;
                     OFAM.U_Remark4 = selectedObject.U_Remark4;
                     OFAM.U_Text = selectedObject.U_Text;
+
+                    // Kossan: copy the Referenced Documents too
+                    foreach (FTS11FAM4 srcDoc in selectedObject.FTS11FAM4.Cast<FTS11FAM4>().OrderBy(x => x.DocEntry).ToList())
+                    {
+                        FTS11FAM4 doc = os.CreateObject<FTS11FAM4>();
+                        doc.U_DocDate = srcDoc.U_DocDate;
+                        doc.U_NumAtCard = srcDoc.U_NumAtCard;
+                        doc.U_NumAtCard2 = srcDoc.U_NumAtCard2;
+                        doc.U_Desc = srcDoc.U_Desc;
+                        doc.U_Amount = srcDoc.U_Amount;
+                        doc.U_Reason = srcDoc.U_Reason;
+                        OFAM.FTS11FAM4.Add(doc);
+                    }
 
                     ShowViewParameters svp = new ShowViewParameters();
                     dv.ViewEditMode = ViewEditMode.Edit;

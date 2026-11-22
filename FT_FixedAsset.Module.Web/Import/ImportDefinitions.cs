@@ -12,8 +12,14 @@ namespace FT_FixedAsset.Module.Web.Import
         public string Caption;             // used for the template file name
         public string DtwTemplate;         // embedded DTW template (existing layout), null = generated
         public bool CheckLocationQuantity; // Write Off / Disposal / Correction / Transfer / Reclass
+        public bool LinesOptional;         // master data with optional child lines (Kossan: asset + Referenced Documents)
+        public string LineParent = "DocEntry"; // line member that points to the header
+        public string LinesCaption = "line(s)";
 
-        public bool IsTransaction { get { return LineType != null; } }
+        /// <summary>Has a child line type (transactions, or a master with optional lines).</summary>
+        public bool HasLines { get { return LineType != null; } }
+        /// <summary>Transaction documents (lines required, transaction rules apply).</summary>
+        public bool IsTransaction { get { return LineType != null && !LinesOptional; } }
     }
 
     public static class ImportDefinitions
@@ -29,6 +35,12 @@ namespace FT_FixedAsset.Module.Web.Import
             Master(typeof(FTS11OIND), "Indicator", "FTS11OIND.xlsx");
             Master(typeof(FTS11OLOC), "Location", "FTS11OLOC.xlsx");
             Master(typeof(FTS11OFAM), "Fixed Asset Master", "FTS11OFAM.xlsx");
+            // Kossan: Referenced Documents (FTS11FAM4) can be imported with the assets, linked by Import Doc No.
+            map[typeof(FTS11OFAM)].LineType = typeof(FTS11FAM4);
+            map[typeof(FTS11OFAM)].LinesCollection = "FTS11FAM4";
+            map[typeof(FTS11OFAM)].LineParent = "U_FAKey";
+            map[typeof(FTS11OFAM)].LinesOptional = true;
+            map[typeof(FTS11OFAM)].LinesCaption = "referenced document(s)";
 
             Trans(typeof(FTS11T0201), typeof(FTS11T0201D), "Write Off", true);
             Trans(typeof(FTS11T0202), typeof(FTS11T0202D), "Disposal", true);

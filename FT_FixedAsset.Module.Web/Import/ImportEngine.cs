@@ -60,7 +60,7 @@ namespace FT_FixedAsset.Module.Web.Import
             this.genCon = genCon;
             this.def = def;
             headerInfo = app.TypesInfo.FindTypeInfo(def.HeaderType);
-            lineInfo = def.IsTransaction ? app.TypesInfo.FindTypeInfo(def.LineType) : null;
+            lineInfo = def.HasLines ? app.TypesInfo.FindTypeInfo(def.LineType) : null;
         }
 
         #region column mapping
@@ -238,10 +238,12 @@ namespace FT_FixedAsset.Module.Web.Import
 
             var headerByDoc = new Dictionary<string, ImportRow>(StringComparer.OrdinalIgnoreCase);
             var order = new List<string>();
+            var noLineKeys = new HashSet<string>();   // optional lines: header rows without Import Doc No.
             foreach (ImportRow r in header.Rows)
             {
                 string doc = Text(r.Values[hDoc]);
-                if (doc == "") Error(r.RowNumber, "", "", "[Header file] Import Doc No. is empty.");
+                if (doc == "" && def.LinesOptional) { string k = "\u0001" + r.RowNumber; headerByDoc[k] = r; order.Add(k); noLineKeys.Add(k); }
+                else if (doc == "") Error(r.RowNumber, "", "", "[Header file] Import Doc No. is empty.");
                 else if (headerByDoc.ContainsKey(doc)) Error(r.RowNumber, doc, "", "[Header file] Import Doc No. '" + doc + "' appears more than once (one row per document).");
                 else { headerByDoc[doc] = r; order.Add(doc); }
             }
@@ -256,13 +258,14 @@ namespace FT_FixedAsset.Module.Web.Import
                 if (!linesByDoc.TryGetValue(doc, out l)) linesByDoc[doc] = l = new List<ImportRow>();
                 l.Add(r);
             }
-            foreach (string doc in order.Where(d => !linesByDoc.ContainsKey(d)))
-                Error(headerByDoc[doc].RowNumber, doc, "", "[Header file] Import Doc No. '" + doc + "' has no lines in the lines file.");
+            if (!def.LinesOptional)
+                foreach (string doc in order.Where(d => !linesByDoc.ContainsKey(d)))
+                    Error(headerByDoc[doc].RowNumber, doc, "", "[Header file] Import Doc No. '" + doc + "' has no lines in the lines file.");
 
             // linking errors fail the import, but the documents that do link are still checked,
             // so every problem is reported in one go
             preFailed = Results.Any(r => r.Status == "Error");
-            order = order.Where(d => linesByDoc.ContainsKey(d)).ToList();
+            if (!def.LinesOptional) order = order.Where(d => linesByDoc.ContainsKey(d)).ToList();
             if (order.Count == 0) { Info(0, "", "Nothing was saved. Fix the errors above and import the files again."); return; }
 
             // combined layout: ImportDocNo | header columns | line columns
@@ -277,9 +280,20 @@ namespace FT_FixedAsset.Module.Web.Import
             foreach (string doc in order)
             {
                 ImportRow h = headerByDoc[doc];
-                foreach (ImportRow l in linesByDoc[doc])
+                string docOut = noLineKeys.Contains(doc) ? "" : doc;
+                List<ImportRow> docLines;
+                if (!linesByDoc.TryGetValue(doc, out docLines))
                 {
-                    var vals = new List<object> { doc };
+                    // optional lines: the header alone (empty line columns -> no line is created)
+                    var only = new List<object> { docOut };
+                    only.AddRange(hCols.Select(i => h.Values[i]));
+                    only.AddRange(lCols.Select(i => (object)null));
+                    combined.Rows.Add(new ImportRow { RowNumber = h.RowNumber, HeaderRowNumber = h.RowNumber, Values = only.ToArray() });
+                    continue;
+                }
+                foreach (ImportRow l in docLines)
+                {
+                    var vals = new List<object> { docOut };
                     vals.AddRange(hCols.Select(i => h.Values[i]));
                     vals.AddRange(lCols.Select(i => l.Values[i]));
                     combined.Rows.Add(new ImportRow { RowNumber = l.RowNumber, HeaderRowNumber = h.RowNumber, Values = vals.ToArray() });
@@ -297,11 +311,11 @@ namespace FT_FixedAsset.Module.Web.Import
             {
                 string docNo = docNoIndex >= 0 ? Text(row.Values[docNoIndex]) : "";
                 Record rec;
-                if (!def.IsTransaction || docNo == "" || !byDoc.TryGetValue(docNo, out rec))
+                if (!def.HasLines || docNo == "" || !byDoc.TryGetValue(docNo, out rec))
                 {
                     rec = new Record { DocNo = docNo };
                     list.Add(rec);
-                    if (def.IsTransaction && docNo != "") byDoc[docNo] = rec;
+                    if (def.HasLines && docNo != "") byDoc[docNo] = rec;
                 }
                 rec.Rows.Add(row);
             }
@@ -320,7 +334,7 @@ namespace FT_FixedAsset.Module.Web.Import
                 header = (XPBaseObject)os.CreateObject(def.HeaderType);
                 Apply(header, headerCols, first, errors, HdrRow(first), HdrTag);
 
-                if (def.IsTransaction)
+                if (def.HasLines)
                 {
                     // header columns must be identical on every row of the same document
                     foreach (Col c in headerCols)
@@ -335,15 +349,19 @@ namespace FT_FixedAsset.Module.Web.Import
                 // "must not be empty" messages it would cause are just noise
                 bool headerValueErrors = errors.Count > 0;
                 var badLines = new HashSet<int>();
-                if (def.IsTransaction)
+                lineRows = new List<int>();   // file row index of each created line
+                if (def.HasLines)
                 {
                     for (int i = 0; i < rec.Rows.Count; i++)
                     {
+                        // optional lines (asset + referenced documents): a row with all line cells empty has no line
+                        if (def.LinesOptional && lineCols.All(c => Text(rec.Rows[i].Values[c.Index]) == "")) continue;
                         int before = errors.Count;
                         var line = (XPBaseObject)os.CreateObject(def.LineType);
-                        line.SetMemberValue("DocEntry", header);
+                        line.SetMemberValue(def.LineParent, header);
                         Apply(line, lineCols, rec.Rows[i], errors, rec.Rows[i].RowNumber, LineTag);
-                        if (errors.Count > before) badLines.Add(i);
+                        if (errors.Count > before) badLines.Add(lineRows.Count);
+                        lineRows.Add(i);
                     }
                 }
 
@@ -353,13 +371,13 @@ namespace FT_FixedAsset.Module.Web.Import
                 code = RecordCode(header);
                 if (!headerValueErrors)
                     Validate(header, HdrRow(first), errors, HdrTag);
-                if (def.IsTransaction)
+                if (def.HasLines)
                 {
                     List<XPBaseObject> lineObjs = Lines(header).ToList();
-                    for (int i = 0; i < lineObjs.Count; i++)
+                    for (int i = 0; i < lineObjs.Count && i < lineRows.Count; i++)
                         if (!badLines.Contains(i))
-                            Validate(lineObjs[i], rec.Rows[Math.Min(i, rec.Rows.Count - 1)].RowNumber, errors, LineTag);
-                    if (!headerValueErrors)
+                            Validate(lineObjs[i], rec.Rows[lineRows[i]].RowNumber, errors, LineTag);
+                    if (!headerValueErrors && def.IsTransaction)
                         TransactionRules(header, rec, errors, badLines);
                 }
 
@@ -391,16 +409,20 @@ namespace FT_FixedAsset.Module.Web.Import
                     Error(e.Key, rec.DocNo, code, e.Value);
                 return false;
             }
-            Results.Add(new ImportResultLine { Id = Results.Count + 1, Row = HdrRow(first), DocNo = rec.DocNo, Code = code, Status = alreadyFailed ? "Valid" : "OK", Message = alreadyFailed ? "Row is valid (not saved because of other errors)" : (def.IsTransaction ? rec.Rows.Count + " line(s)" : "") });
+            string msg = def.IsTransaction ? rec.Rows.Count + " " + def.LinesCaption
+                       : def.HasLines && lineRows.Count > 0 ? lineRows.Count + " " + def.LinesCaption : "";
+            Results.Add(new ImportResultLine { Id = Results.Count + 1, Row = HdrRow(first), DocNo = rec.DocNo, Code = code, Status = alreadyFailed ? "Valid" : "OK", Message = alreadyFailed ? "Row is valid (not saved because of other errors)" : msg });
             return true;
         }
+
+        private List<int> lineRows = new List<int>();
 
         private void Discard(XPBaseObject header)
         {
             if (header == null) return;
             try
             {
-                if (def.IsTransaction)
+                if (def.HasLines)
                     foreach (XPBaseObject line in Lines(header)) os.RemoveFromModifiedObjects(line);
                 os.RemoveFromModifiedObjects(header);
             }

@@ -21,19 +21,27 @@ namespace FT_FixedAsset.Module.Web.Import
 
         public static string FileName(ImportDefinition def)
         {
-            return def.IsTransaction ? def.Caption + " Import Template.zip" : def.Caption + " Import Template.xlsx";
+            return def.HasLines ? def.Caption + " Import Template.zip" : def.Caption + " Import Template.xlsx";
         }
 
-        /// <summary>Masters: one .xlsx. Transactions: a .zip with the Header file and the Lines file.</summary>
+        /// <summary>Masters: one .xlsx. Transactions / masters with lines: a .zip with the Header file and the Lines file.</summary>
         public static byte[] Download(XafApplication app, ImportDefinition def)
         {
-            if (!def.IsTransaction) return Build(app, def);
+            if (!def.HasLines) return Build(app, def);
             using (var ms = new MemoryStream())
             {
                 using (var zip = new System.IO.Compression.ZipArchive(ms, System.IO.Compression.ZipArchiveMode.Create, true))
                 {
-                    AddZipEntry(zip, def.Caption + " - Header.xlsx", Build(app, def, TemplatePart.Header));
-                    AddZipEntry(zip, def.Caption + " - Lines.xlsx", Build(app, def, TemplatePart.Lines));
+                    if (def.LinesOptional)
+                    {
+                        AddZipEntry(zip, def.Caption + ".xlsx", Build(app, def, TemplatePart.Header));
+                        AddZipEntry(zip, def.Caption + " - " + CaptionOfType(app, def.LineType) + "s (optional).xlsx", Build(app, def, TemplatePart.Lines));
+                    }
+                    else
+                    {
+                        AddZipEntry(zip, def.Caption + " - Header.xlsx", Build(app, def, TemplatePart.Header));
+                        AddZipEntry(zip, def.Caption + " - Lines.xlsx", Build(app, def, TemplatePart.Lines));
+                    }
                 }
                 return ms.ToArray();
             }
@@ -50,7 +58,7 @@ namespace FT_FixedAsset.Module.Web.Import
             using (var wb = new Workbook())
             {
                 Worksheet ws;
-                if (def.DtwTemplate != null)
+                if (def.DtwTemplate != null && part != TemplatePart.Lines)
                 {
                     // existing DTW template, sample data removed
                     using (Stream s = typeof(ImportTemplateBuilder).Assembly.GetManifestResourceStream("ImportTemplates." + def.DtwTemplate))
@@ -67,6 +75,16 @@ namespace FT_FixedAsset.Module.Web.Import
                         int col = ws.GetUsedRange().RightColumnIndex + 1;
                         ws.Cells[0, col].Value = "B/F Depr. Count";
                         ws.Cells[1, col].Value = "U_BFDepr";
+                        ws.Cells[0, col].CopyFrom(ws.Cells[0, col - 1], PasteSpecial.Formats);
+                        ws.Cells[1, col].CopyFrom(ws.Cells[1, col - 1], PasteSpecial.Formats);
+                    }
+
+                    // optional lines (Kossan: Referenced Documents): Import Doc No. links the rows of the lines file
+                    if (def.LinesOptional && Codes(ws).All(c => !c.Equals(ImportDefinitions.DocNoCode, StringComparison.OrdinalIgnoreCase)))
+                    {
+                        int col = ws.GetUsedRange().RightColumnIndex + 1;
+                        ws.Cells[0, col].Value = "Import Doc No.";
+                        ws.Cells[1, col].Value = ImportDefinitions.DocNoCode;
                         ws.Cells[0, col].CopyFrom(ws.Cells[0, col - 1], PasteSpecial.Formats);
                         ws.Cells[1, col].CopyFrom(ws.Cells[1, col - 1], PasteSpecial.Formats);
                     }
@@ -134,8 +152,10 @@ namespace FT_FixedAsset.Module.Web.Import
         {
             var list = new List<Field>();
             list.AddRange(Editable(app, def.HeaderType).Select(m => new Field { Member = m, Level = "Header" }));
-            if (def.IsTransaction)
-                list.AddRange(Editable(app, def.LineType).Select(m => new Field { Member = m, Level = "Line" }));
+            if (def.HasLines)
+                list.AddRange(Editable(app, def.LineType)
+                    .Where(m => m.Name != def.LineParent)   // link to the header, set by the import
+                    .Select(m => new Field { Member = m, Level = "Line" }));
             return list;
         }
 
@@ -173,6 +193,12 @@ namespace FT_FixedAsset.Module.Web.Import
             return null;
         }
 
+        private static string CaptionOfType(XafApplication app, Type t)
+        {
+            var cls = t == null ? null : app.Model.BOModel.GetClass(t);
+            return cls != null && !string.IsNullOrEmpty(cls.Caption) ? cls.Caption : (t == null ? "" : t.Name);
+        }
+
         private static string Caption(XafApplication app, IMemberInfo m)
         {
             var cls = app.Model.BOModel.GetClass(m.Owner.Type);
@@ -190,7 +216,17 @@ namespace FT_FixedAsset.Module.Web.Import
                 new[] { "Save as .xlsx / .xls, or as Text (Tab delimited) / CSV with the same layout. Blank cells keep the default value." },
                 new[] { "The whole file is checked first; if any row has an error nothing is saved. Tick 'Run Simulation' to check without saving." },
             };
-            if (part == TemplatePart.Header)
+            if (def.LinesOptional && part == TemplatePart.Header)
+            {
+                rows.Add(new[] { "ONE row per asset. 'Import Doc No.' is only needed for assets that have " + CaptionOfType(app, def.LineType) + "s: give each such asset its own key (e.g. A1, A2)." });
+                rows.Add(new[] { "Import this file alone, or together with the " + CaptionOfType(app, def.LineType) + "s file: choose this file as 'Header File' and that file as 'Lines File'." });
+            }
+            else if (def.LinesOptional && part == TemplatePart.Lines)
+            {
+                rows.Add(new[] { CaptionOfType(app, def.LineType) + "s file (optional): one row per document. 'Import Doc No.' must match the asset's 'Import Doc No.' in the asset file." });
+                rows.Add(new[] { "Import it together with the asset file: choose the asset file as 'Header File' and this file as 'Lines File'." });
+            }
+            else if (part == TemplatePart.Header)
             {
                 rows.Add(new[] { "HEADER file: ONE row per document. 'Import Doc No.' is your own key (e.g. WO1, WO2) and must be unique in this file." });
                 rows.Add(new[] { "Import it together with the LINES file: on the Import Data screen choose this file as 'Header File' and the lines file as 'Lines File'." });
@@ -202,7 +238,7 @@ namespace FT_FixedAsset.Module.Web.Import
             }
             else if (def.IsTransaction)
                 rows.Add(new[] { "One row per asset line. Rows with the same 'Import Doc No.' become one document (header columns must be the same on those rows). Leave it blank for one document per row." });
-            if (def.HeaderType == typeof(BusinessObjects.FTS11OFAM))
+            if (def.HeaderType == typeof(BusinessObjects.FTS11OFAM) && part != TemplatePart.Lines)
                 rows.Add(new[] { "Leave F/A Code (U_FACode) blank to use the automatic numbering, same as on screen." });
             rows.Add(new string[0]);
             rows.Add(new[] { "Field Code", "Caption", "Level", "Type / how to fill", "Required" });
@@ -213,12 +249,12 @@ namespace FT_FixedAsset.Module.Web.Import
             {
                 if (code.Equals(ImportDefinitions.DocNoCode, StringComparison.OrdinalIgnoreCase))
                 {
-                    rows.Add(new[] { code, "Import Doc No.", "Grouping", "Any text/number - groups lines into one document", "" });
+                    rows.Add(new[] { code, "Import Doc No.", "Grouping", def.LinesOptional ? "Any text/number - links the asset and its " + CaptionOfType(app, def.LineType) + "s" : "Any text/number - groups lines into one document", "" });
                     continue;
                 }
                 IMemberInfo m = Member(app, def, code);
                 if (m == null) { rows.Add(new[] { code, "", "", "(not a field - ignored)", "" }); continue; }
-                bool line = def.IsTransaction && m.Owner.Type == def.LineType;
+                bool line = def.HasLines && m.Owner.Type == def.LineType;
                 bool req = m.FindAttribute<RuleRequiredFieldAttribute>() != null;
                 rows.Add(new[] { code, Caption(app, m), line ? "Line" : "Header", Describe(app, m, decimals), req ? "Yes" : "" });
             }
